@@ -1,0 +1,31 @@
+{
+  "name": "@shiperist-catppuccin-ui/react",
+  "version": "0.0.1",
+  "description": "Soothing pastel React components! A Tailwind CSS component library based on Catppuccin.",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "dependencies": {
+    "@shiperist-catppuccin-ui/button": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tsup": "^5.10.1",
+    "typescript": "^5.1.3"
+  }
+}
