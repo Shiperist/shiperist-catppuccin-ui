@@ -1,39 +1,26 @@
 import React from "react";
 
-export type SwitchVariant = "rounded" | "square";
-
-export const SwitchVariants: SwitchVariant[] = ["rounded", "square"];
-
-export interface SwitchProps extends React.HTMLAttributes<HTMLLabelElement> {
-  variant?: SwitchVariant;
-  disabled?: boolean;
+export interface SwitchProps extends React.HTMLAttributes<HTMLInputElement> {
+    disabled?: boolean;
 }
 
 const Switch: React.FC<SwitchProps> = ({
-  variant = "rounded",
-  disabled = false,
-  className = "",
-  children,
-  ...other
-}) => {
-  const variantClass = {
-    rounded: "rounded-full",
-    square: "rounded-none",
-  }[variant];
+                                           disabled = false,
+                                           className = "",
+                                           children,
+                                           ...other
+                                       }) => {
+    const disabledClass = disabled ? "cursor-not-allowed pointer-events-none opacity-75" : "cursor-pointer";
+    const baseSwitchClass = `w-11 h-6 bg-mantle rounded-full peer peer-checked:bg-green peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all`;
+    const sliderClass = `${className} ${baseSwitchClass}`;
 
-  const disabledClass = disabled ? "cursor-not-allowed pointer-events-none opacity-75" : "";
-  const baseSwitchClass = `w-11 h-6 bg-transparent peer-focus:outline-none ${variantClass} peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-ctp-text after:h-5 after:w-5 after:transition-all peer-checked:bg-ctp-crust`;
-  const sliderClass = `after:${variantClass} ${className} ${baseSwitchClass}`;
-
-  return (
-    <label
-      className={`relative inline-flex items-center cursor-pointer border border-ctp-text ${variantClass} ${disabledClass}`}
-      {...other}>
-      <input type="checkbox" value="" className={`sr-only peer ${disabledClass}`}></input>
-      <div className={`${disabledClass} ${sliderClass}`}></div>
-      {children}
-    </label>
-  );
+    return (
+        <label className={`relative inline-flex items-center ${disabledClass}`}>
+            <input type="checkbox" value="" disabled={disabled} className="sr-only peer" {...other}/>
+            <div className={`${baseSwitchClass}`}></div>
+            <span className="ml-3 text-sm font-medium text-text">{children}</span>
+        </label>
+    );
 };
 
 export default Switch;

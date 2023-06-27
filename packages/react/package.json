@@ -18,7 +18,9 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
-    "@shiperist-catppuccin-ui/button": "workspace:*"
+    "@shiperist-catppuccin-ui/button": "workspace:*",
+    "@shiperist-catppuccin-ui/switch": "workspace:*",
+    "@shiperist-catppuccin-ui/text-input": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
