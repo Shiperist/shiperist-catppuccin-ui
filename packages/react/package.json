@@ -20,7 +20,19 @@
   "dependencies": {
     "@shiperist-catppuccin-ui/button": "workspace:*",
     "@shiperist-catppuccin-ui/switch": "workspace:*",
-    "@shiperist-catppuccin-ui/text-input": "workspace:*"
+    "@shiperist-catppuccin-ui/text-input": "workspace:*",
+    "@shiperist-catppuccin-ui/text": "workspace:*",
+    "@shiperist-catppuccin-ui/bold": "workspace:*",
+    "@shiperist-catppuccin-ui/italic": "workspace:*",
+    "@shiperist-catppuccin-ui/title": "workspace:*",
+    "@shiperist-catppuccin-ui/subtitle": "workspace:*",
+    "@shiperist-catppuccin-ui/description": "workspace:*",
+    "@shiperist-catppuccin-ui/link": "workspace:*",
+    "@shiperist-catppuccin-ui/card": "workspace:*",
+    "@shiperist-catppuccin-ui/divider": "workspace:*",
+    "@shiperist-catppuccin-ui/badge": "workspace:*",
+    "@shiperist-catppuccin-ui/vertical-layout": "workspace:*",
+    "@shiperist-catppuccin-ui/horizontal-layout": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
