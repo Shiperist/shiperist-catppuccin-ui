@@ -24,7 +24,7 @@ const TextInput: React.FC<TextInputProps> = ({
     disabled ? "cursor-not-allowed" : ""
   }`;
   const containerClass = `flex w-full h-full flex-row px-4 bg-transparent border ring-0 border-1 border-ctp-overlay1 rounded-lg h-12 py-2 ${
-    error ? "border-ctp-red hover:border-ctp-red" : `${!disabled ? "hover:border-ctp-subtext1" : ""}`
+    error ? "border-red hover:border-red" : `${!disabled ? "hover:border-lavender" : ""}`
   } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
   const iconClass = "text-ctp-overlay1";
   const captionClass = "pt-2 text-sm text-text";

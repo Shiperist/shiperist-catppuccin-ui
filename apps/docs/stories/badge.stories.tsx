@@ -14,6 +14,18 @@ export default {
         options: ["success", "warning", "danger", "info"],
       },
     },
+    size: {
+      control: {
+        type: "select",
+        options: ["small", "medium", "large", "xlarge"],
+      },
+    },
+    appearance: {
+      control: {
+        type: "select",
+        options: ["filled", "outline"],
+      },
+    },
     children: { control: "text" },
   },
 } as Meta;
@@ -41,6 +53,8 @@ Default.args = {
   ),
   iconPosition: "left",
   variant: "success",
+  size: "medium",
+  appearance: "filled",
   children: "Badge",
 };
 

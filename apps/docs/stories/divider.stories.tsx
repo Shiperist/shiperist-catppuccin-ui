@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { Divider, Card, Title } from "@shiperist-catppuccin-ui/react";
+import { Divider, Card, Text } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Divider",
@@ -9,9 +9,9 @@ export default {
 
 const Template: StoryFn = (args) => (
   <Card {...args}>
-    <Title>Card content</Title>
+    <Text>Card content</Text>
     <Divider></Divider>
-    <Title>Card content</Title>
+    <Text>Card content</Text>
   </Card>
 );
 

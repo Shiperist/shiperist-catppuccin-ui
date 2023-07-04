@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { Card, Title } from "@shiperist-catppuccin-ui/react";
+import { Card, Text } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Card",
@@ -9,7 +9,7 @@ export default {
 
 const Template: StoryFn = (args) => (
   <Card {...args}>
-    <Title>Card content</Title>
+    <Text>Card content</Text>
   </Card>
 );
 
