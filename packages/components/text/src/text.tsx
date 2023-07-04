@@ -1,7 +1,7 @@
 import React from "react";
 
 export type TextFont = "none" | "bold" | "italic";
-export type TextProp = "p" | "h1" | "h2" | "h3";
+export type TextProp = "p" | "a" | "h1" | "h2" | "h3";
 
 const fontClasses: Record<TextFont, string> = {
   none: "",
@@ -11,6 +11,7 @@ const fontClasses: Record<TextFont, string> = {
 
 const propClasses: Record<TextProp, string> = {
   p: "text-base",
+  a: "text-base hover:underline cursor-pointer",
   h1: "text-4xl",
   h2: "text-3xl",
   h3: "text-xl",
@@ -19,18 +20,25 @@ const propClasses: Record<TextProp, string> = {
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   font?: TextFont;
   prop?: TextProp | "description";
-  link?: boolean;
+  error?: boolean;
 }
 
-const Text: React.FC<TextProps> = ({ font = "none", prop = "p", link = false, className = "", children, ...other }) => {
+const Text: React.FC<TextProps> = ({
+  font = "none",
+  prop = "p",
+  error = false,
+  className = "",
+  children,
+  ...other
+}) => {
   const fontClass = fontClasses[font];
   const propClass = propClasses[prop];
 
-  const textClass = `text-text ${fontClass ?? ""} ${link ? "hover:underline cursor-pointer" : ""} ${
+  const textClass = `${fontClass ?? ""} ${error ? "text-red" : "text-text"} ${
     prop === "description" ? "text-sm" : propClass
   }`;
 
-  const Element = prop === "description" ? "p" : link ? "a" : prop;
+  const Element = prop == "description" ? "p" : prop;
   return (
     <Element className={`${className} ${textClass}`} {...other}>
       {children}

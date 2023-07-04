@@ -15,10 +15,10 @@ export default {
     prop: {
       control: {
         type: "select",
-        options: ["p", "description", "h1", "h2", "h3"],
+        options: ["p", "a", "description", "h1", "h2", "h3"],
       },
     },
-    link: { control: "boolean" },
+    error: { control: "boolean" },
   },
   children: { control: "text" },
 } as Meta;
@@ -30,5 +30,5 @@ Default.args = {
   children: "This a preview text",
   font: "none",
   prop: "p",
-  link: false,
+  error: false,
 };
