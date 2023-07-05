@@ -127,33 +127,6 @@ importers:
         specifier: ^4.5.3
         version: registry.npmjs.org/typescript@4.9.4
 
-  packages/components/bold:
-    devDependencies:
-      '@shiperist-catppuccin-ui/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@shiperist-catppuccin-ui/utilities':
-        specifier: workspace:*
-        version: link:../../utilities
-      '@types/react':
-        specifier: ^18.0.9
-        version: registry.npmjs.org/@types/react@18.2.5
-      '@types/react-dom':
-        specifier: ^18.0.4
-        version: registry.npmjs.org/@types/react-dom@18.2.4
-      eslint:
-        specifier: ^8.15.0
-        version: registry.npmjs.org/eslint@8.15.0
-      react:
-        specifier: ^18.1.0
-        version: registry.npmjs.org/react@18.2.0
-      tsup:
-        specifier: ^5.10.1
-        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
-      typescript:
-        specifier: ^4.5.3
-        version: registry.npmjs.org/typescript@4.9.4
-
   packages/components/button:
     devDependencies:
       '@shiperist-catppuccin-ui/core':
@@ -182,33 +155,6 @@ importers:
         version: 4.9.4
 
   packages/components/card:
-    devDependencies:
-      '@shiperist-catppuccin-ui/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@shiperist-catppuccin-ui/utilities':
-        specifier: workspace:*
-        version: link:../../utilities
-      '@types/react':
-        specifier: ^18.0.9
-        version: registry.npmjs.org/@types/react@18.2.5
-      '@types/react-dom':
-        specifier: ^18.0.4
-        version: registry.npmjs.org/@types/react-dom@18.2.4
-      eslint:
-        specifier: ^8.15.0
-        version: registry.npmjs.org/eslint@8.15.0
-      react:
-        specifier: ^18.1.0
-        version: registry.npmjs.org/react@18.2.0
-      tsup:
-        specifier: ^5.10.1
-        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
-      typescript:
-        specifier: ^4.5.3
-        version: registry.npmjs.org/typescript@4.9.4
-
-  packages/components/description:
     devDependencies:
       '@shiperist-catppuccin-ui/core':
         specifier: workspace:*
@@ -289,87 +235,6 @@ importers:
         specifier: ^4.5.3
         version: registry.npmjs.org/typescript@4.9.4
 
-  packages/components/italic:
-    devDependencies:
-      '@shiperist-catppuccin-ui/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@shiperist-catppuccin-ui/utilities':
-        specifier: workspace:*
-        version: link:../../utilities
-      '@types/react':
-        specifier: ^18.0.9
-        version: registry.npmjs.org/@types/react@18.2.5
-      '@types/react-dom':
-        specifier: ^18.0.4
-        version: registry.npmjs.org/@types/react-dom@18.2.4
-      eslint:
-        specifier: ^8.15.0
-        version: registry.npmjs.org/eslint@8.15.0
-      react:
-        specifier: ^18.1.0
-        version: registry.npmjs.org/react@18.2.0
-      tsup:
-        specifier: ^5.10.1
-        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
-      typescript:
-        specifier: ^4.5.3
-        version: registry.npmjs.org/typescript@4.9.4
-
-  packages/components/link:
-    devDependencies:
-      '@shiperist-catppuccin-ui/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@shiperist-catppuccin-ui/utilities':
-        specifier: workspace:*
-        version: link:../../utilities
-      '@types/react':
-        specifier: ^18.0.9
-        version: registry.npmjs.org/@types/react@18.2.5
-      '@types/react-dom':
-        specifier: ^18.0.4
-        version: registry.npmjs.org/@types/react-dom@18.2.4
-      eslint:
-        specifier: ^8.15.0
-        version: registry.npmjs.org/eslint@8.15.0
-      react:
-        specifier: ^18.1.0
-        version: registry.npmjs.org/react@18.2.0
-      tsup:
-        specifier: ^5.10.1
-        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
-      typescript:
-        specifier: ^4.5.3
-        version: registry.npmjs.org/typescript@4.9.4
-
-  packages/components/subtitle:
-    devDependencies:
-      '@shiperist-catppuccin-ui/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@shiperist-catppuccin-ui/utilities':
-        specifier: workspace:*
-        version: link:../../utilities
-      '@types/react':
-        specifier: ^18.0.9
-        version: registry.npmjs.org/@types/react@18.2.5
-      '@types/react-dom':
-        specifier: ^18.0.4
-        version: registry.npmjs.org/@types/react-dom@18.2.4
-      eslint:
-        specifier: ^8.15.0
-        version: registry.npmjs.org/eslint@8.15.0
-      react:
-        specifier: ^18.1.0
-        version: registry.npmjs.org/react@18.2.0
-      tsup:
-        specifier: ^5.10.1
-        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
-      typescript:
-        specifier: ^4.5.3
-        version: registry.npmjs.org/typescript@4.9.4
-
   packages/components/switch:
     devDependencies:
       '@shiperist-catppuccin-ui/core':
@@ -396,33 +261,6 @@ importers:
       typescript:
         specifier: ^4.5.3
         version: 4.9.4
-
-  packages/components/text:
-    devDependencies:
-      '@shiperist-catppuccin-ui/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@shiperist-catppuccin-ui/utilities':
-        specifier: workspace:*
-        version: link:../../utilities
-      '@types/react':
-        specifier: ^18.0.9
-        version: registry.npmjs.org/@types/react@18.2.5
-      '@types/react-dom':
-        specifier: ^18.0.4
-        version: registry.npmjs.org/@types/react-dom@18.2.4
-      eslint:
-        specifier: ^8.15.0
-        version: registry.npmjs.org/eslint@8.15.0
-      react:
-        specifier: ^18.1.0
-        version: registry.npmjs.org/react@18.2.0
-      tsup:
-        specifier: ^5.10.1
-        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
-      typescript:
-        specifier: ^4.5.3
-        version: registry.npmjs.org/typescript@4.9.4
 
   packages/components/text-input:
     devDependencies:
@@ -451,7 +289,7 @@ importers:
         specifier: ^4.5.3
         version: registry.npmjs.org/typescript@4.9.4
 
-  packages/components/title:
+  packages/components/typography:
     devDependencies:
       '@shiperist-catppuccin-ui/core':
         specifier: workspace:*
@@ -543,45 +381,27 @@ importers:
       '@shiperist-catppuccin-ui/badge':
         specifier: workspace:*
         version: link:../components/badge
-      '@shiperist-catppuccin-ui/bold':
-        specifier: workspace:*
-        version: link:../components/bold
       '@shiperist-catppuccin-ui/button':
         specifier: workspace:*
         version: link:../components/button
       '@shiperist-catppuccin-ui/card':
         specifier: workspace:*
         version: link:../components/card
-      '@shiperist-catppuccin-ui/description':
-        specifier: workspace:*
-        version: link:../components/description
       '@shiperist-catppuccin-ui/divider':
         specifier: workspace:*
         version: link:../components/divider
       '@shiperist-catppuccin-ui/horizontal-layout':
         specifier: workspace:*
         version: link:../components/horizontal-layout
-      '@shiperist-catppuccin-ui/italic':
-        specifier: workspace:*
-        version: link:../components/italic
-      '@shiperist-catppuccin-ui/link':
-        specifier: workspace:*
-        version: link:../components/link
-      '@shiperist-catppuccin-ui/subtitle':
-        specifier: workspace:*
-        version: link:../components/subtitle
       '@shiperist-catppuccin-ui/switch':
         specifier: workspace:*
         version: link:../components/switch
-      '@shiperist-catppuccin-ui/text':
-        specifier: workspace:*
-        version: link:../components/text
       '@shiperist-catppuccin-ui/text-input':
         specifier: workspace:*
         version: link:../components/text-input
-      '@shiperist-catppuccin-ui/title':
+      '@shiperist-catppuccin-ui/typography':
         specifier: workspace:*
-        version: link:../components/title
+        version: link:../components/typography
       '@shiperist-catppuccin-ui/vertical-layout':
         specifier: workspace:*
         version: link:../components/vertical-layout
