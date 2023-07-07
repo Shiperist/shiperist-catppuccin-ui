@@ -5,5 +5,4 @@ export * from "@shiperist-catppuccin-ui/typography";
 export * from "@shiperist-catppuccin-ui/card";
 export * from "@shiperist-catppuccin-ui/divider";
 export * from "@shiperist-catppuccin-ui/badge";
-export * from "@shiperist-catppuccin-ui/vertical-layout";
-export * from "@shiperist-catppuccin-ui/horizontal-layout";
+export * from "@shiperist-catppuccin-ui/layout";

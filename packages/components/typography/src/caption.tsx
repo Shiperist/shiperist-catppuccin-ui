@@ -1,15 +1,16 @@
 import React from "react";
-import { TypographyProps } from "../../../../utilities/src/typography";
+import { TypographyProps, formatClass } from "../../../utilities/src/typography";
 
 const Caption: React.FC<TypographyProps> = ({
   bold = false,
   italic = false,
   error = false,
+  underline = false,
   className = "",
   children,
   ...other
 }) => {
-  const textClass = `${bold ? "font-bold" : ""} ${italic ? "italic" : ""} ${error ? "text-red" : "text-text"} text-sm`;
+  const textClass = `${formatClass(bold, italic, underline)} ${error ? "text-red" : "text-text"} text-sm`;
   return (
     <p className={`${className} ${textClass}`} {...other}>
       {children}
