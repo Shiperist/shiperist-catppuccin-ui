@@ -1,0 +1,1 @@
+export { default as Caption2 } from "./caption2";

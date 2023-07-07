@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { Switch } from "@shiperist-catppuccin-ui/react";
 
@@ -7,9 +6,7 @@ export default {
   component: Switch,
   agrTypes: {
     disabled: { control: "boolean" },
-    variant: {
-
-    },
+    variant: {},
   },
 } as Meta;
 

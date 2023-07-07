@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { Badge } from "@shiperist-catppuccin-ui/react";
 
@@ -12,6 +11,18 @@ export default {
       control: {
         type: "select",
         options: ["success", "warning", "danger", "info"],
+      },
+    },
+    size: {
+      control: {
+        type: "select",
+        options: ["small", "medium", "large", "xlarge"],
+      },
+    },
+    appearance: {
+      control: {
+        type: "select",
+        options: ["filled", "outline"],
       },
     },
     children: { control: "text" },
@@ -41,6 +52,8 @@ Default.args = {
   ),
   iconPosition: "left",
   variant: "success",
+  size: "medium",
+  appearance: "filled",
   children: "Badge",
 };
 
