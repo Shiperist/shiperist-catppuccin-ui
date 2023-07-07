@@ -1,9 +1,20 @@
-import React, { FC } from "react";
+import React from "react";
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+const appearance = ["filled", "shadow", "outline"] as const;
+export type CardAppearance = (typeof appearance)[number];
 
-const Card: FC<CardProps> = ({ className = "", children, ...other }) => {
-  const cardClass = "p-8 rounded-lg border-1 border-ctp-overlay1";
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  appearance?: CardAppearance;
+}
+
+const Card: React.FC<CardProps> = ({ appearance = "outline", className = "", children, ...other }) => {
+  const appearanceClass = {
+    filled: `bg-mantle`,
+    outline: `border`,
+    shadow: "bg-mantle shadow shadow-lg",
+  }[appearance];
+
+  const cardClass = `p-8 rounded-lg ${appearanceClass}`;
   return (
     <div className={`${className} ${cardClass}`} {...other}>
       {children}

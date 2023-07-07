@@ -1,5 +1,5 @@
 import React from "react";
-import { TypographyProps, formatClass } from "../../../utilities/src/typography";
+import { TypographyProps, formatClass } from "@shiperist-catppuccin-ui/utilities";
 
 const Subtitle: React.FC<TypographyProps> = ({
   bold = false,

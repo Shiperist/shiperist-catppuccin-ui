@@ -5,4 +5,4 @@ export { default as Subtitle } from "./subtitle";
 export { default as Text } from "./text";
 export { default as Title } from "./title";
 
-export type { TextProp } from "../../../utilities/src/typography";
+export type { TextProp } from "@shiperist-catppuccin-ui/utilities";
