@@ -1,5 +1,8 @@
 import React from "react";
 
+const appearance = ["outline", "underline"] as const;
+export type TextInputAppearance = (typeof appearance)[number];
+
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   leadingElement?: React.ElementType | string;
   trailingElement?: React.ElementType | string;
@@ -7,11 +10,13 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
   disabled?: boolean;
   error?: boolean;
   caption?: string;
+  appearance?: TextInputAppearance;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
   leadingElement: LeadingElement,
   trailingElement: TrailingElement,
+  appearance = "outline",
   loading = false,
   disabled = false,
   error = false,
@@ -19,14 +24,19 @@ const TextInput: React.FC<TextInputProps> = ({
   className = "",
   ...other
 }) => {
+  const textInputAppearance = {
+    outline: "ring-0 border-1 border-overlay1 rounded-lg",
+    underline: "ring-0 border-0 border-b border-overlay1",
+  }[appearance];
+
   const baseClass = `flex flex-col ${className}`;
-  const inputClass = `bg-transparent border-0 outline-none flex-grow placeholder-ctp-subtext2 text-text mx-1 ${
+  const inputClass = `bg-transparent outline-none flex-grow placeholdersubtext2 text-text mx-1 ${
     disabled ? "cursor-not-allowed" : ""
   }`;
-  const containerClass = `flex w-full h-full flex-row px-4 bg-transparent border ring-0 border-1 border-ctp-overlay1 rounded-lg h-12 py-2 ${
+  const containerClass = `flex w-full h-full flex-row px-4 bg-transparent ${textInputAppearance} h-12 py-2 ${
     error ? "border-red hover:border-red" : `${!disabled ? "hover:border-lavender" : ""}`
   } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
-  const iconClass = "text-ctp-overlay1";
+  const iconClass = "textoverlay1";
   const captionClass = "pt-2 text-sm text-text";
 
   const currentTrailingElement = loading ? (

@@ -5,7 +5,7 @@ export interface SwitchProps extends React.HTMLAttributes<HTMLInputElement> {
 }
 
 const Switch: React.FC<SwitchProps> = ({ disabled = false, className = "", children, ...other }) => {
-  const disabledClass = disabled ? "cursor-not-allowed pointer-events-none opacity-75" : "cursor-pointer";
+  const disabledClass = disabled ? "cursor-not-allowed opacity-75" : "cursor-pointer";
   const baseSwitchClass = `w-11 h-6 bg-mantle rounded-full peer peer-checked:bg-green peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all`;
 
   return (

@@ -11,11 +11,18 @@ export default {
         options: ["filled", "shadow", "outline"],
       },
     },
+    orientation: {
+      control: {
+        type: "select",
+        options: ["horizontal", "vertical"],
+      },
+    },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Card {...args}>
+  <Card {...args} style={{ gap: 4 }}>
+    <Text>Card content</Text>
     <Text>Card content</Text>
   </Card>
 );
@@ -23,6 +30,7 @@ const Template: StoryFn = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   appearance: "outline",
+  orientation: "vertical",
 };
 
 export const Filled = () => <Card appearance="filled">Card content</Card>;

@@ -9,6 +9,12 @@ export default {
     error: { control: "boolean" },
     disabled: { control: "boolean" },
     caption: { control: "text" },
+    appearance: {
+      control: {
+        type: "select",
+        options: ["outline", "underline"],
+      },
+    },
     leadingElement: { control: "object" },
     trailingElement: { control: "object" },
   },
@@ -22,4 +28,5 @@ Default.args = {
   error: false,
   disabled: false,
   caption: "This is a caption",
+  appearance: "outline",
 };
