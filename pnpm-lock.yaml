@@ -208,7 +208,7 @@ importers:
         specifier: ^4.5.3
         version: registry.npmjs.org/typescript@4.9.4
 
-  packages/components/horizontal-layout:
+  packages/components/layout:
     devDependencies:
       '@shiperist-catppuccin-ui/core':
         specifier: workspace:*
@@ -316,33 +316,6 @@ importers:
         specifier: ^4.5.3
         version: registry.npmjs.org/typescript@4.9.4
 
-  packages/components/vertical-layout:
-    devDependencies:
-      '@shiperist-catppuccin-ui/core':
-        specifier: workspace:*
-        version: link:../../core
-      '@shiperist-catppuccin-ui/utilities':
-        specifier: workspace:*
-        version: link:../../utilities
-      '@types/react':
-        specifier: ^18.0.9
-        version: registry.npmjs.org/@types/react@18.2.5
-      '@types/react-dom':
-        specifier: ^18.0.4
-        version: registry.npmjs.org/@types/react-dom@18.2.4
-      eslint:
-        specifier: ^8.15.0
-        version: registry.npmjs.org/eslint@8.15.0
-      react:
-        specifier: ^18.1.0
-        version: registry.npmjs.org/react@18.2.0
-      tsup:
-        specifier: ^5.10.1
-        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
-      typescript:
-        specifier: ^4.5.3
-        version: registry.npmjs.org/typescript@4.9.4
-
   packages/core:
     devDependencies:
       '@catppuccin/tailwindcss':
@@ -390,9 +363,9 @@ importers:
       '@shiperist-catppuccin-ui/divider':
         specifier: workspace:*
         version: link:../components/divider
-      '@shiperist-catppuccin-ui/horizontal-layout':
+      '@shiperist-catppuccin-ui/layout':
         specifier: workspace:*
-        version: link:../components/horizontal-layout
+        version: link:../components/layout
       '@shiperist-catppuccin-ui/switch':
         specifier: workspace:*
         version: link:../components/switch
@@ -402,9 +375,6 @@ importers:
       '@shiperist-catppuccin-ui/typography':
         specifier: workspace:*
         version: link:../components/typography
-      '@shiperist-catppuccin-ui/vertical-layout':
-        specifier: workspace:*
-        version: link:../components/vertical-layout
     devDependencies:
       '@types/react':
         specifier: ^18.0.9

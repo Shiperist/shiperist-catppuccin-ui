@@ -14,6 +14,7 @@ export default {
     error: { control: "boolean" },
     bold: { control: "boolean" },
     italic: { control: "boolean" },
+    underline: { control: "boolean" },
   },
   children: { control: "text" },
 } as Meta;
@@ -27,6 +28,7 @@ Default.args = {
   error: false,
   bold: false,
   italic: false,
+  underline: false,
 };
 
 export const Presets = () => (
@@ -43,6 +45,7 @@ export const Presets = () => (
 export const Bold = () => <Text bold>Bold text</Text>;
 export const Italic = () => <Text italic>Italic text</Text>;
 export const Error = () => <Text error>Error text</Text>;
+export const Underline = () => <Text underline>Underline text</Text>;
 Error.parameters = {
   docs: {
     description: {
