@@ -1,6 +1,6 @@
 {
   "name": "@shiperist-catppuccin-ui/react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Soothing pastel React components! A Tailwind CSS component library based on Catppuccin.",
   "license": "MIT",
   "main": "src/index.ts",
