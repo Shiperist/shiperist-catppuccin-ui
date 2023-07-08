@@ -7,6 +7,3 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   italic?: boolean;
   underline?: boolean;
 }
-
-export function formatClass(bold: boolean, italic: boolean, underline: boolean) { 
-  return `${bold ? "font-bold" : ""} ${italic ? "italic" : ""} ${underline ? "underline" : ""}`}

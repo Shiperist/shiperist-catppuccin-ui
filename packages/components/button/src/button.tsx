@@ -11,6 +11,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconPosition?: "left" | "right";
   loading?: boolean;
   tooltip?: string;
+  disabled?: boolean;
   variant?: ButtonVariant;
   size?: Size;
 }
@@ -19,6 +20,7 @@ const Button: FC<ButtonProps> = ({
   icon: Icon,
   iconPosition = "left",
   loading = false,
+  disabled = false,
   tooltip,
   variant = "success",
   size = "medium",
@@ -29,7 +31,7 @@ const Button: FC<ButtonProps> = ({
   const [showTooltip, setShowTooltip] = useState(false);
 
   const baseClass =
-    "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1 active:translate-y-0.5";
+    "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1";
   const variantColor = {
     success: "green",
     danger: "red",
@@ -51,13 +53,11 @@ const Button: FC<ButtonProps> = ({
       xlarge: "p-4",
     }[size] || "";
 
-  const variantClass = variantColor
-    ? `border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base`
-    : "";
-
-  const buttonClasses = `${baseClass} ${variantClass} ${
-    !children && (Icon || loading) ? iconSizeClass : sizeClass
-  } ${className}`;
+  const buttonClasses = `${baseClass} ${
+    disabled
+      ? "opacity-50 cursor-not-allowed text-text border-gray"
+      : `border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base active:translate-y-0.5`
+  } ${!children && (Icon || loading) ? iconSizeClass : sizeClass} ${className}`;
 
   const currentIcon = loading ? (
     <svg
@@ -70,8 +70,7 @@ const Button: FC<ButtonProps> = ({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-4 w-4 animate-spin"
-    >
+      className="h-4 w-4 animate-spin">
       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
   ) : (
@@ -84,8 +83,8 @@ const Button: FC<ButtonProps> = ({
       className={buttonClasses}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
-      {...other}
-    >
+      disabled={disabled}
+      {...other}>
       {currentIcon && iconPosition === "left" && currentIcon}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
       {currentIcon && iconPosition === "right" && currentIcon}

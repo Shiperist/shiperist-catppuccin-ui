@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Badge } from "@shiperist-catppuccin-ui/react";
+import { Badge, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Badge",
@@ -13,16 +13,10 @@ export default {
         options: ["success", "warning", "danger", "info"],
       },
     },
-    size: {
-      control: {
-        type: "select",
-        options: ["small", "medium", "large", "xlarge"],
-      },
-    },
     appearance: {
       control: {
         type: "select",
-        options: ["filled", "outline"],
+        options: ["filled", "ghost", "tint", "outline"],
       },
     },
     children: { control: "text" },
@@ -33,12 +27,20 @@ const Template: StoryFn = (args) => <Badge {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
+  variant: "success",
+  appearance: "filled",
+  children: "Badge",
+};
+
+export const WithIconOnLeft = Template.bind({});
+WithIconOnLeft.args = {
+  ...Default.args,
   icon: (
     <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
+        width="16"
+        height="16"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -51,14 +53,36 @@ Default.args = {
     </>
   ),
   iconPosition: "left",
-  variant: "success",
-  size: "medium",
-  appearance: "filled",
-  children: "Badge",
 };
 
 export const WithIconOnRight = Template.bind({});
 WithIconOnRight.args = {
   ...Default.args,
+  icon: (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="lucide lucide-heart">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+    </>
+  ),
   iconPosition: "right",
 };
+
+export const Appearance = () => (
+  <HorizontalLayout style={{ gap: 4 }}>
+    <Badge appearance="filled">Badge</Badge>
+    <Badge appearance="outline">Badge</Badge>
+    <Badge appearance="ghost">Badge</Badge>
+    <Badge appearance="tint">Badge</Badge>
+  </HorizontalLayout>
+);

@@ -9,6 +9,7 @@ export default {
     icon: { control: "object" },
     iconPosition: { control: { type: "select", options: ["left", "right"] } },
     loading: { control: "boolean" },
+    disabled: { control: "boolean" },
     tooltip: { control: "text" },
     variant: {
       control: {
@@ -52,6 +53,7 @@ Default.args = {
   tooltip: "",
   variant: "success",
   size: "medium",
+  disabled: false,
   children: "Click Me",
 };
 
