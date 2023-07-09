@@ -24,7 +24,7 @@ jobs:
         run: |
           cd apps/docs
           pnpm install
-          pnpm run build-storybook
+          pnpm run build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
