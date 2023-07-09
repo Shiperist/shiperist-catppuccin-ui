@@ -2,8 +2,10 @@ name: Build and Deploy Storybook
 
 on:
   push:
-    paths: [ "app/docs/**" ] # Trigger the action only when files change in the folders defined here
-  workflow_dispatch:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build-and-deploy:
