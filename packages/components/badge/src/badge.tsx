@@ -1,12 +1,8 @@
-import React from "react";
-import { FC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
-const variants = ["success", "warning", "danger", "info"] as const;
-const appearance = ["filled", "ghost", "tint", "outline"] as const;
-
-export type BadgeVariant = (typeof variants)[number];
-export type BadgeAppearance = (typeof appearance)[number];
+export type BadgeVariant = "success" | "warning" | "danger" | "info";
+export type BadgeAppearance = "filled" | "ghost" | "tint" | "outline";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode;
@@ -22,7 +18,7 @@ const Badge: FC<BadgeProps> = ({
   appearance = "filled",
   className = "",
   children,
-  ...other
+  ...props
 }) => {
   const variantColor = {
     success: "green",
@@ -42,16 +38,18 @@ const Badge: FC<BadgeProps> = ({
   const badgeClass = `${variantClass} text-sm flex items-center rounded-full`;
   const currentIcon = Icon;
 
+  const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
+
   return (
     <div
       className={`${className} ${badgeClass}`}
-      {...other}
+      {...props}
       style={{
         padding: 1,
         paddingLeft: 4,
         paddingRight: 4,
-        ...(appearance === "tint" && { backgroundColor: getRGBAFromHex(variantColor) }),
-        ...other.style,
+        backgroundColor,
+        ...props.style,
       }}>
       {currentIcon && iconPosition === "left" && currentIcon}
       {children && <span className="mx-1">{children}</span>}

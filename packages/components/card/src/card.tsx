@@ -1,21 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 
-const appearance = ["filled", "shadow", "outline"] as const;
-export type CardAppearance = (typeof appearance)[number];
-const orientation = ["horizontal", "vertical"] as const;
-export type CardOrientation = (typeof orientation)[number];
+export type CardAppearance = "filled" | "shadow" | "outline";
+export type CardOrientation = "horizontal" | "vertical";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: CardAppearance;
   orientation?: CardOrientation;
 }
 
-const Card: React.FC<CardProps> = ({
+const Card: FC<CardProps> = ({
   appearance = "outline",
   orientation = "vertical",
   className = "",
   children,
-  ...other
+  ...props
 }) => {
   const appearanceClass = {
     filled: `bg-mantle`,
@@ -28,9 +26,9 @@ const Card: React.FC<CardProps> = ({
     vertical: "flex-col",
   }[orientation];
 
-  const cardClass = `p-8 rounded-lg flex  ${appearanceClass} ${orientationClass}`;
+  const cardClass = `p-8 rounded-lg flex ${appearanceClass} ${orientationClass}`;
   return (
-    <div className={`${className} ${cardClass}`} {...other}>
+    <div className={`${className} ${cardClass}`} {...props}>
       {children}
     </div>
   );

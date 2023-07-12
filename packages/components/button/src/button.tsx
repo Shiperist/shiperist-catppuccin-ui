@@ -1,10 +1,8 @@
 "use client";
-import { ButtonHTMLAttributes, FC, ReactNode, useState } from "react";
+import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
 import { Size } from "@shiperist-catppuccin-ui/utilities";
 
-const variants = ["success", "warning", "danger", "info"] as const;
-
-export type ButtonVariant = (typeof variants)[number];
+export type ButtonVariant = "success" | "warning" | "danger" | "info";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
@@ -19,25 +17,26 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = ({
   icon: Icon,
   iconPosition = "left",
-  loading = false,
-  disabled = false,
+  loading,
+  disabled,
   tooltip,
   variant = "success",
   size = "medium",
   children,
   className = "",
-  ...other
+  ...props
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const baseClass =
     "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1";
-  const variantColor = {
-    success: "green",
-    danger: "red",
-    warning: "yellow",
-    info: "blue",
-  }[variant];
+  const variantColor =
+    {
+      success: "green",
+      danger: "red",
+      warning: "yellow",
+      info: "blue",
+    }[variant] || "";
   const sizeClass =
     {
       small: "text-sm px-2 py-1",
@@ -84,7 +83,7 @@ const Button: FC<ButtonProps> = ({
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       disabled={disabled}
-      {...other}>
+      {...props}>
       {currentIcon && iconPosition === "left" && currentIcon}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
       {currentIcon && iconPosition === "right" && currentIcon}

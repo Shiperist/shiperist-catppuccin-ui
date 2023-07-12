@@ -1,17 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { TypographyProps, formatClass } from "@shiperist-catppuccin-ui/utilities";
 
-const Link: React.FC<TypographyProps> = ({
+const Link: FC<TypographyProps> = ({
   bold = false,
   italic = false,
   underline = false,
   className = "",
   children,
-  ...other
+  ...props
 }) => {
   const textClass = `${formatClass(bold, italic, underline)} text-text text-base hover:underline cursor-pointer`;
   return (
-    <p className={`${className} ${textClass}`} {...other}>
+    <p className={`${className} ${textClass}`} {...props}>
       {children}
     </p>
   );

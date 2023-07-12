@@ -1,7 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-const appearance = ["outline", "underline"] as const;
-export type TextInputAppearance = (typeof appearance)[number];
+export type TextInputAppearance = "outline" | "underline";
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   leadingElement?: React.ElementType | string;
@@ -13,16 +12,16 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
   appearance?: TextInputAppearance;
 }
 
-const TextInput: React.FC<TextInputProps> = ({
+const TextInput: FC<TextInputProps> = ({
   leadingElement: LeadingElement,
   trailingElement: TrailingElement,
   appearance = "outline",
-  loading = false,
-  disabled = false,
-  error = false,
+  loading,
+  disabled,
+  error,
   caption,
   className = "",
-  ...other
+  ...props
 }) => {
   const textInputAppearance = {
     outline: "ring-0 border-1 border-overlay1 rounded-lg",
@@ -39,32 +38,36 @@ const TextInput: React.FC<TextInputProps> = ({
   const iconClass = "textoverlay1";
   const captionClass = "pt-2 text-sm text-text";
 
-  const currentTrailingElement = loading ? (
-    <svg
-      className="animate-spin"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
-  ) : (
-    TrailingElement && (typeof TrailingElement === "string" ? TrailingElement : <TrailingElement className="" />)
-  );
+  let currentTrailingElement = null;
+  if (loading) {
+    currentTrailingElement = (
+      <svg
+        className="animate-spin"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+      </svg>
+    );
+  } else if (TrailingElement) {
+    currentTrailingElement = typeof TrailingElement === "string" ? TrailingElement : <TrailingElement className="" />;
+  }
 
-  const currentLeadingElement =
-    typeof LeadingElement === "string" ? LeadingElement : LeadingElement && <LeadingElement className="" />;
-
+  let currentLeadingElement = null;
+  if (LeadingElement) {
+    currentLeadingElement = typeof LeadingElement === "string" ? LeadingElement : <LeadingElement className="" />;
+  }
   return (
     <div className={baseClass}>
       <div className={containerClass}>
         {currentLeadingElement && <div className={iconClass}>{currentLeadingElement}</div>}
-        <input className={inputClass} disabled={disabled} {...other} />
+        <input className={inputClass} disabled={disabled} {...props} />
         {currentTrailingElement && <div className={iconClass}>{currentTrailingElement}</div>}
       </div>
       {caption && <p className={captionClass}>{caption}</p>}

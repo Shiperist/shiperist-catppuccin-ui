@@ -1,17 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { TypographyProps, formatClass } from "@shiperist-catppuccin-ui/utilities";
 
-const Subtitle: React.FC<TypographyProps> = ({
+const Subtitle: FC<TypographyProps> = ({
   bold = false,
   italic = false,
   underline = false,
   className = "",
   children,
-  ...other
+  ...props
 }) => {
   const textClass = `${formatClass(bold, italic, underline)} text-text text-2xl`;
   return (
-    <h3 className={`${className} ${textClass}`} {...other}>
+    <h3 className={`${className} ${textClass}`} {...props}>
       {children}
     </h3>
   );
