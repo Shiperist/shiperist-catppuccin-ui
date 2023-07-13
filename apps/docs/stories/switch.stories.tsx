@@ -17,3 +17,9 @@ Default.args = {
   disabled: false,
   children: "Switch",
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+  children: "Switch",
+};
