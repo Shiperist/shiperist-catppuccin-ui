@@ -40,6 +40,7 @@ Loading.args = {
 export const Error = Template.bind({});
 Error.args = {
   error: true,
+  caption: "This a error/caption message",
 };
 
 export const Disabled = Template.bind({});
