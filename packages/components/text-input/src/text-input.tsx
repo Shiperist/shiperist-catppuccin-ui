@@ -4,6 +4,7 @@ import { cn } from "@shiperist-catppuccin-ui/utilities";
 export type TextInputAppearance = "outline" | "underline";
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  type?: "text" | "password";
   leadingElement?: React.ElementType | string;
   trailingElement?: React.ElementType | string;
   loading?: boolean;
@@ -17,6 +18,8 @@ const TextInput: FC<TextInputProps> = ({
   leadingElement: LeadingElement,
   trailingElement: TrailingElement,
   appearance = "outline",
+  type = "text",
+  placeholder,
   loading,
   disabled,
   error,
@@ -37,7 +40,7 @@ const TextInput: FC<TextInputProps> = ({
   const errorClass = "border-red hover:border-red";
   const disabledClass = "opacity-50 cursor-not-allowed";
   const iconClass = "textoverlay1";
-  const captionClass = "pt-2 text-sm text-text";
+  const captionClass = "pt-2 text-sm";
 
   let currentTrailingElement = null;
   if (loading) {
@@ -73,10 +76,10 @@ const TextInput: FC<TextInputProps> = ({
           className
         )}>
         {currentLeadingElement && <div className={iconClass}>{currentLeadingElement}</div>}
-        <input className={inputClass} disabled={disabled} {...props} />
+        <input className={inputClass} type={type} placeholder={placeholder} disabled={disabled} {...props} />
         {currentTrailingElement && <div className={iconClass}>{currentTrailingElement}</div>}
       </div>
-      {caption && <p className={captionClass}>{caption}</p>}
+      {caption && <p className={`${captionClass} ${error ? "text-red" : "text-text"}`}>{caption}</p>}
     </div>
   );
 };
