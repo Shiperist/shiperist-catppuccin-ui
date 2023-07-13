@@ -39,3 +39,6 @@ dist/
 storybook-static/
 docs-build
 .idea
+
+# other
+.vscode/
