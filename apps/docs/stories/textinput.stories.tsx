@@ -10,6 +10,13 @@ export default {
     error: { control: "boolean" },
     disabled: { control: "boolean" },
     caption: { control: "text" },
+    placeholder: { control: "text" },
+    type: {
+      control: {
+        type: "select",
+        options: ["text", "password"],
+      },
+    },
     appearance: {
       control: {
         type: "select",
@@ -30,6 +37,8 @@ Default.args = {
   disabled: false,
   caption: "",
   appearance: "outline",
+  type: "text",
+  placeholder: "",
 };
 
 export const Loading = Template.bind({});
@@ -40,7 +49,7 @@ Loading.args = {
 export const Error = Template.bind({});
 Error.args = {
   error: true,
-  caption: "This a error/caption message",
+  caption: "This a error/caption message (optional)",
 };
 
 export const Disabled = Template.bind({});
