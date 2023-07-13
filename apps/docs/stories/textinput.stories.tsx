@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { TextInput } from "@shiperist-catppuccin-ui/react";
+import { Appearance } from "./badge.stories";
 
 export default {
   title: "Example/TextInput",
@@ -27,6 +28,31 @@ Default.args = {
   loading: false,
   error: false,
   disabled: false,
-  caption: "This is a caption",
+  caption: "",
   appearance: "outline",
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+  loading: true,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  error: true,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};
+
+export const WithCaption = Template.bind({});
+WithCaption.args = {
+  caption: "This is a caption",
+};
+
+export const UnderlineAppearence = Template.bind({});
+UnderlineAppearence.args = {
+  appearance: "underline",
 };

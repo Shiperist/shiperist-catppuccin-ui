@@ -1,20 +1,20 @@
 import React, { FC } from "react";
-import { TypographyProps, formatClass } from "@shiperist-catppuccin-ui/utilities";
+import { TypographyProps, cn, formatClass } from "@shiperist-catppuccin-ui/utilities";
 
 const Text: FC<TypographyProps> = ({
-  bold = false,
-  italic = false,
+  bold,
+  italic,
   as: Element = "span",
   error,
-  underline = false,
+  underline,
   className = "",
   children,
   ...props
 }) => {
-  const textClass = [formatClass(bold, italic, underline), error ? "text-red" : "text-text", "text-base"].join(" ");
-
   return (
-    <Element className={`${className} ${textClass}`} {...props}>
+    <Element
+      className={cn([formatClass(bold, italic, underline), error ? "text-red" : ["text-text", "text-base"], className])}
+      {...props}>
       {children}
     </Element>
   );

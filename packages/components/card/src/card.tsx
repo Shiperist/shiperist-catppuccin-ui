@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export type CardAppearance = "filled" | "shadow" | "outline";
 export type CardOrientation = "horizontal" | "vertical";
@@ -28,7 +29,7 @@ const Card: FC<CardProps> = ({
 
   const cardClass = `p-8 rounded-lg flex ${appearanceClass} ${orientationClass}`;
   return (
-    <div className={`${className} ${cardClass}`} {...props}>
+    <div className={cn(cardClass, className)} {...props}>
       {children}
     </div>
   );

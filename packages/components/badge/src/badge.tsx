@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
+import { cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
 export type BadgeVariant = "success" | "warning" | "danger" | "info";
 export type BadgeAppearance = "filled" | "ghost" | "tint" | "outline";
@@ -42,7 +42,7 @@ const Badge: FC<BadgeProps> = ({
 
   return (
     <div
-      className={`${className} ${badgeClass}`}
+      className={cn(badgeClass, className)}
       {...props}
       style={{
         padding: 1,

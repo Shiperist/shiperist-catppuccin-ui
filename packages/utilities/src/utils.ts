@@ -1,3 +1,6 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export function getRGBAFromHex(color: string) {
   const namedColors = {
     green: "a6da95",
@@ -17,4 +20,8 @@ export function getRGBAFromHex(color: string) {
 
 export function formatClass(bold: boolean, italic: boolean, underline: boolean) {
   return `${bold ? "font-bold" : ""} ${italic ? "italic" : ""} ${underline ? "underline" : ""}`;
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }

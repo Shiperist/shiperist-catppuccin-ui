@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export type TextInputAppearance = "outline" | "underline";
 
@@ -32,9 +33,9 @@ const TextInput: FC<TextInputProps> = ({
   const inputClass = `bg-transparent outline-none flex-grow placeholdersubtext2 text-text mx-1 ${
     disabled ? "cursor-not-allowed" : ""
   }`;
-  const containerClass = `flex w-full h-full flex-row px-4 bg-transparent ${textInputAppearance} h-12 py-2 ${
-    error ? "border-red hover:border-red" : `${!disabled ? "hover:border-lavender" : ""}`
-  } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
+  const containerClass = `flex w-full h-full flex-row px-4 bg-transparent ${textInputAppearance} h-12 py-2`;
+  const errorClass = "border-red hover:border-red";
+  const disabledClass = "opacity-50 cursor-not-allowed";
   const iconClass = "textoverlay1";
   const captionClass = "pt-2 text-sm text-text";
 
@@ -65,7 +66,12 @@ const TextInput: FC<TextInputProps> = ({
   }
   return (
     <div className={baseClass}>
-      <div className={containerClass}>
+      <div
+        className={cn(
+          containerClass,
+          { [disabledClass]: disabled, "hover:border-lavender": !disabled, [errorClass]: error },
+          className
+        )}>
         {currentLeadingElement && <div className={iconClass}>{currentLeadingElement}</div>}
         <input className={inputClass} disabled={disabled} {...props} />
         {currentTrailingElement && <div className={iconClass}>{currentTrailingElement}</div>}

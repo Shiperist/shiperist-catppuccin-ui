@@ -68,3 +68,9 @@ LoadingState.args = {
   ...Default.args,
   loading: true,
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
+};
