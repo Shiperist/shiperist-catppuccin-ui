@@ -1,11 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
+import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface HorizontalLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const HorizontalLayout: React.FC<HorizontalLayoutProps> = ({ className = "", children, ...other }) => {
+const HorizontalLayout: FC<HorizontalLayoutProps> = ({ className = "", children, ...props }) => {
   const layoutClass = "flex flex-row";
   return (
-    <div className={`${className} ${layoutClass}`} {...other}>
+    <div className={cn(layoutClass, className)} {...props}>
       {children}
     </div>
   );

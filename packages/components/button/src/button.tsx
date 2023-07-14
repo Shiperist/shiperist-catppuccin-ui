@@ -1,10 +1,8 @@
 "use client";
-import { ButtonHTMLAttributes, FC, ReactNode, useState } from "react";
-import { Size } from "@shiperist-catppuccin-ui/utilities";
+import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
+import { Size, cn } from "@shiperist-catppuccin-ui/utilities";
 
-const variants = ["success", "warning", "danger", "info"] as const;
-
-export type ButtonVariant = (typeof variants)[number];
+export type ButtonVariant = "success" | "warning" | "danger" | "info";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
@@ -19,25 +17,26 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = ({
   icon: Icon,
   iconPosition = "left",
-  loading = false,
-  disabled = false,
+  loading,
+  disabled,
   tooltip,
   variant = "success",
   size = "medium",
   children,
   className = "",
-  ...other
+  ...props
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const baseClass =
     "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1";
-  const variantColor = {
-    success: "green",
-    danger: "red",
-    warning: "yellow",
-    info: "blue",
-  }[variant];
+  const variantColor =
+    {
+      success: "green",
+      danger: "red",
+      warning: "yellow",
+      info: "blue",
+    }[variant] || "";
   const sizeClass =
     {
       small: "text-sm px-2 py-1",
@@ -52,12 +51,6 @@ const Button: FC<ButtonProps> = ({
       large: "p-3",
       xlarge: "p-4",
     }[size] || "";
-
-  const buttonClasses = `${baseClass} ${
-    disabled
-      ? "opacity-50 cursor-not-allowed text-text border-gray"
-      : `border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base active:translate-y-0.5`
-  } ${!children && (Icon || loading) ? iconSizeClass : sizeClass} ${className}`;
 
   const currentIcon = loading ? (
     <svg
@@ -77,14 +70,25 @@ const Button: FC<ButtonProps> = ({
     Icon && Icon
   );
 
+  const disabledClass = "opacity-50 cursor-not-allowed text-text border-gray";
+  const notDisabledClass = `border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base active:translate-y-0.5`;
+
   //TODO Implement tooltip
   return (
     <button
-      className={buttonClasses}
+      className={cn(
+        baseClass,
+        {
+          [disabledClass]: disabled,
+          [notDisabledClass]: !disabled,
+        },
+        !children && (Icon || loading) ? iconSizeClass : sizeClass,
+        className
+      )}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       disabled={disabled}
-      {...other}>
+      {...props}>
       {currentIcon && iconPosition === "left" && currentIcon}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
       {currentIcon && iconPosition === "right" && currentIcon}
