@@ -31,7 +31,7 @@ const Badge: FC<BadgeProps> = ({
     filled: `bg-${variantColor} text-mantle`,
     outline: `border border-${variantColor} text-${variantColor}`,
     ghost: `text-${variantColor}`,
-    tint: `text-${variantColor} border border-${variantColor}`,
+    tint: `text-${variantColor}`,
   }[appearance];
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
@@ -41,9 +41,7 @@ const Badge: FC<BadgeProps> = ({
       className={cn(`text-sm flex items-center rounded-full`, variantColor ? `${appearanceClass}` : "", className)}
       {...props}
       style={{
-        padding: 1,
-        paddingLeft: 4,
-        paddingRight: 4,
+        padding: "1px 4px",
         backgroundColor,
         ...props.style,
       }}>
@@ -55,3 +53,5 @@ const Badge: FC<BadgeProps> = ({
 };
 
 export default Badge;
+
+Badge.displayName = "Badge";
