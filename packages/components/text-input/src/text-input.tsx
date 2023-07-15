@@ -1,23 +1,23 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export type TextInputAppearance = "outline" | "underline";
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: "text" | "password";
-  leadingElement?: React.ElementType | string;
-  trailingElement?: React.ElementType | string;
+  leadingElement?: ReactNode;
+  trailingElement?: ReactNode;
   loading?: boolean;
   disabled?: boolean;
   error?: boolean;
   caption?: string;
-  label?: string; //
+  label?: string;
   appearance?: TextInputAppearance;
 }
 
 const TextInput: FC<TextInputProps> = ({
-  leadingElement: LeadingElement,
-  trailingElement: TrailingElement,
+  leadingElement,
+  trailingElement,
   appearance = "outline",
   type = "text",
   placeholder,
@@ -34,19 +34,8 @@ const TextInput: FC<TextInputProps> = ({
     underline: "ring-0 border-0 border-b border-overlay1",
   }[appearance];
 
-  const baseClass = `flex flex-col ${className}`;
-  const inputClass = `bg-transparent outline-none flex-grow placeholder-subtext2 text-text mx-1 ${
-    disabled ? "cursor-not-allowed" : ""
-  }`;
-  const containerClass = `flex w-full h-full flex-row px-4 bg-transparent ${textInputAppearance} h-12 py-2`;
-  const errorClass = "border-red hover:border-red";
-  const disabledClass = "opacity-50 cursor-not-allowed";
-  const iconClass = "text-overlay1 py-1";
-  const captionClass = "pt-2 text-sm";
-
-  let currentTrailingElement = null;
   if (loading) {
-    currentTrailingElement = (
+    trailingElement = (
       <svg
         className="animate-spin"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,28 +50,35 @@ const TextInput: FC<TextInputProps> = ({
         <path d="M21 12a9 9 0 1 1-6.219-8.56" />
       </svg>
     );
-  } else if (TrailingElement) {
-    currentTrailingElement = typeof TrailingElement === "string" ? TrailingElement : <TrailingElement className="" />;
   }
 
-  let currentLeadingElement = null;
-  if (LeadingElement) {
-    currentLeadingElement = typeof LeadingElement === "string" ? LeadingElement : <LeadingElement className="" />;
-  }
   return (
-    <div className={cn(baseClass)} style={label && label.length > 0 ? { gap: 8 } : undefined}>
+    <div className={cn("flex flex-col", className)} style={label && label.length > 0 ? { gap: 8 } : undefined}>
       <label>{label}</label>
       <div
         className={cn(
-          containerClass,
-          { [disabledClass]: disabled, "hover:border-lavender": !disabled, [errorClass]: error },
+          "flex w-full h-full flex-row px-4 bg-transparent h-12 py-2",
+          textInputAppearance,
+          {
+            "opacity-50 cursor-not-allowed": disabled,
+            "hover:border-lavender": !disabled,
+            "border-red hover:border-red": error,
+          },
           className
         )}>
-        {currentLeadingElement && <div className={cn(iconClass)}>{currentLeadingElement}</div>}
-        <input className={cn(inputClass)} type={type} placeholder={placeholder} disabled={disabled} {...props} />
-        {currentTrailingElement && <div className={iconClass}>{currentTrailingElement}</div>}
+        {leadingElement && <div className={cn("stroke-overlay1 py-1")}>{leadingElement}</div>}
+        <input
+          className={cn(`bg-transparent outline-none flex-grow placeholder-subtext2 text-text mx-1`, {
+            "cursor-not-allowed": disabled,
+          })}
+          type={type}
+          placeholder={placeholder}
+          disabled={disabled}
+          {...props}
+        />
+        {trailingElement && <div className={cn("stroke-overlay1 py-1")}>{trailingElement}</div>}
       </div>
-      {caption && <p className={cn(captionClass, { "text-red": error, "text-text": !error })}>{caption}</p>}
+      {caption && <p className={cn("pt-2 text-sm", { "text-red": error, "text-text": !error })}>{caption}</p>}
     </div>
   );
 };

@@ -27,9 +27,8 @@ const Card: FC<CardProps> = ({
     vertical: "flex-col",
   }[orientation];
 
-  const cardClass = `p-8 rounded-lg flex ${appearanceClass} ${orientationClass}`;
   return (
-    <div className={cn(cardClass, className)} {...props}>
+    <div className={cn("p-8 rounded-lg flex", appearanceClass, orientationClass, className)} {...props}>
       {children}
     </div>
   );

@@ -5,8 +5,8 @@ import { Size, cn } from "@shiperist-catppuccin-ui/utilities";
 export type ButtonVariant = "success" | "warning" | "danger" | "info";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: ReactNode;
-  iconPosition?: "left" | "right";
+  leadingElement?: ReactNode;
+  trailingElement?: ReactNode;
   loading?: boolean;
   tooltip?: string;
   disabled?: boolean;
@@ -15,8 +15,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: FC<ButtonProps> = ({
-  icon: Icon,
-  iconPosition = "left",
+  leadingElement,
+  trailingElement,
   loading,
   disabled,
   tooltip,
@@ -27,9 +27,6 @@ const Button: FC<ButtonProps> = ({
   ...props
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
-
-  const baseClass =
-    "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1";
   const variantColor =
     {
       success: "green",
@@ -52,46 +49,44 @@ const Button: FC<ButtonProps> = ({
       xlarge: "p-4",
     }[size] || "";
 
-  const currentIcon = loading ? (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-4 w-4 animate-spin">
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
-  ) : (
-    Icon && Icon
-  );
-
-  const disabledClass = "opacity-50 cursor-not-allowed text-text border-gray";
-  const notDisabledClass = `border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base active:translate-y-0.5`;
+  if (loading) {
+    leadingElement = (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-4 w-4 animate-spin">
+        <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+      </svg>
+    );
+  }
 
   //TODO Implement tooltip
   return (
     <button
       className={cn(
-        baseClass,
+        "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1",
         {
-          [disabledClass]: disabled,
-          [notDisabledClass]: !disabled,
+          ["opacity-50 cursor-not-allowed text-text border-gray"]: disabled,
+          [`border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base active:translate-y-0.5`]:
+            !disabled,
         },
-        !children && (Icon || loading) ? iconSizeClass : sizeClass,
+        !children && loading ? iconSizeClass : sizeClass,
         className
       )}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       disabled={disabled}
       {...props}>
-      {currentIcon && iconPosition === "left" && currentIcon}
+      {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
-      {currentIcon && iconPosition === "right" && currentIcon}
+      {trailingElement && <div className={cn("stroke-overlay1")}>{trailingElement}</div>}
     </button>
   );
 };

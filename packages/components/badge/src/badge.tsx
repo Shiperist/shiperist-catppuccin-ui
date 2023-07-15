@@ -5,15 +5,15 @@ export type BadgeVariant = "success" | "warning" | "danger" | "info";
 export type BadgeAppearance = "filled" | "ghost" | "tint" | "outline";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  icon?: ReactNode;
-  iconPosition?: "left" | "right";
+  leadingElement?: ReactNode;
+  trailingElement?: ReactNode;
   variant?: BadgeVariant;
   appearance?: BadgeAppearance;
 }
 
 const Badge: FC<BadgeProps> = ({
-  icon: Icon,
-  iconPosition = "left",
+  leadingElement,
+  trailingElement,
   variant = "success",
   appearance = "filled",
   className = "",
@@ -34,15 +34,11 @@ const Badge: FC<BadgeProps> = ({
     tint: `text-${variantColor} border border-${variantColor}`,
   }[appearance];
 
-  const variantClass = variantColor ? `${appearanceClass}` : "";
-  const badgeClass = `${variantClass} text-sm flex items-center rounded-full`;
-  const currentIcon = Icon;
-
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
 
   return (
     <div
-      className={cn(badgeClass, className)}
+      className={cn(`text-sm flex items-center rounded-full`, variantColor ? `${appearanceClass}` : "", className)}
       {...props}
       style={{
         padding: 1,
@@ -51,13 +47,11 @@ const Badge: FC<BadgeProps> = ({
         backgroundColor,
         ...props.style,
       }}>
-      {currentIcon && iconPosition === "left" && currentIcon}
+      {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
       {children && <span className="mx-1">{children}</span>}
-      {currentIcon && iconPosition === "right" && currentIcon}
+      {trailingElement && <div className={cn("stroke-overlay1")}>{trailingElement}</div>}
     </div>
   );
 };
 
 export default Badge;
-
-Badge.displayName = "Badge";
