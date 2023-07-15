@@ -1,6 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { TextInput } from "@shiperist-catppuccin-ui/react";
-import { Appearance } from "./badge.stories";
 
 export default {
   title: "Example/TextInput",
@@ -11,6 +10,7 @@ export default {
     disabled: { control: "boolean" },
     caption: { control: "text" },
     placeholder: { control: "text" },
+    label: { control: "text" },
     type: {
       control: {
         type: "select",
@@ -37,6 +37,7 @@ Default.args = {
   disabled: false,
   caption: "",
   appearance: "outline",
+  label: "",
   type: "text",
   placeholder: "",
 };
@@ -49,7 +50,7 @@ Loading.args = {
 export const Error = Template.bind({});
 Error.args = {
   error: true,
-  caption: "This a error/caption message (optional)",
+  caption: "This is a error/caption message (optional) // shown red only if error is set to true",
 };
 
 export const Disabled = Template.bind({});
@@ -59,10 +60,20 @@ Disabled.args = {
 
 export const WithCaption = Template.bind({});
 WithCaption.args = {
-  caption: "This is a caption",
+  caption: "This is a caption (optional)",
 };
 
 export const UnderlineAppearence = Template.bind({});
 UnderlineAppearence.args = {
   appearance: "underline",
+};
+
+export const WithAPlaceholder = Template.bind({});
+WithAPlaceholder.args = {
+  placeholder: "This is a placeholder (optional)",
+};
+
+export const WithALabel = Template.bind({});
+WithALabel.args = {
+  label: "This is a label (optional)",
 };

@@ -11,6 +11,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
   disabled?: boolean;
   error?: boolean;
   caption?: string;
+  label?: string; //
   appearance?: TextInputAppearance;
 }
 
@@ -24,6 +25,7 @@ const TextInput: FC<TextInputProps> = ({
   disabled,
   error,
   caption,
+  label,
   className = "",
   ...props
 }) => {
@@ -33,13 +35,13 @@ const TextInput: FC<TextInputProps> = ({
   }[appearance];
 
   const baseClass = `flex flex-col ${className}`;
-  const inputClass = `bg-transparent outline-none flex-grow placeholdersubtext2 text-text mx-1 ${
+  const inputClass = `bg-transparent outline-none flex-grow placeholder-subtext2 text-text mx-1 ${
     disabled ? "cursor-not-allowed" : ""
   }`;
   const containerClass = `flex w-full h-full flex-row px-4 bg-transparent ${textInputAppearance} h-12 py-2`;
   const errorClass = "border-red hover:border-red";
   const disabledClass = "opacity-50 cursor-not-allowed";
-  const iconClass = "textoverlay1";
+  const iconClass = "text-overlay1 py-1";
   const captionClass = "pt-2 text-sm";
 
   let currentTrailingElement = null;
@@ -68,18 +70,19 @@ const TextInput: FC<TextInputProps> = ({
     currentLeadingElement = typeof LeadingElement === "string" ? LeadingElement : <LeadingElement className="" />;
   }
   return (
-    <div className={baseClass}>
+    <div className={cn(baseClass)} style={label && label.length > 0 ? { gap: 8 } : undefined}>
+      <label>{label}</label>
       <div
         className={cn(
           containerClass,
           { [disabledClass]: disabled, "hover:border-lavender": !disabled, [errorClass]: error },
           className
         )}>
-        {currentLeadingElement && <div className={iconClass}>{currentLeadingElement}</div>}
-        <input className={inputClass} type={type} placeholder={placeholder} disabled={disabled} {...props} />
+        {currentLeadingElement && <div className={cn(iconClass)}>{currentLeadingElement}</div>}
+        <input className={cn(inputClass)} type={type} placeholder={placeholder} disabled={disabled} {...props} />
         {currentTrailingElement && <div className={iconClass}>{currentTrailingElement}</div>}
       </div>
-      {caption && <p className={`${captionClass} ${error ? "text-red" : "text-text"}`}>{caption}</p>}
+      {caption && <p className={cn(captionClass, { "text-red": error, "text-text": !error })}>{caption}</p>}
     </div>
   );
 };
