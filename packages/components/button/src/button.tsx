@@ -56,7 +56,7 @@ const Button: FC<ButtonProps> = ({
     outline: `border border-${variantColor} text-${variantColor} hover:text-mantle hover:bg-${variantColor}`,
     ghost: `text-${variantColor} hover:bg-${variantColor} hover:text-mantle`,
     tint: `text-${variantColor}`,
-    shadow: `text-${variantColor} shadow-lg hover:text-mantle hover:bg-${variantColor}`,
+    shadow: `text-${variantColor} bg-mantle shadow-lg hover:bg-crust`,
   }[appearance];
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
