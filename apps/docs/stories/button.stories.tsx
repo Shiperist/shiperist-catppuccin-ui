@@ -15,6 +15,12 @@ export default {
         options: ["success", "warning", "danger", "info"],
       },
     },
+    appearance: {
+      control: {
+        type: "select",
+        options: ["filled", "ghost", "tint", "outline", "shadow"],
+      },
+    },
     size: {
       control: {
         type: "select",
@@ -72,6 +78,7 @@ Default.args = {
   size: "medium",
   disabled: false,
   children: "Click Me",
+  appearance: "outline",
 };
 
 export const WithIcons = () => {
@@ -82,6 +89,18 @@ export const WithIcons = () => {
       <Button leadingElement={leadingElement} trailingElement={trailingElement}>
         Button
       </Button>
+    </HorizontalLayout>
+  );
+};
+
+export const Appearance = () => {
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
+      <Button appearance="outline">Click me</Button>
+      <Button appearance="filled">Click me</Button>
+      <Button appearance="ghost">Click me</Button>
+      <Button appearance="tint">Click me</Button>
+      <Button appearance="shadow">Click me</Button>
     </HorizontalLayout>
   );
 };

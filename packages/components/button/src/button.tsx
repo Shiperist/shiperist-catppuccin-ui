@@ -1,8 +1,9 @@
 "use client";
 import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
-import { Size, cn } from "@shiperist-catppuccin-ui/utilities";
+import { Size, cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
 export type ButtonVariant = "success" | "warning" | "danger" | "info";
+export type ButtonAppearance = "filled" | "ghost" | "tint" | "outline" | "shadow";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leadingElement?: ReactNode;
@@ -10,6 +11,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   tooltip?: string;
   disabled?: boolean;
+  appearance?: ButtonAppearance;
   variant?: ButtonVariant;
   size?: Size;
 }
@@ -20,6 +22,7 @@ const Button: FC<ButtonProps> = ({
   loading,
   disabled,
   tooltip,
+  appearance = "outline",
   variant = "success",
   size = "medium",
   children,
@@ -48,7 +51,15 @@ const Button: FC<ButtonProps> = ({
       large: "p-3",
       xlarge: "p-4",
     }[size] || "";
+  const appearanceClass = {
+    filled: `bg-${variantColor} text-mantle`,
+    outline: `border border-${variantColor} text-${variantColor} hover:text-mantle hover:bg-${variantColor}`,
+    ghost: `text-${variantColor} hover:bg-${variantColor} hover:text-mantle`,
+    tint: `text-${variantColor}`,
+    shadow: `text-${variantColor} shadow-lg hover:text-mantle hover:bg-${variantColor}`,
+  }[appearance];
 
+  const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
   if (loading) {
     leadingElement = (
       <svg
@@ -71,11 +82,10 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       className={cn(
-        "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1",
+        "transition ease-in-out duration-150 flex items-center justify-center rounded-lg",
         {
-          ["opacity-50 cursor-not-allowed text-text border-gray"]: disabled,
-          [`border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base active:translate-y-0.5`]:
-            !disabled,
+          ["opacity-50 cursor-not-allowed text-text border border-gray"]: disabled,
+          [`${appearanceClass} active:translate-y-0.5`]: !disabled,
         },
         !children && loading ? iconSizeClass : sizeClass,
         className
@@ -83,7 +93,11 @@ const Button: FC<ButtonProps> = ({
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       disabled={disabled}
-      {...props}>
+      {...props}
+      style={{
+        backgroundColor,
+        ...props.style,
+      }}>
       {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
       {trailingElement && <div className={cn("stroke-overlay1")}>{trailingElement}</div>}
