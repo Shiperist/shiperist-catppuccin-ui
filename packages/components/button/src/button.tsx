@@ -2,7 +2,7 @@
 import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
 import { Size, cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
-export type ButtonVariant = "success" | "warning" | "danger" | "info";
+export type ButtonVariant = "success" | "warning" | "danger" | "info" | "base";
 export type ButtonAppearance = "filled" | "ghost" | "tint" | "outline" | "shadow";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,24 +23,26 @@ const Button: FC<ButtonProps> = ({
   disabled,
   tooltip,
   appearance = "outline",
-  variant = "success",
+  variant = "base",
   size = "medium",
   children,
   className = "",
   ...props
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
+
   const variantColor =
     {
       success: "green",
       danger: "red",
       warning: "yellow",
       info: "blue",
+      base: "overlay2",
     }[variant] || "";
   const sizeClass =
     {
       small: "text-sm px-2 py-1",
-      medium: "text-base px-4 py-2",
+      medium: "text-md px-4 py-2",
       large: "text-lg px-6 py-3",
       xlarge: "text-xl px-8 py-4",
     }[size] || "";
@@ -84,7 +86,7 @@ const Button: FC<ButtonProps> = ({
       className={cn(
         "transition ease-in-out duration-150 flex items-center justify-center rounded-lg",
         {
-          ["opacity-50 cursor-not-allowed text-text border border-gray"]: disabled,
+          ["opacity-50 cursor-not-allowed border border-surface2"]: disabled,
           [`${appearanceClass} active:translate-y-0.5`]: !disabled,
         },
         !children && loading ? iconSizeClass : sizeClass,

@@ -12,7 +12,7 @@ export default {
     variant: {
       control: {
         type: "select",
-        options: ["success", "warning", "danger", "info"],
+        options: ["success", "warning", "danger", "info", "base"],
       },
     },
     appearance: {
@@ -74,7 +74,7 @@ export const Default = Template.bind({});
 Default.args = {
   loading: false,
   tooltip: "",
-  variant: "success",
+  variant: "base",
   size: "medium",
   disabled: false,
   children: "Click Me",
