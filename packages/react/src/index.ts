@@ -6,3 +6,4 @@ export * from "@shiperist-catppuccin-ui/card";
 export * from "@shiperist-catppuccin-ui/divider";
 export * from "@shiperist-catppuccin-ui/badge";
 export * from "@shiperist-catppuccin-ui/layout";
+export * from "@shiperist-catppuccin-ui/select";

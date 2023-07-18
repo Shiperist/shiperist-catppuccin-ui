@@ -71,7 +71,7 @@ const TextInput: FC<TextInputProps> = ({
           textInputAppearance,
           {
             "opacity-50 cursor-not-allowed": disabled,
-            "hover:border-overlay2": !disabled && !isInputFocused,
+            "hover:border-overlay1": !disabled && !isInputFocused,
             "border-red hover:border-red": error,
             "border-overlay2": isInputFocused,
           },
