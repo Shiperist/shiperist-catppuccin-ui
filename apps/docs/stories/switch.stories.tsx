@@ -6,7 +6,6 @@ export default {
   component: Switch,
   agrTypes: {
     disabled: { control: "boolean" },
-    variant: {},
   },
 } as Meta;
 

@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Badge, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
+import { Badge, HorizontalLayout, BadgeAppearance } from "@shiperist-catppuccin-ui/react";
 import { leadingElement, trailingElement } from "../utilities/icons";
 
 export default {
@@ -46,10 +46,10 @@ export const WithIcons = () => {
 };
 
 export const Appearance = () => {
-  const appearences = ["filled", "outline", "ghost", "tint"];
+  const appearances: BadgeAppearance[] = ["filled", "outline", "ghost", "tint"];
   return (
     <HorizontalLayout style={{ gap: 4 }}>
-      {appearences.map((key) => (
+      {appearances.map((key) => (
         <Badge appearance={key}>Badge</Badge>
       ))}
     </HorizontalLayout>

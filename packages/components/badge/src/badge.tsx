@@ -1,8 +1,8 @@
 import React, { FC, ReactNode } from "react";
 import { cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
-export type BadgeVariant = "success" | "warning" | "danger" | "info" | string;
-export type BadgeAppearance = "filled" | "ghost" | "tint" | "outline" | string;
+export type BadgeVariant = "success" | "warning" | "danger" | "info";
+export type BadgeAppearance = "filled" | "ghost" | "tint" | "outline";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   leadingElement?: ReactNode;
