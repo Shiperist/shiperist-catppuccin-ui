@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export type TextInputAppearance = "outline" | "underline" | string;
@@ -30,8 +30,8 @@ const TextInput: FC<TextInputProps> = ({
   ...props
 }) => {
   const textInputAppearance = {
-    outline: "ring-0 border-1 border-overlay1 rounded-lg",
-    underline: "ring-0 border-0 border-b border-overlay1",
+    outline: "ring-0 border border-overlay0 rounded-lg",
+    underline: "ring-0 border-b border-overlay0",
   }[appearance];
 
   if (loading) {
@@ -52,17 +52,28 @@ const TextInput: FC<TextInputProps> = ({
     );
   }
 
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+
   return (
     <div className={cn("flex flex-col", className)} style={label && label.length > 0 ? { gap: 8 } : undefined}>
       <label>{label}</label>
       <div
         className={cn(
-          "flex w-full h-full flex-row px-4 bg-transparent h-12 py-2",
+          "flex w-full h-full transition duration-150 ease-in-out flex-row px-4 bg-transparent h-12 py-2",
           textInputAppearance,
           {
             "opacity-50 cursor-not-allowed": disabled,
-            "hover:border-lavender": !disabled,
+            "hover:border-overlay2": !disabled && !isInputFocused,
             "border-red hover:border-red": error,
+            "border-overlay2": isInputFocused,
           },
           className
         )}>
@@ -74,6 +85,8 @@ const TextInput: FC<TextInputProps> = ({
           type={type}
           placeholder={placeholder}
           disabled={disabled}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
           {...props}
         />
         {trailingElement && <div className={cn("stroke-overlay1 py-1")}>{trailingElement}</div>}

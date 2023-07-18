@@ -68,12 +68,12 @@ UnderlineAppearence.args = {
   appearance: "underline",
 };
 
-export const WithAPlaceholder = Template.bind({});
-WithAPlaceholder.args = {
+export const WithPlaceholder = Template.bind({});
+WithPlaceholder.args = {
   placeholder: "This is a placeholder (optional)",
 };
 
-export const WithALabel = Template.bind({});
-WithALabel.args = {
+export const WithLabel = Template.bind({});
+WithLabel.args = {
   label: "This is a label (optional)",
 };
