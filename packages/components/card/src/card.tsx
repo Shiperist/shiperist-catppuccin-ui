@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
-export type CardAppearance = "filled" | "shadow" | "outline";
-export type CardOrientation = "horizontal" | "vertical";
+export type CardAppearance = "filled" | "shadow" | "outline" | string;
+export type CardOrientation = "horizontal" | "vertical" | string;
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: CardAppearance;

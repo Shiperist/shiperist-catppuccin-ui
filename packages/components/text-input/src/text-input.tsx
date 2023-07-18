@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
-export type TextInputAppearance = "outline" | "underline";
+export type TextInputAppearance = "outline" | "underline" | string;
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: "text" | "password";

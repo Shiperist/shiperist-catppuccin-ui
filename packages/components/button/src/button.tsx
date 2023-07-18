@@ -2,8 +2,8 @@
 import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
 import { Size, cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
-export type ButtonVariant = "success" | "warning" | "danger" | "info" | "base";
-export type ButtonAppearance = "filled" | "ghost" | "tint" | "outline" | "shadow";
+export type ButtonVariant = "success" | "warning" | "danger" | "info" | "base" | string;
+export type ButtonAppearance = "filled" | "ghost" | "tint" | "outline" | "shadow" | string;
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leadingElement?: ReactNode;

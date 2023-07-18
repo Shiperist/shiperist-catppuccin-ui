@@ -6,7 +6,7 @@ export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {}
 const Divider: FC<DividerProps> = ({ className = "", children, ...props }) => {
   return (
     <div
-      className={cn("mx-auto mt-2 mb-1 w-full bg-lavender rounded-lg", className)}
+      className={cn("mx-auto mt-2 mb-1 w-full bg-overlay2 rounded-lg", className)}
       {...props}
       style={{ height: "1px" }}>
       {children}

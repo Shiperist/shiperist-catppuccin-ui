@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { Button, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
+import { leadingElement, trailingElement } from "../utilities/icons";
 
 export default {
   title: "Example/Button",
@@ -35,41 +36,6 @@ export default {
 
 const Template: StoryFn = (args) => <Button {...args} />;
 
-const leadingElement = (
-  <>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-heart">
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
-  </>
-);
-const trailingElement = (
-  <>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-heart">
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
-  </>
-);
-
 export const Default = Template.bind({});
 Default.args = {
   loading: false,
@@ -84,23 +50,22 @@ Default.args = {
 export const WithIcons = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Button leadingElement={leadingElement}>Button</Button>
-      <Button trailingElement={trailingElement}>Button</Button>
+      <Button leadingElement={leadingElement}>Click me</Button>
+      <Button trailingElement={trailingElement}>Click me</Button>
       <Button leadingElement={leadingElement} trailingElement={trailingElement}>
-        Button
+        Click me
       </Button>
     </HorizontalLayout>
   );
 };
 
 export const Appearance = () => {
+  const appearences = ["outline", "filled", "ghost", "tint", "shadow"];
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Button appearance="outline">Click me</Button>
-      <Button appearance="filled">Click me</Button>
-      <Button appearance="ghost">Click me</Button>
-      <Button appearance="tint">Click me</Button>
-      <Button appearance="shadow">Click me</Button>
+      {appearences.map((key) => (
+        <Button appearance={key}>Click me</Button>
+      ))}
     </HorizontalLayout>
   );
 };
