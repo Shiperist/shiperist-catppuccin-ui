@@ -7,7 +7,9 @@ export default {
   component: Select,
   argTypes: {
     disabled: { control: "boolean" },
-    placeholder: { control: "string" },
+    placeholder: { control: "text" },
+    defaultValue: { control: "text" },
+    as: { control: { type: "select", options: ["button", "input"] } },
   },
 } as Meta;
 
@@ -26,5 +28,17 @@ const Template: StoryFn = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   disabled: false,
+  placeholder: "",
+  defaultValue: "Default value",
+  as: "button",
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};
+
+export const Placeholder = Template.bind({});
+Placeholder.args = {
   placeholder: "Select items...",
 };

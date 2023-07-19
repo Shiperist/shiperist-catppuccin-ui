@@ -10,7 +10,7 @@ const SelectItem: FC<SelectItemProps> = ({ leadingElement, className = "", value
   return (
     <button
       className={cn(
-        "w-full bg-overlay0 transition duration-150 ease-in-out hover:bg-overlay1 px-4 py-2 text-text max-w-full text-left flex items-center",
+        "w-full bg-transparent transition duration-150 border-b border-overlay0 ease-in-out hover:bg-overlay1 px-4 py-2 text-text max-w-full text-left flex items-center",
         className
       )}
       {...props}>
