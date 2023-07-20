@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, ButtonAppearance, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
+import { Button, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
 import { leadingElement, trailingElement } from "../utilities/icons";
 
 export default {
@@ -60,7 +60,7 @@ export const WithIcons = () => {
 };
 
 export const Appearance = () => {
-  const appearances: ButtonAppearance[] = ["filled", "ghost", "tint", "outline", "shadow"];
+  const appearances: any = ["filled", "ghost", "tint", "outline", "shadow"];
 
   return (
     <HorizontalLayout style={{ gap: 8 }}>

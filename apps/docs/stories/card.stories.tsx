@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Card, Text } from "@shiperist-catppuccin-ui/react";
+import { Card, Text, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Card",
@@ -8,7 +8,7 @@ export default {
     appearance: {
       control: {
         type: "select",
-        options: ["filled", "shadow", "outline"],
+        options: ["filled", "shadow", "outline", "embed"],
       },
     },
     orientation: {
@@ -17,11 +17,17 @@ export default {
         options: ["horizontal", "vertical"],
       },
     },
+    variant: {
+      control: {
+        type: "select",
+        options: ["success", "warning", "danger", "info", "base"],
+      },
+    },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Card {...args} style={{ gap: 4 }}>
+  <Card {...args}>
     <Text>Card content</Text>
     <Text>Card content</Text>
   </Card>
@@ -31,8 +37,16 @@ export const Default = Template.bind({});
 Default.args = {
   appearance: "outline",
   orientation: "vertical",
+  variant: "base",
 };
 
-export const Filled = () => <Card appearance="filled">Card content</Card>;
-export const Outline = () => <Card appearance="outline">Card content</Card>;
-export const Shadow = () => <Card appearance="shadow">Card content</Card>;
+export const Appearance = () => {
+  return (
+    <VerticalLayout style={{ gap: 8 }}>
+      <Card appearance="filled">Card content</Card>
+      <Card appearance="outline">Card content</Card>
+      <Card appearance="shadow">Card content</Card>
+      <Card appearance="embed">Card content</Card>
+    </VerticalLayout>
+  );
+};

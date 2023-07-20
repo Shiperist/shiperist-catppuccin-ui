@@ -1,34 +1,47 @@
 import React, { FC } from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
-export type CardAppearance = "filled" | "shadow" | "outline";
-export type CardOrientation = "horizontal" | "vertical";
-
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  appearance?: CardAppearance;
-  orientation?: CardOrientation;
+  appearance?: "filled" | "shadow" | "outline" | "embed";
+  orientation?: "horizontal" | "vertical";
+  variant?: "success" | "warning" | "danger" | "info" | "base";
 }
 
 const Card: FC<CardProps> = ({
   appearance = "outline",
   orientation = "vertical",
+  variant = "base",
   className = "",
   children,
   ...props
 }) => {
-  const appearanceClass = {
-    filled: `bg-mantle`,
-    outline: `border`,
-    shadow: "bg-mantle shadow shadow-lg",
-  }[appearance];
+  const variantColor =
+    {
+      success: "green",
+      danger: "red",
+      warning: "yellow",
+      info: "blue",
+      base: "overlay2",
+    }[variant] || "";
+  const appearanceClass =
+    {
+      filled: `bg-mantle`,
+      outline: `border border-overlay0`,
+      shadow: "bg-mantle shadow shadow-lg",
+      embed: `border-${variantColor} bg-mantle`,
+    }[appearance] || "";
 
-  const orientationClass = {
-    horizontal: "flex-row",
-    vertical: "flex-col",
-  }[orientation];
+  const orientationClass =
+    {
+      horizontal: "flex-row",
+      vertical: "flex-col",
+    }[orientation] || "";
 
   return (
-    <div className={cn("p-8 rounded-lg flex", appearanceClass, orientationClass, className)} {...props}>
+    <div
+      className={cn("p-8 rounded-lg flex", appearanceClass, orientationClass, className)}
+      style={appearance === "embed" ? { borderLeftWidth: "4px" } : undefined}
+      {...props}>
       {children}
     </div>
   );

@@ -1,38 +1,38 @@
 import React, { FC, ReactNode } from "react";
 import { cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
-export type BadgeVariant = "success" | "warning" | "danger" | "info";
-export type BadgeAppearance = "filled" | "ghost" | "tint" | "outline";
-
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   leadingElement?: ReactNode;
   trailingElement?: ReactNode;
-  variant?: BadgeVariant;
-  appearance?: BadgeAppearance;
+  variant?: "success" | "warning" | "danger" | "info" | "base";
+  appearance?: "filled" | "ghost" | "tint" | "outline";
 }
 
 const Badge: FC<BadgeProps> = ({
   leadingElement,
   trailingElement,
-  variant = "success",
+  variant = "base",
   appearance = "filled",
   className = "",
   children,
   ...props
 }) => {
-  const variantColor = {
-    success: "green",
-    danger: "red",
-    warning: "yellow",
-    info: "blue",
-  }[variant];
+  const variantColor =
+    {
+      success: "green",
+      danger: "red",
+      warning: "yellow",
+      info: "blue",
+      base: "overlay2",
+    }[variant] || "";
 
-  const appearanceClass = {
-    filled: `bg-${variantColor} text-mantle`,
-    outline: `border border-${variantColor} text-${variantColor}`,
-    ghost: `text-${variantColor}`,
-    tint: `text-${variantColor}`,
-  }[appearance];
+  const appearanceClass =
+    {
+      filled: `bg-${variantColor} text-mantle`,
+      outline: `border border-${variantColor} text-${variantColor}`,
+      ghost: `text-${variantColor}`,
+      tint: `text-${variantColor}`,
+    }[appearance] || "";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
 

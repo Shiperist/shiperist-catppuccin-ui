@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Badge, HorizontalLayout, BadgeAppearance } from "@shiperist-catppuccin-ui/react";
+import { Badge, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
 import { leadingElement, trailingElement } from "../utilities/icons";
 
 export default {
@@ -9,7 +9,7 @@ export default {
     variant: {
       control: {
         type: "select",
-        options: ["success", "warning", "danger", "info"],
+        options: ["success", "warning", "danger", "info", "base"],
       },
     },
     appearance: {
@@ -28,7 +28,7 @@ const Template: StoryFn = (args) => <Badge {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: "success",
+  variant: "base",
   appearance: "filled",
   children: "Badge",
 };
@@ -46,7 +46,7 @@ export const WithIcons = () => {
 };
 
 export const Appearance = () => {
-  const appearances: BadgeAppearance[] = ["filled", "outline", "ghost", "tint"];
+  const appearances: any = ["filled", "outline", "ghost", "tint"];
   return (
     <HorizontalLayout style={{ gap: 4 }}>
       {appearances.map((key) => (

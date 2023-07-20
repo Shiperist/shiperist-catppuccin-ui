@@ -2,17 +2,14 @@
 import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
 import { Size, cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
-export type ButtonVariant = "success" | "warning" | "danger" | "info" | "base";
-export type ButtonAppearance = "filled" | "ghost" | "tint" | "outline" | "shadow";
-
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leadingElement?: ReactNode;
   trailingElement?: ReactNode;
   loading?: boolean;
   tooltip?: string;
   disabled?: boolean;
-  appearance?: ButtonAppearance;
-  variant?: ButtonVariant;
+  appearance?: "filled" | "ghost" | "tint" | "outline" | "shadow";
+  variant?: "success" | "warning" | "danger" | "info" | "base";
   size?: Size;
 }
 
@@ -53,13 +50,14 @@ const Button: FC<ButtonProps> = ({
       large: "p-3",
       xlarge: "p-4",
     }[size] || "";
-  const appearanceClass = {
-    filled: `bg-${variantColor} text-mantle`,
-    outline: `border border-${variantColor} text-${variantColor} hover:text-mantle hover:bg-${variantColor}`,
-    ghost: `text-${variantColor} hover:bg-${variantColor} hover:text-mantle`,
-    tint: `text-${variantColor}`,
-    shadow: `text-${variantColor} bg-mantle shadow-lg hover:bg-crust`,
-  }[appearance];
+  const appearanceClass =
+    {
+      filled: `bg-${variantColor} text-mantle`,
+      outline: `border border-${variantColor} text-${variantColor} hover:text-mantle hover:bg-${variantColor}`,
+      ghost: `text-${variantColor} hover:bg-${variantColor} hover:text-mantle`,
+      tint: `text-${variantColor}`,
+      shadow: `text-${variantColor} bg-mantle shadow-lg hover:bg-crust`,
+    }[appearance] || "";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
   if (loading) {

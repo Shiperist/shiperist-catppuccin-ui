@@ -73,7 +73,7 @@ Placeholder.args = {
 export const Types = () => {
   return (
     <VerticalLayout style={{ gap: 16 }}>
-      <Text>Button</Text>
+      <Text bold>Button</Text>
       <Select variant="button" placeholder="Select items...">
         <SelectItem leadingElement={leadingElement} id="item1">
           Select one
@@ -83,7 +83,7 @@ export const Types = () => {
           Select three
         </SelectItem>
       </Select>
-      <Text>Input</Text>
+      <Text bold>Input</Text>
       <Select variant="input" placeholder="Select/search items...">
         <SelectItem leadingElement={leadingElement} id="item1">
           Select one
