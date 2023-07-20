@@ -3,14 +3,23 @@ import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement> {
   leadingElement?: ReactNode;
+  disabled?: boolean;
   value?: string;
 }
 
-const SelectItem: FC<SelectItemProps> = ({ leadingElement, className = "", value = "", children, ...props }) => {
+const SelectItem: FC<SelectItemProps> = ({
+  leadingElement,
+  disabled,
+  className = "",
+  value = "",
+  children,
+  ...props
+}) => {
   return (
     <button
       className={cn(
-        "w-full bg-transparent transition duration-150 border-b border-overlay0 ease-in-out hover:bg-overlay1 px-4 py-2 text-text max-w-full text-left flex items-center",
+        "w-full bg-overlay0 transition duration-150 border-b border-overlay0 ease-in-out px-4 py-2 text-text max-w-full text-left flex items-center",
+        { "opacity-50 cursor-not-allowed": disabled, "hover:bg-overlay1": !disabled },
         className
       )}
       {...props}>
