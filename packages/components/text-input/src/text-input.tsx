@@ -12,7 +12,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
   type?: "text" | "password";
   leadingElement?: ReactNode;
   trailingElement?: ReactNode;
-  loading?: boolean;
+  isLoading?: boolean;
   disabled?: boolean;
   required?: boolean;
   error?: boolean;
@@ -32,7 +32,7 @@ const TextInput: FC<TextInputProps> = ({
   required,
   type = "text",
   placeholder,
-  loading,
+  isLoading,
   disabled,
   error,
   caption,
@@ -46,7 +46,7 @@ const TextInput: FC<TextInputProps> = ({
     filled: "ring-0 border-b rounded-lg",
   }[appearance];
 
-  trailingElement = loading ? <LoadingIcon /> : trailingElement;
+  trailingElement = isLoading ? <LoadingIcon /> : trailingElement;
   trailingElement = error && errorIcon ? <ErrorCircleIcon /> : trailingElement;
   trailingElement = type == "password" ? <VisiblePasswordIcon /> : trailingElement;
 

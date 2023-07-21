@@ -103,6 +103,33 @@ importers:
         specifier: ^4.3.9
         version: 4.3.9(less@4.1.3)
 
+  packages/components/avatar:
+    devDependencies:
+      '@shiperist-catppuccin-ui/core':
+        specifier: workspace:*
+        version: link:../../core
+      '@shiperist-catppuccin-ui/utilities':
+        specifier: workspace:*
+        version: link:../../utilities
+      '@types/react':
+        specifier: ^18.0.9
+        version: registry.npmjs.org/@types/react@18.2.5
+      '@types/react-dom':
+        specifier: ^18.0.4
+        version: registry.npmjs.org/@types/react-dom@18.2.4
+      eslint:
+        specifier: ^8.15.0
+        version: registry.npmjs.org/eslint@8.15.0
+      react:
+        specifier: ^18.1.0
+        version: registry.npmjs.org/react@18.2.0
+      tsup:
+        specifier: ^5.10.1
+        version: registry.npmjs.org/tsup@5.10.1(typescript@4.9.4)
+      typescript:
+        specifier: ^4.5.3
+        version: registry.npmjs.org/typescript@4.9.4
+
   packages/components/badge:
     devDependencies:
       '@shiperist-catppuccin-ui/core':
@@ -381,6 +408,9 @@ importers:
 
   packages/react:
     dependencies:
+      '@shiperist-catppuccin-ui/avatar':
+        specifier: workspace:*
+        version: link:../components/avatar
       '@shiperist-catppuccin-ui/badge':
         specifier: workspace:*
         version: link:../components/badge
@@ -4412,7 +4442,7 @@ packages:
   /@types/react-dom@18.2.4:
     resolution: {integrity: sha512-G2mHoTMTL4yoydITgOGwWdWMVd8sNgyEP85xVmMKAPUBwQWm9wBPQUmvbeF4V3WBY1P7mmL4BkjQ0SqUpf1snw==}
     dependencies:
-      '@types/react': 18.2.5
+      '@types/react': registry.npmjs.org/@types/react@18.2.5
     dev: true
 
   /@types/react@18.2.5:

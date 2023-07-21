@@ -5,7 +5,7 @@ export default {
   title: "Example/TextInput",
   component: TextInput,
   argTypes: {
-    loading: { control: "boolean" },
+    isLoading: { control: "boolean" },
     error: { control: "boolean" },
     disabled: { control: "boolean" },
     errorIcon: { control: "boolean" },
@@ -40,7 +40,7 @@ const Template: StoryFn = (args) => <TextInput {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  loading: false,
+  isLoading: false,
   error: false,
   disabled: false,
   caption: "",
@@ -55,7 +55,7 @@ Default.args = {
 
 export const Loading = Template.bind({});
 Loading.args = {
-  loading: true,
+  isLoading: true,
 };
 
 export const Error = Template.bind({});

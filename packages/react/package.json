@@ -26,7 +26,8 @@
     "@shiperist-catppuccin-ui/divider": "workspace:*",
     "@shiperist-catppuccin-ui/badge": "workspace:*",
     "@shiperist-catppuccin-ui/layout": "workspace:*",
-    "@shiperist-catppuccin-ui/select": "workspace:*"
+    "@shiperist-catppuccin-ui/select": "workspace:*",
+    "@shiperist-catppuccin-ui/avatar": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",

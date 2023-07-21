@@ -33,6 +33,7 @@ UncontrolledSelection.args = {
   disabled: false,
   placeholder: "Select items...",
   defaultValue: "",
+  value: "",
   variant: "button",
 };
 

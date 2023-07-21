@@ -7,7 +7,7 @@ export default {
   component: Button,
   argTypes: {
     onClick: { action: "clicked" },
-    loading: { control: "boolean" },
+    isLoading: { control: "boolean" },
     disabled: { control: "boolean" },
     tooltip: { control: "text" },
     variant: {
@@ -38,7 +38,7 @@ const Template: StoryFn = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  loading: false,
+  isLoading: false,
   tooltip: "",
   variant: "base",
   size: "medium",
@@ -74,7 +74,7 @@ export const Appearance = () => {
 export const LoadingState = Template.bind({});
 LoadingState.args = {
   ...Default.args,
-  loading: true,
+  isLoading: true,
 };
 
 export const Disabled = Template.bind({});

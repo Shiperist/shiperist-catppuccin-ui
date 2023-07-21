@@ -5,7 +5,7 @@ import { Size, cn, getRGBAFromHex, ColorVariants, LoadingIcon } from "@shiperist
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leadingElement?: ReactNode;
   trailingElement?: ReactNode;
-  loading?: boolean;
+  isLoading?: boolean;
   tooltip?: string;
   disabled?: boolean;
   appearance?: "filled" | "ghost" | "tint" | "outline" | "shadow";
@@ -16,7 +16,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = ({
   leadingElement,
   trailingElement,
-  loading,
+  isLoading,
   disabled,
   tooltip,
   appearance = "outline",
@@ -60,7 +60,7 @@ const Button: FC<ButtonProps> = ({
     }[appearance] || "";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
-  leadingElement = loading ? <LoadingIcon /> : leadingElement;
+  leadingElement = isLoading ? <LoadingIcon /> : leadingElement;
 
   //TODO Implement tooltip
   return (
@@ -71,7 +71,7 @@ const Button: FC<ButtonProps> = ({
           ["opacity-50 cursor-not-allowed border border-surface2"]: disabled,
           [`${appearanceClass} active:translate-y-0.5`]: !disabled,
         },
-        !children && loading ? iconSizeClass : sizeClass,
+        !children && isLoading ? iconSizeClass : sizeClass,
         className
       )}
       onMouseEnter={() => setShowTooltip(true)}
