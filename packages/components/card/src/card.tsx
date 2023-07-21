@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { cn } from "@shiperist-catppuccin-ui/utilities";
+import { cn, ColorVariants, Orientation } from "@shiperist-catppuccin-ui/utilities";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: "filled" | "shadow" | "outline" | "embed";
-  orientation?: "horizontal" | "vertical";
-  variant?: "success" | "warning" | "danger" | "info" | "base";
+  orientation?: Orientation;
+  variant?: ColorVariants;
 }
 
 const Card: FC<CardProps> = ({
@@ -27,7 +27,7 @@ const Card: FC<CardProps> = ({
     {
       filled: `bg-mantle`,
       outline: `border border-overlay0`,
-      shadow: "bg-mantle shadow shadow-lg",
+      shadow: "bg-mantle shadow-lg",
       embed: `border-${variantColor} bg-mantle`,
     }[appearance] || "";
 

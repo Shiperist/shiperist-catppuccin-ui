@@ -1,10 +1,10 @@
 import React, { FC, ReactNode } from "react";
-import { cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
+import { cn, getRGBAFromHex, ColorVariants } from "@shiperist-catppuccin-ui/utilities";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   leadingElement?: ReactNode;
   trailingElement?: ReactNode;
-  variant?: "success" | "warning" | "danger" | "info" | "base";
+  variant?: ColorVariants;
   appearance?: "filled" | "ghost" | "tint" | "outline";
 }
 

@@ -43,9 +43,13 @@ Default.args = {
 export const Appearance = () => {
   return (
     <VerticalLayout style={{ gap: 8 }}>
+      <Text bold>Filled</Text>
       <Card appearance="filled">Card content</Card>
+      <Text bold>Outline</Text>
       <Card appearance="outline">Card content</Card>
+      <Text bold>Shadow</Text>
       <Card appearance="shadow">Card content</Card>
+      <Text bold>Embed</Text>
       <Card appearance="embed">Card content</Card>
     </VerticalLayout>
   );

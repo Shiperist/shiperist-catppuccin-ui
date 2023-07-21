@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { Button, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
-import { leadingElement, trailingElement } from "../utilities/icons";
+import { HeartIcon } from "../utilities/icons";
 
 export default {
   title: "Example/Button",
@@ -50,9 +50,9 @@ Default.args = {
 export const WithIcons = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Button leadingElement={leadingElement}>Click me</Button>
-      <Button trailingElement={trailingElement}>Click me</Button>
-      <Button leadingElement={leadingElement} trailingElement={trailingElement}>
+      <Button leadingElement={HeartIcon}>Click me</Button>
+      <Button trailingElement={HeartIcon}>Click me</Button>
+      <Button leadingElement={HeartIcon} trailingElement={HeartIcon}>
         Click me
       </Button>
     </HorizontalLayout>

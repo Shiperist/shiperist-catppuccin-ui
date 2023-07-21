@@ -18,7 +18,7 @@ const SelectItem: FC<SelectItemProps> = ({
   return (
     <button
       className={cn(
-        "w-full bg-overlay0 transition duration-150 border-b border-overlay0 ease-in-out px-4 py-2 text-text max-w-full text-left flex items-center",
+        "w-full bg-base transition duration-150 border-b border-overlay0 ease-in-out px-4 py-2 text-text max-w-full text-left flex items-center",
         { "opacity-50 cursor-not-allowed": disabled, "hover:bg-overlay1": !disabled },
         className
       )}

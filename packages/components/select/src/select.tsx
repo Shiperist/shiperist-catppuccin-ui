@@ -1,5 +1,5 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { cn } from "@shiperist-catppuccin-ui/utilities";
+import { ChevronDownIcon, cn } from "@shiperist-catppuccin-ui/utilities";
 import SelectItem from "./select-item";
 
 export interface SelectProps {
@@ -12,7 +12,7 @@ export interface SelectProps {
   children: React.ReactElement[] | React.ReactElement;
 }
 
-const Select: FC<SelectProps & React.HTMLAttributes<HTMLDivElement>> = ({
+const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
   disabled,
   defaultValue,
   variant = "button",
@@ -75,21 +75,7 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLDivElement>> = ({
     };
   }, [showRingEffect]);
 
-  const trailingElement = (
-    <svg
-      className="h-6 w-6"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  );
-
+  const trailingElement = <ChevronDownIcon />;
   const Element = variant;
 
   const filteredChildren =
@@ -113,7 +99,7 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLDivElement>> = ({
   }
 
   return (
-    <div className={cn("relative", className)} ref={selectRef} {...props}>
+    <div className={cn("relative")} ref={selectRef}>
       {Element === "input" ? (
         <div
           className={cn(
@@ -122,8 +108,10 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLDivElement>> = ({
               "opacity-50 cursor-not-allowed": disabled,
               "hover:border-overlay2": !disabled,
               "ring ring-overlay2": showRingEffect,
-            }
-          )}>
+            },
+            className
+          )}
+          {...props}>
           <Element
             type="text"
             disabled={disabled}
@@ -143,8 +131,10 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLDivElement>> = ({
               "opacity-50 cursor-not-allowed": disabled,
               "hover:border-overlay2": !disabled,
               "ring ring-overlay2": showRingEffect,
-            }
-          )}>
+            },
+            className
+          )}
+          {...props}>
           <div className="flex-grow text-left">
             {/* Placeholder */}
             {placeholder && !selectedValue && !defaultValue && <p className="text-overlay2">{placeholder}</p>}

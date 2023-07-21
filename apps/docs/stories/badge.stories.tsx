@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { Badge, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
-import { leadingElement, trailingElement } from "../utilities/icons";
+import { HeartIcon } from "../utilities/icons";
 
 export default {
   title: "Example/Badge",
@@ -36,9 +36,9 @@ Default.args = {
 export const WithIcons = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Badge leadingElement={leadingElement}>Badge</Badge>
-      <Badge trailingElement={trailingElement}>Badge</Badge>
-      <Badge leadingElement={leadingElement} trailingElement={trailingElement}>
+      <Badge leadingElement={HeartIcon}>Badge</Badge>
+      <Badge trailingElement={HeartIcon}>Badge</Badge>
+      <Badge leadingElement={HeartIcon} trailingElement={HeartIcon}>
         Badge
       </Badge>
     </HorizontalLayout>

@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
-import { Size, cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
+import { Size, cn, getRGBAFromHex, ColorVariants, LoadingIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leadingElement?: ReactNode;
@@ -9,7 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   tooltip?: string;
   disabled?: boolean;
   appearance?: "filled" | "ghost" | "tint" | "outline" | "shadow";
-  variant?: "success" | "warning" | "danger" | "info" | "base";
+  variant?: ColorVariants;
   size?: Size;
 }
 
@@ -60,23 +60,7 @@ const Button: FC<ButtonProps> = ({
     }[appearance] || "";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
-  if (loading) {
-    leadingElement = (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-4 w-4 animate-spin">
-        <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-      </svg>
-    );
-  }
+  leadingElement = loading ? <LoadingIcon /> : leadingElement;
 
   //TODO Implement tooltip
   return (

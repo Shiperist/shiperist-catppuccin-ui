@@ -22,7 +22,7 @@ export default {
     appearance: {
       control: {
         type: "select",
-        options: ["outline", "underline"],
+        options: ["outline", "underline", "filled"],
       },
     },
     labelStyle: {
@@ -95,7 +95,7 @@ export const LabelAppearence = () => {
       <TextInput label="This is a label"></TextInput>
       <Text bold>(in) Border</Text>
       <TextInput labelStyle="border" label="This is a label"></TextInput>
-      <Text bold>(in) Default with required</Text>
+      <Text bold>Default with required</Text>
       <TextInput required label="This is a label"></TextInput>
       <Text bold>(in) Border with required</Text>
       <TextInput labelStyle="border" required label="This is a label"></TextInput>
@@ -110,6 +110,8 @@ export const Appearence = () => {
       <TextInput></TextInput>
       <Text bold>Underline</Text>
       <TextInput appearance="underline"></TextInput>
+      <Text bold>Filled</Text>
+      <TextInput appearance="filled"></TextInput>
     </VerticalLayout>
   );
 };

@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 import { Select, SelectItem, VerticalLayout, Text } from "@shiperist-catppuccin-ui/react";
-import { leadingElement } from "../utilities/icons";
+import { HeartIcon } from "../utilities/icons";
 
 export default {
   title: "Example/Select",
@@ -18,11 +18,11 @@ export default {
 
 const Template: StoryFn = (args) => (
   <Select {...args}>
-    <SelectItem leadingElement={leadingElement} id="item1">
+    <SelectItem leadingElement={HeartIcon} id="item1">
       Select one
     </SelectItem>
     <SelectItem id="item2">Select two</SelectItem>
-    <SelectItem leadingElement={leadingElement} id="item3">
+    <SelectItem leadingElement={HeartIcon} id="item3">
       Select three
     </SelectItem>
   </Select>
@@ -75,21 +75,21 @@ export const Types = () => {
     <VerticalLayout style={{ gap: 16 }}>
       <Text bold>Button</Text>
       <Select variant="button" placeholder="Select items...">
-        <SelectItem leadingElement={leadingElement} id="item1">
+        <SelectItem leadingElement={HeartIcon} id="item1">
           Select one
         </SelectItem>
         <SelectItem id="item2">Select two</SelectItem>
-        <SelectItem leadingElement={leadingElement} id="item3">
+        <SelectItem leadingElement={HeartIcon} id="item3">
           Select three
         </SelectItem>
       </Select>
       <Text bold>Input</Text>
       <Select variant="input" placeholder="Select/search items...">
-        <SelectItem leadingElement={leadingElement} id="item1">
+        <SelectItem leadingElement={HeartIcon} id="item1">
           Select one
         </SelectItem>
         <SelectItem id="item2">Select two</SelectItem>
-        <SelectItem leadingElement={leadingElement} id="item3">
+        <SelectItem leadingElement={HeartIcon} id="item3">
           Select three
         </SelectItem>
       </Select>

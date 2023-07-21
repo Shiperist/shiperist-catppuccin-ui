@@ -1,4 +1,11 @@
-export type { Size } from "./inputTypes";
-export type { TextProp } from "./typography";
+export type { Size, ColorVariants, Orientation, PositionHorizontal, PositionVertical, TextProp } from "./inputTypes";
 export { getRGBAFromHex, formatClass, cn } from "./utils";
-export type { TypographyProps } from "./typography";
+export type { TypographyProps } from "./interfaces";
+export {
+  HiddenPasswordIcon,
+  VisiblePasswordIcon,
+  LoadingIcon,
+  ErrorCircleIcon,
+  ChevronDownIcon,
+  HeartIcon,
+} from "./icons";
