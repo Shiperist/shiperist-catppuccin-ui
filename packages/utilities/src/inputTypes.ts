@@ -3,6 +3,8 @@ export type ColorVariants = "success" | "warning" | "danger" | "info" | "base";
 export type Orientation = "horizontal" | "vertical";
 export type PositionVertical = "top" | "bottom";
 export type PositionHorizontal = "left" | "right";
+export type Positions = "left" | "right" | "center";
+export type Radius = "full" | "lg" | "md" | "sm";
 export type TextProp = "p" | "a" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "pre";
 export type ColorSet =
   | "rosewater"

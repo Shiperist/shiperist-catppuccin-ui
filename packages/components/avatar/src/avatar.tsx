@@ -1,16 +1,17 @@
-import React, { FC } from "react";
-import { ColorSet, Size, cn, LoadingIcon } from "@shiperist-catppuccin-ui/utilities";
+import React, { FC, ReactNode } from "react";
+import { ColorSet, Size, cn, LoadingIcon, Radius } from "@shiperist-catppuccin-ui/utilities";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
   size?: Size | "tiny";
   avatar?: string;
   alt?: string;
-  radius?: "full" | "large" | "medium" | "small";
+  radius?: Radius;
   border?: "xlarge" | "large" | "medium" | "small" | "none";
   defaultAvatar?: string;
   backgroundColor?: ColorSet;
   name?: string;
   isLoading?: boolean;
+  children?: ReactNode;
 }
 
 const Avatar: FC<AvatarProps> = ({
@@ -58,8 +59,8 @@ const Avatar: FC<AvatarProps> = ({
   };
 
   const avatarContainerClassName = cn(
-    "flex items-center justify-center",
-    radius === "full" ? "rounded-full" : `rounded-${radius}`,
+    "flex items-center justify-center relative",
+    `rounded-${radius}`,
     {
       [`bg-${backgroundColor}`]: !(avatar || defaultAvatar),
     },
@@ -67,13 +68,8 @@ const Avatar: FC<AvatarProps> = ({
   );
 
   return (
-    <div className="relative">
-      {isLoading && (
-        <div className={avatarContainerClassName} style={containerStyle}>
-          <LoadingIcon className="m-auto" />
-        </div>
-      )}
-
+    <div className={avatarContainerClassName} style={containerStyle}>
+      {isLoading && <LoadingIcon className="m-auto" />}
       {!isLoading && (
         <>
           {avatar ? (
@@ -81,7 +77,7 @@ const Avatar: FC<AvatarProps> = ({
               loading="lazy"
               src={avatar}
               alt={alt}
-              className={avatarContainerClassName}
+              className="flex items-center justify-center rounded-full"
               style={{
                 ...containerStyle,
                 opacity: isLoading ? 0 : 1,
@@ -89,21 +85,18 @@ const Avatar: FC<AvatarProps> = ({
               {...props}
             />
           ) : (
-            <div className={avatarContainerClassName} style={containerStyle}>
-              {size !== "tiny" && (
-                <span
-                  className={cn("text-white font-bold", {
-                    "text-xl": size === "large" || size === "medium",
-                    "text-4xl": size === "xlarge",
-                    "text-xs": size === "small",
-                  })}>
-                  {!(avatar || defaultAvatar) && getInitials(name)}
-                </span>
-              )}
-            </div>
+            <span
+              className={cn("text-white font-bold", {
+                "text-xl": size === "large" || size === "medium",
+                "text-4xl": size === "xlarge",
+                "text-xs": size === "small",
+              })}>
+              {!(avatar || defaultAvatar) && getInitials(name)}
+            </span>
           )}
         </>
       )}
+      <div>{children}</div>
     </div>
   );
 };

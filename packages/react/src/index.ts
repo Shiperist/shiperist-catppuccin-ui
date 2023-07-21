@@ -8,3 +8,5 @@ export * from "@shiperist-catppuccin-ui/badge";
 export * from "@shiperist-catppuccin-ui/layout";
 export * from "@shiperist-catppuccin-ui/select";
 export * from "@shiperist-catppuccin-ui/avatar";
+export * from "@shiperist-catppuccin-ui/progress";
+export * from "@shiperist-catppuccin-ui/indicator";

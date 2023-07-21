@@ -6,7 +6,6 @@ export default {
   title: "Example/Button",
   component: Button,
   argTypes: {
-    onClick: { action: "clicked" },
     isLoading: { control: "boolean" },
     disabled: { control: "boolean" },
     tooltip: { control: "text" },

@@ -4,6 +4,8 @@ export type {
   Orientation,
   PositionHorizontal,
   PositionVertical,
+  Positions,
+  Radius,
   TextProp,
   ColorSet,
 } from "./inputTypes";

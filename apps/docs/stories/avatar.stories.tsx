@@ -1,13 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  Avatar,
-  Card,
-  Text,
-  VerticalLayout,
-  Caption,
-  Caption2,
-  HorizontalLayout,
-} from "@shiperist-catppuccin-ui/react";
+import { Avatar, Card, Text, VerticalLayout, Caption, Caption2 } from "@shiperist-catppuccin-ui/react";
 import avatar from "../assets/avatar.png";
 
 export default {
@@ -17,7 +9,7 @@ export default {
     radius: {
       control: {
         type: "select",
-        options: ["full", "large", "medium", "small"],
+        options: ["full", "lg", "md", "sm"],
       },
     },
     size: {
