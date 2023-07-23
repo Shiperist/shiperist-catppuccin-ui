@@ -5,12 +5,16 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: "filled" | "shadow" | "outline" | "embed";
   orientation?: Orientation;
   variant?: ColorVariants;
+  padding?: string;
+  disabled?: boolean;
 }
 
 const Card: FC<CardProps> = ({
-  appearance = "outline",
-  orientation = "vertical",
-  variant = "base",
+  appearance,
+  orientation,
+  disabled,
+  padding,
+  variant,
   className = "",
   children,
   ...props
@@ -36,11 +40,20 @@ const Card: FC<CardProps> = ({
       horizontal: "flex-row",
       vertical: "flex-col",
     }[orientation] || "";
+  const convertedPadding = typeof padding === "string" && padding.match(/[a-zA-Z]/) ? padding : `${padding}px`;
+
+  const cardStyles = {
+    ...(appearance === "embed" ? { borderLeftWidth: "4px" } : {}),
+    padding: convertedPadding,
+    ...props.style,
+  };
 
   return (
     <div
-      className={cn("p-8 rounded-lg flex", appearanceClass, orientationClass, className)}
-      style={appearance === "embed" ? { borderLeftWidth: "4px" } : undefined}
+      className={cn("rounded-lg flex", appearanceClass, orientationClass, className, {
+        "opacity-50 cursor-not-allowed": disabled,
+      })}
+      style={cardStyles}
       {...props}>
       {children}
     </div>

@@ -49,7 +49,7 @@ export const ControlledSelection = () => {
 
   return (
     <div>
-      <Select placeholder="Select items..." defaultValue={selectedPerson} onChange={setSelectedPerson}>
+      <Select placeholder="Select items..." variant="button" defaultValue={selectedPerson} onChange={setSelectedPerson}>
         {people.map((person) => (
           <SelectItem key={person.id} value={person.name} disabled={person.disabled}>
             {person.name}
@@ -69,6 +69,7 @@ Disabled.args = {
 export const Placeholder = Template.bind({});
 Placeholder.args = {
   placeholder: "Select items...",
+  variant: "button",
 };
 
 export const Types = () => {

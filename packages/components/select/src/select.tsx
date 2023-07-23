@@ -76,7 +76,7 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
   }, [showRingEffect]);
 
   const trailingElement = <ChevronDownIcon />;
-  const Element = variant;
+  const Element = variant === "button" ? "button" : "input";
 
   const filteredChildren =
     variant === "input"
@@ -111,7 +111,8 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
             },
             className
           )}
-          {...props}>
+          {...props}
+          style={{ ...props.style }}>
           <Element
             type="text"
             disabled={disabled}

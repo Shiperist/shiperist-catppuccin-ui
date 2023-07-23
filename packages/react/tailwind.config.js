@@ -1,25 +1,5 @@
-/** @type {import("tailwindcss").Config} */
 module.exports = {
-  theme: {
-    extend: {
-      ringWidth: {
-        0: "0px",
-      },
-      borderWidth: {
-        DEFAULT: "1px",
-        0: "0",
-        1: "1px",
-        2: "2px",
-        3: "3px",
-        4: "4px",
-        6: "6px",
-        8: "8px",
-      },
-      dropShadow: {
-        s: "0 4px 6px rgba(0,0,0,.04)",
-      },
-    },
-  },
+  theme: {},
   safelist: [
     {
       pattern:

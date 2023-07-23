@@ -49,9 +49,13 @@ Default.args = {
 export const WithIcons = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Button leadingElement={HeartIcon}>Click me</Button>
-      <Button trailingElement={HeartIcon}>Click me</Button>
-      <Button leadingElement={HeartIcon} trailingElement={HeartIcon}>
+      <Button {...Default.args} leadingElement={HeartIcon}>
+        Click me
+      </Button>
+      <Button {...Default.args} trailingElement={HeartIcon}>
+        Click me
+      </Button>
+      <Button {...Default.args} leadingElement={HeartIcon} trailingElement={HeartIcon}>
         Click me
       </Button>
     </HorizontalLayout>
@@ -59,12 +63,20 @@ export const WithIcons = () => {
 };
 
 export const Appearance = () => {
-  const appearances: any = ["filled", "ghost", "tint", "outline", "shadow"];
+  const appearances: any[] = [
+    { id: 1, name: "filled" },
+    { id: 2, name: "ghost" },
+    { id: 3, name: "tint" },
+    { id: 4, name: "outline" },
+    { id: 5, name: "shadow" },
+  ];
 
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      {appearances.map((key) => (
-        <Button appearance={key}>Click me</Button>
+      {appearances.map((appearance) => (
+        <Button {...Default.args} key={appearance.id} appearance={appearance.name}>
+          Click me
+        </Button>
       ))}
     </HorizontalLayout>
   );

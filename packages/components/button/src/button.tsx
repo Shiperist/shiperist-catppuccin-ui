@@ -19,9 +19,9 @@ const Button: FC<ButtonProps> = ({
   isLoading,
   disabled,
   tooltip,
-  appearance = "outline",
-  variant = "base",
-  size = "medium",
+  appearance,
+  variant,
+  size,
   children,
   className = "",
   ...props

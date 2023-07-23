@@ -13,26 +13,30 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   percentPosition?: "inside" | "outside";
   percentPositionOutside?: PositionHorizontal;
   percentPositionInside?: Positions;
-  /* rounded?: boolean; */
   /* variant?: "linear" | "radial"; */
 }
 
 const Progress: FC<ProgressProps> = ({
-  size = "medium",
-  color = "green",
-  showPercent = false,
-  percentPosition = "outside",
-  percentPositionInside = "center",
-  percentPositionOutside = "right",
-  /* variant = "linear", */
+  size = "",
+  color = "",
+  showPercent,
+  percentPosition = "",
+  percentPositionInside = "",
+  percentPositionOutside = "",
+  /* variant = "", */
   className = "",
-  radius = "full",
+  radius = "",
   progress = 0,
-  /* rounded = false, */
   ...props
 }) => {
   const clampedProgress = Math.min(100, Math.max(0, progress)).toFixed(2);
-  const radiusClass = `rounded-${radius}`;
+
+  const radiusClass = {
+    full: "rounded-full",
+    large: "rounded-3xl",
+    medium: "rounded-xl",
+    small: "rounded-lg",
+  }[radius];
 
   const textSizeClass = {
     small: "text-xs",
@@ -52,6 +56,7 @@ const Progress: FC<ProgressProps> = ({
   const progressStyles = {
     height: heightClass,
     width: `${clampedProgress}%`,
+    ...props.style,
   };
 
   const labelStyles =

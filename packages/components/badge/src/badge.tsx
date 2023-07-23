@@ -11,8 +11,8 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 const Badge: FC<BadgeProps> = ({
   leadingElement,
   trailingElement,
-  variant = "base",
-  appearance = "filled",
+  variant,
+  appearance,
   className = "",
   children,
   ...props

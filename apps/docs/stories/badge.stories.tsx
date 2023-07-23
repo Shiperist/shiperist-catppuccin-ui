@@ -10,12 +10,14 @@ export default {
       control: {
         type: "select",
         options: ["success", "warning", "danger", "info", "base"],
+        default: "base",
       },
     },
     appearance: {
       control: {
         type: "select",
         options: ["filled", "ghost", "tint", "outline"],
+        default: "filled",
       },
     },
     leadingElement: { control: "object" },
@@ -36,9 +38,13 @@ Default.args = {
 export const WithIcons = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Badge leadingElement={HeartIcon}>Badge</Badge>
-      <Badge trailingElement={HeartIcon}>Badge</Badge>
-      <Badge leadingElement={HeartIcon} trailingElement={HeartIcon}>
+      <Badge {...Default.args} leadingElement={HeartIcon}>
+        Badge
+      </Badge>
+      <Badge {...Default.args} trailingElement={HeartIcon}>
+        Badge
+      </Badge>
+      <Badge {...Default.args} leadingElement={HeartIcon} trailingElement={HeartIcon}>
         Badge
       </Badge>
     </HorizontalLayout>
@@ -46,11 +52,18 @@ export const WithIcons = () => {
 };
 
 export const Appearance = () => {
-  const appearances: any = ["filled", "outline", "ghost", "tint"];
+  const appearances: any[] = [
+    { id: 1, name: "filled" },
+    { id: 2, name: "outline" },
+    { id: 3, name: "ghost" },
+    { id: 4, name: "tint" },
+  ];
   return (
     <HorizontalLayout style={{ gap: 4 }}>
-      {appearances.map((key) => (
-        <Badge appearance={key}>Badge</Badge>
+      {appearances.map((appearance) => (
+        <Badge {...Default.args} key={appearance.id} appearance={appearance.name}>
+          Badge
+        </Badge>
       ))}
     </HorizontalLayout>
   );

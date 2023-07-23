@@ -26,11 +26,11 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
 const TextInput: FC<TextInputProps> = ({
   leadingElement,
   trailingElement,
-  appearance = "outline",
-  labelStyle = "default",
+  appearance,
+  labelStyle,
   errorIcon,
   required,
-  type = "text",
+  type,
   placeholder,
   isLoading,
   disabled,
@@ -109,6 +109,7 @@ const TextInput: FC<TextInputProps> = ({
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           {...props}
+          style={{ ...props.style }}
         />
         {trailingElement && (
           <div

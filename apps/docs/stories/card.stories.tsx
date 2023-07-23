@@ -23,6 +23,8 @@ export default {
         options: ["success", "warning", "danger", "info", "base"],
       },
     },
+    padding: { control: "text" },
+    disabled: { control: "boolean" },
   },
 } as Meta;
 
@@ -38,19 +40,35 @@ Default.args = {
   appearance: "outline",
   orientation: "vertical",
   variant: "base",
+  disabled: false,
+  padding: "2rem",
 };
 
 export const Appearance = () => {
   return (
     <VerticalLayout style={{ gap: 8 }}>
       <Text bold>Filled</Text>
-      <Card appearance="filled">Card content</Card>
+      <Card {...Default.args} appearance="filled">
+        Card content
+      </Card>
       <Text bold>Outline</Text>
-      <Card appearance="outline">Card content</Card>
+      <Card {...Default.args} appearance="outline">
+        Card content
+      </Card>
       <Text bold>Shadow</Text>
-      <Card appearance="shadow">Card content</Card>
+      <Card {...Default.args} appearance="shadow">
+        Card content
+      </Card>
       <Text bold>Embed</Text>
-      <Card appearance="embed">Card content</Card>
+      <Card {...Default.args} appearance="embed">
+        Card content
+      </Card>
     </VerticalLayout>
   );
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
 };

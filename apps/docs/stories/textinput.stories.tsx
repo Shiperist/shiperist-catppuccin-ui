@@ -55,11 +55,13 @@ Default.args = {
 
 export const Loading = Template.bind({});
 Loading.args = {
+  ...Default.args,
   isLoading: true,
 };
 
 export const Error = Template.bind({});
 Error.args = {
+  ...Default.args,
   error: true,
   caption: "This is a error/caption message",
   errorIcon: true,
@@ -75,16 +77,19 @@ Error.parameters = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+  ...Default.args,
   disabled: true,
 };
 
 export const WithCaption = Template.bind({});
 WithCaption.args = {
+  ...Default.args,
   caption: "This is a caption",
 };
 
 export const WithPlaceholder = Template.bind({});
 WithPlaceholder.args = {
+  ...Default.args,
   placeholder: "This is a placeholder",
 };
 
@@ -92,13 +97,13 @@ export const LabelAppearence = () => {
   return (
     <VerticalLayout style={{ gap: 12 }}>
       <Text bold>Default</Text>
-      <TextInput label="This is a label"></TextInput>
+      <TextInput {...Default.args} label="This is a label"></TextInput>
       <Text bold>(in) Border</Text>
-      <TextInput labelStyle="border" label="This is a label"></TextInput>
+      <TextInput {...Default.args} labelStyle="border" label="This is a label"></TextInput>
       <Text bold>Default with required</Text>
-      <TextInput required label="This is a label"></TextInput>
+      <TextInput {...Default.args} required label="This is a label"></TextInput>
       <Text bold>(in) Border with required</Text>
-      <TextInput labelStyle="border" required label="This is a label"></TextInput>
+      <TextInput {...Default.args} labelStyle="border" required label="This is a label"></TextInput>
     </VerticalLayout>
   );
 };
@@ -107,11 +112,11 @@ export const Appearence = () => {
   return (
     <VerticalLayout style={{ gap: 12 }}>
       <Text bold>Default</Text>
-      <TextInput></TextInput>
+      <TextInput {...Default.args}></TextInput>
       <Text bold>Underline</Text>
-      <TextInput appearance="underline"></TextInput>
+      <TextInput {...Default.args} appearance="underline"></TextInput>
       <Text bold>Filled</Text>
-      <TextInput appearance="filled"></TextInput>
+      <TextInput {...Default.args} appearance="filled"></TextInput>
     </VerticalLayout>
   );
 };
@@ -120,9 +125,9 @@ export const Types = () => {
   return (
     <VerticalLayout style={{ gap: 12 }}>
       <Text bold>Text</Text>
-      <TextInput></TextInput>
+      <TextInput {...Default.args}></TextInput>
       <Text bold>Password</Text>
-      <TextInput type="password"></TextInput>
+      <TextInput {...Default.args} type="password"></TextInput>
     </VerticalLayout>
   );
 };

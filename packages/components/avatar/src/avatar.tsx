@@ -16,13 +16,13 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
 
 const Avatar: FC<AvatarProps> = ({
   avatar,
-  radius = "full",
+  radius,
   defaultAvatar,
   name,
   isLoading,
-  backgroundColor = "green",
-  size = "large",
-  border = "none",
+  backgroundColor,
+  size,
+  border,
   alt,
   className = "",
   children,
@@ -42,6 +42,13 @@ const Avatar: FC<AvatarProps> = ({
     xlarge: 4,
   }[border];
 
+  const radiusClass = {
+    full: "rounded-full",
+    large: "rounded-3xl",
+    medium: "rounded-xl",
+    small: "rounded-lg",
+  }[radius];
+
   // Function to extract initials from the name
   const getInitials = (name: string) => {
     const initials = name
@@ -59,8 +66,7 @@ const Avatar: FC<AvatarProps> = ({
   };
 
   const avatarContainerClassName = cn(
-    "flex items-center justify-center relative",
-    `rounded-${radius}`,
+    "flex items-center justify-center relative inline-flex",
     {
       [`bg-${backgroundColor}`]: !(avatar || defaultAvatar),
     },
@@ -77,7 +83,7 @@ const Avatar: FC<AvatarProps> = ({
               loading="lazy"
               src={avatar}
               alt={alt}
-              className="flex items-center justify-center rounded-full"
+              className={cn(`flex items-center justify-center object-cover`, radiusClass)}
               style={{
                 ...containerStyle,
                 opacity: isLoading ? 0 : 1,
@@ -96,7 +102,7 @@ const Avatar: FC<AvatarProps> = ({
           )}
         </>
       )}
-      <div>{children}</div>
+      {children}
     </div>
   );
 };
