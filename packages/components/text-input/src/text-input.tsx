@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import {
   cn,
   getRGBAFromHex,
@@ -23,33 +23,40 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
   appearance?: "outline" | "underline" | "filled";
 }
 
-const TextInput: FC<TextInputProps> = ({
-  leadingElement,
-  trailingElement,
-  appearance,
-  labelStyle,
-  errorIcon,
-  required,
-  type,
-  placeholder,
-  isLoading,
-  disabled,
-  error,
-  caption,
-  label,
-  className = "",
-  ...props
-}) => {
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+  const {
+    leadingElement,
+    trailingElement: originalTrailingElement,
+    appearance,
+    labelStyle,
+    errorIcon,
+    required,
+    type,
+    placeholder,
+    isLoading,
+    disabled,
+    error,
+    caption,
+    label,
+    className = "",
+    ...other
+  } = props;
+
   const textInputAppearance = {
     outline: "ring-0 border rounded-lg",
     underline: "ring-0 border-b",
     filled: "ring-0 border-b rounded-lg",
   }[appearance];
 
-  trailingElement = isLoading ? <LoadingIcon /> : trailingElement;
-  trailingElement = error && errorIcon ? <ErrorCircleIcon /> : trailingElement;
-  trailingElement = type == "password" ? <VisiblePasswordIcon /> : trailingElement;
+  let trailingElement: React.ReactNode = originalTrailingElement;
 
+  if (isLoading) {
+    trailingElement = <LoadingIcon />;
+  } else if (error && errorIcon) {
+    trailingElement = <ErrorCircleIcon />;
+  } else if (type === "password") {
+    trailingElement = <VisiblePasswordIcon />;
+  }
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [inputType, setInputType] = useState(type);
@@ -97,6 +104,7 @@ const TextInput: FC<TextInputProps> = ({
         style={appearance == "filled" ? { backgroundColor } : undefined}>
         {leadingElement && <div className={cn("stroke-overlay1 py-1")}>{leadingElement}</div>}
         <input
+          ref={ref}
           className={cn(`bg-transparent outline-none flex-grow mx-1`, {
             "cursor-not-allowed": disabled,
             "text-red": error,
@@ -108,8 +116,8 @@ const TextInput: FC<TextInputProps> = ({
           required={required}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          {...props}
-          style={{ ...props.style }}
+          {...other}
+          style={{ ...other.style }}
         />
         {trailingElement && (
           <div
@@ -130,7 +138,7 @@ const TextInput: FC<TextInputProps> = ({
       {caption && <p className={cn("pt-2 text-sm", { "text-red": error, "text-text": !error })}>{caption}</p>}
     </div>
   );
-};
+});
 
 export default TextInput;
 

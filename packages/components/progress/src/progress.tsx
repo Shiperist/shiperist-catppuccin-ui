@@ -1,5 +1,5 @@
 import { ColorSet, Size, cn } from "@shiperist-catppuccin-ui/utilities";
-import React, { FC, HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
 import { PositionHorizontal, Positions, Radius } from "@shiperist-catppuccin-ui/utilities";
 
 // Todo radial progress
@@ -16,19 +16,21 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   /* variant?: "linear" | "radial"; */
 }
 
-const Progress: FC<ProgressProps> = ({
-  size = "",
-  color = "",
-  showPercent,
-  percentPosition = "",
-  percentPositionInside = "",
-  percentPositionOutside = "",
-  /* variant = "", */
-  className = "",
-  radius = "",
-  progress = 0,
-  ...props
-}) => {
+const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
+  const {
+    size,
+    color,
+    showPercent,
+    percentPosition,
+    percentPositionInside,
+    percentPositionOutside,
+    /* variant = "", */
+    className = "",
+    radius,
+    progress = 0,
+    ...other
+  } = props;
+
   const clampedProgress = Math.min(100, Math.max(0, progress)).toFixed(2);
 
   const radiusClass = {
@@ -56,7 +58,7 @@ const Progress: FC<ProgressProps> = ({
   const progressStyles = {
     height: heightClass,
     width: `${clampedProgress}%`,
-    ...props.style,
+    ...other.style,
   };
 
   const labelStyles =
@@ -69,9 +71,10 @@ const Progress: FC<ProgressProps> = ({
       : { alignItems: "center", display: "flex" };
   return (
     <div
+      ref={ref}
       className={cn("flex flex-row w-full h-full items-center transition-all duration-150", className)}
       style={showPercent ? { gap: 8 } : undefined}
-      {...props}>
+      {...other}>
       {showPercent && percentPosition === "outside" && percentPositionOutside === "left" && (
         <div>
           <span className={cn(textSizeClass)}>{clampedProgress}%</span>
@@ -93,7 +96,7 @@ const Progress: FC<ProgressProps> = ({
       )}
     </div>
   );
-};
+});
 
 Progress.displayName = "Progress";
 

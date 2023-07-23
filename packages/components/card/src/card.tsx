@@ -1,24 +1,36 @@
-import React, { FC } from "react";
+import React from "react";
 import { cn, ColorVariants, Orientation } from "@shiperist-catppuccin-ui/utilities";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: "filled" | "shadow" | "outline" | "embed";
   orientation?: Orientation;
   variant?: ColorVariants;
-  padding?: string;
+  padding?: string | number;
+  gap?: string | number;
   disabled?: boolean;
+  border?: "tiny" | "small" | "medium";
 }
 
-const Card: FC<CardProps> = ({
-  appearance,
-  orientation,
-  disabled,
-  padding,
-  variant,
-  className = "",
-  children,
-  ...props
-}) => {
+const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
+  const {
+    appearance,
+    orientation,
+    disabled,
+    border,
+    padding,
+    gap,
+    variant,
+    className = "",
+    children,
+    ...other
+  } = props;
+
+  const borderClass = {
+    tiny: "1px",
+    small: "2px",
+    medium: "3px",
+  }[border];
+
   const variantColor =
     {
       success: "green",
@@ -40,25 +52,30 @@ const Card: FC<CardProps> = ({
       horizontal: "flex-row",
       vertical: "flex-col",
     }[orientation] || "";
+
   const convertedPadding = typeof padding === "string" && padding.match(/[a-zA-Z]/) ? padding : `${padding}px`;
+  const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
 
   const cardStyles = {
     ...(appearance === "embed" ? { borderLeftWidth: "4px" } : {}),
-    padding: convertedPadding,
-    ...props.style,
+    borderWidth: appearance === "outline" ? borderClass : undefined,
+    padding: convertedPadding ? convertedPadding : undefined,
+    gap: convertedGap ? convertedGap : undefined,
+    ...other.style,
   };
 
   return (
     <div
+      ref={ref}
       className={cn("rounded-lg flex", appearanceClass, orientationClass, className, {
         "opacity-50 cursor-not-allowed": disabled,
       })}
       style={cardStyles}
-      {...props}>
+      {...other}>
       {children}
     </div>
   );
-};
+});
 
 export default Card;
 

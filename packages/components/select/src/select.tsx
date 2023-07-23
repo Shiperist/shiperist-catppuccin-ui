@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, CSSProperties, LegacyRef } from "react";
 import { ChevronDownIcon, cn } from "@shiperist-catppuccin-ui/utilities";
 import SelectItem from "./select-item";
 
@@ -9,23 +9,28 @@ export interface SelectProps {
   variant?: "button" | "input";
   value?: string;
   onChange?: (value: string) => void;
+  className?: string;
+  style?: CSSProperties;
   children: React.ReactElement[] | React.ReactElement;
 }
 
-const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
-  disabled,
-  defaultValue,
-  variant = "button",
-  placeholder,
-  value: controlledValue,
-  onChange,
-  className = "",
-  children,
-  ...props
-}) => {
+const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
+  const {
+    disabled,
+    defaultValue,
+    variant = "button",
+    placeholder,
+    value: controlledValue,
+    onChange,
+    className = "",
+    children,
+    ...other
+  } = props;
+
   const [isOpen, setIsOpen] = useState(false);
   const [showRingEffect, setShowRingEffect] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     controlledValue !== undefined ? controlledValue : defaultValue
   );
@@ -111,9 +116,10 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
             },
             className
           )}
-          {...props}
-          style={{ ...props.style }}>
+          {...other}
+          style={{ ...other.style }}>
           <Element
+            ref={ref as LegacyRef<HTMLInputElement>}
             type="text"
             disabled={disabled}
             onClick={!disabled ? handleSelectOpen : undefined}
@@ -125,6 +131,7 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
         </div>
       ) : (
         <Element
+          ref={buttonRef}
           onClick={!disabled ? handleSelectOpen : undefined}
           className={cn(
             "flex w-full transition duration-150 ease-in-out rounded-lg items-center bg-transparent border border-overlay0 flex-row px-4 h-12 py-2",
@@ -135,7 +142,7 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
             },
             className
           )}
-          {...props}>
+          {...other}>
           <div className="flex-grow text-left">
             {/* Placeholder */}
             {placeholder && !selectedValue && !defaultValue && <p className="text-overlay2">{placeholder}</p>}
@@ -165,7 +172,7 @@ const Select: FC<SelectProps & React.HTMLAttributes<HTMLElement>> = ({
       )}
     </div>
   );
-};
+});
 
 Select.displayName = "Select";
 

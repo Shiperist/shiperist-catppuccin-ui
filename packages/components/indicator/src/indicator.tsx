@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface IndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,18 +27,20 @@ export type CSSPosition = {
   left?: string | number;
 };
 
-const Indicator: FC<IndicatorProps> = ({
-  position,
-  status,
-  borderSize,
-  isLabel,
-  bordered,
-  positionPreset,
-  size,
-  className,
-  children = "",
-  ...props
-}) => {
+const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) => {
+  const {
+    position,
+    status,
+    borderSize,
+    isLabel,
+    bordered,
+    positionPreset,
+    size,
+    className,
+    children = "",
+    ...other
+  } = props;
+
   const fontClass = {
     tiny: 8,
     small: 10,
@@ -112,6 +114,7 @@ const Indicator: FC<IndicatorProps> = ({
       {/* Indicator without text when isLabel is true */}
       {!isLabel && (
         <div
+          ref={ref}
           className={cn(
             `absolute inline-flex rounded-full transition-all duration-150`,
             colorClass,
@@ -119,14 +122,15 @@ const Indicator: FC<IndicatorProps> = ({
             { "px-2": children, "border-white": bordered },
             className
           )}
-          style={indicatorStyle}>
+          style={indicatorStyle}
+          {...other}>
           {shouldSlice ? String(children).slice(0, 3) + "+" : children}
         </div>
       )}
 
       {/* Label text outside the indicator */}
       {isLabel && (
-        <div className={cn({ "flex flex-row items-center": isLabel })} style={{ gap: 4 }}>
+        <div ref={ref} className={cn({ "flex flex-row items-center": isLabel })} style={{ gap: 4 }}>
           <div
             className={cn(
               `rounded-full transition-all duration-150`,
@@ -134,13 +138,14 @@ const Indicator: FC<IndicatorProps> = ({
               { "border-white": bordered },
               className
             )}
+            {...other}
             style={indicatorStyle}></div>
           {children}
         </div>
       )}
     </>
   );
-};
+});
 
 Indicator.displayName = "Indicator";
 

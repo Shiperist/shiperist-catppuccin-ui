@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
+import React, { ReactNode, useState, ButtonHTMLAttributes } from "react";
 import { Size, cn, getRGBAFromHex, ColorVariants, LoadingIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -13,19 +13,21 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size;
 }
 
-const Button: FC<ButtonProps> = ({
-  leadingElement,
-  trailingElement,
-  isLoading,
-  disabled,
-  tooltip,
-  appearance,
-  variant,
-  size,
-  children,
-  className = "",
-  ...props
-}) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const {
+    leadingElement: originalLeadingElement,
+    trailingElement,
+    isLoading,
+    disabled,
+    tooltip,
+    appearance,
+    variant,
+    size,
+    children,
+    className = "",
+    ...other
+  } = props;
+
   const [showTooltip, setShowTooltip] = useState(false);
 
   const variantColor =
@@ -60,11 +62,13 @@ const Button: FC<ButtonProps> = ({
     }[appearance] || "";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
+  let leadingElement: React.ReactNode = originalLeadingElement;
   leadingElement = isLoading ? <LoadingIcon /> : leadingElement;
 
   //TODO Implement tooltip
   return (
     <button
+      ref={ref}
       className={cn(
         "transition ease-in-out duration-150 flex items-center justify-center rounded-lg",
         {
@@ -77,17 +81,17 @@ const Button: FC<ButtonProps> = ({
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       disabled={disabled}
-      {...props}
+      {...other}
       style={{
         backgroundColor,
-        ...props.style,
+        ...other.style,
       }}>
       {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
       {trailingElement && <div className={cn("stroke-overlay1")}>{trailingElement}</div>}
     </button>
   );
-};
+});
 
 export default Button;
 

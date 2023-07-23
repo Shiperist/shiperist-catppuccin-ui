@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Orientation, Positions, cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -8,7 +8,9 @@ export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   thickness?: "tiny" | "small" | "medium";
 }
 
-const Divider: FC<DividerProps> = ({ label, thickness, labelPosition, orientation, className = "", ...props }) => {
+const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
+  const { label, thickness, labelPosition, orientation, className = "", ...other } = props;
+
   const thicknessClass = {
     tiny: "1px",
     small: "2px",
@@ -18,7 +20,7 @@ const Divider: FC<DividerProps> = ({ label, thickness, labelPosition, orientatio
   const dividerClasses = {
     height: orientation === "horizontal" ? thicknessClass : "100%",
     width: orientation === "vertical" ? thicknessClass : "100%",
-    ...props.style,
+    ...other.style,
   };
 
   const labelContainerStyles = {
@@ -28,7 +30,7 @@ const Divider: FC<DividerProps> = ({ label, thickness, labelPosition, orientatio
   };
 
   return (
-    <div className={cn("bg-overlay2 relative", className)} style={dividerClasses} {...props}>
+    <div ref={ref} className={cn("bg-overlay2 relative", className)} style={dividerClasses} {...other}>
       <div
         className={cn("absolute items-center flex h-full", {
           "flex-start": labelPosition === "left" && orientation !== "vertical",
@@ -40,7 +42,7 @@ const Divider: FC<DividerProps> = ({ label, thickness, labelPosition, orientatio
       </div>
     </div>
   );
-};
+});
 
 export default Divider;
 

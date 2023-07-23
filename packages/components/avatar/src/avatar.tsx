@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { ColorSet, Size, cn, LoadingIcon, Radius } from "@shiperist-catppuccin-ui/utilities";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
@@ -14,20 +14,22 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
   children?: ReactNode;
 }
 
-const Avatar: FC<AvatarProps> = ({
-  avatar,
-  radius,
-  defaultAvatar,
-  name,
-  isLoading,
-  backgroundColor,
-  size,
-  border,
-  alt,
-  className = "",
-  children,
-  ...props
-}) => {
+const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
+  const {
+    avatar,
+    radius,
+    defaultAvatar,
+    name,
+    isLoading,
+    backgroundColor,
+    size,
+    border,
+    alt,
+    className = "",
+    children,
+    ...other
+  } = props;
+
   const sizeClass = {
     tiny: 16,
     small: 32,
@@ -62,7 +64,7 @@ const Avatar: FC<AvatarProps> = ({
     height: `${sizeClass}px`,
     width: `${sizeClass}px`,
     borderWidth: border === "none" ? 0 : (borderClass ?? 0) + "px",
-    ...props.style,
+    ...other.style,
   };
 
   const avatarContainerClassName = cn(
@@ -74,7 +76,7 @@ const Avatar: FC<AvatarProps> = ({
   );
 
   return (
-    <div className={avatarContainerClassName} style={containerStyle}>
+    <div ref={ref} className={cn(avatarContainerClassName, radiusClass)} style={containerStyle}>
       {isLoading && <LoadingIcon className="m-auto" />}
       {!isLoading && (
         <>
@@ -83,12 +85,12 @@ const Avatar: FC<AvatarProps> = ({
               loading="lazy"
               src={avatar}
               alt={alt}
-              className={cn(`flex items-center justify-center object-cover`, radiusClass)}
+              className={cn(`object-cover`, radiusClass)}
               style={{
                 ...containerStyle,
                 opacity: isLoading ? 0 : 1,
               }}
-              {...props}
+              {...other}
             />
           ) : (
             <span
@@ -105,7 +107,7 @@ const Avatar: FC<AvatarProps> = ({
       {children}
     </div>
   );
-};
+});
 
 Avatar.displayName = "Avatar";
 

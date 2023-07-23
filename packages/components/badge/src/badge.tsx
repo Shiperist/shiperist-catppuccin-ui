@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { cn, getRGBAFromHex, ColorVariants } from "@shiperist-catppuccin-ui/utilities";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -8,15 +8,9 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: "filled" | "ghost" | "tint" | "outline";
 }
 
-const Badge: FC<BadgeProps> = ({
-  leadingElement,
-  trailingElement,
-  variant,
-  appearance,
-  className = "",
-  children,
-  ...props
-}) => {
+const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
+  const { leadingElement, trailingElement, variant, appearance, className = "", children, ...other } = props;
+
   const variantColor =
     {
       success: "green",
@@ -38,19 +32,20 @@ const Badge: FC<BadgeProps> = ({
 
   return (
     <div
+      ref={ref}
       className={cn(`text-sm flex items-center rounded-full`, variantColor ? `${appearanceClass}` : "", className)}
-      {...props}
+      {...other}
       style={{
         padding: "1px 4px",
         backgroundColor,
-        ...props.style,
+        ...other.style,
       }}>
       {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
       {children && <span className="mx-1">{children}</span>}
       {trailingElement && <div className={cn("stroke-overlay1")}>{trailingElement}</div>}
     </div>
   );
-};
+});
 
 export default Badge;
 

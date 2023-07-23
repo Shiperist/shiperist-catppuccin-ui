@@ -67,7 +67,7 @@ const Template: StoryFn = (args) => {
   return (
     <>
       {people.map((person) => (
-        <Card key={person.id} orientation="horizontal" style={{ gap: 16, padding: "2rem" }}>
+        <Card key={person.id} orientation="horizontal" appearance="outline" padding="1rem" gap="1rem">
           <Avatar name={person.name} {...args} />
           <VerticalLayout>
             <Text>{person.name}</Text>

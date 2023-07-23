@@ -24,7 +24,7 @@ importers:
         specifier: ^0.1.13
         version: registry.npmjs.org/prettier-plugin-tailwindcss@0.1.13(prettier@2.8.8)
       turbo:
-        specifier: latest
+        specifier: ^1.10.9
         version: registry.npmjs.org/turbo@1.10.9
 
   apps/docs:
@@ -1396,12 +1396,6 @@ packages:
       eslint-visitor-keys: registry.npmjs.org/eslint-visitor-keys@3.4.1
     dev: true
 
-  /esprima@4.0.1:
-    resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
-    engines: {node: '>=4'}
-    hasBin: true
-    dev: true
-
   /esquery@1.5.0:
     resolution: {integrity: sha512-YQLXUplAwJgCydQ78IMJywZCceoqk1oH01OERdSAJc/7U2AylwjhSCLDEtqwg811idIS/9fIU5GjG73IgjKMVg==}
     engines: {node: '>=0.10'}
@@ -2076,10 +2070,6 @@ packages:
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  /sprintf-js@1.0.3:
-    resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
     dev: true
 
   /string-width@4.2.3:
@@ -7232,7 +7222,7 @@ packages:
     name: argparse
     version: 1.0.10
     dependencies:
-      sprintf-js: 1.0.3
+      sprintf-js: registry.npmjs.org/sprintf-js@1.0.3
     dev: true
 
   registry.npmjs.org/argparse@2.0.1:
@@ -10829,7 +10819,7 @@ packages:
     hasBin: true
     dependencies:
       argparse: registry.npmjs.org/argparse@1.0.10
-      esprima: 4.0.1
+      esprima: registry.npmjs.org/esprima@4.0.1
     dev: true
 
   registry.npmjs.org/js-yaml@4.1.0:
@@ -13326,6 +13316,12 @@ packages:
     resolution: {integrity: sha512-XkD+zwiqXHikFZm4AX/7JSCXA98U5Db4AFd5XUg/+9UNtnH75+Z9KxtpYiJZx36mUDVOwH83pl7yvCer6ewM3w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.13.tgz}
     name: spdx-license-ids
     version: 3.0.13
+    dev: true
+
+  registry.npmjs.org/sprintf-js@1.0.3:
+    resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz}
+    name: sprintf-js
+    version: 1.0.3
     dev: true
 
   registry.npmjs.org/statuses@2.0.1:

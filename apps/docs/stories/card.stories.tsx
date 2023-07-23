@@ -23,7 +23,9 @@ export default {
         options: ["success", "warning", "danger", "info", "base"],
       },
     },
+    border: { control: { type: "select", options: ["tiny", "small", "medium"] } },
     padding: { control: "text" },
+    gap: { control: "text" },
     disabled: { control: "boolean" },
   },
 } as Meta;
@@ -42,6 +44,8 @@ Default.args = {
   variant: "base",
   disabled: false,
   padding: "2rem",
+  border: "tiny",
+  gap: ".5rem",
 };
 
 export const Appearance = () => {
