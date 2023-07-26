@@ -43,9 +43,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
   } = props;
 
   const textInputAppearance = {
-    outline: "ring-0 border rounded-lg",
+    outline: "ring-0 border rounded-xl",
     underline: "ring-0 border-b",
-    filled: "ring-0 border-b rounded-lg",
+    filled: "ring-0 border-b rounded-xl",
   }[appearance];
 
   let trailingElement: React.ReactNode = originalTrailingElement;
@@ -90,7 +90,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
       </label>
       <div
         className={cn(
-          "flex w-full h-full transition duration-150 ease-in-out flex-row px-4 bg-transparent h-12 py-2",
+          "flex w-full h-full transition duration-150 ease-in-out flex-row px-4 h-12 py-2",
           textInputAppearance,
           {
             "opacity-50 cursor-not-allowed": disabled,
@@ -105,7 +105,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
         {leadingElement && <div className={cn("stroke-overlay1 py-1")}>{leadingElement}</div>}
         <input
           ref={ref}
-          className={cn(`bg-transparent outline-none flex-grow mx-1`, {
+          className={cn(`outline-none flex-grow mx-1 bg-transparent`, {
             "cursor-not-allowed": disabled,
             "text-red": error,
             "text-text": !error,

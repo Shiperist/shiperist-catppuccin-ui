@@ -91,7 +91,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             const searchValue = String(selectedValue || "").toLowerCase();
             return childContent.includes(searchValue);
           }
-          return <div>Nothing found</div>;
+          return false;
         })
       : React.Children.toArray(children);
 
@@ -108,7 +108,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       {Element === "input" ? (
         <div
           className={cn(
-            "w-full flex flex-row border border-overlay0 transition duration-150 ease-in-out bg-transparent rounded-lg items-center px-4 h-12 py-2",
+            "w-full flex flex-row border border-overlay0 transition duration-150 ease-in-out rounded-xl items-center px-4 h-12 py-2",
             {
               "opacity-50 cursor-not-allowed": disabled,
               "hover:border-overlay2": !disabled,
@@ -126,15 +126,16 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             onChange={handleInputText}
             placeholder={placeholder}
             value={controlledValue !== undefined ? controlledValue : selectedValue || ""}
-            className={cn("w-full bg-transparent outline-none flex-grow")}></Element>
+            className={cn("w-full outline-none flex-grow bg-transparent")}></Element>
           {trailingElement && <div className={cn("stroke-overlay2")}>{trailingElement}</div>}
         </div>
       ) : (
         <Element
           ref={buttonRef}
+          disabled={disabled}
           onClick={!disabled ? handleSelectOpen : undefined}
           className={cn(
-            "flex w-full transition duration-150 ease-in-out rounded-lg items-center bg-transparent border border-overlay0 flex-row px-4 h-12 py-2",
+            "flex w-full transition duration-150 ease-in-out rounded-xl items-center border border-overlay0 flex-row px-4 h-12 py-2",
             {
               "opacity-50 cursor-not-allowed": disabled,
               "hover:border-overlay2": !disabled,
@@ -155,7 +156,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       )}
       {isOpen && (
         <div
-          className={cn("flex flex-col w-full z-50 mt-2 absolute rounded-lg max-h-[250px] overflow-y-auto", {
+          className={cn("flex flex-col w-full z-50 mt-2 absolute rounded-xl max-h-[250px] overflow-y-auto", {
             "border border-overlay0": filteredChildren.length > 0,
             "border-none border-transparent": filteredChildren.length === 0,
           })}>

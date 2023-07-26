@@ -13,7 +13,7 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Card appearance="outline" orientation="vertical" className="p-4" style={{ gap: 16 }}>
+  <Card appearance="outline" orientation="vertical" className="p-4" style={{ gap: 16, width: "24rem" }}>
     <Text>Card content</Text>
     <Divider {...args}></Divider>
     <Text>Card content</Text>
@@ -30,7 +30,7 @@ Default.args = {
 
 export const Orientations = () => {
   return (
-    <VerticalLayout style={{ gap: 16 }}>
+    <VerticalLayout style={{ gap: 16, width: "24rem" }}>
       <Text bold>Vertical divider</Text>
       <Card
         appearance="outline"

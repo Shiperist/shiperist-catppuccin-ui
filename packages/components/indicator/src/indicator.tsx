@@ -130,10 +130,10 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
 
       {/* Label text outside the indicator */}
       {isLabel && (
-        <div ref={ref} className={cn({ "flex flex-row items-center": isLabel })} style={{ gap: 4 }}>
+        <div ref={ref} className={cn("flex flex-row items-center")} style={{ gap: 4 }}>
           <div
             className={cn(
-              `rounded-full transition-all duration-150`,
+              `rounded-full transition-all duration-150 ease-in-out`,
               colorClass,
               { "border-white": bordered },
               className

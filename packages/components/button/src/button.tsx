@@ -1,4 +1,3 @@
-"use client";
 import React, { ReactNode, useState, ButtonHTMLAttributes } from "react";
 import { Size, cn, getRGBAFromHex, ColorVariants, LoadingIcon } from "@shiperist-catppuccin-ui/utilities";
 
@@ -70,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     <button
       ref={ref}
       className={cn(
-        "transition ease-in-out duration-150 flex items-center justify-center rounded-lg",
+        "transition ease-in-out duration-150 flex items-center justify-center rounded-xl",
         {
           ["opacity-50 cursor-not-allowed border border-surface2"]: disabled,
           [`${appearanceClass} active:translate-y-0.5`]: !disabled,

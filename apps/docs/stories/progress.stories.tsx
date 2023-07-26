@@ -14,7 +14,7 @@ export default {
     radius: {
       control: {
         type: "select",
-        options: ["full", "large", "medium", "small"],
+        options: ["full", "none"],
       },
     },
     percentPosition: {
@@ -84,7 +84,11 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Progress {...args} />;
+const Template: StoryFn = (args) => (
+  <div style={{ width: "32rem" }}>
+    <Progress {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 

@@ -35,9 +35,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
 
   const radiusClass = {
     full: "rounded-full",
-    large: "rounded-3xl",
-    medium: "rounded-xl",
-    small: "rounded-lg",
+    none: "rounded-none",
   }[radius];
 
   const textSizeClass = {
@@ -56,9 +54,13 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
     }[size] || "";
 
   const progressStyles = {
-    height: heightClass,
     width: `${clampedProgress}%`,
     ...other.style,
+  };
+
+  const progressContainerStyle = {
+    height: heightClass,
+    gap: showPercent ? 8 : undefined,
   };
 
   const labelStyles =
@@ -72,16 +74,20 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
   return (
     <div
       ref={ref}
-      className={cn("flex flex-row w-full h-full items-center transition-all duration-150", className)}
-      style={showPercent ? { gap: 8 } : undefined}
+      className={cn("flex flex-row items-center transition-all duration-150 w-full")}
+      style={progressContainerStyle}
       {...other}>
       {showPercent && percentPosition === "outside" && percentPositionOutside === "left" && (
         <div>
           <span className={cn(textSizeClass)}>{clampedProgress}%</span>
         </div>
       )}
-      <div className={cn("w-full transition-all duration-150 items-center bg-overlay0", radiusClass)}>
-        <div className={cn(`transition-all duration-150 bg-${color}`, radiusClass)} style={{ ...progressStyles }}>
+      <div
+        className={cn("transition-all w-full duration-150 items-center bg-overlay0", className, radiusClass)}
+        style={{ height: heightClass + "px" }}>
+        <div
+          className={cn(`transition-all h-full duration-150 bg-${color}`, radiusClass)}
+          style={{ ...progressStyles }}>
           {showPercent && size === "xlarge" && percentPosition === "inside" && (
             <div className="px-2" style={labelStyles}>
               <span className={cn("text-mantle text-xs", `text-${percentPositionInside}`)}>{clampedProgress}%</span>
