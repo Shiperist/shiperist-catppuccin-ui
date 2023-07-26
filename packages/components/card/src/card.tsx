@@ -57,17 +57,17 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
 
   const cardStyles = {
-    ...(appearance === "embed" ? { borderLeftWidth: "4px" } : {}),
     borderWidth: appearance === "outline" ? borderClass : undefined,
     padding: convertedPadding ? convertedPadding : undefined,
     gap: convertedGap ? convertedGap : undefined,
+    borderLeftWidth: appearance === "embed" ? "4px" : appearance === "outline" ? borderClass : undefined,
     ...other.style,
   };
 
   return (
     <div
       ref={ref}
-      className={cn("rounded-lg flex", appearanceClass, orientationClass, className, {
+      className={cn("rounded-xl flex", appearanceClass, orientationClass, className, {
         "opacity-50 cursor-not-allowed": disabled,
       })}
       style={cardStyles}

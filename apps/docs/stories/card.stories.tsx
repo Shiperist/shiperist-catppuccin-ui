@@ -1,5 +1,15 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Card, Text, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Button,
+  Caption,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  Subtitle,
+  Text,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Card",
@@ -31,9 +41,22 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Card {...args}>
-    <Text>Card content</Text>
-    <Text>Card content</Text>
+  <Card {...args} gap={16} border="medium">
+    <CardHeader className="flex flex-col">
+      <Subtitle bold>Your plan</Subtitle>
+      <Caption>This plan is for those who have a team...</Caption>
+    </CardHeader>
+    <CardContent className="flex flex-col">
+      <Text>- File sharing</Text>
+      <Text>- 50 GB storage</Text>
+      <Text>- 16 GB of RAM</Text>
+      <Text>- ...</Text>
+    </CardContent>
+    <CardFooter>
+      <Button size="large" appearance="filled" variant="success" className="w-full">
+        Choose plan
+      </Button>
+    </CardFooter>
   </Card>
 );
 
@@ -50,7 +73,7 @@ Default.args = {
 
 export const Appearance = () => {
   return (
-    <VerticalLayout style={{ gap: 8 }}>
+    <VerticalLayout style={{ gap: 8, width: "24rem" }}>
       <Text bold>Filled</Text>
       <Card {...Default.args} appearance="filled">
         Card content
