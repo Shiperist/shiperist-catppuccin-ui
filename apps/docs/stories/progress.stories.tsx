@@ -8,31 +8,26 @@ export default {
     size: {
       control: {
         type: "select",
-        options: ["small", "medium", "large", "xlarge"],
       },
     },
     radius: {
       control: {
         type: "select",
-        options: ["full", "none"],
       },
     },
     percentPosition: {
       control: {
         type: "select",
-        options: ["outside", "inside"],
       },
     },
     percentPositionOutside: {
       control: {
         type: "select",
-        options: ["left", "right"],
       },
     },
     percentPositionInside: {
       control: {
         type: "select",
-        options: ["left", "right", "center"],
       },
     },
 

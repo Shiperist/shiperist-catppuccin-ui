@@ -6,9 +6,9 @@ export default {
   component: Divider,
   argTypes: {
     label: { control: "text" },
-    thickness: { control: { type: "select", options: ["tiny", "small", "medium"] } },
-    orientation: { control: { type: "select", options: ["horizontal", "vertical"] } },
-    labelPosition: { control: { type: "select", options: ["left", "right", "center"] } },
+    thickness: { control: { type: "select" } },
+    orientation: { control: { type: "select" } },
+    labelPosition: { control: { type: "select" } },
   },
 } as Meta;
 
@@ -31,7 +31,7 @@ Default.args = {
 export const Orientations = () => {
   return (
     <VerticalLayout style={{ gap: 16, width: "24rem" }}>
-      <Text bold>Vertical divider</Text>
+      <Text bold>Vertical divider with label</Text>
       <Card
         appearance="outline"
         orientation="horizontal"
@@ -41,7 +41,7 @@ export const Orientations = () => {
         <Divider orientation="vertical" thickness="tiny" label="OR" labelPosition="center" />
         <Text>Card content</Text>
       </Card>
-      <Text bold>Horizontal divider</Text>
+      <Text bold>Horizontal divider with label</Text>
       <Card appearance="outline" orientation="vertical" className="p-4" style={{ gap: 16 }}>
         <Text>Card content</Text>
         <Divider orientation="horizontal" thickness="tiny" label="OR" labelPosition="center" />

@@ -16,19 +16,16 @@ export default {
     type: {
       control: {
         type: "select",
-        options: ["text", "password"],
       },
     },
     appearance: {
       control: {
         type: "select",
-        options: ["outline", "underline", "filled"],
       },
     },
     labelStyle: {
       control: {
         type: "select",
-        options: ["default", "border"],
       },
     },
     leadingElement: { control: "object" },
@@ -36,7 +33,7 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <TextInput {...args} />;
+const Template: StoryFn = (args) => <TextInput {...args} style={{ width: "32rem" }} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -95,7 +92,7 @@ WithPlaceholder.args = {
 
 export const LabelAppearence = () => {
   return (
-    <VerticalLayout style={{ gap: 12 }}>
+    <VerticalLayout style={{ gap: 12, width: "32rem" }}>
       <Text bold>Default</Text>
       <TextInput {...Default.args} label="This is a label"></TextInput>
       <Text bold>(in) Border</Text>
@@ -110,7 +107,7 @@ export const LabelAppearence = () => {
 
 export const Appearence = () => {
   return (
-    <VerticalLayout style={{ gap: 12 }}>
+    <VerticalLayout style={{ gap: 12, width: "32rem" }}>
       <Text bold>Default</Text>
       <TextInput {...Default.args}></TextInput>
       <Text bold>Underline</Text>
@@ -123,7 +120,7 @@ export const Appearence = () => {
 
 export const Types = () => {
   return (
-    <VerticalLayout style={{ gap: 12 }}>
+    <VerticalLayout style={{ gap: 12, width: "32rem" }}>
       <Text bold>Text</Text>
       <TextInput {...Default.args}></TextInput>
       <Text bold>Password</Text>

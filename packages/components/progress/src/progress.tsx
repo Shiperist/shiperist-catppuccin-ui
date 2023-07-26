@@ -1,6 +1,6 @@
 import { ColorSet, Size, cn } from "@shiperist-catppuccin-ui/utilities";
 import React, { HTMLAttributes } from "react";
-import { PositionHorizontal, Positions, Radius } from "@shiperist-catppuccin-ui/utilities";
+import { PositionHorizontal, Positions } from "@shiperist-catppuccin-ui/utilities";
 
 // Todo radial progress
 
@@ -8,7 +8,7 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   size?: Size;
   progress?: number;
   color?: ColorSet;
-  radius?: Radius;
+  radius?: "full" | "none";
   showPercent?: boolean;
   percentPosition?: "inside" | "outside";
   percentPositionOutside?: PositionHorizontal;
@@ -33,17 +33,18 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
 
   const clampedProgress = Math.min(100, Math.max(0, progress)).toFixed(2);
 
-  const radiusClass = {
-    full: "rounded-full",
-    none: "rounded-none",
-  }[radius];
+  const radiusClass =
+    {
+      full: "rounded-full",
+    }[radius] || "";
 
-  const textSizeClass = {
-    small: "text-xs",
-    medium: "text-sm",
-    large: "text-sm",
-    xlarge: "text-md",
-  }[size];
+  const textSizeClass =
+    {
+      small: "text-xs",
+      medium: "text-sm",
+      large: "text-sm",
+      xlarge: "text-md",
+    }[size] || "";
 
   const heightClass =
     {

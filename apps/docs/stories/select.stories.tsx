@@ -12,12 +12,16 @@ export default {
     defaultValue: { control: "text" },
     value: { control: "text" },
     onChange: { control: "function" },
-    variant: { control: { type: "select", options: ["button", "input"] } },
+    variant: {
+      control: {
+        type: "select",
+      },
+    },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Select {...args}>
+  <Select {...args} style={{ width: "16rem" }}>
     <SelectItem leadingElement={HeartIcon} id="item1">
       Select one
     </SelectItem>
@@ -49,7 +53,12 @@ export const ControlledSelection = () => {
 
   return (
     <div>
-      <Select placeholder="Select items..." variant="button" defaultValue={selectedPerson} onChange={setSelectedPerson}>
+      <Select
+        placeholder="Select items..."
+        variant="button"
+        defaultValue={selectedPerson}
+        onChange={setSelectedPerson}
+        style={{ width: "16rem" }}>
         {people.map((person) => (
           <SelectItem key={person.id} value={person.name} disabled={person.disabled}>
             {person.name}
@@ -74,7 +83,7 @@ Placeholder.args = {
 
 export const Types = () => {
   return (
-    <VerticalLayout style={{ gap: 16 }}>
+    <VerticalLayout style={{ gap: 16, width: "16rem" }}>
       <Text bold>Button</Text>
       <Select variant="button" placeholder="Select items...">
         <SelectItem leadingElement={HeartIcon} id="item1">

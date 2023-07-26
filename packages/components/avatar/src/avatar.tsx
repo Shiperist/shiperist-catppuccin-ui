@@ -44,12 +44,13 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
     xlarge: 4,
   }[border];
 
-  const radiusClass = {
-    full: "rounded-full",
-    large: "rounded-3xl",
-    medium: "rounded-xl",
-    small: "rounded-lg",
-  }[radius];
+  const radiusClass =
+    {
+      full: "rounded-full",
+      large: "rounded-3xl",
+      medium: "rounded-xl",
+      small: "rounded-lg",
+    }[radius] || "";
 
   // Function to extract initials from the name
   const getInitials = (name: string) => {

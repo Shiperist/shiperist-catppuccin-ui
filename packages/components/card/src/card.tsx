@@ -25,11 +25,12 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     ...other
   } = props;
 
-  const borderClass = {
-    tiny: "1px",
-    small: "2px",
-    medium: "3px",
-  }[border];
+  const borderClass =
+    {
+      tiny: "1px",
+      small: "2px",
+      medium: "3px",
+    }[border] || "";
 
   const variantColor =
     {

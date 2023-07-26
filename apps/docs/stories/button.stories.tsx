@@ -12,19 +12,16 @@ export default {
     variant: {
       control: {
         type: "select",
-        options: ["success", "warning", "danger", "info", "base"],
       },
     },
     appearance: {
       control: {
         type: "select",
-        options: ["filled", "ghost", "tint", "outline", "shadow"],
       },
     },
     size: {
       control: {
         type: "select",
-        options: ["small", "medium", "large", "xlarge"],
       },
     },
     leadingElement: { control: "object" },

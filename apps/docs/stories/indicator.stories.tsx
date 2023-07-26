@@ -13,35 +13,21 @@ export default {
     borderSize: {
       control: {
         type: "select",
-        options: ["medium", "small", "tiny"],
       },
     },
     size: {
       control: {
         type: "select",
-        options: ["medium", "small", "tiny"],
       },
     },
     status: {
       control: {
         type: "select",
-        options: ["active", "idle", "inactive", "info", "invisible"],
       },
     },
     positionPreset: {
       control: {
         type: "select",
-        options: [
-          "top-left",
-          "top-center",
-          "top-right",
-          "middle-left",
-          "middle-center",
-          "middle-right",
-          "bottom-left",
-          "bottom-center",
-          "bottom-right",
-        ],
       },
     },
   },

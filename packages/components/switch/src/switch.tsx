@@ -15,6 +15,7 @@ const Switch: FC<SwitchProps> = ({ disabled, className = "", children, ...props 
 
   return (
     <label
+      htmlFor={props.id}
       className={cn(
         "relative inline-flex items-center",
         { "cursor-not-allowed opacity-50": disabled, "cursor-pointer": !disabled },

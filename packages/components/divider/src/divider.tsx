@@ -11,11 +11,12 @@ export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
   const { label, thickness, labelPosition, orientation, className = "", ...other } = props;
 
-  const thicknessClass = {
-    tiny: "1px",
-    small: "2px",
-    medium: "3px",
-  }[thickness];
+  const thicknessClass =
+    {
+      tiny: "1px",
+      small: "2px",
+      medium: "3px",
+    }[thickness] || "";
 
   const dividerClasses = {
     height: orientation === "horizontal" ? thicknessClass : "100%",

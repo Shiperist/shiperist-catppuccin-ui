@@ -18,19 +18,16 @@ export default {
     appearance: {
       control: {
         type: "select",
-        options: ["filled", "shadow", "outline", "embed"],
       },
     },
     orientation: {
       control: {
         type: "select",
-        options: ["horizontal", "vertical"],
       },
     },
     variant: {
       control: {
         type: "select",
-        options: ["success", "warning", "danger", "info", "base"],
       },
     },
     border: { control: { type: "select", options: ["tiny", "small", "medium"] } },

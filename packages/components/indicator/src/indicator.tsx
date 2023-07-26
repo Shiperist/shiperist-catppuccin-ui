@@ -41,22 +41,25 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
     ...other
   } = props;
 
-  const fontClass = {
-    tiny: 8,
-    small: 10,
-    medium: 12,
-  }[size];
+  const fontClass =
+    {
+      tiny: 8,
+      small: 10,
+      medium: 12,
+    }[size] || "";
 
-  const sizeClass = {
-    tiny: 8,
-    small: 10,
-    medium: 12,
-  }[size];
-  const borderClass = {
-    tiny: 1,
-    small: 2,
-    medium: 3,
-  }[borderSize];
+  const sizeClass =
+    {
+      tiny: 8,
+      small: 10,
+      medium: 12,
+    }[size] || "";
+  const borderClass =
+    {
+      tiny: 1,
+      small: 2,
+      medium: 3,
+    }[borderSize] || "";
 
   const statusColor =
     {
@@ -66,13 +69,14 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
       info: "blue",
       invisible: "overlay2",
     }[status] || "";
-  const textColor = {
-    active: "text-overlay0",
-    inactive: "text-white",
-    idle: "text-overlay0",
-    info: "text-white",
-    invisible: "text-white",
-  }[status];
+  const textColor =
+    {
+      active: "text-overlay0",
+      inactive: "text-white",
+      idle: "text-overlay0",
+      info: "text-white",
+      invisible: "text-white",
+    }[status] || "";
 
   const colorClass = status ? `bg-${statusColor}` : "";
   const textClass = status ? `${textColor}` : "";

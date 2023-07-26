@@ -9,49 +9,21 @@ export default {
     radius: {
       control: {
         type: "select",
-        options: ["full", "large", "medium", "small"],
       },
     },
     size: {
       control: {
         type: "select",
-        options: ["xlarge", "large", "medium", "small", "tiny"],
       },
     },
     border: {
       control: {
         type: "select",
-        options: ["xlarge", "large", "medium", "small", "none"],
       },
     },
     backgroundColor: {
       control: {
         type: "select",
-        options: [
-          "rosewater",
-          "flamingo",
-          "pink",
-          "mauve",
-          "red",
-          "maroon",
-          "peach",
-          "yellow",
-          "green",
-          "teal",
-          "blue",
-          "sky",
-          "sapphire",
-          "lavender",
-          "crust",
-          "mantle",
-          "base",
-          "overlay0",
-          "overlay1",
-          "overlay2",
-          "surface0",
-          "surface1",
-          "surface2",
-        ],
       },
     },
     defaultAvatar: { control: "text" },

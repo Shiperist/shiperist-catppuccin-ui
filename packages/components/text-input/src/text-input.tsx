@@ -42,11 +42,12 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
     ...other
   } = props;
 
-  const textInputAppearance = {
-    outline: "ring-0 border rounded-xl",
-    underline: "ring-0 border-b",
-    filled: "ring-0 border-b rounded-xl",
-  }[appearance];
+  const textInputAppearance =
+    {
+      outline: "ring-0 border rounded-xl",
+      underline: "ring-0 border-b",
+      filled: "ring-0 border-b rounded-xl",
+    }[appearance] || "";
 
   let trailingElement: React.ReactNode = originalTrailingElement;
 
@@ -74,6 +75,13 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
     setInputType(isPasswordVisible ? type : "text");
   };
 
+  const borderedAppearanceStyle = {
+    zIndex: label && labelStyle === "border" ? 10 : undefined,
+    top: label && labelStyle === "border" ? -12 : undefined,
+    left: label && labelStyle === "border" ? 8 : undefined,
+    ...other.style,
+  };
+
   const backgroundColor = appearance === "filled" ? getRGBAFromHex("overlay2") : undefined;
 
   return (
@@ -81,11 +89,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
       <label
         htmlFor={props.id}
         className={label && labelStyle === "border" ? "absolute bg-base px-2" : ""}
-        style={{
-          zIndex: label && labelStyle === "border" ? 10 : undefined,
-          top: label && labelStyle === "border" ? -12 : undefined,
-          left: label && labelStyle === "border" ? 8 : undefined,
-        }}>
+        style={borderedAppearanceStyle}>
         {label} {label && required && <span className="text-red">*</span>}
       </label>
       <div

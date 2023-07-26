@@ -9,15 +9,11 @@ export default {
     variant: {
       control: {
         type: "select",
-        options: ["success", "warning", "danger", "info", "base"],
-        default: "base",
       },
     },
     appearance: {
       control: {
         type: "select",
-        options: ["filled", "ghost", "tint", "outline"],
-        default: "filled",
       },
     },
     leadingElement: { control: "object" },
