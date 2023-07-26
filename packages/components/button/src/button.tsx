@@ -53,10 +53,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     }[size] || "";
   const appearanceClass =
     {
-      filled: `bg-${variantColor} text-mantle`,
+      filled: `bg-${variantColor} text-mantle hover:opacity-80`,
       outline: `border border-${variantColor} text-${variantColor} hover:text-mantle hover:bg-${variantColor}`,
       ghost: `text-${variantColor} hover:bg-${variantColor} hover:text-mantle`,
-      tint: `text-${variantColor}`,
+      tint: `text-${variantColor} hover:opacity-80`,
       shadow: `text-${variantColor} bg-mantle shadow-lg hover:bg-crust`,
     }[appearance] || "";
 
@@ -69,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     <button
       ref={ref}
       className={cn(
-        "transition ease-in-out duration-150 flex items-center justify-center rounded-xl",
+        "transition-all ease-in-out duration-150 flex items-center justify-center rounded-xl",
         {
           ["opacity-50 cursor-not-allowed border border-surface2"]: disabled,
           [`${appearanceClass} active:translate-y-0.5`]: !disabled,
