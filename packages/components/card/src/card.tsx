@@ -59,7 +59,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     borderWidth: appearance === "outline" ? borderClass : undefined,
     padding: convertedPadding ? convertedPadding : undefined,
     gap: convertedGap ? convertedGap : undefined,
-    borderLeftWidth: appearance === "embed" ? 4 : appearance === "outline" ? borderClass : undefined,
+    borderLeftWidth: appearance === "embed" ? 4 : borderClass,
     ...other.style,
   };
 

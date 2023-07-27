@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
-import { Select, SelectItem, VerticalLayout, Text } from "@shiperist-catppuccin-ui/react";
-import { HeartIcon } from "../utilities/icons";
+import { Select, SelectItem, VerticalLayout, Text, Icon } from "@shiperist-catppuccin-ui/react";
+import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Example/Select",
@@ -16,17 +16,20 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => (
-  <Select {...args} style={{ width: "16rem" }}>
-    <SelectItem leadingElement={HeartIcon} id="item1">
-      Select one
-    </SelectItem>
-    <SelectItem id="item2">Select two</SelectItem>
-    <SelectItem leadingElement={HeartIcon} id="item3">
-      Select three
-    </SelectItem>
-  </Select>
-);
+const icon = <Icon icon={<HeartIcon />} size="small" />;
+const Template: StoryFn = (args) => {
+  return (
+    <Select {...args} style={{ width: "16rem" }}>
+      <SelectItem leadingElement={icon} id="item1">
+        Select one
+      </SelectItem>
+      <SelectItem id="item2">Select two</SelectItem>
+      <SelectItem leadingElement={icon} id="item3">
+        Select three
+      </SelectItem>
+    </Select>
+  );
+};
 
 export const UncontrolledSelection = Template.bind({});
 UncontrolledSelection.args = {
@@ -82,21 +85,21 @@ export const Types = () => {
     <VerticalLayout style={{ gap: 16, width: "16rem" }}>
       <Text bold>Button</Text>
       <Select variant="button" placeholder="Select items...">
-        <SelectItem leadingElement={HeartIcon} id="item1">
+        <SelectItem leadingElement={icon} id="item1">
           Select one
         </SelectItem>
         <SelectItem id="item2">Select two</SelectItem>
-        <SelectItem leadingElement={HeartIcon} id="item3">
+        <SelectItem leadingElement={icon} id="item3">
           Select three
         </SelectItem>
       </Select>
       <Text bold>Input</Text>
       <Select variant="input" placeholder="Select/search items...">
-        <SelectItem leadingElement={HeartIcon} id="item1">
+        <SelectItem leadingElement={icon} id="item1">
           Select one
         </SelectItem>
         <SelectItem id="item2">Select two</SelectItem>
-        <SelectItem leadingElement={HeartIcon} id="item3">
+        <SelectItem leadingElement={icon} id="item3">
           Select three
         </SelectItem>
       </Select>

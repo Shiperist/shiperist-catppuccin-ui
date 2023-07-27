@@ -26,7 +26,7 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Card {...args} gap={16} border="medium">
+  <Card {...args} gap={16}>
     <CardHeader className="flex flex-col">
       <Subtitle bold>Your plan</Subtitle>
       <Caption>This plan is for those who have a team...</Caption>

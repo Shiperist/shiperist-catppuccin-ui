@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Badge, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
-import { HeartIcon } from "../utilities/icons";
+import { Badge, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
+import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Example/Badge",
@@ -14,7 +14,8 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Badge {...args} />;
+const icon = <Icon icon={<HeartIcon />} size="small" />;
+const Template: StoryFn = (args) => <Badge leadingElement={icon} {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -26,13 +27,13 @@ Default.args = {
 export const WithIcons = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Badge {...Default.args} leadingElement={HeartIcon}>
+      <Badge {...Default.args} leadingElement={icon}>
         Badge
       </Badge>
-      <Badge {...Default.args} trailingElement={HeartIcon}>
+      <Badge {...Default.args} trailingElement={icon}>
         Badge
       </Badge>
-      <Badge {...Default.args} leadingElement={HeartIcon} trailingElement={HeartIcon}>
+      <Badge {...Default.args} leadingElement={icon} trailingElement={icon}>
         Badge
       </Badge>
     </HorizontalLayout>
@@ -49,7 +50,7 @@ export const Appearance = () => {
   return (
     <HorizontalLayout style={{ gap: 4 }}>
       {appearances.map((appearance) => (
-        <Badge {...Default.args} key={appearance.id} appearance={appearance.name}>
+        <Badge {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.name}>
           Badge
         </Badge>
       ))}

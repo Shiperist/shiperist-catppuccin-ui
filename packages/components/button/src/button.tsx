@@ -44,13 +44,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       large: "text-lg px-6 py-3",
       xlarge: "text-xl px-8 py-4",
     }[size] || "medium";
-  const iconSizeClass =
-    {
-      small: "p-1",
-      medium: "p-2",
-      large: "p-3",
-      xlarge: "p-4",
-    }[size] || "";
   const appearanceClass =
     {
       filled: `bg-${variantColor} text-mantle hover:opacity-80 border border-transparent`,
@@ -59,12 +52,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       tint: `text-${variantColor} hover:opacity-80 border border-transparent`,
       shadow: `text-${variantColor} bg-mantle shadow-lg hover:bg-crust border border-transparent`,
     }[appearance] || "outline";
+  const iconSizeClass =
+    {
+      small: "w-4 h-4",
+      medium: "w-5 h-5",
+      large: "w-5 h-5",
+      xlarge: "h-6 w-6",
+    }[size] || "medium";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
   let leadingElement: React.ReactNode = originalLeadingElement;
-  leadingElement = isLoading ? <LoadingIcon /> : leadingElement;
+  leadingElement = isLoading ? <LoadingIcon className={iconSizeClass} /> : leadingElement;
+  const iconColor = appearance === "filled" ? "stroke-overlay1" : `stroke-${variantColor}`;
 
-  //TODO Implement tooltip
   return (
     <button
       ref={ref}
@@ -74,7 +74,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
           ["opacity-50 cursor-not-allowed border border-surface2"]: disabled,
           [`${appearanceClass} active:translate-y-0.5`]: !disabled,
         },
-        !children && isLoading ? iconSizeClass : sizeClass,
+        sizeClass,
         className
       )}
       onMouseEnter={() => setShowTooltip(true)}
@@ -85,9 +85,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
         backgroundColor,
         ...other.style,
       }}>
-      {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
+      {leadingElement && <div className={cn(iconColor)}>{leadingElement}</div>}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
-      {trailingElement && <div className={cn("stroke-overlay1")}>{trailingElement}</div>}
+      {trailingElement && <div className={cn(iconColor)}>{trailingElement}</div>}
     </button>
   );
 });

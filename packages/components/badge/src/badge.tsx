@@ -29,6 +29,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     }[appearance] || "filled";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
+  const iconColor = appearance === "filled" ? "stroke-overlay1" : `stroke-${variantColor}`;
 
   return (
     <div
@@ -40,9 +41,9 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
         backgroundColor,
         ...other.style,
       }}>
-      {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
+      {leadingElement && <div className={cn(iconColor)}>{leadingElement}</div>}
       {children && <span className="mx-1">{children}</span>}
-      {trailingElement && <div className={cn("stroke-overlay1")}>{trailingElement}</div>}
+      {trailingElement && <div className={cn(iconColor)}>{trailingElement}</div>}
     </div>
   );
 });

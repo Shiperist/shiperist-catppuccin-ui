@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
-import { HeartIcon } from "../utilities/icons";
+import { Button, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
+import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Example/Button",
@@ -18,7 +18,9 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Button {...args} />;
+const Template: StoryFn = (args) => (
+  <Button leadingElement={<Icon icon={<HeartIcon />} size={args.size} />} {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -31,16 +33,17 @@ Default.args = {
   appearance: "outline",
 };
 
+const icon = <Icon icon={<HeartIcon />} size={Default.args.size} />;
 export const WithIcons = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
-      <Button {...Default.args} leadingElement={HeartIcon}>
+      <Button {...Default.args} leadingElement={icon}>
         Click me
       </Button>
-      <Button {...Default.args} trailingElement={HeartIcon}>
+      <Button {...Default.args} trailingElement={icon}>
         Click me
       </Button>
-      <Button {...Default.args} leadingElement={HeartIcon} trailingElement={HeartIcon}>
+      <Button {...Default.args} leadingElement={icon} trailingElement={icon}>
         Click me
       </Button>
     </HorizontalLayout>
@@ -59,7 +62,7 @@ export const Appearance = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {appearances.map((appearance) => (
-        <Button {...Default.args} key={appearance.id} appearance={appearance.name}>
+        <Button {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.name}>
           Click me
         </Button>
       ))}

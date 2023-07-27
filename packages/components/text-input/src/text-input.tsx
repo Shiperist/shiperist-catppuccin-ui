@@ -8,10 +8,11 @@ import {
   ErrorCircleIcon,
 } from "@shiperist-catppuccin-ui/utilities";
 
-export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   type?: "text" | "password";
   leadingElement?: ReactNode;
   trailingElement?: ReactNode;
+  size?: "small" | "medium" | "large";
   isLoading?: boolean;
   disabled?: boolean;
   required?: boolean;
@@ -31,6 +32,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
     labelStyle,
     errorIcon,
     required,
+    size,
     type,
     placeholder,
     isLoading,
@@ -48,15 +50,27 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
       underline: "ring-0 border-b",
       filled: "ring-0 border-b rounded-xl",
     }[appearance] || "outline";
+  const sizeClass =
+    {
+      small: "text-sm py-4 h-8",
+      medium: "text-md py-6 h-12",
+      large: "text-lg py-8 h-16",
+    }[size] || "medium";
+  const iconSizeClass =
+    {
+      small: "w-4 h-4",
+      medium: "w-5 h-5",
+      large: "w-5 h-5",
+      xlarge: "h-6 w-6",
+    }[size] || "medium";
 
   let trailingElement: React.ReactNode = originalTrailingElement;
-
   if (isLoading) {
-    trailingElement = <LoadingIcon />;
+    trailingElement = <LoadingIcon className={iconSizeClass} />;
   } else if (error && errorIcon) {
-    trailingElement = <ErrorCircleIcon />;
+    trailingElement = <ErrorCircleIcon className={iconSizeClass} />;
   } else if (type === "password") {
-    trailingElement = <VisiblePasswordIcon />;
+    trailingElement = <VisiblePasswordIcon className={iconSizeClass} />;
   }
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -79,7 +93,6 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
     zIndex: label && labelStyle === "border" ? 10 : undefined,
     top: label && labelStyle === "border" ? -12 : undefined,
     left: label && labelStyle === "border" ? 8 : undefined,
-    ...other.style,
   };
 
   const backgroundColor = appearance === "filled" ? getRGBAFromHex("overlay2") : undefined;
@@ -94,7 +107,8 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
       </label>
       <div
         className={cn(
-          "flex w-full h-full transition duration-150 ease-in-out flex-row px-4 h-12 py-2",
+          "flex w-full h-full transition-all duration-150 ease-in-out flex-row items-center px-4",
+          sizeClass,
           textInputAppearance,
           {
             "opacity-50 cursor-not-allowed": disabled,
@@ -106,7 +120,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
           className
         )}
         style={appearance == "filled" ? { backgroundColor } : undefined}>
-        {leadingElement && <div className={cn("stroke-overlay1 py-1")}>{leadingElement}</div>}
+        {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}
         <input
           ref={ref}
           className={cn(`outline-none flex-grow mx-1 bg-transparent`, {
@@ -126,7 +140,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
         {trailingElement && (
           <div
             onClick={type == "password" ? handleEye : undefined}
-            className={cn("stroke-overlay1 py-1", { "cursor-pointer": type == "password" })}>
+            className={cn("stroke-overlay1", { "cursor-pointer": type == "password" })}>
             {type === "password" ? (
               isPasswordVisible ? (
                 <VisiblePasswordIcon />

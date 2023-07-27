@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, CSSProperties, LegacyRef } from "react";
+import React, { useState, useRef, useEffect, CSSProperties, LegacyRef, useMemo } from "react";
 import { ChevronDownIcon, cn } from "@shiperist-catppuccin-ui/utilities";
 import SelectItem from "./select-item";
 
@@ -83,17 +83,20 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const trailingElement = <ChevronDownIcon />;
   const Element = variant === "button" ? "button" : "input";
 
-  const filteredChildren =
-    variant === "input"
-      ? React.Children.toArray(children).filter((child) => {
-          if (React.isValidElement(child)) {
-            const childContent = String(child.props.children).toLowerCase();
-            const searchValue = String(selectedValue || "").toLowerCase();
-            return childContent.includes(searchValue);
-          }
-          return false;
-        })
-      : React.Children.toArray(children);
+  const filteredChildren = useMemo(() => {
+    if (variant === "input") {
+      return React.Children.toArray(children).filter((child) => {
+        if (React.isValidElement(child)) {
+          const childContent = String(child.props.children).toLowerCase();
+          const searchValue = String(selectedValue || "").toLowerCase();
+          return childContent.includes(searchValue);
+        }
+        return false;
+      });
+    } else {
+      return React.Children.toArray(children);
+    }
+  }, [variant, children, selectedValue]);
 
   if (variant === "input" && filteredChildren.length === 0) {
     filteredChildren.push(
