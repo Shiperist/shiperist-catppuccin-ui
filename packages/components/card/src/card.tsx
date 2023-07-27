@@ -27,11 +27,10 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
   const borderClass =
     {
-      tiny: "1px",
-      small: "2px",
-      medium: "3px",
-    }[border] || "";
-
+      tiny: 1,
+      small: 2,
+      medium: 3,
+    }[border] || 1;
   const variantColor =
     {
       success: "green",
@@ -39,20 +38,19 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       warning: "yellow",
       info: "blue",
       base: "overlay2",
-    }[variant] || "";
+    }[variant] || "base";
   const appearanceClass =
     {
-      filled: `bg-mantle`,
+      filled: `bg-mantle border border-transparent`,
       outline: `border border-overlay0`,
-      shadow: "bg-mantle shadow-lg",
+      shadow: "bg-mantle shadow-lg border border-transparent",
       embed: `border-${variantColor} bg-mantle`,
-    }[appearance] || "";
-
+    }[appearance] || "outline";
   const orientationClass =
     {
       horizontal: "flex-row",
       vertical: "flex-col",
-    }[orientation] || "";
+    }[orientation] || "vertical";
 
   const convertedPadding = typeof padding === "string" && padding.match(/[a-zA-Z]/) ? padding : `${padding}px`;
   const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
@@ -61,7 +59,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     borderWidth: appearance === "outline" ? borderClass : undefined,
     padding: convertedPadding ? convertedPadding : undefined,
     gap: convertedGap ? convertedGap : undefined,
-    borderLeftWidth: appearance === "embed" ? "4px" : appearance === "outline" ? borderClass : undefined,
+    borderLeftWidth: appearance === "embed" ? 4 : appearance === "outline" ? borderClass : undefined,
     ...other.style,
   };
 

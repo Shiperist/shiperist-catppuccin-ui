@@ -1,51 +1,36 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Avatar, Indicator, HorizontalLayout, Card } from "@shiperist-catppuccin-ui/react";
+import { Avatar, Indicator, HorizontalLayout, Card, IndicatorLabel } from "@shiperist-catppuccin-ui/react";
 import avatar from "../assets/avatar.png";
 
 export default {
   title: "Example/Indicator",
   component: Indicator,
   argTypes: {
-    children: { control: "text" },
     bordered: { control: "boolean" },
-    isLabel: { control: "boolean" },
+    isLegend: { control: "boolean" },
     position: { control: "object" },
-    borderSize: {
-      control: {
-        type: "select",
-      },
-    },
-    size: {
-      control: {
-        type: "select",
-      },
-    },
-    status: {
-      control: {
-        type: "select",
-      },
-    },
-    positionPreset: {
-      control: {
-        type: "select",
-      },
-    },
+    borderSize: { control: { type: "select" } },
+    size: { control: { type: "select" } },
+    status: { control: { type: "select" } },
+    positionPreset: { control: { type: "select" } },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => {
   const people: any[] = [
-    { id: 1, status: "active" },
-    { id: 2, status: "idle" },
-    { id: 3, status: "inactive" },
-    { id: 4, status: "info" },
-    { id: 5, status: "invisible" },
+    { id: 1, status: "active", pings: 8 },
+    { id: 2, status: "idle", pings: "" },
+    { id: 3, status: "inactive", pings: "" },
+    { id: 4, status: "info", pings: 9999 },
+    { id: 5, status: "invisible", pings: "" },
   ];
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {people.map((person) => (
         <Avatar avatar={avatar} radius="large" size="medium" key={person.id}>
-          <Indicator {...args} status={person.status} />
+          <Indicator {...args} status={person.status}>
+            {person.pings !== "" && <IndicatorLabel>{person.pings}</IndicatorLabel>}
+          </Indicator>
         </Avatar>
       ))}
     </HorizontalLayout>
@@ -59,7 +44,7 @@ Default.args = {
   status: "",
   bordered: false,
   borderSize: "small",
-  isLabel: false,
+  isLegend: false,
   positionPreset: "top-right",
   position: {},
 };
@@ -75,8 +60,8 @@ export const AsLegend = () => {
   return (
     <HorizontalLayout className="" style={{ gap: 16 }}>
       {legends.map((legend) => (
-        <Indicator key={legend.id} size="medium" status={legend.status} isLabel={true}>
-          {legend.text}
+        <Indicator key={legend.id} size="medium" status={legend.status} isLegend={true}>
+          <IndicatorLabel>{legend.text}</IndicatorLabel>
         </Indicator>
       ))}
     </HorizontalLayout>
@@ -99,7 +84,7 @@ export const PositionPresets = () => {
     <Card appearance="filled" className="inline-flex relative mx-auto" style={{ width: "16rem", height: "16rem" }}>
       {positions.map((position) => (
         <Indicator key={position.id} status="info" size="small" positionPreset={position.preset}>
-          {position.name}
+          <IndicatorLabel>{position.name}</IndicatorLabel>
         </Indicator>
       ))}
     </Card>

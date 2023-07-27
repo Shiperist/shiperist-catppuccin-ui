@@ -13,21 +13,9 @@ export default {
     caption: { control: "text" },
     placeholder: { control: "text" },
     label: { control: "text" },
-    type: {
-      control: {
-        type: "select",
-      },
-    },
-    appearance: {
-      control: {
-        type: "select",
-      },
-    },
-    labelStyle: {
-      control: {
-        type: "select",
-      },
-    },
+    type: { control: { type: "select" } },
+    appearance: { control: { type: "select" } },
+    labelStyle: { control: { type: "select" } },
     leadingElement: { control: "object" },
     trailingElement: { control: "object" },
   },

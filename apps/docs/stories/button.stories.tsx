@@ -9,21 +9,9 @@ export default {
     isLoading: { control: "boolean" },
     disabled: { control: "boolean" },
     tooltip: { control: "text" },
-    variant: {
-      control: {
-        type: "select",
-      },
-    },
-    appearance: {
-      control: {
-        type: "select",
-      },
-    },
-    size: {
-      control: {
-        type: "select",
-      },
-    },
+    variant: { control: { type: "select" } },
+    appearance: { control: { type: "select" } },
+    size: { control: { type: "select" } },
     leadingElement: { control: "object" },
     trailingElement: { control: "object" },
     children: { control: "text" },

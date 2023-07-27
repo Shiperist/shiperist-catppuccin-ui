@@ -6,16 +6,8 @@ export default {
   title: "Example/Badge",
   component: Badge,
   argTypes: {
-    variant: {
-      control: {
-        type: "select",
-      },
-    },
-    appearance: {
-      control: {
-        type: "select",
-      },
-    },
+    variant: { control: { type: "select" } },
+    appearance: { control: { type: "select" } },
     leadingElement: { control: "object" },
     trailingElement: { control: "object" },
     children: { control: "text" },

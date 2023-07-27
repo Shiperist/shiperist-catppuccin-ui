@@ -47,7 +47,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
       outline: "ring-0 border rounded-xl",
       underline: "ring-0 border-b",
       filled: "ring-0 border-b rounded-xl",
-    }[appearance] || "";
+    }[appearance] || "outline";
 
   let trailingElement: React.ReactNode = originalTrailingElement;
 

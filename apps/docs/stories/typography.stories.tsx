@@ -5,11 +5,7 @@ export default {
   title: "Example/Typography",
   component: Text,
   argTypes: {
-    as: {
-      control: {
-        type: "select",
-      },
-    },
+    as: { control: { type: "select" } },
     error: { control: "boolean" },
     bold: { control: "boolean" },
     italic: { control: "boolean" },

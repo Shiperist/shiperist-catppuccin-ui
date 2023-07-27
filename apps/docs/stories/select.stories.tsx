@@ -12,11 +12,7 @@ export default {
     defaultValue: { control: "text" },
     value: { control: "text" },
     onChange: { control: "function" },
-    variant: {
-      control: {
-        type: "select",
-      },
-    },
+    variant: { control: { type: "select" } },
   },
 } as Meta;
 

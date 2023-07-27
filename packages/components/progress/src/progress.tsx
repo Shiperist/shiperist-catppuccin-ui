@@ -4,7 +4,7 @@ import { PositionHorizontal, Positions } from "@shiperist-catppuccin-ui/utilitie
 
 // Todo radial progress
 
-export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
+export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: Size;
   progress?: number;
   color?: ColorSet;
@@ -36,7 +36,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
   const radiusClass =
     {
       full: "rounded-full",
-    }[radius] || "";
+    }[radius] || "full";
 
   const textSizeClass =
     {
@@ -52,7 +52,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
       medium: 10,
       large: 14,
       xlarge: 18,
-    }[size] || "";
+    }[size] || 10;
 
   const progressStyles = {
     width: `${clampedProgress}%`,

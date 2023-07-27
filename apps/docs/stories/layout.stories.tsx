@@ -12,13 +12,13 @@ export default {
 } as Meta;
 
 export const Vertical_Layout = () => (
-  <Card appearance="outline" padding={"1rem"} gap={"1rem"}>
+  <Card appearance="outline" border="tiny" padding={"1rem"} gap={"1rem"}>
     <VerticalLayout style={{ gap: 8 }}>{data}</VerticalLayout>
   </Card>
 );
 
 export const Horizontal_Layout = () => (
-  <Card appearance="outline" padding={"1rem"} gap={"1rem"}>
+  <Card appearance="outline" border="tiny" padding={"1rem"} gap={"1rem"}>
     <HorizontalLayout style={{ gap: 8 }}>{data}</HorizontalLayout>
   </Card>
 );

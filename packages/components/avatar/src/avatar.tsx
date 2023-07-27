@@ -1,15 +1,15 @@
-import React, { ReactNode } from "react";
-import { ColorSet, Size, cn, LoadingIcon, Radius } from "@shiperist-catppuccin-ui/utilities";
+import React, { ReactNode, cloneElement, isValidElement } from "react";
+import { ColorSet, Size, cn, LoadingIcon, Radius, Border } from "@shiperist-catppuccin-ui/utilities";
+import { AvatarLabel, AvatarLabelProps } from ".";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
   size?: Size | "tiny";
   avatar?: string;
   alt?: string;
   radius?: Radius;
-  border?: "xlarge" | "large" | "medium" | "small" | "none";
+  border?: Border;
   defaultAvatar?: string;
   backgroundColor?: ColorSet;
-  name?: string;
   isLoading?: boolean;
   children?: ReactNode;
 }
@@ -19,7 +19,6 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
     avatar,
     radius,
     defaultAvatar,
-    name,
     isLoading,
     backgroundColor,
     size,
@@ -30,36 +29,36 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
     ...other
   } = props;
 
-  const sizeClass = {
-    tiny: 16,
-    small: 32,
-    medium: 64,
-    large: 128,
-    xlarge: 256,
-  }[size];
-  const borderClass = {
-    small: 1,
-    medium: 2,
-    large: 3,
-    xlarge: 4,
-  }[border];
+  const sizeClass =
+    {
+      tiny: 16,
+      small: 32,
+      medium: 64,
+      large: 128,
+      xlarge: 256,
+    }[size] || 64;
+  const borderClass =
+    {
+      small: 1,
+      medium: 2,
+      large: 3,
+      xlarge: 4,
+    }[border] || 0;
 
+  const textClass =
+    {
+      small: "text-xs",
+      large: "text-xl",
+      medium: "text-xl",
+      xlarge: "text-4xl",
+    }[size] || "";
   const radiusClass =
     {
       full: "rounded-full",
       large: "rounded-3xl",
       medium: "rounded-xl",
       small: "rounded-lg",
-    }[radius] || "";
-
-  // Function to extract initials from the name
-  const getInitials = (name: string) => {
-    const initials = name
-      .split(" ")
-      .map((part) => part.charAt(0).toUpperCase())
-      .join("");
-    return initials.slice(0, 3);
-  };
+    }[radius] || "large";
 
   const containerStyle = {
     height: `${sizeClass}px`,
@@ -75,13 +74,32 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
     },
     className
   );
+  // Function to filter AvatarLabel child component
+  const renderAvatarLabels = () => {
+    return React.Children.toArray(children).map((child) => {
+      if (isValidElement(child) && child.type === AvatarLabel) {
+        return cloneElement(child, { className: textClass } as AvatarLabelProps);
+      }
+      return false;
+    });
+  };
+
+  // Function to filter non-AvatarLabel child components
+  const renderOtherChildren = () => {
+    return React.Children.toArray(children).filter((child) => {
+      if (isValidElement(child) && child.type !== AvatarLabel) {
+        return true;
+      }
+      return false;
+    });
+  };
 
   return (
     <div ref={ref} className={cn(avatarContainerClassName, radiusClass)} style={containerStyle}>
       {isLoading && <LoadingIcon className="m-auto" />}
       {!isLoading && (
         <>
-          {avatar ? (
+          {avatar || defaultAvatar ? (
             <img
               loading="lazy"
               src={avatar}
@@ -94,18 +112,11 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
               {...other}
             />
           ) : (
-            <span
-              className={cn("text-white font-bold", {
-                "text-xl": size === "large" || size === "medium",
-                "text-4xl": size === "xlarge",
-                "text-xs": size === "small",
-              })}>
-              {!(avatar || defaultAvatar) && getInitials(name)}
-            </span>
+            <>{renderAvatarLabels()}</>
           )}
         </>
       )}
-      {children}
+      {renderOtherChildren()}
     </div>
   );
 });

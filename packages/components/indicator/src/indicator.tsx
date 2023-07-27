@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { cn } from "@shiperist-catppuccin-ui/utilities";
+import { PositionPresets, cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface IndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: "small" | "tiny" | "medium";
@@ -7,17 +7,8 @@ export interface IndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
   position?: CSSPosition;
   status?: "invisible" | "active" | "idle" | "inactive" | "info";
   bordered?: boolean;
-  isLabel?: boolean;
-  positionPreset?:
-    | "top-left"
-    | "top-right"
-    | "top-center"
-    | "bottom-left"
-    | "bottom-center"
-    | "bottom-right"
-    | "middle-left"
-    | "middle-right"
-    | "middle-center";
+  isLegend?: boolean;
+  positionPreset?: PositionPresets;
 }
 
 export type CSSPosition = {
@@ -32,7 +23,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
     position,
     status,
     borderSize,
-    isLabel,
+    isLegend,
     bordered,
     positionPreset,
     size,
@@ -46,20 +37,20 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
       tiny: 8,
       small: 10,
       medium: 12,
-    }[size] || "";
+    }[size] || 0;
 
   const sizeClass =
     {
       tiny: 8,
       small: 10,
       medium: 12,
-    }[size] || "";
+    }[size] || 12;
   const borderClass =
     {
       tiny: 1,
       small: 2,
       medium: 3,
-    }[borderSize] || "";
+    }[borderSize] || 0;
 
   const statusColor =
     {
@@ -80,7 +71,6 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
 
   const colorClass = status ? `bg-${statusColor}` : "";
   const textClass = status ? `${textColor}` : "";
-  const shouldSlice = !isNaN(children as number) && String(children).length > 3;
 
   const getPositionStyleFromPreset = () => {
     // Predefined positions based on positionPreset
@@ -104,9 +94,9 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
   const positionStyleFromPreset = getPositionStyleFromPreset();
 
   const indicatorStyle: CSSProperties = {
-    width: children && !isLabel ? "fit-content" : sizeClass,
-    height: children && !isLabel ? "fit-content" : sizeClass,
-    fontSize: children && !isLabel ? fontClass : undefined,
+    width: children && !isLegend ? "fit-content" : sizeClass,
+    height: children && !isLegend ? "fit-content" : sizeClass,
+    fontSize: children && !isLegend ? fontClass : undefined,
     borderWidth: bordered ? borderClass : undefined,
     ...positionStyleFromPreset,
     ...position,
@@ -115,8 +105,8 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
 
   return (
     <>
-      {/* Indicator without text when isLabel is true */}
-      {!isLabel && (
+      {/* Indicator without text when isLegend is true */}
+      {!isLegend && (
         <div
           ref={ref}
           className={cn(
@@ -128,12 +118,12 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
           )}
           style={indicatorStyle}
           {...other}>
-          {shouldSlice ? String(children).slice(0, 3) + "+" : children}
+          {children}
         </div>
       )}
 
       {/* Label text outside the indicator */}
-      {isLabel && (
+      {isLegend && (
         <div ref={ref} className={cn("flex flex-row items-center")} style={{ gap: 4 }}>
           <div
             className={cn(

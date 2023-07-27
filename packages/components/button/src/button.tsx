@@ -36,14 +36,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       warning: "yellow",
       info: "blue",
       base: "overlay2",
-    }[variant] || "";
+    }[variant] || "base";
   const sizeClass =
     {
       small: "text-sm px-2 py-1",
       medium: "text-md px-4 py-2",
       large: "text-lg px-6 py-3",
       xlarge: "text-xl px-8 py-4",
-    }[size] || "";
+    }[size] || "medium";
   const iconSizeClass =
     {
       small: "p-1",
@@ -53,12 +53,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     }[size] || "";
   const appearanceClass =
     {
-      filled: `bg-${variantColor} text-mantle hover:opacity-80`,
+      filled: `bg-${variantColor} text-mantle hover:opacity-80 border border-transparent`,
       outline: `border border-${variantColor} text-${variantColor} hover:text-mantle hover:bg-${variantColor}`,
-      ghost: `text-${variantColor} hover:bg-${variantColor} hover:text-mantle`,
-      tint: `text-${variantColor} hover:opacity-80`,
-      shadow: `text-${variantColor} bg-mantle shadow-lg hover:bg-crust`,
-    }[appearance] || "";
+      ghost: `text-${variantColor} hover:bg-${variantColor} hover:text-mantle border border-transparent`,
+      tint: `text-${variantColor} hover:opacity-80 border border-transparent`,
+      shadow: `text-${variantColor} bg-mantle shadow-lg hover:bg-crust border border-transparent`,
+    }[appearance] || "outline";
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
   let leadingElement: React.ReactNode = originalLeadingElement;

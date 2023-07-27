@@ -13,10 +13,10 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
 
   const thicknessClass =
     {
-      tiny: "1px",
-      small: "2px",
-      medium: "3px",
-    }[thickness] || "";
+      tiny: 1,
+      small: 2,
+      medium: 3,
+    }[thickness] || 1;
 
   const dividerClasses = {
     height: orientation === "horizontal" ? thicknessClass : "100%",

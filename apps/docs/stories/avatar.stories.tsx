@@ -1,36 +1,19 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Avatar, Card, Text, VerticalLayout, Caption, Caption2 } from "@shiperist-catppuccin-ui/react";
+import { Avatar, Card, Text, VerticalLayout, Caption, Caption2, AvatarLabel } from "@shiperist-catppuccin-ui/react";
 import avatar from "../assets/avatar.png";
 
 export default {
   title: "Example/Avatar",
   component: Avatar,
   argTypes: {
-    radius: {
-      control: {
-        type: "select",
-      },
-    },
-    size: {
-      control: {
-        type: "select",
-      },
-    },
-    border: {
-      control: {
-        type: "select",
-      },
-    },
-    backgroundColor: {
-      control: {
-        type: "select",
-      },
-    },
+    radius: { control: { type: "select" } },
+    size: { control: { type: "select" } },
+    border: { control: { type: "select" } },
+    backgroundColor: { control: { type: "select" } },
     defaultAvatar: { control: "text" },
     isLoading: { control: "boolean" },
     alt: { control: "text" },
     avatar: { control: "text" },
-    name: { control: "text" },
   },
 } as Meta;
 
@@ -40,7 +23,9 @@ const Template: StoryFn = (args) => {
     <>
       {people.map((person) => (
         <Card key={person.id} orientation="horizontal" appearance="outline" padding="1rem" gap="1rem">
-          <Avatar name={person.name} {...args} />
+          <Avatar {...args}>
+            <AvatarLabel name={person.name}></AvatarLabel>
+          </Avatar>
           <VerticalLayout>
             <Text>{person.name}</Text>
             <Caption bold>{person.job}</Caption>
@@ -59,7 +44,6 @@ Default.args = {
   avatar: avatar,
   alt: "Pretty avatar",
   backgroundColor: "green",
-  name: "Joseph Deor",
   isLoading: false,
   defaultAvatar: "",
   border: "none",

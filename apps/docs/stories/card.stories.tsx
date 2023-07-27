@@ -15,22 +15,10 @@ export default {
   title: "Example/Card",
   component: Card,
   argTypes: {
-    appearance: {
-      control: {
-        type: "select",
-      },
-    },
-    orientation: {
-      control: {
-        type: "select",
-      },
-    },
-    variant: {
-      control: {
-        type: "select",
-      },
-    },
-    border: { control: { type: "select", options: ["tiny", "small", "medium"] } },
+    appearance: { control: { type: "select" } },
+    orientation: { control: { type: "select" } },
+    variant: { control: { type: "select" } },
+    border: { control: { type: "select" } },
     padding: { control: "text" },
     gap: { control: "text" },
     disabled: { control: "boolean" },
@@ -64,7 +52,7 @@ Default.args = {
   variant: "base",
   disabled: false,
   padding: "2rem",
-  border: "tiny",
+  border: "medium",
   gap: ".5rem",
 };
 
