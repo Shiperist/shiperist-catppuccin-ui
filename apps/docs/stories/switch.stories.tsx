@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Switch } from "@shiperist-catppuccin-ui/react";
+import { HorizontalLayout, Switch, Text } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Switch",
@@ -9,12 +9,19 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Switch {...args} />;
+const Template: StoryFn = (args) => {
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
+      <Switch {...args} />
+      <Text className="text-sm">Switch</Text>
+    </HorizontalLayout>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
   disabled: false,
-  children: "Switch",
+  children: "",
 };
 
 export const Disabled = Template.bind({});

@@ -23,7 +23,7 @@ const Switch: FC<SwitchProps> = ({ disabled, className = "", children, ...props 
       )}>
       <input type="checkbox" value="" disabled={disabled} className="sr-only peer" {...props} />
       <div className={`${switchClass.base} ${switchClass.checked} ${switchClass.after}`}></div>
-      <span className="ml-3 text-sm font-medium text-text">{children}</span>
+      {children}
     </label>
   );
 };
