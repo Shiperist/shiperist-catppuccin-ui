@@ -49,20 +49,20 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
       outline: "ring-0 border rounded-xl",
       underline: "ring-0 border-b",
       filled: "ring-0 border-b rounded-xl",
-    }[appearance] || "outline";
+    }[appearance] || "ring-0 border rounded-xl";
   const sizeClass =
     {
       small: "text-sm py-4 h-8",
       medium: "text-md py-6 h-12",
       large: "text-lg py-8 h-16",
-    }[size] || "medium";
+    }[size] || "text-md py-6 h-12";
   const iconSizeClass =
     {
       small: "w-4 h-4",
       medium: "w-5 h-5",
-      large: "w-5 h-5",
-      xlarge: "h-6 w-6",
-    }[size] || "medium";
+      large: "w-6 h-6",
+      xlarge: "h-7 w-7",
+    }[size] || "w-5 h-5";
 
   let trailingElement: React.ReactNode = originalTrailingElement;
   if (isLoading) {

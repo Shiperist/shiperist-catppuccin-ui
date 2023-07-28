@@ -58,7 +58,7 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
       large: "rounded-3xl",
       medium: "rounded-xl",
       small: "rounded-lg",
-    }[radius] || "large";
+    }[radius] || "rounded-3xl";
 
   const containerStyle = {
     height: `${sizeClass}px`,

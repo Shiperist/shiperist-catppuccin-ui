@@ -19,7 +19,6 @@ export default {
     orientation: { control: { type: "select" } },
     variant: { control: { type: "select" } },
     border: { control: { type: "select" } },
-    padding: { control: "text" },
     gap: { control: "text" },
     disabled: { control: "boolean" },
   },
@@ -51,29 +50,28 @@ Default.args = {
   orientation: "vertical",
   variant: "base",
   disabled: false,
-  padding: "2rem",
   border: "medium",
   gap: ".5rem",
 };
 
 export const Appearance = () => {
   return (
-    <VerticalLayout style={{ gap: 8, width: "24rem" }}>
+    <VerticalLayout style={{ gap: 8, width: "32rem" }}>
       <Text bold>Filled</Text>
       <Card {...Default.args} appearance="filled">
-        Card content
+        content
       </Card>
       <Text bold>Outline</Text>
       <Card {...Default.args} appearance="outline">
-        Card content
+        content
       </Card>
       <Text bold>Shadow</Text>
       <Card {...Default.args} appearance="shadow">
-        Card content
+        content
       </Card>
       <Text bold>Embed</Text>
       <Card {...Default.args} appearance="embed">
-        Card content
+        content
       </Card>
     </VerticalLayout>
   );

@@ -19,7 +19,7 @@ export default {
 const icon = <Icon icon={<HeartIcon />} size="small" />;
 const Template: StoryFn = (args) => {
   return (
-    <Select {...args} style={{ width: "16rem" }}>
+    <Select {...args} style={{ width: "32rem" }}>
       <SelectItem leadingElement={icon} id="item1">
         Select one
       </SelectItem>
@@ -57,7 +57,7 @@ export const ControlledSelection = () => {
         variant="button"
         defaultValue={selectedPerson}
         onChange={setSelectedPerson}
-        style={{ width: "16rem" }}>
+        style={{ width: "32rem" }}>
         {people.map((person) => (
           <SelectItem key={person.id} value={person.name} disabled={person.disabled}>
             {person.name}
@@ -82,7 +82,7 @@ Placeholder.args = {
 
 export const Types = () => {
   return (
-    <VerticalLayout style={{ gap: 16, width: "16rem" }}>
+    <VerticalLayout style={{ gap: 16, width: "32rem" }}>
       <Text bold>Button</Text>
       <Select variant="button" placeholder="Select items...">
         <SelectItem leadingElement={icon} id="item1">

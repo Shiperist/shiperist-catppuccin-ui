@@ -33,11 +33,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
 
   const clampedProgress = Math.min(100, Math.max(0, progress)).toFixed(2);
 
-  const radiusClass =
-    {
-      full: "rounded-full",
-    }[radius] || "full";
-
+  const radiusClass = `rounded-${radius}`;
   const textSizeClass =
     {
       small: "text-xs",

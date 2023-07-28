@@ -1,11 +1,11 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Divider, Card, Text, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import { Divider, Card, Text, VerticalLayout, Badge } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Divider",
   component: Divider,
   argTypes: {
-    label: { control: "text" },
+    children: { control: "text" },
     thickness: { control: { type: "select" } },
     orientation: { control: { type: "select" } },
     labelPosition: { control: { type: "select" } },
@@ -13,16 +13,20 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Card appearance="outline" orientation="vertical" className="p-4" style={{ gap: 16, width: "24rem" }}>
-    <Text>Card content</Text>
+  <Card appearance="outline" orientation="vertical" style={{ gap: 16, width: "32rem" }}>
+    <Card appearance="filled" className="w-full items-center justify-center">
+      <Text>content</Text>
+    </Card>
     <Divider {...args}></Divider>
-    <Text>Card content</Text>
+    <Card appearance="filled" className="w-full items-center justify-center">
+      <Text>content</Text>
+    </Card>
   </Card>
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  label: "",
+  children: "",
   orientation: "horizontal",
   labelPosition: "left",
   thickness: "tiny",
@@ -30,23 +34,47 @@ Default.args = {
 
 export const Orientations = () => {
   return (
-    <VerticalLayout style={{ gap: 16, width: "24rem" }}>
-      <Text bold>Vertical divider with label</Text>
-      <Card
-        appearance="outline"
-        orientation="horizontal"
-        className="items-center p-4"
-        style={{ height: "120px", gap: 32 }}>
-        <Text>Card content</Text>
-        <Divider orientation="vertical" thickness="tiny" label="OR" labelPosition="center" />
-        <Text>Card content</Text>
+    <VerticalLayout style={{ gap: 16, width: "32rem" }}>
+      <Text bold>Vertical divider with text</Text>
+      <Card orientation="horizontal" className="items-center" gap={32}>
+        <Card appearance="filled" className="w-full items-center justify-center">
+          <Text>content</Text>
+        </Card>
+        <Divider orientation="vertical" thickness="tiny" labelPosition="center" style={{ height: "6rem" }}>
+          <Text>OR</Text>
+        </Divider>
+        <Card appearance="filled" className="w-full items-center justify-center">
+          <Text>content</Text>
+        </Card>
       </Card>
-      <Text bold>Horizontal divider with label</Text>
-      <Card appearance="outline" orientation="vertical" className="p-4" style={{ gap: 16 }}>
-        <Text>Card content</Text>
-        <Divider orientation="horizontal" thickness="tiny" label="OR" labelPosition="center" />
-        <Text>Card content</Text>
+      <Text bold>Horizontal divider with text</Text>
+      <Card gap={16}>
+        <Card appearance="filled" className="w-full items-center justify-center">
+          <Text>content</Text>
+        </Card>
+        <Divider orientation="horizontal" thickness="tiny" labelPosition="center">
+          <Text>OR</Text>
+        </Divider>
+        <Card appearance="filled" className="w-full items-center justify-center">
+          <Text>content</Text>
+        </Card>
       </Card>
     </VerticalLayout>
+  );
+};
+
+export const CustomLabel = () => {
+  return (
+    <Card style={{ width: "32rem", gap: 20 }}>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+      <Divider orientation="horizontal" thickness="tiny" labelPosition="center">
+        <Badge>Badge</Badge>
+      </Divider>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+    </Card>
   );
 };

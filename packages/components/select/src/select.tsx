@@ -148,11 +148,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           )}
           {...other}>
           <div className="flex-grow text-left">
-            {/* Placeholder */}
-            {placeholder && !selectedValue && !defaultValue && <p className="text-overlay2">{placeholder}</p>}
-
-            {/* Value or Default Value // CONTROLLED SELECT */}
-            {selectedValue && <p>{selectedValue || defaultValue}</p>}
+            {placeholder && !selectedValue && !defaultValue ? (
+              <p className="text-overlay2">{placeholder}</p>
+            ) : (
+              <p>{selectedValue || defaultValue}</p>
+            )}
           </div>
           {trailingElement && <div className={cn("stroke-overlay2 py-1")}>{trailingElement}</div>}
         </Element>

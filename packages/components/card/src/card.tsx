@@ -5,25 +5,13 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: "filled" | "shadow" | "outline" | "embed";
   orientation?: Orientation;
   variant?: ColorVariants;
-  padding?: string | number;
   gap?: string | number;
   disabled?: boolean;
   border?: "tiny" | "small" | "medium";
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
-  const {
-    appearance,
-    orientation,
-    disabled,
-    border,
-    padding,
-    gap,
-    variant,
-    className = "",
-    children,
-    ...other
-  } = props;
+  const { appearance, orientation, disabled, border, gap, variant, className = "", children, ...other } = props;
 
   const borderClass =
     {
@@ -38,26 +26,24 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       warning: "yellow",
       info: "blue",
       base: "overlay2",
-    }[variant] || "base";
+    }[variant] || "overlay2";
   const appearanceClass =
     {
       filled: `bg-mantle border border-transparent`,
       outline: `border border-overlay0`,
       shadow: "bg-mantle shadow-lg border border-transparent",
       embed: `border-${variantColor} bg-mantle`,
-    }[appearance] || "outline";
+    }[appearance] || "border border-overlay0";
   const orientationClass =
     {
       horizontal: "flex-row",
       vertical: "flex-col",
-    }[orientation] || "vertical";
+    }[orientation] || "flex-col";
 
-  const convertedPadding = typeof padding === "string" && padding.match(/[a-zA-Z]/) ? padding : `${padding}px`;
   const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
 
   const cardStyles = {
     borderWidth: appearance === "outline" ? borderClass : undefined,
-    padding: convertedPadding ? convertedPadding : undefined,
     gap: convertedGap ? convertedGap : undefined,
     borderLeftWidth: appearance === "embed" ? 4 : borderClass,
     ...other.style,
@@ -66,7 +52,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      className={cn("rounded-xl flex", appearanceClass, orientationClass, className, {
+      className={cn("p-8 rounded-xl flex", appearanceClass, orientationClass, className, {
         "opacity-50 cursor-not-allowed": disabled,
       })}
       style={cardStyles}

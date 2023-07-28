@@ -1,10 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, Card, HorizontalLayout, VerticalLayout } from "@shiperist-catppuccin-ui/react";
-const data = Array.from({ length: 5 }, () => (
-  <Button variant="base" size="small" appearance="outline">
-    Button
-  </Button>
-));
+import { Text, Card, HorizontalLayout, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Example/Layout",
@@ -12,13 +7,27 @@ export default {
 } as Meta;
 
 export const Vertical_Layout = () => (
-  <Card appearance="outline" border="tiny" padding={"1rem"} gap={"1rem"}>
-    <VerticalLayout style={{ gap: 8 }}>{data}</VerticalLayout>
+  <Card style={{ width: "32rem" }}>
+    <VerticalLayout style={{ gap: 8 }}>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+    </VerticalLayout>
   </Card>
 );
 
 export const Horizontal_Layout = () => (
-  <Card appearance="outline" border="tiny" padding={"1rem"} gap={"1rem"}>
-    <HorizontalLayout style={{ gap: 8 }}>{data}</HorizontalLayout>
+  <Card style={{ width: "32rem" }}>
+    <HorizontalLayout style={{ gap: 8 }}>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+    </HorizontalLayout>
   </Card>
 );

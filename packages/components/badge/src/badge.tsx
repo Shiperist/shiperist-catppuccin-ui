@@ -18,7 +18,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
       warning: "yellow",
       info: "blue",
       base: "overlay2",
-    }[variant] || "base";
+    }[variant] || "overlay2";
 
   const appearanceClass =
     {
@@ -26,7 +26,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
       outline: `border border-${variantColor} text-${variantColor}`,
       ghost: `text-${variantColor} border border-transparent`,
       tint: `text-${variantColor} border border-transparent`,
-    }[appearance] || "filled";
+    }[appearance] || `bg-${variantColor} text-mantle border border-transparent`;
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
   const iconColor = appearance === "filled" ? "stroke-overlay1" : `stroke-${variantColor}`;

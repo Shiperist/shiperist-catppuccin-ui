@@ -3,35 +3,42 @@ import { Orientation, Positions, cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   orientation?: Orientation;
-  label?: string;
   labelPosition?: Positions;
   thickness?: "tiny" | "small" | "medium";
 }
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
-  const { label, thickness, labelPosition, orientation, className = "", ...other } = props;
+  const { thickness, labelPosition, orientation, className = "", children, ...other } = props;
 
-  const thicknessClass =
+  const horizontalThicknessClass =
     {
-      tiny: 1,
-      small: 2,
-      medium: 3,
-    }[thickness] || 1;
+      tiny: "h-[1px]",
+      small: "h-[2px]",
+      medium: "h-[3px]",
+    }[thickness] || "h-[1px]";
 
-  const dividerClasses = {
-    height: orientation === "horizontal" ? thicknessClass : "100%",
-    width: orientation === "vertical" ? thicknessClass : "100%",
-    ...other.style,
-  };
+  const verticalThicknessClass =
+    {
+      tiny: "w-[1px]",
+      small: "w-[2px]",
+      medium: "w-[3px]",
+    }[thickness] || "w-[1px]";
 
   const labelContainerStyles = {
-    left: labelPosition === "center" ? "50%" : labelPosition === "right" ? "auto" : 32,
-    right: labelPosition === "right" ? 32 : "auto",
+    left: labelPosition === "center" ? "50%" : labelPosition === "right" ? "auto" : "32px",
+    right: labelPosition === "right" ? "32px" : "auto",
     transform: labelPosition === "center" ? "translateX(-50%)" : undefined,
   };
 
+  const dividerClasses = cn(
+    "bg-overlay2 relative",
+    orientation === "horizontal" ? horizontalThicknessClass + " my-1" : "",
+    orientation === "vertical" ? verticalThicknessClass + " mx-1" : "w-full",
+    className
+  );
+
   return (
-    <div ref={ref} className={cn("bg-overlay2 relative", className)} style={dividerClasses} {...other}>
+    <div ref={ref} className={cn(dividerClasses)} {...other}>
       <div
         className={cn("absolute items-center flex h-full", {
           "flex-start": labelPosition === "left" && orientation !== "vertical",
@@ -39,7 +46,11 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
           center: labelPosition === "center",
         })}
         style={labelContainerStyles}>
-        <div className={cn("px-2 bg-base")}>{label}</div>
+        {
+          <div className={cn("bg-base", { "py-2": orientation === "vertical", "px-2": orientation === "horizontal" })}>
+            {children}
+          </div>
+        }
       </div>
     </div>
   );
