@@ -22,7 +22,7 @@ const Template: StoryFn = (args) => {
   return (
     <>
       {people.map((person) => (
-        <Card key={person.id} orientation="horizontal" appearance="outline" padding="1rem" gap="1rem">
+        <Card key={person.id} orientation="horizontal" appearance="outline" className="p-4" gap="1rem">
           <Avatar {...args}>
             <AvatarLabel name={person.name}></AvatarLabel>
           </Avatar>

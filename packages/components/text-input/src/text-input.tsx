@@ -100,7 +100,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
   return (
     <div className={cn("flex flex-col relative", className)} style={label && label.length > 0 ? { gap: 8 } : undefined}>
       <label
-        htmlFor={props.id}
+        htmlFor={other.id}
         className={label && labelStyle === "border" ? "absolute bg-base px-2" : ""}
         style={borderedAppearanceStyle}>
         {label} {label && required && <span className="text-red">*</span>}
