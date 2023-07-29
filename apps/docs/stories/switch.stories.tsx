@@ -4,24 +4,26 @@ import { HorizontalLayout, Switch, Text } from "@shiperist-catppuccin-ui/react";
 export default {
   title: "Example/Switch",
   component: Switch,
-  agrTypes: {
+  argTypes: {
     disabled: { control: "boolean" },
+    variant: { control: { type: "select" } },
+    appearance: { control: { type: "select" } },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => {
   return (
-    <HorizontalLayout style={{ gap: 8 }}>
-      <Switch {...args} />
-      <Text className="text-sm">Switch</Text>
-    </HorizontalLayout>
+    <Switch {...args}>
+      <Text className="text-sm ml-2">Switch</Text>
+    </Switch>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
   disabled: false,
-  children: "",
+  variant: "success",
+  appearance: "alternative",
 };
 
 export const Disabled = Template.bind({});
