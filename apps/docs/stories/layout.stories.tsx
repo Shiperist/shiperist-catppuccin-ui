@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Text, Card, HorizontalLayout, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/Layout",
+  title: "Components/Layout",
   component: VerticalLayout,
 } as Meta;
 

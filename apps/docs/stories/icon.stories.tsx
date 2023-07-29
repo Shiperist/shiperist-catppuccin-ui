@@ -3,7 +3,7 @@ import { Icon, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
-  title: "Example/Icon",
+  title: "Components/Icon",
   component: Icon,
   argTypes: {
     size: { control: { type: "select" } },

@@ -3,7 +3,7 @@ import { Avatar, Card, Text, VerticalLayout, Caption, Caption2, AvatarLabel } fr
 import avatar from "../assets/avatar.png";
 
 export default {
-  title: "Example/Avatar",
+  title: "Components/Avatar",
   component: Avatar,
   argTypes: {
     radius: { control: { type: "select" } },

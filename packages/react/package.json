@@ -30,7 +30,8 @@
     "@shiperist-catppuccin-ui/avatar": "workspace:*",
     "@shiperist-catppuccin-ui/progress": "workspace:*",
     "@shiperist-catppuccin-ui/indicator": "workspace:*",
-    "@shiperist-catppuccin-ui/icon": "workspace:*"
+    "@shiperist-catppuccin-ui/icon": "workspace:*",
+    "@shiperist-catppuccin-ui/checkbox": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",

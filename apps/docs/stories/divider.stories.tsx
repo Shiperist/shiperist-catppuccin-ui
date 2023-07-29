@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Divider, Card, Text, VerticalLayout, Badge } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/Divider",
+  title: "Components/Divider",
   component: Divider,
   argTypes: {
     children: { control: "text" },

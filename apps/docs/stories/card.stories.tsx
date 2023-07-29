@@ -12,7 +12,7 @@ import {
 } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/Card",
+  title: "Components/Card",
   component: Card,
   argTypes: {
     appearance: { control: { type: "select" } },

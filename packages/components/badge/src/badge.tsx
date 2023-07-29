@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { cn, getRGBAFromHex, ColorVariants } from "@shiperist-catppuccin-ui/utilities";
+import { cn, getRGBAFromHex, ColorVariants, colors } from "@shiperist-catppuccin-ui/utilities";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   leadingElement?: ReactNode;
@@ -10,31 +10,23 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   const { leadingElement, trailingElement, variant, appearance, className = "", children, ...other } = props;
-
-  const variantColor =
-    {
-      success: "green",
-      danger: "red",
-      warning: "yellow",
-      info: "blue",
-      base: "overlay2",
-    }[variant] || "overlay2";
+  const colorClass = colors[variant] || colors.base;
 
   const appearanceClass =
     {
-      filled: `bg-${variantColor} text-mantle border border-transparent`,
-      outline: `border border-${variantColor} text-${variantColor}`,
-      ghost: `text-${variantColor} border border-transparent`,
-      tint: `text-${variantColor} border border-transparent`,
-    }[appearance] || `bg-${variantColor} text-mantle border border-transparent`;
+      filled: `bg-${colorClass} text-mantle border border-transparent`,
+      outline: `border border-${colorClass} text-${colorClass}`,
+      ghost: `text-${colorClass} border border-transparent`,
+      tint: `text-${colorClass} border border-transparent`,
+    }[appearance] || `bg-${colorClass} text-mantle border border-transparent`;
 
-  const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
-  const iconColor = appearance === "filled" ? "stroke-overlay1" : `stroke-${variantColor}`;
+  const backgroundColor = appearance === "tint" ? getRGBAFromHex(colorClass) : undefined;
+  const iconColor = appearance === "filled" ? "stroke-overlay1" : `stroke-${colorClass}`;
 
   return (
     <div
       ref={ref}
-      className={cn(`text-sm flex items-center rounded-full`, variantColor ? `${appearanceClass}` : "", className)}
+      className={cn(`text-sm flex items-center rounded-full`, colorClass ? `${appearanceClass}` : "", className)}
       {...other}
       style={{
         padding: "1px 4px",

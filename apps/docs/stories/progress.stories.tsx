@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Progress } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/Progress",
+  title: "Components/Progress",
   component: Progress,
   argTypes: {
     size: { control: { type: "select" } },
@@ -15,7 +15,7 @@ export default {
     showPercent: { control: "boolean" },
     progress: { control: { type: "range", min: 0, max: 100, step: 0.01 } },
   },
-} as Meta; 
+} as Meta;
 
 const Template: StoryFn = (args) => (
   <div style={{ width: "32rem" }}>

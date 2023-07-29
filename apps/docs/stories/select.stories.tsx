@@ -4,7 +4,7 @@ import { Select, SelectItem, VerticalLayout, Text, Icon } from "@shiperist-catpp
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
-  title: "Example/Select",
+  title: "Forms/Select",
   component: Select,
   argTypes: {
     disabled: { control: "boolean" },

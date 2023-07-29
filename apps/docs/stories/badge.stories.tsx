@@ -3,7 +3,7 @@ import { Badge, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
-  title: "Example/Badge",
+  title: "Components/Badge",
   component: Badge,
   argTypes: {
     variant: { control: { type: "select" } },

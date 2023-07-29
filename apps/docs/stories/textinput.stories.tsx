@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Text, TextInput, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/TextInput",
+  title: "Forms/TextInput",
   component: TextInput,
   argTypes: {
     isLoading: { control: "boolean" },

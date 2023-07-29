@@ -1,5 +1,5 @@
 import React from "react";
-import { cn, ColorVariants, Orientation } from "@shiperist-catppuccin-ui/utilities";
+import { cn, ColorVariants, Orientation, colors } from "@shiperist-catppuccin-ui/utilities";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: "filled" | "shadow" | "outline" | "embed";
@@ -12,6 +12,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const { appearance, orientation, disabled, border, gap, variant, className = "", children, ...other } = props;
+  const colorClass = colors[variant] || colors.base;
 
   const borderClass =
     {
@@ -19,20 +20,13 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       small: 2,
       medium: 3,
     }[border] || 1;
-  const variantColor =
-    {
-      success: "green",
-      danger: "red",
-      warning: "yellow",
-      info: "blue",
-      base: "overlay2",
-    }[variant] || "overlay2";
+
   const appearanceClass =
     {
       filled: `bg-mantle border border-transparent`,
       outline: `border border-overlay0`,
       shadow: "bg-mantle shadow-lg border border-transparent",
-      embed: `border-${variantColor} bg-mantle`,
+      embed: `border-${colorClass} bg-mantle`,
     }[appearance] || "border border-overlay0";
   const orientationClass =
     {

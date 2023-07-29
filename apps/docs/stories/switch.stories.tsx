@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { HorizontalLayout, Switch, Text } from "@shiperist-catppuccin-ui/react";
+import { Switch, Text } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/Switch",
+  title: "Forms/Switch",
   component: Switch,
   argTypes: {
     disabled: { control: "boolean" },

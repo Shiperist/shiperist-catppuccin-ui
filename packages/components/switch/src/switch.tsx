@@ -1,5 +1,5 @@
 import React from "react";
-import { ColorVariants, cn } from "@shiperist-catppuccin-ui/utilities";
+import { ColorVariants, cn, colors } from "@shiperist-catppuccin-ui/utilities";
 
 export interface SwitchProps extends React.HTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
@@ -9,13 +9,6 @@ export interface SwitchProps extends React.HTMLAttributes<HTMLInputElement> {
 
 const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   ({ disabled, variant, appearance, className = ``, children, ...other }, ref) => {
-    const colors = {
-      success: `green`,
-      danger: `red`,
-      warning: `yellow`,
-      info: `blue`,
-      base: `overlay2`,
-    };
     const getCheckedClasses = () => {
       const colorClass = colors[variant] || colors.base;
       return appearance === "alternative"

@@ -94,7 +94,6 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
     top: label && labelStyle === "border" ? -12 : undefined,
     left: label && labelStyle === "border" ? 8 : undefined,
   };
-
   const backgroundColor = appearance === "filled" ? getRGBAFromHex("overlay2") : undefined;
 
   return (
@@ -139,13 +138,13 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
         />
         {trailingElement && (
           <div
-            onClick={type == "password" ? handleEye : undefined}
+            onClick={type === "password" ? handleEye : undefined}
             className={cn("stroke-overlay1", { "cursor-pointer": type == "password" })}>
             {type === "password" ? (
               isPasswordVisible ? (
-                <VisiblePasswordIcon />
+                <VisiblePasswordIcon className={iconSizeClass} />
               ) : (
-                <HiddenPasswordIcon />
+                <HiddenPasswordIcon className={iconSizeClass} />
               )
             ) : (
               trailingElement

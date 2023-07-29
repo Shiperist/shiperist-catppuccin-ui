@@ -8,7 +8,7 @@ export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
-  const { thickness, labelPosition, orientation, className = "", children, ...other } = props;
+  const { thickness, labelPosition = "center", orientation = "horizontal", className = "", children, ...other } = props;
 
   const horizontalThicknessClass =
     {

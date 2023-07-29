@@ -3,7 +3,7 @@ import { Avatar, Indicator, HorizontalLayout, Card, IndicatorLabel } from "@ship
 import avatar from "../assets/avatar.png";
 
 export default {
-  title: "Example/Indicator",
+  title: "Components/Indicator",
   component: Indicator,
   argTypes: {
     bordered: { control: "boolean" },

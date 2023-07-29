@@ -3,7 +3,7 @@ import { Button, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
-  title: "Example/Button",
+  title: "Components/Button",
   component: Button,
   argTypes: {
     isLoading: { control: "boolean" },

@@ -11,3 +11,4 @@ export * from "@shiperist-catppuccin-ui/avatar";
 export * from "@shiperist-catppuccin-ui/progress";
 export * from "@shiperist-catppuccin-ui/indicator";
 export * from "@shiperist-catppuccin-ui/icon";
+export * from "@shiperist-catppuccin-ui/checkbox";
