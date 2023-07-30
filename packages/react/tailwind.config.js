@@ -1,3 +1,14 @@
+const variants = [
+  "hover",
+  "ui-selected",
+  "after",
+  "before",
+  "focus",
+  "peer-checked",
+  "peer-focus",
+  "peer-checked:after",
+  "peer-focus:after",
+];
 module.exports = {
   theme: {},
   safelist: [
@@ -5,47 +16,38 @@ module.exports = {
     {
       pattern:
         /^(bg|text|border|ring|stroke|fill)-(?:rosewater|flamingo|pink|mauve|red|maroon|peach|yellow|green|teal|blue|sky|sapphire|lavender|crust|mantle|base|overlay0|overlay1|overlay2|surface0|surface1|surface2)(?:-opacity-[0-9]{1,2})?$/,
-      variants: ["hover", "ui-selected"],
+      variants: variants,
     },
     // Radius classes
     {
       pattern: /^(rounded)-(xs|sm|md|lg|xl|2xl|3xl|4xl|full)$/,
-      variants: ["responsive"],
+      variants: variants,
     },
     // Text classes
     {
       pattern: /^(text)-(xs|sm|md|lg|xl|2xl|3xl|4xl)$/,
-      variants: ["responsive"],
+      variants: variants,
     },
-    // Padding/margin/top/bottom/left/rigt classes
+    // Padding/margin/position classes
     {
       pattern: /^(p|py|px|pt|pr|pb|pl|m|my|mx|mt|mr|mb|ml|right|top|left|bottom)-[0-9]+$/,
-      variants: ["responsive"],
+      variants: variants,
     },
     // Width/height classes
     {
       pattern: /^(w|h)-(full|screen|[0-9]+)$/,
-      variants: ["responsive"],
+      variants: variants,
     },
+    // Duration/delay classes
     {
       pattern: /^(duration|delay)-[0-9]+$/,
-      variants: ["responsive"],
+      variants: variants,
     },
-    "peer-checked:bg-green",
-    "peer-checked:bg-red",
-    "peer-checked:bg-yellow",
-    "peer-checked:bg-blue",
-    "peer-checked:bg-overlay2",
-    "peer-checked:border-green",
-    "peer-checked:border-red",
-    "peer-checked:border-yellow",
-    "peer-checked:border-blue",
-    "peer-checked:border-overlay2",
-    "peer-checked:after:bg-green",
-    "peer-checked:after:bg-red",
-    "peer-checked:after:bg-yellow",
-    "peer-checked:after:bg-blue",
-    "peer-checked:after:bg-overlay2",
+    // Align items/justify items classes
+    {
+      pattern: /^(items|justify)-(?:center|start|end)$/,
+      variants: variants,
+    },
   ],
   plugins: [
     require("@catppuccin/tailwindcss")({

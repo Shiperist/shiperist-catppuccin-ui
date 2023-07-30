@@ -40,8 +40,8 @@ Default.args = {
   labelStyle: "default",
 };
 
-export const Loading = Template.bind({});
-Loading.args = {
+export const LoadingState = Template.bind({});
+LoadingState.args = {
   ...Default.args,
   isLoading: true,
 };

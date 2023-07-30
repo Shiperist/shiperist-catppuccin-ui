@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { PositionPresets, cn } from "@shiperist-catppuccin-ui/utilities";
+import { PositionPresets, border, cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface IndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: "small" | "tiny" | "medium";
@@ -31,7 +31,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
     children = "",
     ...other
   } = props;
-
+  const borderClass = border[borderSize] || 1;
   const fontClass =
     {
       tiny: 8,
@@ -45,13 +45,6 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
       small: 10,
       medium: 12,
     }[size] || 12;
-  const borderClass =
-    {
-      tiny: 1,
-      small: 2,
-      medium: 3,
-    }[borderSize] || 0;
-
   const statusColor =
     {
       active: "green",
@@ -100,7 +93,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
     borderWidth: bordered ? borderClass : undefined,
     ...positionStyleFromPreset,
     ...position,
-    ...props.style,
+    ...other.style,
   };
 
   return (

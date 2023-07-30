@@ -1,11 +1,13 @@
 import React, { ChangeEvent, InputHTMLAttributes, useEffect, useState } from "react";
 import { CheckmarkIcon, ColorVariants, cn, colors } from "@shiperist-catppuccin-ui/utilities";
 
-export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
   disabled?: boolean;
   variant?: ColorVariants;
   required?: boolean;
+  value?: string;
   checked?: boolean;
+  size?: "small" | "medium" | "large";
   onChange?: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 }
 
@@ -14,6 +16,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
     disabled,
     variant,
     required,
+    value,
+    size,
     checked: controlledCheckbox,
     onChange,
     className = "",
@@ -23,6 +27,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
 
   const isControlled = controlledCheckbox !== undefined;
   const [isChecked, setIsChecked] = useState<boolean | undefined>(isControlled ? controlledCheckbox : false);
+  const colorClass = colors[variant] || colors.base;
 
   useEffect(() => {
     if (isControlled) {
@@ -46,10 +51,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
     base: "white",
   }[variant];
 
-  const getCheckedClasses = () => {
-    const colorClass = colors[variant] || colors.base;
-    return `peer-checked:bg-${colorClass} peer-checked:border-${colorClass}`;
-  };
+  const sizeClass =
+    {
+      small: "w-3 h-3",
+      medium: "w-4 h-4",
+      large: "w-5 h-5",
+    }[size] || "w-4 h-4";
 
   return (
     <label
@@ -66,13 +73,17 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
         onClick={() => setIsChecked(!isChecked)}
         onChange={handleChange}
         type="checkbox"
-        value=""
+        value={value}
         disabled={disabled}
         className="sr-only peer"
         {...other}
       />
       <div
-        className={cn(`w-4 h-4 border bg-mantle transition-all peer-checked:border`, getCheckedClasses())}
+        className={cn(
+          `border bg-mantle transition-all peer-checked:border`,
+          `peer-checked:bg-${colorClass} peer-checked:border-${colorClass}`,
+          sizeClass
+        )}
         style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         {isChecked && <CheckmarkIcon className={cn(`transition-all delay-200 w-4 h-4 stroke-${strokeColor}`)} />}
       </div>

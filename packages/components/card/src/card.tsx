@@ -1,5 +1,6 @@
 import React from "react";
 import { cn, ColorVariants, Orientation, colors } from "@shiperist-catppuccin-ui/utilities";
+import { orientations, border } from "@shiperist-catppuccin-ui/utilities";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   appearance?: "filled" | "shadow" | "outline" | "embed";
@@ -13,14 +14,8 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const { appearance, orientation, disabled, border, gap, variant, className = "", children, ...other } = props;
   const colorClass = colors[variant] || colors.base;
-
-  const borderClass =
-    {
-      tiny: 1,
-      small: 2,
-      medium: 3,
-    }[border] || 1;
-
+  const orientationClass = orientations[orientation] || orientations.vertical;
+  const borderClass = border[border] || 1;
   const appearanceClass =
     {
       filled: `bg-mantle border border-transparent`,
@@ -28,11 +23,6 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       shadow: "bg-mantle shadow-lg border border-transparent",
       embed: `border-${colorClass} bg-mantle`,
     }[appearance] || "border border-overlay0";
-  const orientationClass =
-    {
-      horizontal: "flex-row",
-      vertical: "flex-col",
-    }[orientation] || "flex-col";
 
   const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
 

@@ -54,7 +54,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
     {
       small: "text-sm py-4 h-8",
       medium: "text-md py-6 h-12",
-      large: "text-lg py-8 h-16",
+      large: "text-lg py-8 h-14",
     }[size] || "text-md py-6 h-12";
   const iconSizeClass =
     {

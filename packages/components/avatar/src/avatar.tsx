@@ -28,7 +28,7 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
     children,
     ...other
   } = props;
-
+  const borderClass = border[border] || 0;
   const sizeClass =
     {
       tiny: 16,
@@ -37,14 +37,6 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
       large: 128,
       xlarge: 256,
     }[size] || 64;
-  const borderClass =
-    {
-      small: 1,
-      medium: 2,
-      large: 3,
-      xlarge: 4,
-    }[border] || 0;
-
   const textClass =
     {
       small: "text-xs",

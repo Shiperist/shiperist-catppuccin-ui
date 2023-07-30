@@ -7,7 +7,9 @@ export default {
   component: Checkbox,
   argTypes: {
     disabled: { control: "boolean" },
+    required: { control: "boolean" },
     variant: { control: { type: "select" } },
+    size: { control: { type: "select" } },
   },
 } as Meta;
 
@@ -43,6 +45,7 @@ Default.args = {
   variant: "success",
   required: false,
   checked: false,
+  size: "medium",
 };
 
 export const Disabled = Template.bind({});
