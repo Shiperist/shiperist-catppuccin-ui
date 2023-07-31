@@ -5,7 +5,6 @@ export const VisiblePasswordIcon = ({ className = "", ...props }) => (
     className={cn(className)}
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -22,7 +21,6 @@ export const HiddenPasswordIcon = ({ className = "", ...props }) => (
     className={cn(className)}
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -37,7 +35,6 @@ export const LoadingIcon = ({ className = "", ...props }) => (
     className={cn(`animate-spin ${className}`)}
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -50,11 +47,10 @@ export const ErrorCircleIcon = ({ className = "", ...props }) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={cn("stroke-red", className)}
+    className={cn(className)}
     {...props}>
     <circle cx="12" cy="12" r="10" />
     <line x1="12" x2="12" y1="8" y2="12" />
@@ -80,7 +76,6 @@ export const HeartIcon = ({ className = "", ...props }) => (
     className={cn(className)}
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -94,11 +89,67 @@ export const CheckmarkIcon = ({ className = "", ...props }) => (
     className={cn(className)}
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}>
     <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
+export const WarningIcon = ({ className = "", ...props }) => (
+  <svg
+    className={cn(className)}
+    viewBox="0 0 24 24"
+    fill="none"
+    strokeWidth="2"
+    strokeLinecap="round"
+    {...props}
+    strokeLinejoin="round">
+    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+    <path d="M12 9v4" />
+    <path d="M12 17h.01" />
+  </svg>
+);
+export const DangerIcon = ({ className = "", ...props }) => (
+  <svg
+    className={cn(className)}
+    viewBox="0 0 24 24"
+    fill="none"
+    strokeWidth="2"
+    strokeLinecap="round"
+    {...props}
+    strokeLinejoin="round">
+    <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2" />
+    <path d="m15 9-6 6" />
+    <path d="m9 9 6 6" />
+  </svg>
+);
+
+export const CheckCircleIcon = ({ className = "", ...props }) => (
+  <svg
+    className={cn(className)}
+    viewBox="0 0 24 24"
+    fill="none"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}>
+    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+
+export const XIcon = ({ className = "", ...props }) => (
+  <svg
+    className={cn(className)}
+    viewBox="0 0 24 24"
+    fill="none"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}>
+    <path d="M18 6 6 18" />
+    <path d="m6 6 12 12" />
   </svg>
 );

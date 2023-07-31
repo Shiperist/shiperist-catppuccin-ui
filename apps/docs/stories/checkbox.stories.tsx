@@ -46,10 +46,49 @@ Default.args = {
   required: false,
   checked: false,
   size: "medium",
+  value: "",
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  ...Default.args,
-  disabled: true,
+export const Variants = () => {
+  const variants: any[] = [
+    { id: 1, variant: "base" },
+    { id: 2, variant: "success" },
+    { id: 3, variant: "warning" },
+    { id: 4, variant: "info" },
+    { id: 5, variant: "danger" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Checkbox key={variant.id} variant={variant.variant} checked>
+          <Text className="text-sm ml-2">Checkbox</Text>
+        </Checkbox>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
+export const Sizes = () => {
+  const variants: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Checkbox key={variant.id} size={variant.size} checked>
+          <Text className="text-sm ml-2">Checkbox</Text>
+        </Checkbox>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
+export const Disabled = () => {
+  return (
+    <Checkbox disabled>
+      <Text className="text-sm ml-2">Checkbox</Text>
+    </Checkbox>
+  );
 };

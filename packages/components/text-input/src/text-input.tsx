@@ -68,7 +68,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref
   if (isLoading) {
     trailingElement = <LoadingIcon className={iconSizeClass} />;
   } else if (error && errorIcon) {
-    trailingElement = <ErrorCircleIcon className={iconSizeClass} />;
+    trailingElement = <ErrorCircleIcon className={cn(iconSizeClass, "stroke-red")} />;
   } else if (type === "password") {
     trailingElement = <VisiblePasswordIcon className={iconSizeClass} />;
   }

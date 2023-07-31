@@ -32,7 +32,8 @@
     "@shiperist-catppuccin-ui/indicator": "workspace:*",
     "@shiperist-catppuccin-ui/icon": "workspace:*",
     "@shiperist-catppuccin-ui/checkbox": "workspace:*",
-    "@shiperist-catppuccin-ui/radio": "workspace:*"
+    "@shiperist-catppuccin-ui/radio": "workspace:*",
+    "@shiperist-catppuccin-ui/alert": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",

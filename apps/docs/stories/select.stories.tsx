@@ -68,8 +68,8 @@ export const ControlledSelection = () => {
   );
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
+export const DisabledState = Template.bind({});
+DisabledState.args = {
   disabled: true,
   placeholder: "Select items...",
 };

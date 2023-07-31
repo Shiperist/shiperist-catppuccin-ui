@@ -8,6 +8,7 @@ export default {
   argTypes: {
     size: { control: { type: "select" } },
     icon: { control: { type: "object" } },
+    color: { control: { type: "select" } },
   },
 } as Meta;
 
@@ -18,17 +19,28 @@ const Template: StoryFn = (args) => {
     { id: "3", size: "large" },
     { id: "4", size: "xlarge" },
   ];
-  return (
-    <HorizontalLayout style={{ gap: 16 }}>
-      {icons.map((icon) => (
-        <Icon key={icon.id} icon={<HeartIcon />} size={icon.size}></Icon>
-      ))}
-    </HorizontalLayout>
-  );
+  return <Icon {...args} icon={<HeartIcon />} size="medium"></Icon>;
 };
 
 export const Default = Template.bind({});
 Default.args = {
   size: "",
   icon: "",
+  color: "overlay2",
+};
+
+export const Sizes = () => {
+  const variants: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+    { id: 4, size: "xlarge" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Icon icon={<HeartIcon />} key={variant.id} color="overlay2" size={variant.size}></Icon>
+      ))}
+    </HorizontalLayout>
+  );
 };

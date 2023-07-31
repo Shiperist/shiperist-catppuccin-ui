@@ -43,14 +43,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
     }
   };
 
-  const strokeColor = {
-    success: "surface1",
-    danger: "white",
-    warning: "surface1",
-    info: "white",
-    base: "white",
-  }[variant];
-
   const sizeClass =
     {
       small: "w-3 h-3",
@@ -85,7 +77,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
           sizeClass
         )}
         style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        {isChecked && <CheckmarkIcon className={cn(`transition-all delay-200 w-4 h-4 stroke-${strokeColor}`)} />}
+        {isChecked && <CheckmarkIcon className={cn(`transition-all delay-200 w-4 h-4 stroke-surface1`)} />}
       </div>
       {children}
     </label>

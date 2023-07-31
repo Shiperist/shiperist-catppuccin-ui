@@ -11,9 +11,10 @@ export const orientations = {
   vertical: "flex flex-col",
 };
 
-export const border = {
+export const borderSize = {
+  none: 0,
   tiny: 1,
   small: 2,
   medium: 3,
-  xlarge: 4,
+  large: 4,
 };

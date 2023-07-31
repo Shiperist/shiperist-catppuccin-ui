@@ -3,7 +3,7 @@ import { ColorVariants, cn, colors } from "@shiperist-catppuccin-ui/utilities";
 
 export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
   disabled?: boolean;
-  appearance?: `filled` | `alternative`;
+  appearance?: "filled" | "alternative";
   size?: "small" | "medium" | "large";
   checked?: boolean;
   variant?: ColorVariants;
@@ -85,7 +85,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
             "h-" + sizeClass,
             widthClass,
             appearance === "alternative"
-              ? `peer-checked:border-${colorClass} peer-checked:after:bg-${colorClass} after:items-center after:bg-surface1`
+              ? `peer-checked:border-${colorClass} peer-checked:after:bg-${colorClass} after:items-center after:bg-overlay0`
               : `peer-checked:bg-${colorClass} after:bg-white`
           )}></div>
         {children}

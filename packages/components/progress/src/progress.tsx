@@ -1,30 +1,30 @@
-import { ColorSet, Size, cn } from "@shiperist-catppuccin-ui/utilities";
+import { ColorVariants, Size, cn } from "@shiperist-catppuccin-ui/utilities";
 import React, { HTMLAttributes } from "react";
-import { PositionHorizontal, Positions } from "@shiperist-catppuccin-ui/utilities";
+import { PositionHorizontal, Positions, colors } from "@shiperist-catppuccin-ui/utilities";
 
 // Todo radial progress
 
-export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   size?: Size;
   progress?: number;
-  color?: ColorSet;
+  variant?: ColorVariants;
   radius?: "full" | "none";
   showPercent?: boolean;
   percentPosition?: "inside" | "outside";
   percentPositionOutside?: PositionHorizontal;
   percentPositionInside?: Positions;
-  /* variant?: "linear" | "radial"; */
+  /* appearance?: "linear" | "radial"; */
 }
 
 const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
   const {
     size,
-    color,
+    variant,
     showPercent,
     percentPosition,
     percentPositionInside,
     percentPositionOutside,
-    /* variant = "", */
+    /* appearance = "", */
     className = "",
     radius,
     progress = 0,
@@ -32,7 +32,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
   } = props;
 
   const clampedProgress = Math.min(100, Math.max(0, progress)).toFixed(2);
-
+  const colorClass = colors[variant] || colors.success;
   const radiusClass = `rounded-${radius}`;
   const textSizeClass =
     {
@@ -83,7 +83,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
         className={cn("transition-all w-full duration-150 items-center bg-overlay0", className, radiusClass)}
         style={{ height: heightClass + "px" }}>
         <div
-          className={cn(`transition-all h-full duration-150 bg-${color}`, radiusClass)}
+          className={cn(`transition-all h-full duration-150 bg-${colorClass}`, radiusClass)}
           style={{ ...progressStyles }}>
           {showPercent && size === "xlarge" && percentPosition === "inside" && (
             <div className="px-2" style={labelStyles}>

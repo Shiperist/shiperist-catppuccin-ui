@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
+import { Button, HorizontalLayout, Icon, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
@@ -49,8 +49,26 @@ export const WithIcons = () => {
     </HorizontalLayout>
   );
 };
+export const Variants = () => {
+  const variants: any[] = [
+    { id: 1, variant: "base" },
+    { id: 2, variant: "success" },
+    { id: 3, variant: "warning" },
+    { id: 4, variant: "info" },
+    { id: 5, variant: "danger" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Button key={variant.id} appearance="outline" variant={variant.variant}>
+          Click me
+        </Button>
+      ))}
+    </HorizontalLayout>
+  );
+};
 
-export const Appearance = () => {
+export const Appearances = () => {
   const appearances: any[] = [
     { id: 1, name: "filled" },
     { id: 2, name: "ghost" },
@@ -70,14 +88,32 @@ export const Appearance = () => {
   );
 };
 
+export const Sizes = () => {
+  const variants: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+    { id: 4, size: "xlarge" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Button key={variant.id} appearance="outline" variant="base" size={variant.size} style={{ gap: 16 }}>
+          Click me
+        </Button>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
 export const LoadingState = Template.bind({});
 LoadingState.args = {
   ...Default.args,
   isLoading: true,
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
+export const DisabledState = Template.bind({});
+DisabledState.args = {
   ...Default.args,
   disabled: true,
 };

@@ -62,8 +62,8 @@ Error.parameters = {
   },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
+export const DisabledState = Template.bind({});
+DisabledState.args = {
   ...Default.args,
   disabled: true,
 };
@@ -95,7 +95,7 @@ export const LabelAppearence = () => {
   );
 };
 
-export const Appearence = () => {
+export const Appearences = () => {
   return (
     <VerticalLayout style={{ gap: 12, width: "32rem" }}>
       <Text bold>Default</Text>
@@ -104,6 +104,21 @@ export const Appearence = () => {
       <TextInput {...Default.args} appearance="underline"></TextInput>
       <Text bold>Filled</Text>
       <TextInput {...Default.args} appearance="filled"></TextInput>
+    </VerticalLayout>
+  );
+};
+
+export const Sizes = () => {
+  const variants: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+  ];
+  return (
+    <VerticalLayout style={{ gap: 10, width: "32rem" }}>
+      {variants.map((variant) => (
+        <TextInput key={variant.id} size={variant.size}></TextInput>
+      ))}
     </VerticalLayout>
   );
 };

@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Radio, Text, RadioGroup } from "@shiperist-catppuccin-ui/react";
-import { useState, ChangeEvent } from "react";
+import { Radio, Text, RadioGroup, Caption2, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
+import { useState } from "react";
 
 export default {
   title: "Forms/Radio",
@@ -14,15 +14,34 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => {
+  type RadioOption = {
+    value: string;
+    label: string;
+  };
+
+  const radioOptions: RadioOption[] = [
+    { value: "radio1", label: "Radio 1" },
+    { value: "radio2", label: "Radio 2" },
+  ];
+
+  const [selectedValue, setSelectedValue] = useState<string>("");
+
   return (
-    <RadioGroup name="radios" style={{ gap: 8 }} disabled={args.disabled}>
-      <Radio {...args}>
-        <Text className="text-sm ml-2">Radio 1</Text>
-      </Radio>
-      <Radio {...args}>
-        <Text className="text-sm ml-2">Radio 2</Text>
-      </Radio>
-    </RadioGroup>
+    <>
+      <RadioGroup name="radios" className="w-32" style={{ gap: 8 }} disabled={args.disabled}>
+        {radioOptions.map((option) => (
+          <Radio
+            {...args}
+            key={option.value}
+            value={option.value}
+            checked={selectedValue === option.value}
+            onChange={() => setSelectedValue(option.value)}>
+            <Text className="text-sm ml-2">{option.label}</Text>
+          </Radio>
+        ))}
+      </RadioGroup>
+      <Caption2 className="mt-2">Selected value: {selectedValue ? selectedValue : "none"}</Caption2>
+    </>
   );
 };
 
@@ -33,9 +52,31 @@ Default.args = {
   required: false,
   checked: false,
   size: "medium",
+  name: "",
+  value: "",
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
+export const Sizes = () => {
+  const variants: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Radio key={variant.id} size={variant.size}>
+          <Text className="text-sm ml-2">Radio</Text>
+        </Radio>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
+export const DisabledState = () => {
+  return (
+    <Radio disabled>
+      <Text className="text-sm ml-2">Radio</Text>
+    </Radio>
+  );
 };

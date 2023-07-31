@@ -1,17 +1,20 @@
 import React, { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useState } from "react";
 import { ColorVariants, cn, colors } from "@shiperist-catppuccin-ui/utilities";
 
+//WIP custom styling
+
 export type ValueType = string | number;
-export interface RadioProps<T = ValueType> extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
+export interface RadioProps<T extends string | number = string>
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
   disabled?: boolean;
   variant?: ColorVariants;
   required?: boolean;
-  value?: string;
+  value?: T;
   name?: string;
   size?: "small" | "medium" | "large";
-  onChange?: (value: T | undefined, checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: T, checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-// TODO: styling somehow when it is checked/selected/active
+
 const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   const {
     disabled,
@@ -27,28 +30,16 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
     ...other
   } = props;
 
-  //const colorClass = colors[variant] || colors.base;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = event.target;
+    onChange && onChange(value as any, checked, event);
+  };
   const sizeClass =
     {
       small: "w-3 h-3",
       medium: "w-4 h-4",
       large: "w-5 h-5",
     }[size] || "w-4 h-4";
-
-  /*   const [checked, setChecked] = useState(typeof groupValue !== "undefined" ? groupValue === value : controlledRadio);
-
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (disabled) {
-        return;
-      }
-
-      setChecked(true);
-      onGroupChange?.(value, true, event);
-      onChange?.(value, true, event);
-    },
-    [disabled, onChange, onGroupChange, setChecked, value]
-  ); */
 
   return (
     <label
@@ -62,8 +53,8 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
         name={name}
         ref={ref}
         required={required}
-        /*         checked={checked}
-        onChange={handleChange} */
+        /*         checked={checked}*/
+        onChange={handleChange}
         type="radio"
         value={value}
         disabled={disabled}

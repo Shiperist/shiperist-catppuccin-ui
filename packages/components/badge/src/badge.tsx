@@ -21,7 +21,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     }[appearance] || `bg-${colorClass} text-mantle border border-transparent`;
 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(colorClass) : undefined;
-  const iconColor = appearance === "filled" ? "stroke-overlay1" : `stroke-${colorClass}`;
+  const iconColor = appearance === "filled" ? "stroke-base" : `stroke-${colorClass}`;
 
   return (
     <div

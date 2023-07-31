@@ -32,11 +32,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
 
   const sizeClass =
     {
-      small: "text-sm px-2 py-1",
-      medium: "text-md px-4 py-2",
-      large: "text-lg px-6 py-3",
-      xlarge: "text-xl px-8 py-4",
-    }[size] || "text-md px-4 py-2";
+      small: "text-sm px-2 h-8",
+      medium: "text-md px-4 h-10",
+      large: "text-lg px-5 h-12",
+      xlarge: "text-xl px-7 h-16",
+    }[size] || "text-md px-4 h-10";
   const appearanceClass =
     {
       filled: `bg-${colorClass} text-mantle hover:opacity-80 border border-transparent`,
@@ -44,7 +44,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       ghost: `text-${colorClass} hover:bg-${colorClass} hover:text-mantle border border-transparent`,
       tint: `text-${colorClass} hover:opacity-80 border border-transparent`,
       shadow: `text-${colorClass} bg-mantle shadow-lg hover:bg-crust border border-transparent`,
-    }[appearance] || "border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}";
+    }[appearance] || `border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`;
   const iconSizeClass =
     {
       small: "w-4 h-4",
@@ -56,7 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
   const backgroundColor = appearance === "tint" ? getRGBAFromHex(colorClass) : undefined;
   let leadingElement: React.ReactNode = originalLeadingElement;
   leadingElement = isLoading ? <LoadingIcon className={iconSizeClass} /> : leadingElement;
-  const iconColor = appearance === "filled" ? "stroke-overlay1" : `stroke-${colorClass}`;
+  const iconColor = appearance === "filled" ? "stroke-base" : `stroke-${colorClass}`;
 
   return (
     <button

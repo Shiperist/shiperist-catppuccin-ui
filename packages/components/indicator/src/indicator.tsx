@@ -1,37 +1,16 @@
 import React, { CSSProperties } from "react";
-import { PositionPresets, border, cn } from "@shiperist-catppuccin-ui/utilities";
+import { CSSPosition, PositionPresets, Status, cn } from "@shiperist-catppuccin-ui/utilities";
 
 export interface IndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: "small" | "tiny" | "medium";
-  borderSize?: "small" | "tiny" | "medium";
   position?: CSSPosition;
-  status?: "invisible" | "active" | "idle" | "inactive" | "info";
-  bordered?: boolean;
+  status?: Status;
   isLegend?: boolean;
   positionPreset?: PositionPresets;
 }
 
-export type CSSPosition = {
-  top?: string | number;
-  right?: string | number;
-  bottom?: string | number;
-  left?: string | number;
-};
-
 const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) => {
-  const {
-    position,
-    status,
-    borderSize,
-    isLegend,
-    bordered,
-    positionPreset,
-    size,
-    className,
-    children = "",
-    ...other
-  } = props;
-  const borderClass = border[borderSize] || 1;
+  const { position, status, isLegend, positionPreset, size, className, children = "", ...other } = props;
   const fontClass =
     {
       tiny: 8,
@@ -56,7 +35,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
   const textColor =
     {
       active: "text-overlay0",
-      inactive: "text-white",
+      dnd: "text-white",
       idle: "text-overlay0",
       info: "text-white",
       invisible: "text-white",
@@ -90,7 +69,6 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
     width: children && !isLegend ? "fit-content" : sizeClass,
     height: children && !isLegend ? "fit-content" : sizeClass,
     fontSize: children && !isLegend ? fontClass : undefined,
-    borderWidth: bordered ? borderClass : undefined,
     ...positionStyleFromPreset,
     ...position,
     ...other.style,
@@ -106,7 +84,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
             `absolute inline-flex rounded-full transition-all duration-150`,
             colorClass,
             textClass,
-            { "px-2": children, "border-white": bordered },
+            { "px-2": children },
             className
           )}
           style={indicatorStyle}
@@ -119,12 +97,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) 
       {isLegend && (
         <div ref={ref} className={cn("flex flex-row items-center")} style={{ gap: 4 }}>
           <div
-            className={cn(
-              `rounded-full transition-all duration-150 ease-in-out`,
-              colorClass,
-              { "border-white": bordered },
-              className
-            )}
+            className={cn(`rounded-full transition-all duration-150 ease-in-out`, colorClass, className)}
             {...other}
             style={indicatorStyle}></div>
           {children}

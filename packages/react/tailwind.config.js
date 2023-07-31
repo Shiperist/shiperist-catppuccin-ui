@@ -28,9 +28,10 @@ module.exports = {
       pattern: /^(text)-(xs|sm|md|lg|xl|2xl|3xl|4xl)$/,
       variants: variants,
     },
-    // Padding/margin/position classes
+    // Padding/margin/position/border classes
     {
-      pattern: /^(p|py|px|pt|pr|pb|pl|m|my|mx|mt|mr|mb|ml|right|top|left|bottom)-[0-9]+$/,
+      pattern:
+        /^(p|py|px|pt|pr|pb|pl|m|my|mx|mt|mr|mb|ml|right|top|left|bottom|border|border-l|border-r|border-t|border-b)-[0-9]+$/,
       variants: variants,
     },
     // Width/height classes

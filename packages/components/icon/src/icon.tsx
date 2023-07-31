@@ -1,13 +1,14 @@
 import React, { ReactNode } from "react";
-import { cn, Size } from "@shiperist-catppuccin-ui/utilities";
+import { cn, ColorSet, Size } from "@shiperist-catppuccin-ui/utilities";
 
 export interface IconProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: Size;
+  color?: ColorSet;
   icon?: ReactNode;
 }
 
 const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
-  const { size, icon, className, children, ...other } = props;
+  const { size, icon, color, className, children, ...other } = props;
   const sizeClass =
     {
       small: "w-4 h-4",
@@ -17,7 +18,7 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
     }[size] || "w-5 h-5";
 
   return (
-    <div className={cn("", sizeClass, className)} ref={ref} {...other}>
+    <div className={cn(sizeClass, className, { [`stroke-${color}`]: color })} ref={ref} {...other}>
       {icon}
     </div>
   );

@@ -40,17 +40,36 @@ export const WithIcons = () => {
   );
 };
 
-export const Appearance = () => {
-  const appearances: any[] = [
-    { id: 1, name: "filled" },
-    { id: 2, name: "outline" },
-    { id: 3, name: "ghost" },
-    { id: 4, name: "tint" },
+export const Variants = () => {
+  const variants: any[] = [
+    { id: 1, variant: "base" },
+    { id: 2, variant: "success" },
+    { id: 3, variant: "warning" },
+    { id: 4, variant: "info" },
+    { id: 5, variant: "danger" },
   ];
   return (
-    <HorizontalLayout style={{ gap: 4 }}>
+    <HorizontalLayout style={{ gap: 8 }}>
+      {variants.map((variant) => (
+        <Badge key={variant.id} appearance="outline" variant={variant.variant}>
+          Badge
+        </Badge>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
+export const Appearances = () => {
+  const appearances: any[] = [
+    { id: 1, appearance: "filled" },
+    { id: 2, appearance: "outline" },
+    { id: 3, appearance: "ghost" },
+    { id: 4, appearance: "tint" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
       {appearances.map((appearance) => (
-        <Badge {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.name}>
+        <Badge {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.appearance}>
           Badge
         </Badge>
       ))}

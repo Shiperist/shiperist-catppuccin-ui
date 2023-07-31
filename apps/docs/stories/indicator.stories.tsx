@@ -6,10 +6,8 @@ export default {
   title: "Components/Indicator",
   component: Indicator,
   argTypes: {
-    bordered: { control: "boolean" },
     isLegend: { control: "boolean" },
     position: { control: "object" },
-    borderSize: { control: { type: "select" } },
     size: { control: { type: "select" } },
     status: { control: { type: "select" } },
     positionPreset: { control: { type: "select" } },
@@ -27,7 +25,7 @@ const Template: StoryFn = (args) => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {people.map((person) => (
-        <Avatar avatar={avatar} radius="large" size="medium" key={person.id}>
+        <Avatar avatar={avatar} radius="large" size="large" key={person.id}>
           <Indicator {...args} status={person.status}>
             {person.pings !== "" && <IndicatorLabel>{person.pings}</IndicatorLabel>}
           </Indicator>
@@ -42,8 +40,6 @@ Default.args = {
   children: "",
   size: "medium",
   status: "",
-  bordered: false,
-  borderSize: "small",
   isLegend: false,
   positionPreset: "top-right",
   position: {},

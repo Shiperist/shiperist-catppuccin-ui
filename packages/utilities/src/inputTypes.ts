@@ -5,7 +5,7 @@ export type PositionVertical = "top" | "bottom";
 export type PositionHorizontal = "left" | "right";
 export type Positions = "left" | "right" | "center";
 export type Radius = "full" | "large" | "medium" | "small" | "none";
-export type Border = "xlarge" | "large" | "medium" | "small" | "none";
+export type Status = "invisible" | "active" | "idle" | "dnd" | "info";
 export type PositionPresets =
   | "top-left"
   | "top-right"
@@ -41,3 +41,9 @@ export type ColorSet =
   | "surface0"
   | "surface1"
   | "surface2";
+export type CSSPosition = {
+  top?: string | number;
+  right?: string | number;
+  bottom?: string | number;
+  left?: string | number;
+};
