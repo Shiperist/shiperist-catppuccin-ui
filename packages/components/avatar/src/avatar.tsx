@@ -1,13 +1,12 @@
 import React, { ReactNode, cloneElement, isValidElement } from "react";
-import { ColorSet, Size, cn, LoadingIcon, Radius, Border } from "@shiperist-catppuccin-ui/utilities";
+import { ColorSet, Size, cn, LoadingIcon } from "@shiperist-catppuccin-ui/utilities";
 import { AvatarLabel, AvatarLabelProps } from ".";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
-  size?: Size | "tiny";
+  size?: Size;
   avatar?: string;
   alt?: string;
-  radius?: Radius;
-  border?: Border;
+  radius?: "none" | "large" | "full";
   defaultAvatar?: string;
   backgroundColor?: ColorSet;
   isLoading?: boolean;
@@ -22,20 +21,17 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
     isLoading,
     backgroundColor,
     size,
-    border,
     alt,
     className = "",
     children,
     ...other
   } = props;
-  const borderClass = border[border] || 0;
   const sizeClass =
     {
-      tiny: 16,
       small: 32,
-      medium: 64,
-      large: 128,
-      xlarge: 256,
+      medium: 48,
+      large: 64,
+      xlarge: 96,
     }[size] || 64;
   const textClass =
     {
@@ -47,17 +43,23 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
   const radiusClass =
     {
       full: "rounded-full",
-      large: "rounded-3xl",
-      medium: "rounded-xl",
-      small: "rounded-lg",
-    }[radius] || "rounded-3xl";
+      large: "rounded-2xl",
+      none: "rounded-none",
+    }[radius] || "rounded-2xl";
 
   const containerStyle = {
     height: `${sizeClass}px`,
     width: `${sizeClass}px`,
-    borderWidth: border === "none" ? 0 : (borderClass ?? 0) + "px",
     ...other.style,
   };
+  const iconSizeClass =
+    {
+      tiny: "w-4 h-4",
+      small: "w-5 h-5",
+      medium: "w-6 h-6",
+      large: "w-8 h-8",
+      xlarge: "h-10 w-10",
+    }[size] || "w-6 h-6";
 
   const avatarContainerClassName = cn(
     "flex items-center justify-center relative inline-flex",
@@ -88,7 +90,7 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
 
   return (
     <div ref={ref} className={cn(avatarContainerClassName, radiusClass)} style={containerStyle}>
-      {isLoading && <LoadingIcon className="m-auto" />}
+      {isLoading && <LoadingIcon className={cn("m-auto stroke-overlay2", iconSizeClass)} />}
       {!isLoading && (
         <>
           {avatar || defaultAvatar ? (
