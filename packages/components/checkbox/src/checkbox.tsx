@@ -54,7 +54,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
     <label
       htmlFor={other.id}
       className={cn(
-        "relative inline-flex items-center",
+        "relative inline-flex items-center group",
         { "cursor-not-allowed opacity-50": disabled, "cursor-pointer": !disabled },
         className
       )}>
@@ -72,8 +72,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) 
       />
       <div
         className={cn(
-          `border bg-mantle transition-all peer-checked:border`,
+          `border border-overlay0 bg-mantle transition-all peer-checked:border`,
           `peer-checked:bg-${colorClass} peer-checked:border-${colorClass}`,
+          { "group-hover:border-overlay2": !disabled },
           sizeClass
         )}
         style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>

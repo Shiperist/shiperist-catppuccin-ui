@@ -59,7 +59,7 @@ Default.args = {
 export const LoadingState = () => {
   return (
     <Card orientation="horizontal" appearance="outline" className="p-4" gap="1rem">
-      <Avatar isLoading backgroundColor="surface0" alt="Pretty avatar">
+      <Avatar isLoading backgroundColor="surface0" alt="Pretty avatar" size="large">
         <AvatarLabel name="Joseph Deor"></AvatarLabel>
       </Avatar>
       <VerticalLayout>
@@ -74,7 +74,7 @@ export const LoadingState = () => {
 export const Initials = () => {
   return (
     <Card orientation="horizontal" appearance="outline" className="p-4" gap="1rem">
-      <Avatar backgroundColor="green" alt="Pretty avatar">
+      <Avatar backgroundColor="green" alt="Pretty avatar" size="large">
         <AvatarLabel name="Joseph Deor"></AvatarLabel>
       </Avatar>
       <VerticalLayout>

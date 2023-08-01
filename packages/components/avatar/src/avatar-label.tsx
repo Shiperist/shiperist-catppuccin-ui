@@ -17,7 +17,7 @@ const AvatarLabel = React.forwardRef<HTMLSpanElement, AvatarLabelProps>((props, 
   };
 
   return (
-    <span ref={ref} className={cn("text-white font-bold", className)} {...other}>
+    <span ref={ref} className={cn("text-white", className)} {...other}>
       {getInitials(name)}
     </span>
   );

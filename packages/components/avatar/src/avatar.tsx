@@ -28,18 +28,18 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
   } = props;
   const sizeClass =
     {
-      small: 32,
-      medium: 48,
-      large: 64,
-      xlarge: 96,
-    }[size] || 64;
+      small: "w-8 h-8",
+      medium: "w-12 h-12",
+      large: "w-16 h-16",
+      xlarge: "w-24 h-24",
+    }[size] || "w-16 h-16";
   const textClass =
     {
-      small: "text-xs",
-      large: "text-xl",
+      small: "text-sm",
+      large: "text-3xl",
       medium: "text-xl",
       xlarge: "text-4xl",
-    }[size] || "";
+    }[size] || "text-xl";
   const radiusClass =
     {
       full: "rounded-full",
@@ -47,14 +47,8 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
       none: "rounded-none",
     }[radius] || "rounded-2xl";
 
-  const containerStyle = {
-    height: `${sizeClass}px`,
-    width: `${sizeClass}px`,
-    ...other.style,
-  };
   const iconSizeClass =
     {
-      tiny: "w-4 h-4",
       small: "w-5 h-5",
       medium: "w-6 h-6",
       large: "w-8 h-8",
@@ -89,7 +83,7 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
   };
 
   return (
-    <div ref={ref} className={cn(avatarContainerClassName, radiusClass)} style={containerStyle}>
+    <div ref={ref} className={cn(avatarContainerClassName, radiusClass, sizeClass)} style={{ ...other.style }}>
       {isLoading && <LoadingIcon className={cn("m-auto stroke-overlay2", iconSizeClass)} />}
       {!isLoading && (
         <>
@@ -98,10 +92,9 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
               loading="lazy"
               src={avatar}
               alt={alt}
-              className={cn(`object-cover`, radiusClass)}
+              className={cn(`object-cover`, radiusClass, sizeClass)}
               style={{
-                ...containerStyle,
-                opacity: isLoading ? 0 : 1,
+                ...other.style,
               }}
               {...other}
             />

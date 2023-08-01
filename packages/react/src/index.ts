@@ -14,3 +14,4 @@ export * from "@shiperist-catppuccin-ui/icon";
 export * from "@shiperist-catppuccin-ui/checkbox";
 export * from "@shiperist-catppuccin-ui/radio";
 export * from "@shiperist-catppuccin-ui/alert";
+export * from "@shiperist-catppuccin-ui/range";

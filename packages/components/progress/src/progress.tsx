@@ -44,20 +44,15 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
 
   const heightClass =
     {
-      small: 6,
-      medium: 10,
-      large: 14,
-      xlarge: 18,
-    }[size] || 10;
+      small: "h-1.5",
+      medium: "h-2.5",
+      large: "h-3.5",
+      xlarge: "h-4",
+    }[size] || "h-2.5";
 
   const progressStyles = {
     width: `${clampedProgress}%`,
     ...other.style,
-  };
-
-  const progressContainerStyle = {
-    height: heightClass,
-    gap: showPercent ? 8 : undefined,
   };
 
   const labelStyles =
@@ -71,8 +66,8 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
   return (
     <div
       ref={ref}
-      className={cn("flex flex-row items-center transition-all duration-150 w-full")}
-      style={progressContainerStyle}
+      className={cn("flex flex-row items-center transition-all duration-150 w-full", heightClass)}
+      style={{ gap: showPercent ? 8 : undefined }}
       {...other}>
       {showPercent && percentPosition === "outside" && percentPositionOutside === "left" && (
         <div>
@@ -80,8 +75,12 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) =>
         </div>
       )}
       <div
-        className={cn("transition-all w-full duration-150 items-center bg-overlay0", className, radiusClass)}
-        style={{ height: heightClass + "px" }}>
+        className={cn(
+          "transition-all w-full duration-150 items-center bg-overlay0",
+          className,
+          radiusClass,
+          heightClass
+        )}>
         <div
           className={cn(`transition-all h-full duration-150 bg-${colorClass}`, radiusClass)}
           style={{ ...progressStyles }}>

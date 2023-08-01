@@ -62,7 +62,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     <button
       ref={ref}
       className={cn(
-        "transition-all ease-in-out duration-150 flex items-center justify-center rounded-xl",
+        "transition-all ease-in-out duration-150 flex items-center justify-center rounded-xl group",
         {
           ["opacity-50 cursor-not-allowed border border-surface2"]: disabled,
           [`${appearanceClass} active:translate-y-0.5`]: !disabled,
@@ -78,9 +78,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
         backgroundColor,
         ...other.style,
       }}>
-      {leadingElement && <div className={cn(iconColor)}>{leadingElement}</div>}
+      {leadingElement && <div className={cn(iconColor, "transition group-hover:stroke-base")}>{leadingElement}</div>}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
-      {trailingElement && <div className={cn(iconColor)}>{trailingElement}</div>}
+      {trailingElement && <div className={cn(iconColor, "transition group-hover:stroke-base")}>{trailingElement}</div>}
     </button>
   );
 });

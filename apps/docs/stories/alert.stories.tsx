@@ -122,7 +122,7 @@ export const AdvancedAlert = () => {
             <Button
               size="small"
               variant="danger"
-              appearance="tint"
+              appearance="ghost"
               leadingElement={<Icon icon={<XIcon />} size={Default.args?.size || "medium"} />}></Button>
           </div>
         }
