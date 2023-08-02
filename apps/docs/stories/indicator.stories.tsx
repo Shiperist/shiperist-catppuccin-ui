@@ -1,5 +1,11 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Avatar, Indicator, HorizontalLayout, Card, IndicatorLabel } from "@shiperist-catppuccin-ui/react";
+import {
+  Avatar,
+  Indicator,
+  HorizontalLayout,
+  Card,
+  IndicatorLabel,
+} from "@shiperist-catppuccin-ui/react";
 import avatar from "../assets/avatar.png";
 
 export default {
@@ -27,7 +33,9 @@ const Template: StoryFn = (args) => {
       {people.map((person) => (
         <Avatar avatar={avatar} radius="large" size="large" key={person.id}>
           <Indicator {...args} status={person.status}>
-            {person.pings !== "" && <IndicatorLabel>{person.pings}</IndicatorLabel>}
+            {person.pings !== "" && (
+              <IndicatorLabel>{person.pings}</IndicatorLabel>
+            )}
           </Indicator>
         </Avatar>
       ))}
@@ -56,7 +64,12 @@ export const AsLegend = () => {
   return (
     <HorizontalLayout className="" style={{ gap: 16 }}>
       {legends.map((legend) => (
-        <Indicator key={legend.id} size="medium" status={legend.status} isLegend={true}>
+        <Indicator
+          key={legend.id}
+          size="medium"
+          status={legend.status}
+          isLegend={true}
+        >
           <IndicatorLabel>{legend.text}</IndicatorLabel>
         </Indicator>
       ))}
@@ -77,9 +90,18 @@ export const PositionPresets = () => {
     { id: 9, name: "Bottom right", preset: "bottom-right" },
   ];
   return (
-    <Card appearance="filled" className="inline-flex relative mx-auto" style={{ width: "16rem", height: "16rem" }}>
+    <Card
+      appearance="filled"
+      className="relative mx-auto inline-flex"
+      style={{ width: "16rem", height: "16rem" }}
+    >
       {positions.map((position) => (
-        <Indicator key={position.id} status="info" size="small" positionPreset={position.preset}>
+        <Indicator
+          key={position.id}
+          status="info"
+          size="small"
+          positionPreset={position.preset}
+        >
           <IndicatorLabel>{position.name}</IndicatorLabel>
         </Indicator>
       ))}

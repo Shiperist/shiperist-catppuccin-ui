@@ -1,7 +1,13 @@
-import React, { ChangeEvent, InputHTMLAttributes, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+} from "react";
 import { ColorVariants, cn, colors } from "@shiperist-catppuccin-ui/utilities";
 
-export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
+export interface SwitchProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "size"> {
   disabled?: boolean;
   appearance?: "filled" | "alternative";
   size?: "small" | "medium" | "large";
@@ -29,7 +35,9 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   ) => {
     const colorClass = colors[variant] || colors.base;
     const isControlled = controlledSwitch !== undefined;
-    const [isChecked, setIsChecked] = useState<boolean | undefined>(isControlled ? controlledSwitch : false);
+    const [isChecked, setIsChecked] = useState<boolean | undefined>(
+      isControlled ? controlledSwitch : false
+    );
     const sizeClass =
       {
         small: 4,
@@ -63,9 +71,13 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
         htmlFor={other.id}
         className={cn(
           `relative inline-flex items-center`,
-          { "cursor-not-allowed opacity-50": disabled, "cursor-pointer": !disabled },
+          {
+            "cursor-not-allowed opacity-50": disabled,
+            "cursor-pointer": !disabled,
+          },
           className
-        )}>
+        )}
+      >
         <input
           ref={ref}
           type="checkbox"
@@ -74,20 +86,21 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           onChange={handleChange}
           checked={isChecked}
           disabled={disabled}
-          className="sr-only peer"
+          className="peer sr-only"
           {...other}
         />
         <div
           className={cn(
-            `bg-mantle peer-checked:border rounded-full peer-checked:after:translate-x-full after:content-[''] after:left-[1.5px] after:absolute after:top-1/2 after:-translate-y-1/2 after:rounded-full after:h-${
+            `bg-mantle rounded-full after:absolute after:left-[1.5px] after:top-1/2 after:-translate-y-1/2 after:rounded-full after:content-[''] peer-checked:border peer-checked:after:translate-x-full after:h-${
               sizeClass - 1
             } after:w-${sizeClass - 1} after:transition-all after:duration-300`,
             "h-" + sizeClass,
             widthClass,
             appearance === "alternative"
-              ? `peer-checked:border-${colorClass} peer-checked:after:bg-${colorClass} after:items-center after:bg-overlay0`
+              ? `peer-checked:border-${colorClass} peer-checked:after:bg-${colorClass} after:bg-overlay0 after:items-center`
               : `peer-checked:bg-${colorClass} after:bg-white`
-          )}></div>
+          )}
+        ></div>
         {children}
       </label>
     );

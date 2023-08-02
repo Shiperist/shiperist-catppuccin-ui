@@ -42,3 +42,6 @@ docs-build
 
 # other
 .vscode/
+
+# yarn
+yarn.lock

@@ -19,7 +19,9 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Range {...args} style={{ gap: 12, width: "32rem" }}></Range>;
+const Template: StoryFn = (args) => (
+  <Range {...args} style={{ gap: 12, width: "32rem" }}></Range>
+);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -47,7 +49,12 @@ export const Variants = () => {
   return (
     <VerticalLayout style={{ gap: 8, width: "32rem" }}>
       {variants.map((key) => (
-        <Range key={key.id} variant={key.variant} size="medium" defaultValue={25}></Range>
+        <Range
+          key={key.id}
+          variant={key.variant}
+          size="medium"
+          defaultValue={25}
+        ></Range>
       ))}
     </VerticalLayout>
   );
@@ -61,7 +68,12 @@ export const Appearances = () => {
   return (
     <VerticalLayout style={{ gap: 8, width: "32rem" }}>
       {appearances.map((key) => (
-        <Range key={key.id} appearance={key.name} size="medium" defaultValue={25}></Range>
+        <Range
+          key={key.id}
+          appearance={key.name}
+          size="medium"
+          defaultValue={25}
+        ></Range>
       ))}
     </VerticalLayout>
   );

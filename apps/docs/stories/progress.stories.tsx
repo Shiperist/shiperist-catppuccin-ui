@@ -47,7 +47,13 @@ export const Variants = () => {
   return (
     <VerticalLayout style={{ gap: 10, width: "32rem" }}>
       {variants.map((variant) => (
-        <Progress key={variant.id} progress={25} radius="full" variant={variant.variant} size="medium">
+        <Progress
+          key={variant.id}
+          progress={25}
+          radius="full"
+          variant={variant.variant}
+          size="medium"
+        >
           Click me
         </Progress>
       ))}
@@ -65,7 +71,13 @@ export const Sizes = () => {
   return (
     <VerticalLayout style={{ gap: 10, width: "32rem" }}>
       {variants.map((variant) => (
-        <Progress key={variant.id} progress={25} radius="full" variant="success" size={variant.size}>
+        <Progress
+          key={variant.id}
+          progress={25}
+          radius="full"
+          variant="success"
+          size={variant.size}
+        >
           Click me
         </Progress>
       ))}
@@ -81,7 +93,13 @@ export const Radius = () => {
   return (
     <VerticalLayout style={{ gap: 10, width: "32rem" }}>
       {variants.map((variant) => (
-        <Progress key={variant.id} progress={25} radius={variant.size} variant="success" size="medium">
+        <Progress
+          key={variant.id}
+          progress={25}
+          radius={variant.size}
+          variant="success"
+          size="medium"
+        >
           Click me
         </Progress>
       ))}
@@ -111,7 +129,8 @@ export const WithPercentage = () => {
             percentPositionOutside={key.pos}
             radius="full"
             variant="success"
-            size="large">
+            size="large"
+          >
             Click me
           </Progress>
         ))}
@@ -127,7 +146,8 @@ export const WithPercentage = () => {
             percentPositionInside={key.pos}
             radius="full"
             variant="success"
-            size="xlarge">
+            size="xlarge"
+          >
             Click me
           </Progress>
         ))}

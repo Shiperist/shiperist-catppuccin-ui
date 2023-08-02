@@ -1,6 +1,12 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
-import { Select, SelectItem, VerticalLayout, Text, Icon } from "@shiperist-catppuccin-ui/react";
+import {
+  Select,
+  SelectItem,
+  VerticalLayout,
+  Text,
+  Icon,
+} from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
@@ -57,9 +63,14 @@ export const ControlledSelection = () => {
         variant="button"
         defaultValue={selectedPerson}
         onChange={setSelectedPerson}
-        style={{ width: "32rem" }}>
+        style={{ width: "32rem" }}
+      >
         {people.map((person) => (
-          <SelectItem key={person.id} value={person.name} disabled={person.disabled}>
+          <SelectItem
+            key={person.id}
+            value={person.name}
+            disabled={person.disabled}
+          >
             {person.name}
           </SelectItem>
         ))}

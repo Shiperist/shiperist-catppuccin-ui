@@ -1,5 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, HorizontalLayout, Icon, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Button,
+  HorizontalLayout,
+  Icon,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
@@ -19,7 +24,10 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Button leadingElement={<Icon icon={<HeartIcon />} size={args.size} />} {...args} />
+  <Button
+    leadingElement={<Icon icon={<HeartIcon />} size={args.size} />}
+    {...args}
+  />
 );
 
 export const Default = Template.bind({});
@@ -80,7 +88,12 @@ export const Appearances = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {appearances.map((appearance) => (
-        <Button {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.name}>
+        <Button
+          {...Default.args}
+          key={appearance.id}
+          leadingElement={icon}
+          appearance={appearance.name}
+        >
           Click me
         </Button>
       ))}
@@ -98,7 +111,13 @@ export const Sizes = () => {
   return (
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
-        <Button key={variant.id} appearance="outline" variant="base" size={variant.size} style={{ gap: 16 }}>
+        <Button
+          key={variant.id}
+          appearance="outline"
+          variant="base"
+          size={variant.size}
+          style={{ gap: 16 }}
+        >
           Click me
         </Button>
       ))}

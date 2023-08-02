@@ -1,5 +1,9 @@
 {
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/**"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -18,5 +22,5 @@
     "prettier-plugin-tailwindcss": "^0.1.13",
     "turbo": "^1.10.12"
   },
-  "packageManager": "pnpm@7.15.0"
+  "packageManager": "yarn@1.22.19"
 }

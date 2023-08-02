@@ -36,7 +36,12 @@ const Template: StoryFn = (args) => (
       <Text>- ...</Text>
     </CardContent>
     <CardFooter>
-      <Button size="large" appearance="filled" variant="success" className="w-full">
+      <Button
+        size="large"
+        appearance="filled"
+        variant="success"
+        className="w-full"
+      >
         Choose plan
       </Button>
     </CardFooter>
@@ -78,7 +83,12 @@ export const Orientations = () => {
     <VerticalLayout style={{ gap: 8, width: "32rem" }}>
       {orientations.map((key) => (
         <Card {...Default.args} key={key.id} orientation={key.orientation}>
-          <Card appearance="filled" orientation={key.orientation} className="w-full" gap={8}>
+          <Card
+            appearance="filled"
+            orientation={key.orientation}
+            className="w-full"
+            gap={8}
+          >
             <Text>content</Text>
           </Card>
           <Card appearance="filled" className="w-full" gap={8}>

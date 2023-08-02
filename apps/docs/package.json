@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "^0.1.8",
-    "@shiperist-catppuccin-ui/react": "workspace:*",
-    "@shiperist-catppuccin-ui/utilities": "workspace:*",
+    "@shiperist-catppuccin-ui/react": "*",
+    "@shiperist-catppuccin-ui/utilities": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

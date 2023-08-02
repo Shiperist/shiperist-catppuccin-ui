@@ -26,18 +26,28 @@ export default {
 } as Meta;
 
 const Template: StoryFn = (args) => {
-  const people = [{ id: 1, name: "Joseph Deor", job: "Developer, UI/UX", lastSeen: "2h" }];
+  const people = [
+    { id: 1, name: "Joseph Deor", job: "Developer, UI/UX", lastSeen: "2h" },
+  ];
   return (
     <>
       {people.map((person) => (
-        <Card key={person.id} orientation="horizontal" appearance="outline" className="p-4" gap="1rem">
+        <Card
+          key={person.id}
+          orientation="horizontal"
+          appearance="outline"
+          className="p-4"
+          gap="1rem"
+        >
           <Avatar {...args}>
             <AvatarLabel name={person.name}></AvatarLabel>
           </Avatar>
           <VerticalLayout>
             <Text>{person.name}</Text>
             <Caption bold>{person.job}</Caption>
-            <Caption2 className="text-overlay0">Last activity: {person.lastSeen} ago</Caption2>
+            <Caption2 className="text-overlay0">
+              Last activity: {person.lastSeen} ago
+            </Caption2>
           </VerticalLayout>
         </Card>
       ))}
@@ -58,8 +68,18 @@ Default.args = {
 
 export const LoadingState = () => {
   return (
-    <Card orientation="horizontal" appearance="outline" className="p-4" gap="1rem">
-      <Avatar isLoading backgroundColor="surface0" alt="Pretty avatar" size="large">
+    <Card
+      orientation="horizontal"
+      appearance="outline"
+      className="p-4"
+      gap="1rem"
+    >
+      <Avatar
+        isLoading
+        backgroundColor="surface0"
+        alt="Pretty avatar"
+        size="large"
+      >
         <AvatarLabel name="Joseph Deor"></AvatarLabel>
       </Avatar>
       <VerticalLayout>
@@ -73,7 +93,12 @@ export const LoadingState = () => {
 
 export const Initials = () => {
   return (
-    <Card orientation="horizontal" appearance="outline" className="p-4" gap="1rem">
+    <Card
+      orientation="horizontal"
+      appearance="outline"
+      className="p-4"
+      gap="1rem"
+    >
       <Avatar backgroundColor="green" alt="Pretty avatar" size="large">
         <AvatarLabel name="Joseph Deor"></AvatarLabel>
       </Avatar>
@@ -96,7 +121,12 @@ export const Sizes = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {sizes.map((key) => (
-        <Avatar key={key.id} alt="Pretty avatar" size={key.size} backgroundColor="green"></Avatar>
+        <Avatar
+          key={key.id}
+          alt="Pretty avatar"
+          size={key.size}
+          backgroundColor="green"
+        ></Avatar>
       ))}
     </HorizontalLayout>
   );
@@ -111,7 +141,13 @@ export const Radius = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {sizes.map((key) => (
-        <Avatar key={key.id} alt="Pretty avatar" size="large" radius={key.radius} backgroundColor="green"></Avatar>
+        <Avatar
+          key={key.id}
+          alt="Pretty avatar"
+          size="large"
+          radius={key.radius}
+          backgroundColor="green"
+        ></Avatar>
       ))}
     </HorizontalLayout>
   );

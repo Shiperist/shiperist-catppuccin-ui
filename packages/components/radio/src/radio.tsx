@@ -1,4 +1,10 @@
-import React, { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  InputHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { ColorVariants, cn, colors } from "@shiperist-catppuccin-ui/utilities";
 
 //WIP custom styling
@@ -12,7 +18,11 @@ export interface RadioProps<T extends string | number = string>
   value?: T;
   name?: string;
   size?: "small" | "medium" | "large";
-  onChange?: (value: T, checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (
+    value: T,
+    checked: boolean,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
 }
 
 const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
@@ -46,9 +56,13 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
       htmlFor={other.id}
       className={cn(
         "relative inline-flex items-center",
-        { "cursor-not-allowed opacity-50": disabled, "cursor-pointer": !disabled },
+        {
+          "cursor-not-allowed opacity-50": disabled,
+          "cursor-pointer": !disabled,
+        },
         className
-      )}>
+      )}
+    >
       <input
         name={name}
         ref={ref}

@@ -1,5 +1,12 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Caption2, Card, Checkbox, Divider, HorizontalLayout, Text } from "@shiperist-catppuccin-ui/react";
+import {
+  Caption2,
+  Card,
+  Checkbox,
+  Divider,
+  HorizontalLayout,
+  Text,
+} from "@shiperist-catppuccin-ui/react";
 import { useState } from "react";
 
 export default {
@@ -21,17 +28,21 @@ const Template: StoryFn = (args) => {
       <Text>Uncontrolled checkboxes:</Text>
       <HorizontalLayout style={{ gap: 16 }}>
         <Checkbox {...args}>
-          <Text className="text-sm ml-2">Checkbox</Text>
+          <Text className="ml-2 text-sm">Checkbox</Text>
         </Checkbox>
         <Checkbox {...args} checked>
-          <Text className="text-sm ml-2">Checkbox</Text>
+          <Text className="ml-2 text-sm">Checkbox</Text>
         </Checkbox>
       </HorizontalLayout>
       <Divider>OR</Divider>
       <Text>Controlled checkbox:</Text>
       <HorizontalLayout style={{ gap: 16 }}>
-        <Checkbox {...args} checked={isChecked} onChange={() => setIsChecked(!isChecked)}>
-          <Text className="text-sm ml-2">Checkbox</Text>
+        <Checkbox
+          {...args}
+          checked={isChecked}
+          onChange={() => setIsChecked(!isChecked)}
+        >
+          <Text className="ml-2 text-sm">Checkbox</Text>
         </Checkbox>
       </HorizontalLayout>
       <Caption2>Checkbox is: {isChecked.toString()}</Caption2>
@@ -61,7 +72,7 @@ export const Variants = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Checkbox key={variant.id} variant={variant.variant} checked>
-          <Text className="text-sm ml-2">Checkbox</Text>
+          <Text className="ml-2 text-sm">Checkbox</Text>
         </Checkbox>
       ))}
     </HorizontalLayout>
@@ -78,7 +89,7 @@ export const Sizes = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Checkbox key={variant.id} size={variant.size} checked>
-          <Text className="text-sm ml-2">Checkbox</Text>
+          <Text className="ml-2 text-sm">Checkbox</Text>
         </Checkbox>
       ))}
     </HorizontalLayout>
@@ -88,7 +99,7 @@ export const Sizes = () => {
 export const Disabled = () => {
   return (
     <Checkbox disabled>
-      <Text className="text-sm ml-2">Checkbox</Text>
+      <Text className="ml-2 text-sm">Checkbox</Text>
     </Checkbox>
   );
 };

@@ -1,5 +1,9 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Text, TextInput, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Text,
+  TextInput,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Forms/TextInput",
@@ -22,7 +26,9 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <TextInput {...args} style={{ width: "32rem" }} />;
+const Template: StoryFn = (args) => (
+  <TextInput {...args} style={{ width: "32rem" }} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -86,11 +92,20 @@ export const LabelAppearence = () => {
       <Text bold>Default</Text>
       <TextInput {...Default.args} label="This is a label"></TextInput>
       <Text bold>(in) Border</Text>
-      <TextInput {...Default.args} labelStyle="border" label="This is a label"></TextInput>
+      <TextInput
+        {...Default.args}
+        labelStyle="border"
+        label="This is a label"
+      ></TextInput>
       <Text bold>Default with required</Text>
       <TextInput {...Default.args} required label="This is a label"></TextInput>
       <Text bold>(in) Border with required</Text>
-      <TextInput {...Default.args} labelStyle="border" required label="This is a label"></TextInput>
+      <TextInput
+        {...Default.args}
+        labelStyle="border"
+        required
+        label="This is a label"
+      ></TextInput>
     </VerticalLayout>
   );
 };

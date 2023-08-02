@@ -1,5 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Alert, Button, Icon, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Alert,
+  Button,
+  Icon,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 import {
   CheckCircleIcon,
   DangerIcon,
@@ -26,7 +31,8 @@ const Template: StoryFn = (args) => (
   <Alert
     leadingElement={<Icon icon={<HeartIcon />} size={args.size} />}
     {...args}
-    style={{ gap: 12, width: "32rem" }}></Alert>
+    style={{ gap: 12, width: "32rem" }}
+  ></Alert>
 );
 
 export const Default = Template.bind({});
@@ -49,12 +55,15 @@ export const Variants = () => {
     <VerticalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Alert
-          leadingElement={<Icon icon={variant.icon} size={Default.args?.size || "medium"} />}
+          leadingElement={
+            <Icon icon={variant.icon} size={Default.args?.size || "medium"} />
+          }
           key={variant.id}
           appearance="outline"
           variant={variant.variant}
           size="medium"
-          style={{ gap: 16, width: "32rem" }}>
+          style={{ gap: 16, width: "32rem" }}
+        >
           X unread messages. Tap to see.
         </Alert>
       ))}
@@ -76,7 +85,8 @@ export const Appearances = () => {
           appearance={variant.appearance}
           variant="base"
           size="medium"
-          style={{ gap: 16, width: "32rem" }}>
+          style={{ gap: 16, width: "32rem" }}
+        >
           X unread messages. Tap to see.
         </Alert>
       ))}
@@ -98,7 +108,8 @@ export const Sizes = () => {
           appearance="outline"
           variant="base"
           size={variant.size}
-          style={{ gap: 16, width: "32rem" }}>
+          style={{ gap: 16, width: "32rem" }}
+        >
           X unread messages. Tap to see.
         </Alert>
       ))}
@@ -110,7 +121,12 @@ export const AdvancedAlert = () => {
   return (
     <VerticalLayout style={{ gap: 10 }}>
       <Alert
-        leadingElement={<Icon icon={<ErrorCircleIcon />} size={Default.args?.size || "medium"} />}
+        leadingElement={
+          <Icon
+            icon={<ErrorCircleIcon />}
+            size={Default.args?.size || "medium"}
+          />
+        }
         variant="info"
         size="medium"
         appearance="outline"
@@ -123,10 +139,14 @@ export const AdvancedAlert = () => {
               size="small"
               variant="danger"
               appearance="ghost"
-              leadingElement={<Icon icon={<XIcon />} size={Default.args?.size || "medium"} />}></Button>
+              leadingElement={
+                <Icon icon={<XIcon />} size={Default.args?.size || "medium"} />
+              }
+            ></Button>
           </div>
         }
-        style={{ gap: 16, width: "32rem" }}>
+        style={{ gap: 16, width: "32rem" }}
+      >
         X unread messages. Tap to see.
       </Alert>
     </VerticalLayout>

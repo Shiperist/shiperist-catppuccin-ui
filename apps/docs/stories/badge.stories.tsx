@@ -69,7 +69,12 @@ export const Appearances = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {appearances.map((appearance) => (
-        <Badge {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.appearance}>
+        <Badge
+          {...Default.args}
+          key={appearance.id}
+          leadingElement={icon}
+          appearance={appearance.appearance}
+        >
           Badge
         </Badge>
       ))}

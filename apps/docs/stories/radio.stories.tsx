@@ -1,5 +1,11 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Radio, Text, RadioGroup, Caption2, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Radio,
+  Text,
+  RadioGroup,
+  Caption2,
+  HorizontalLayout,
+} from "@shiperist-catppuccin-ui/react";
 import { useState } from "react";
 
 export default {
@@ -28,19 +34,27 @@ const Template: StoryFn = (args) => {
 
   return (
     <>
-      <RadioGroup name="radios" className="w-32" style={{ gap: 8 }} disabled={args.disabled}>
+      <RadioGroup
+        name="radios"
+        className="w-32"
+        style={{ gap: 8 }}
+        disabled={args.disabled}
+      >
         {radioOptions.map((option) => (
           <Radio
             {...args}
             key={option.value}
             value={option.value}
             checked={selectedValue === option.value}
-            onChange={() => setSelectedValue(option.value)}>
-            <Text className="text-sm ml-2">{option.label}</Text>
+            onChange={() => setSelectedValue(option.value)}
+          >
+            <Text className="ml-2 text-sm">{option.label}</Text>
           </Radio>
         ))}
       </RadioGroup>
-      <Caption2 className="mt-2">Selected value: {selectedValue ? selectedValue : "none"}</Caption2>
+      <Caption2 className="mt-2">
+        Selected value: {selectedValue ? selectedValue : "none"}
+      </Caption2>
     </>
   );
 };
@@ -66,7 +80,7 @@ export const Sizes = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Radio key={variant.id} size={variant.size}>
-          <Text className="text-sm ml-2">Radio</Text>
+          <Text className="ml-2 text-sm">Radio</Text>
         </Radio>
       ))}
     </HorizontalLayout>
@@ -76,7 +90,7 @@ export const Sizes = () => {
 export const DisabledState = () => {
   return (
     <Radio disabled>
-      <Text className="text-sm ml-2">Radio</Text>
+      <Text className="ml-2 text-sm">Radio</Text>
     </Radio>
   );
 };

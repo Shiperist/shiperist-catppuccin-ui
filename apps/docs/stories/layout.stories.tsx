@@ -1,5 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Text, Card, HorizontalLayout, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Text,
+  Card,
+  HorizontalLayout,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Components/Layout",

@@ -19,8 +19,14 @@ export function getRGBAFromHex(color: string) {
   return `rgba(${r}, ${g}, ${b}, 0.4)`;
 }
 
-export function formatClass(bold: boolean, italic: boolean, underline: boolean) {
-  return `${bold ? "font-bold" : ""} ${italic ? "italic" : ""} ${underline ? "underline" : ""}`;
+export function formatClass(
+  bold: boolean,
+  italic: boolean,
+  underline: boolean
+) {
+  return `${bold ? "font-bold" : ""} ${italic ? "italic" : ""} ${
+    underline ? "underline" : ""
+  }`;
 }
 
 export function cn(...inputs: ClassValue[]) {

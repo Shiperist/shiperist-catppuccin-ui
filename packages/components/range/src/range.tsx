@@ -1,7 +1,8 @@
 import React, { InputHTMLAttributes, useState, useEffect, useRef } from "react";
 import { cn, colors, ColorVariants } from "@shiperist-catppuccin-ui/utilities";
 
-export interface RangeProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface RangeProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   disabled?: boolean;
   variant?: ColorVariants;
   appearance?: "filled" | "outline";
@@ -55,8 +56,11 @@ const Range = React.memo(
         const sliderRect = sliderRef.current?.getBoundingClientRect();
         if (sliderRect) {
           const clickPosition = event.clientX - sliderRect.left;
-          const newValue = (clickPosition / sliderRect.width) * (max - min) + min;
-          setValue(Math.min(max, Math.max(min, Math.round(newValue / step) * step)));
+          const newValue =
+            (clickPosition / sliderRect.width) * (max - min) + min;
+          setValue(
+            Math.min(max, Math.max(min, Math.round(newValue / step) * step))
+          );
         }
       }
     };
@@ -71,8 +75,13 @@ const Range = React.memo(
 
       const handleMouseMoveDuringTrackDrag = (event: MouseEvent) => {
         if (isDragging) {
-          const reactMouseEvent = event as unknown as React.MouseEvent<HTMLDivElement, MouseEvent>;
-          animationFrameId = requestAnimationFrame(() => handleTrackClick(reactMouseEvent));
+          const reactMouseEvent = event as unknown as React.MouseEvent<
+            HTMLDivElement,
+            MouseEvent
+          >;
+          animationFrameId = requestAnimationFrame(() =>
+            handleTrackClick(reactMouseEvent)
+          );
         }
       };
 
@@ -150,7 +159,9 @@ const Range = React.memo(
         markSymbols.push(
           <div
             key={i}
-            className={cn(`absolute rounded`, markColor, markSize, { "opacity-0": isFirstMark || isLastMark })}
+            className={cn(`absolute rounded`, markColor, markSize, {
+              "opacity-0": isFirstMark || isLastMark,
+            })}
             style={{
               left: `${((i - min) / (max - min)) * 100}%`,
               top: sizePosition,
@@ -169,10 +180,13 @@ const Range = React.memo(
     };
 
     return (
-      <div className="flex items-center w-full">
+      <div className="flex w-full items-center">
         <div
-          className={cn("relative w-full transition-all", { "pointer-not-allowed opacity-50": disabled })}
-          ref={sliderRef}>
+          className={cn("relative w-full transition-all", {
+            "pointer-not-allowed opacity-50": disabled,
+          })}
+          ref={sliderRef}
+        >
           <input
             ref={ref}
             type="range"
@@ -180,9 +194,13 @@ const Range = React.memo(
             max={max}
             min={min}
             step={step}
-            className={cn("w-full rounded-lg appearance-none cursor-pointer bg-surface2 transition-all", sizeClass, {
-              "cursor-not-allowed": disabled,
-            })}
+            className={cn(
+              "bg-surface2 w-full cursor-pointer appearance-none rounded-lg transition-all",
+              sizeClass,
+              {
+                "cursor-not-allowed": disabled,
+              }
+            )}
             onChange={disabled ? undefined : handleChange}
             disabled={disabled}
             {...other}
@@ -190,7 +208,7 @@ const Range = React.memo(
           {/* Thumb */}
           <div
             className={cn(
-              `absolute z-10 ${appearanceClass} border-2 rounded-full cursor-pointer`,
+              `absolute z-10 ${appearanceClass} cursor-pointer rounded-full border-2`,
               { "cursor-not-allowed": disabled },
               thumbSize
             )}
@@ -203,9 +221,13 @@ const Range = React.memo(
           {/* Track */}
           {track && (
             <div
-              className={cn(`absolute rounded-lg cursor-pointer bg-${colorClass}`, sizeClass, {
-                "cursor-not-allowed": disabled,
-              })}
+              className={cn(
+                `absolute cursor-pointer rounded-lg bg-${colorClass}`,
+                sizeClass,
+                {
+                  "cursor-not-allowed": disabled,
+                }
+              )}
               onMouseDown={disabled ? undefined : handleMouseDownTrack}
               style={trackStyles}
             />
@@ -216,14 +238,15 @@ const Range = React.memo(
         {tooltip && (
           <div
             className={cn(
-              "absolute bg-mantle text-white text-xs w-4 flex justify-center px-2 py-1 rounded",
+              "bg-mantle absolute flex w-4 justify-center rounded px-2 py-1 text-xs text-white",
               {
-                "opacity-0 pointer-events-none": !showTooltip,
-                "opacity-100 pointer-events-auto": showTooltip,
+                "pointer-events-none opacity-0": !showTooltip,
+                "pointer-events-auto opacity-100": showTooltip,
               },
               tooltipPosition
             )}
-            style={tooltipStyle}>
+            style={tooltipStyle}
+          >
             {Math.round(value)}
           </div>
         )}

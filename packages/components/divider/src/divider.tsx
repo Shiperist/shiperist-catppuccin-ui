@@ -8,7 +8,14 @@ export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
-  const { thickness, labelPosition = "center", orientation = "horizontal", className = "", children, ...other } = props;
+  const {
+    thickness,
+    labelPosition = "center",
+    orientation = "horizontal",
+    className = "",
+    children,
+    ...other
+  } = props;
 
   const horizontalThicknessClass =
     {
@@ -25,7 +32,12 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
     }[thickness] || "w-[1px]";
 
   const labelContainerStyles = {
-    left: labelPosition === "center" ? "50%" : labelPosition === "right" ? "auto" : "32px",
+    left:
+      labelPosition === "center"
+        ? "50%"
+        : labelPosition === "right"
+        ? "auto"
+        : "32px",
     right: labelPosition === "right" ? "32px" : "auto",
     transform: labelPosition === "center" ? "translateX(-50%)" : undefined,
   };
@@ -40,14 +52,20 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
   return (
     <div ref={ref} className={cn(dividerClasses)} {...other}>
       <div
-        className={cn("absolute items-center flex h-full", {
+        className={cn("absolute flex h-full items-center", {
           "flex-start": labelPosition === "left" && orientation !== "vertical",
           "flex-end": labelPosition === "right" && orientation !== "vertical",
           center: labelPosition === "center",
         })}
-        style={labelContainerStyles}>
+        style={labelContainerStyles}
+      >
         {
-          <div className={cn("bg-base", { "py-2": orientation === "vertical", "px-2": orientation === "horizontal" })}>
+          <div
+            className={cn("bg-base", {
+              "py-2": orientation === "vertical",
+              "px-2": orientation === "horizontal",
+            })}
+          >
             {children}
           </div>
         }

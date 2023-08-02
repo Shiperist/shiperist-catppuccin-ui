@@ -18,7 +18,11 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
     }[size] || "w-5 h-5";
 
   return (
-    <div className={cn(sizeClass, className, { [`stroke-${color}`]: color })} ref={ref} {...other}>
+    <div
+      className={cn(sizeClass, className, { [`stroke-${color}`]: color })}
+      ref={ref}
+      {...other}
+    >
       {icon}
     </div>
   );

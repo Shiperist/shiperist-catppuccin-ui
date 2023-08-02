@@ -39,7 +39,12 @@ export const Sizes = () => {
   return (
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
-        <Icon icon={<HeartIcon />} key={variant.id} color="overlay2" size={variant.size}></Icon>
+        <Icon
+          icon={<HeartIcon />}
+          key={variant.id}
+          color="overlay2"
+          size={variant.size}
+        ></Icon>
       ))}
     </HorizontalLayout>
   );

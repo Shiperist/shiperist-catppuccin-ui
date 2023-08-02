@@ -1,5 +1,13 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Caption, Caption2, Link, Subtitle, Text, Title, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Caption,
+  Caption2,
+  Link,
+  Subtitle,
+  Text,
+  Title,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Typography/Typography",

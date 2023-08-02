@@ -9,8 +9,7 @@
     "lint": {},
     "check-types": {},
     "dev": {
-      "cache": false,
-      "persistent": true
+      "cache": false
     },
     "clean": {
       "cache": false

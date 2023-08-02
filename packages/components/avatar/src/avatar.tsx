@@ -1,5 +1,10 @@
 import React, { ReactNode, cloneElement, isValidElement } from "react";
-import { ColorSet, Size, cn, LoadingIcon } from "@shiperist-catppuccin-ui/utilities";
+import {
+  ColorSet,
+  Size,
+  cn,
+  LoadingIcon,
+} from "@shiperist-catppuccin-ui/utilities";
 import { AvatarLabel, AvatarLabelProps } from ".";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
@@ -66,7 +71,9 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
   const renderAvatarLabels = () => {
     return React.Children.toArray(children).map((child) => {
       if (isValidElement(child) && child.type === AvatarLabel) {
-        return cloneElement(child, { className: textClass } as AvatarLabelProps);
+        return cloneElement(child, {
+          className: textClass,
+        } as AvatarLabelProps);
       }
       return false;
     });
@@ -83,8 +90,14 @@ const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, ref) => {
   };
 
   return (
-    <div ref={ref} className={cn(avatarContainerClassName, radiusClass, sizeClass)} style={{ ...other.style }}>
-      {isLoading && <LoadingIcon className={cn("m-auto stroke-overlay2", iconSizeClass)} />}
+    <div
+      ref={ref}
+      className={cn(avatarContainerClassName, radiusClass, sizeClass)}
+      style={{ ...other.style }}
+    >
+      {isLoading && (
+        <LoadingIcon className={cn("stroke-overlay2 m-auto", iconSizeClass)} />
+      )}
       {!isLoading && (
         <>
           {avatar || defaultAvatar ? (

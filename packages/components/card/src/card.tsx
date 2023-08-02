@@ -1,5 +1,10 @@
 import React from "react";
-import { cn, ColorVariants, Orientation, colors } from "@shiperist-catppuccin-ui/utilities";
+import {
+  cn,
+  ColorVariants,
+  Orientation,
+  colors,
+} from "@shiperist-catppuccin-ui/utilities";
 import { orientations } from "@shiperist-catppuccin-ui/utilities";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,7 +16,16 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
-  const { appearance, orientation, disabled, gap, variant, className = "", children, ...other } = props;
+  const {
+    appearance,
+    orientation,
+    disabled,
+    gap,
+    variant,
+    className = "",
+    children,
+    ...other
+  } = props;
   const colorClass = colors[variant] || colors.base;
   const orientationClass = orientations[orientation] || orientations.vertical;
   const appearanceClass =
@@ -22,7 +36,8 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       embed: `border-${colorClass} bg-mantle border-l-4`,
     }[appearance] || "border border-overlay0";
 
-  const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
+  const convertedGap =
+    typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
 
   const cardStyles = {
     gap: convertedGap ? convertedGap : undefined,
@@ -32,11 +47,18 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      className={cn("p-8 rounded-xl flex", appearanceClass, orientationClass, className, {
-        "opacity-50 cursor-not-allowed": disabled,
-      })}
+      className={cn(
+        "flex rounded-xl p-8",
+        appearanceClass,
+        orientationClass,
+        className,
+        {
+          "cursor-not-allowed opacity-50": disabled,
+        }
+      )}
       style={cardStyles}
-      {...other}>
+      {...other}
+    >
       {children}
     </div>
   );

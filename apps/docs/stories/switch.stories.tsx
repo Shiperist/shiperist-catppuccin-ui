@@ -1,5 +1,11 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Caption2, HorizontalLayout, Switch, Text, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import {
+  Caption2,
+  HorizontalLayout,
+  Switch,
+  Text,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 import { useRef, useState } from "react";
 
 export default {
@@ -24,7 +30,8 @@ const Template: StoryFn = (args) => {
         {...args}
         onClick={() => {
           switchRef.current && setIsChecked(switchRef.current.checked);
-        }}>
+        }}
+      >
         <Text className="ml-2">Switch</Text>
       </Switch>
       <Caption2>Switch is: {isChecked.toString()}</Caption2>
@@ -50,7 +57,7 @@ export const Appearances = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Switch key={variant.id} appearance={variant.appearance} size="medium">
-          <Text className="text-sm ml-2">Switch</Text>
+          <Text className="ml-2 text-sm">Switch</Text>
         </Switch>
       ))}
     </HorizontalLayout>
@@ -67,7 +74,7 @@ export const Sizes = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Switch key={variant.id} size={variant.size}>
-          <Text className="text-sm ml-2">Switch</Text>
+          <Text className="ml-2 text-sm">Switch</Text>
         </Switch>
       ))}
     </HorizontalLayout>
@@ -77,7 +84,7 @@ export const Sizes = () => {
 export const DisabledState = () => {
   return (
     <Switch disabled>
-      <Text className="text-sm ml-2">Switch</Text>
+      <Text className="ml-2 text-sm">Switch</Text>
     </Switch>
   );
 };

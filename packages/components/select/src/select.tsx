@@ -1,4 +1,11 @@
-import React, { useState, useRef, useEffect, CSSProperties, LegacyRef, useMemo } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  CSSProperties,
+  LegacyRef,
+  useMemo,
+} from "react";
 import { ChevronDownIcon, cn } from "@shiperist-catppuccin-ui/utilities";
 import SelectItem from "./select-item";
 
@@ -36,7 +43,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   );
 
   useEffect(() => {
-    setSelectedValue(controlledValue !== undefined ? controlledValue : defaultValue);
+    setSelectedValue(
+      controlledValue !== undefined ? controlledValue : defaultValue
+    );
   }, [controlledValue, defaultValue]);
 
   const handleSelectOpen = () => {
@@ -111,16 +120,17 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       {Element === "input" ? (
         <div
           className={cn(
-            "w-full flex flex-row border border-overlay0 transition duration-150 ease-in-out rounded-xl items-center px-4 h-12 py-2",
+            "border-overlay0 flex h-12 w-full flex-row items-center rounded-xl border px-4 py-2 transition duration-150 ease-in-out",
             {
-              "opacity-50 cursor-not-allowed": disabled,
+              "cursor-not-allowed opacity-50": disabled,
               "hover:border-overlay2": !disabled,
-              "ring ring-overlay2": showRingEffect,
+              "ring-overlay2 ring": showRingEffect,
             },
             className
           )}
           {...other}
-          style={{ ...other.style }}>
+          style={{ ...other.style }}
+        >
           <Element
             ref={ref as LegacyRef<HTMLInputElement>}
             type="text"
@@ -128,9 +138,16 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             onClick={!disabled ? handleSelectOpen : undefined}
             onChange={handleInputText}
             placeholder={placeholder}
-            value={controlledValue !== undefined ? controlledValue : selectedValue || ""}
-            className={cn("w-full outline-none flex-grow bg-transparent")}></Element>
-          {trailingElement && <div className={cn("stroke-overlay2")}>{trailingElement}</div>}
+            value={
+              controlledValue !== undefined
+                ? controlledValue
+                : selectedValue || ""
+            }
+            className={cn("w-full flex-grow bg-transparent outline-none")}
+          ></Element>
+          {trailingElement && (
+            <div className={cn("stroke-overlay2")}>{trailingElement}</div>
+          )}
         </div>
       ) : (
         <Element
@@ -138,15 +155,16 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           disabled={disabled}
           onClick={!disabled ? handleSelectOpen : undefined}
           className={cn(
-            "flex w-full transition duration-150 ease-in-out rounded-xl items-center border border-overlay0 flex-row px-4 h-12 py-2",
+            "border-overlay0 flex h-12 w-full flex-row items-center rounded-xl border px-4 py-2 transition duration-150 ease-in-out",
             {
-              "opacity-50 cursor-not-allowed": disabled,
+              "cursor-not-allowed opacity-50": disabled,
               "hover:border-overlay2": !disabled,
-              "ring ring-overlay2": showRingEffect,
+              "ring-overlay2 ring": showRingEffect,
             },
             className
           )}
-          {...other}>
+          {...other}
+        >
           <div className="flex-grow text-left">
             {placeholder && !selectedValue && !defaultValue ? (
               <p className="text-overlay2">{placeholder}</p>
@@ -154,21 +172,30 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
               <p>{selectedValue || defaultValue}</p>
             )}
           </div>
-          {trailingElement && <div className={cn("stroke-overlay2 py-1")}>{trailingElement}</div>}
+          {trailingElement && (
+            <div className={cn("stroke-overlay2 py-1")}>{trailingElement}</div>
+          )}
         </Element>
       )}
       {isOpen && (
         <div
-          className={cn("flex flex-col w-full z-50 mt-2 absolute rounded-xl max-h-[250px] overflow-y-auto", {
-            "border border-overlay0": filteredChildren.length > 0,
-            "border-none border-transparent": filteredChildren.length === 0,
-          })}>
+          className={cn(
+            "absolute z-50 mt-2 flex max-h-[250px] w-full flex-col overflow-y-auto rounded-xl",
+            {
+              "border-overlay0 border": filteredChildren.length > 0,
+              "border-none border-transparent": filteredChildren.length === 0,
+            }
+          )}
+        >
           {filteredChildren.map((child: React.ReactElement, index: number) => {
             const isLastItem = index === filteredChildren.length - 1;
             const itemStyle = isLastItem ? { borderBottom: 0 } : {};
 
             return React.cloneElement(child, {
-              onClick: () => (!child.props.disabled ? handleSelectItemClick(String(child.props.children)) : undefined),
+              onClick: () =>
+                !child.props.disabled
+                  ? handleSelectItemClick(String(child.props.children))
+                  : undefined,
               style: itemStyle,
             });
           })}
