@@ -1,6 +1,6 @@
 {
   "name": "@shiperist-catppuccin-ui/react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Soothing pastel React components! A Tailwind CSS component library based on Catppuccin.",
   "license": "MIT",
   "main": "src/index.ts",
@@ -18,21 +18,30 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
+    "@shiperist-catppuccin-ui/alert": "workspace:*",
+    "@shiperist-catppuccin-ui/avatar": "workspace:*",
+    "@shiperist-catppuccin-ui/badge": "workspace:*",
     "@shiperist-catppuccin-ui/button": "workspace:*",
+    "@shiperist-catppuccin-ui/card": "workspace:*",
+    "@shiperist-catppuccin-ui/checkbox": "workspace:*",
+    "@shiperist-catppuccin-ui/divider": "workspace:*",
+    "@shiperist-catppuccin-ui/icon": "workspace:*",
+    "@shiperist-catppuccin-ui/indicator": "workspace:*",
+    "@shiperist-catppuccin-ui/layout": "workspace:*",
+    "@shiperist-catppuccin-ui/progress": "workspace:*",
+    "@shiperist-catppuccin-ui/radio": "workspace:*",
+    "@shiperist-catppuccin-ui/range": "workspace:*",
+    "@shiperist-catppuccin-ui/select": "workspace:*",
     "@shiperist-catppuccin-ui/switch": "workspace:*",
     "@shiperist-catppuccin-ui/text-input": "workspace:*",
-    "@shiperist-catppuccin-ui/typography": "workspace:*",
-    "@shiperist-catppuccin-ui/card": "workspace:*",
-    "@shiperist-catppuccin-ui/divider": "workspace:*",
-    "@shiperist-catppuccin-ui/badge": "workspace:*",
-    "@shiperist-catppuccin-ui/layout": "workspace:*"
+    "@shiperist-catppuccin-ui/typography": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "tsup": "^5.10.1",
-    "typescript": "^5.1.3"
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^5.12.9",
+    "typescript": "^5.1.6"
   }
 }

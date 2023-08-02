@@ -1,20 +1,33 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, Card, HorizontalLayout, VerticalLayout } from "@shiperist-catppuccin-ui/react";
-const data = Array.from({ length: 5 }, () => <Button>Button</Button>);
+import { Text, Card, HorizontalLayout, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/Layout",
+  title: "Components/Layout",
   component: VerticalLayout,
 } as Meta;
 
 export const Vertical_Layout = () => (
-  <Card>
-    <VerticalLayout style={{ gap: 8 }}>{data}</VerticalLayout>
+  <Card style={{ width: "32rem" }}>
+    <VerticalLayout style={{ gap: 8 }}>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+    </VerticalLayout>
   </Card>
 );
 
 export const Horizontal_Layout = () => (
-  <Card>
-    <HorizontalLayout style={{ gap: 8 }}>{data}</HorizontalLayout>
+  <Card style={{ width: "32rem" }}>
+    <HorizontalLayout style={{ gap: 8 }}>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+      <Card appearance="filled" className="w-full items-center justify-center">
+        <Text>content</Text>
+      </Card>
+    </HorizontalLayout>
   </Card>
 );

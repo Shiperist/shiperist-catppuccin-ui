@@ -1,6 +1,6 @@
 {
   "name": "@shiperist-catppuccin-ui/badge",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "src/index.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -16,12 +16,12 @@
   "devDependencies": {
     "@shiperist-catppuccin-ui/core": "workspace:*",
     "@shiperist-catppuccin-ui/utilities": "workspace:*",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "eslint": "^8.15.0",
-    "react": "^18.1.0",
-    "tsup": "^5.10.1",
-    "typescript": "^4.5.3"
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^8.46.0",
+    "react": "^18.2.0",
+    "tsup": "^5.12.9",
+    "typescript": "^4.9.5"
   },
   "publishConfig": {
     "access": "public"

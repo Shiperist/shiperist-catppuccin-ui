@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 export function getRGBAFromHex(color: string) {
   const namedColors = {
+    overlay2: "9096b3",
     green: "a6da95",
     red: "ed8796",
     yellow: "eed49f",

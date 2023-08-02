@@ -1,88 +1,78 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Badge, HorizontalLayout } from "@shiperist-catppuccin-ui/react";
+import { Badge, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
+import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
-  title: "Example/Badge",
+  title: "Components/Badge",
   component: Badge,
   argTypes: {
-    icon: { control: "object" },
-    iconPosition: { control: { type: "select", options: ["left", "right"] } },
-    variant: {
-      control: {
-        type: "select",
-        options: ["success", "warning", "danger", "info"],
-      },
-    },
-    appearance: {
-      control: {
-        type: "select",
-        options: ["filled", "ghost", "tint", "outline"],
-      },
-    },
+    variant: { control: { type: "select" } },
+    appearance: { control: { type: "select" } },
+    leadingElement: { control: "object" },
+    trailingElement: { control: "object" },
     children: { control: "text" },
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Badge {...args} />;
+const icon = <Icon icon={<HeartIcon />} size="small" />;
+const Template: StoryFn = (args) => <Badge leadingElement={icon} {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: "success",
+  variant: "base",
   appearance: "filled",
   children: "Badge",
 };
 
-export const WithIconOnLeft = Template.bind({});
-WithIconOnLeft.args = {
-  ...Default.args,
-  icon: (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-heart">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-      </svg>
-    </>
-  ),
-  iconPosition: "left",
+export const WithIcons = () => {
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
+      <Badge {...Default.args} leadingElement={icon}>
+        Badge
+      </Badge>
+      <Badge {...Default.args} trailingElement={icon}>
+        Badge
+      </Badge>
+      <Badge {...Default.args} leadingElement={icon} trailingElement={icon}>
+        Badge
+      </Badge>
+    </HorizontalLayout>
+  );
 };
 
-export const WithIconOnRight = Template.bind({});
-WithIconOnRight.args = {
-  ...Default.args,
-  icon: (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-heart">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-      </svg>
-    </>
-  ),
-  iconPosition: "right",
+export const Variants = () => {
+  const variants: any[] = [
+    { id: 1, variant: "base" },
+    { id: 2, variant: "success" },
+    { id: 3, variant: "warning" },
+    { id: 4, variant: "info" },
+    { id: 5, variant: "danger" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
+      {variants.map((variant) => (
+        <Badge key={variant.id} appearance="outline" variant={variant.variant}>
+          Badge
+        </Badge>
+      ))}
+    </HorizontalLayout>
+  );
 };
 
-export const Appearance = () => (
-  <HorizontalLayout style={{ gap: 4 }}>
-    <Badge appearance="filled">Badge</Badge>
-    <Badge appearance="outline">Badge</Badge>
-    <Badge appearance="ghost">Badge</Badge>
-    <Badge appearance="tint">Badge</Badge>
-  </HorizontalLayout>
-);
+export const Appearances = () => {
+  const appearances: any[] = [
+    { id: 1, appearance: "filled" },
+    { id: 2, appearance: "outline" },
+    { id: 3, appearance: "ghost" },
+    { id: 4, appearance: "tint" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
+      {appearances.map((appearance) => (
+        <Badge {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.appearance}>
+          Badge
+        </Badge>
+      ))}
+    </HorizontalLayout>
+  );
+};

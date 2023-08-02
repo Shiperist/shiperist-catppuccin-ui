@@ -1,15 +1,18 @@
-import React, { FC } from "react";
-import { TypographyProps, cn, formatClass } from "@shiperist-catppuccin-ui/utilities";
+import React from "react";
+import { TypographyProps, formatClass, cn } from "@shiperist-catppuccin-ui/utilities";
 
-const Link: FC<TypographyProps> = ({ bold, italic, underline, className = "", children, ...props }) => {
+const Link = React.forwardRef<HTMLParagraphElement, TypographyProps>((props, ref) => {
+  const { bold, italic, error, underline, className = "", children, ...other } = props;
+
   return (
     <p
+      ref={ref}
       className={cn([formatClass(bold, italic, underline), `text-text text-base hover:underline cursor-pointer`])}
-      {...props}>
+      {...other}>
       {children}
     </p>
   );
-};
+});
 
 Link.displayName = "Link";
 

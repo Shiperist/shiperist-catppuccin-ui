@@ -1,100 +1,89 @@
-"use client";
-import { ReactNode, useState, FC, ButtonHTMLAttributes } from "react";
-import { Size, cn } from "@shiperist-catppuccin-ui/utilities";
-
-export type ButtonVariant = "success" | "warning" | "danger" | "info";
+import React, { ReactNode, useState, ButtonHTMLAttributes } from "react";
+import { Size, cn, getRGBAFromHex, ColorVariants, LoadingIcon, colors } from "@shiperist-catppuccin-ui/utilities";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: ReactNode;
-  iconPosition?: "left" | "right";
-  loading?: boolean;
+  leadingElement?: ReactNode;
+  trailingElement?: ReactNode;
+  isLoading?: boolean;
   tooltip?: string;
   disabled?: boolean;
-  variant?: ButtonVariant;
+  appearance?: "filled" | "ghost" | "tint" | "outline" | "shadow";
+  variant?: ColorVariants;
   size?: Size;
 }
 
-const Button: FC<ButtonProps> = ({
-  icon: Icon,
-  iconPosition = "left",
-  loading,
-  disabled,
-  tooltip,
-  variant = "success",
-  size = "medium",
-  children,
-  className = "",
-  ...props
-}) => {
-  const [showTooltip, setShowTooltip] = useState(false);
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const {
+    leadingElement: originalLeadingElement,
+    trailingElement,
+    isLoading,
+    disabled,
+    tooltip,
+    appearance,
+    variant,
+    size,
+    children,
+    className = "",
+    ...other
+  } = props;
 
-  const baseClass =
-    "transition ease-in-out duration-150 flex items-center justify-center rounded-lg bg-transparent border-1";
-  const variantColor =
-    {
-      success: "green",
-      danger: "red",
-      warning: "yellow",
-      info: "blue",
-    }[variant] || "";
+  const [showTooltip, setShowTooltip] = useState(false);
+  const colorClass = colors[variant] || colors.base;
+
   const sizeClass =
     {
-      small: "text-sm px-2 py-1",
-      medium: "text-base px-4 py-2",
-      large: "text-lg px-6 py-3",
-      xlarge: "text-xl px-8 py-4",
-    }[size] || "";
+      small: "text-sm px-2 h-8",
+      medium: "text-md px-4 h-10",
+      large: "text-lg px-5 h-12",
+      xlarge: "text-xl px-7 h-16",
+    }[size] || "text-md px-4 h-10";
+  const appearanceClass =
+    {
+      filled: `bg-${colorClass} text-mantle hover:opacity-80 border border-transparent`,
+      outline: `border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`,
+      ghost: `text-${colorClass} hover:bg-${colorClass} hover:text-mantle border border-transparent`,
+      tint: `text-${colorClass} hover:opacity-80 border border-transparent`,
+      shadow: `text-${colorClass} bg-mantle shadow-lg hover:bg-crust border border-transparent`,
+    }[appearance] || `border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`;
   const iconSizeClass =
     {
-      small: "p-1",
-      medium: "p-2",
-      large: "p-3",
-      xlarge: "p-4",
-    }[size] || "";
+      small: "w-4 h-4",
+      medium: "w-5 h-5",
+      large: "w-6 h-6",
+      xlarge: "h-7 w-7",
+    }[size] || "w-5 h-5";
 
-  const currentIcon = loading ? (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-4 w-4 animate-spin">
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
-  ) : (
-    Icon && Icon
-  );
+  const backgroundColor = appearance === "tint" ? getRGBAFromHex(colorClass) : undefined;
+  let leadingElement: React.ReactNode = originalLeadingElement;
+  leadingElement = isLoading ? <LoadingIcon className={iconSizeClass} /> : leadingElement;
+  const iconColor = appearance === "filled" ? "stroke-base" : `stroke-${colorClass}`;
 
-  const disabledClass = "opacity-50 cursor-not-allowed text-text border-gray";
-  const notDisabledClass = `border-${variantColor} text-${variantColor} hover:bg-${variantColor} hover:text-base active:translate-y-0.5`;
-
-  //TODO Implement tooltip
   return (
     <button
+      ref={ref}
       className={cn(
-        baseClass,
+        "transition-all ease-in-out duration-150 flex items-center justify-center rounded-xl group",
         {
-          [disabledClass]: disabled,
-          [notDisabledClass]: !disabled,
+          ["opacity-50 cursor-not-allowed border border-surface2"]: disabled,
+          [`${appearanceClass} active:translate-y-0.5`]: !disabled,
         },
-        !children && (Icon || loading) ? iconSizeClass : sizeClass,
+        sizeClass,
         className
       )}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       disabled={disabled}
-      {...props}>
-      {currentIcon && iconPosition === "left" && currentIcon}
+      {...other}
+      style={{
+        backgroundColor,
+        ...other.style,
+      }}>
+      {leadingElement && <div className={cn(iconColor, "transition group-hover:stroke-base")}>{leadingElement}</div>}
       <span className={`${children ? "mx-2" : ""}`}>{children}</span>
-      {currentIcon && iconPosition === "right" && currentIcon}
+      {trailingElement && <div className={cn(iconColor, "transition group-hover:stroke-base")}>{trailingElement}</div>}
     </button>
   );
-};
+});
 
 export default Button;
 

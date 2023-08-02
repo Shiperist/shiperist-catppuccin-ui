@@ -1,62 +1,44 @@
-import React, { FC, ReactNode } from "react";
-import { cn, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
-
-export type BadgeVariant = "success" | "warning" | "danger" | "info";
-export type BadgeAppearance = "filled" | "ghost" | "tint" | "outline";
+import React, { ReactNode } from "react";
+import { cn, getRGBAFromHex, ColorVariants, colors } from "@shiperist-catppuccin-ui/utilities";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  icon?: ReactNode;
-  iconPosition?: "left" | "right";
-  variant?: BadgeVariant;
-  appearance?: BadgeAppearance;
+  leadingElement?: ReactNode;
+  trailingElement?: ReactNode;
+  variant?: ColorVariants;
+  appearance?: "filled" | "ghost" | "tint" | "outline";
 }
 
-const Badge: FC<BadgeProps> = ({
-  icon: Icon,
-  iconPosition = "left",
-  variant = "success",
-  appearance = "filled",
-  className = "",
-  children,
-  ...props
-}) => {
-  const variantColor = {
-    success: "green",
-    danger: "red",
-    warning: "yellow",
-    info: "blue",
-  }[variant];
+const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
+  const { leadingElement, trailingElement, variant, appearance, className = "", children, ...other } = props;
+  const colorClass = colors[variant] || colors.base;
 
-  const appearanceClass = {
-    filled: `bg-${variantColor} text-mantle`,
-    outline: `border border-${variantColor} text-${variantColor}`,
-    ghost: `text-${variantColor}`,
-    tint: `text-${variantColor} border border-${variantColor}`,
-  }[appearance];
+  const appearanceClass =
+    {
+      filled: `bg-${colorClass} text-mantle border border-transparent`,
+      outline: `border border-${colorClass} text-${colorClass}`,
+      ghost: `text-${colorClass} border border-transparent`,
+      tint: `text-${colorClass} border border-transparent`,
+    }[appearance] || `bg-${colorClass} text-mantle border border-transparent`;
 
-  const variantClass = variantColor ? `${appearanceClass}` : "";
-  const badgeClass = `${variantClass} text-sm flex items-center rounded-full`;
-  const currentIcon = Icon;
-
-  const backgroundColor = appearance === "tint" ? getRGBAFromHex(variantColor) : undefined;
+  const backgroundColor = appearance === "tint" ? getRGBAFromHex(colorClass) : undefined;
+  const iconColor = appearance === "filled" ? "stroke-base" : `stroke-${colorClass}`;
 
   return (
     <div
-      className={cn(badgeClass, className)}
-      {...props}
+      ref={ref}
+      className={cn(`text-sm flex items-center rounded-full`, colorClass ? `${appearanceClass}` : "", className)}
+      {...other}
       style={{
-        padding: 1,
-        paddingLeft: 4,
-        paddingRight: 4,
+        padding: "1px 4px",
         backgroundColor,
-        ...props.style,
+        ...other.style,
       }}>
-      {currentIcon && iconPosition === "left" && currentIcon}
+      {leadingElement && <div className={cn(iconColor)}>{leadingElement}</div>}
       {children && <span className="mx-1">{children}</span>}
-      {currentIcon && iconPosition === "right" && currentIcon}
+      {trailingElement && <div className={cn(iconColor)}>{trailingElement}</div>}
     </div>
   );
-};
+});
 
 export default Badge;
 

@@ -2,15 +2,10 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Caption, Caption2, Link, Subtitle, Text, Title, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
-  title: "Example/Typography",
+  title: "Typography/Typography",
   component: Text,
   argTypes: {
-    as: {
-      control: {
-        type: "select",
-        options: ["p", "a", "pre", "span", "h1", "h2", "h3", "h4", "h5", "h6"],
-      },
-    },
+    as: { control: { type: "select" } },
     error: { control: "boolean" },
     bold: { control: "boolean" },
     italic: { control: "boolean" },

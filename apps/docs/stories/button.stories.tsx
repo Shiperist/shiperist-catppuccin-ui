@@ -1,76 +1,119 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button } from "@shiperist-catppuccin-ui/react";
+import { Button, HorizontalLayout, Icon, VerticalLayout } from "@shiperist-catppuccin-ui/react";
+import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
-  title: "Example/Button",
+  title: "Components/Button",
   component: Button,
   argTypes: {
-    onClick: { action: "clicked" },
-    icon: { control: "object" },
-    iconPosition: { control: { type: "select", options: ["left", "right"] } },
-    loading: { control: "boolean" },
+    isLoading: { control: "boolean" },
     disabled: { control: "boolean" },
     tooltip: { control: "text" },
-    variant: {
-      control: {
-        type: "select",
-        options: ["success", "warning", "danger", "info"],
-      },
-    },
-    size: {
-      control: {
-        type: "select",
-        options: ["small", "medium", "large", "xlarge"],
-      },
-    },
+    variant: { control: { type: "select" } },
+    appearance: { control: { type: "select" } },
+    size: { control: { type: "select" } },
+    leadingElement: { control: "object" },
+    trailingElement: { control: "object" },
     children: { control: "text" },
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Button {...args} />;
+const Template: StoryFn = (args) => (
+  <Button leadingElement={<Icon icon={<HeartIcon />} size={args.size} />} {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
-  icon: (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-heart">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-      </svg>
-    </>
-  ),
-  iconPosition: "left",
-  loading: false,
+  isLoading: false,
   tooltip: "",
-  variant: "success",
+  variant: "base",
   size: "medium",
   disabled: false,
   children: "Click Me",
+  appearance: "outline",
 };
 
-export const WithIconOnRight = Template.bind({});
-WithIconOnRight.args = {
-  ...Default.args,
-  iconPosition: "right",
+const icon = <Icon icon={<HeartIcon />} size={Default.args.size} />;
+export const WithIcons = () => {
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
+      <Button {...Default.args} leadingElement={icon}>
+        Click me
+      </Button>
+      <Button {...Default.args} trailingElement={icon}>
+        Click me
+      </Button>
+      <Button {...Default.args} leadingElement={icon} trailingElement={icon}>
+        Click me
+      </Button>
+    </HorizontalLayout>
+  );
+};
+export const Variants = () => {
+  const variants: any[] = [
+    { id: 1, variant: "base" },
+    { id: 2, variant: "success" },
+    { id: 3, variant: "warning" },
+    { id: 4, variant: "info" },
+    { id: 5, variant: "danger" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Button key={variant.id} appearance="outline" variant={variant.variant}>
+          Click me
+        </Button>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
+export const Appearances = () => {
+  const appearances: any[] = [
+    { id: 1, name: "filled" },
+    { id: 2, name: "ghost" },
+    { id: 3, name: "tint" },
+    { id: 4, name: "outline" },
+    { id: 5, name: "shadow" },
+  ];
+
+  return (
+    <HorizontalLayout style={{ gap: 8 }}>
+      {appearances.map((appearance) => (
+        <Button {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.name}>
+          Click me
+        </Button>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
+export const Sizes = () => {
+  const variants: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+    { id: 4, size: "xlarge" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Button key={variant.id} appearance="outline" variant="base" size={variant.size} style={{ gap: 16 }}>
+          Click me
+        </Button>
+      ))}
+    </HorizontalLayout>
+  );
 };
 
 export const LoadingState = Template.bind({});
 LoadingState.args = {
   ...Default.args,
-  loading: true,
+  isLoading: true,
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
+export const DisabledState = Template.bind({});
+DisabledState.args = {
   ...Default.args,
   disabled: true,
 };
