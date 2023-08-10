@@ -1,24 +1,18 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
-import {
-  Select,
-  SelectItem,
-  VerticalLayout,
-  Text,
-  Icon,
-} from "@shiperist-catppuccin-ui/react";
+import { Select, SelectItem, VerticalLayout, Text, Icon } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Forms/Select",
   component: Select,
   argTypes: {
-    disabled: { control: "boolean" },
-    placeholder: { control: "text" },
-    defaultValue: { control: "text" },
-    value: { control: "text" },
-    onChange: { control: "function" },
-    variant: { control: { type: "select" } },
+    disabled: { control: "boolean", description: "Whether the select is disabled." },
+    placeholder: { control: "text", description: "Determines the placeholder of the select." },
+    defaultValue: { control: "text", description: "Determines the default value of the select." },
+    value: { control: "text", description: "Determines the value of the select." },
+    onChange: { control: "function", description: "Callback function triggered when the value of the select changes." },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the select." },
   },
 } as Meta;
 
@@ -63,14 +57,9 @@ export const ControlledSelection = () => {
         variant="button"
         defaultValue={selectedPerson}
         onChange={setSelectedPerson}
-        style={{ width: "32rem" }}
-      >
+        style={{ width: "32rem" }}>
         {people.map((person) => (
-          <SelectItem
-            key={person.id}
-            value={person.name}
-            disabled={person.disabled}
-          >
+          <SelectItem key={person.id} value={person.name} disabled={person.disabled}>
             {person.name}
           </SelectItem>
         ))}

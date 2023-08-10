@@ -1,34 +1,31 @@
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  Text,
-  TextInput,
-  VerticalLayout,
-} from "@shiperist-catppuccin-ui/react";
+import { TextInput, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Forms/TextInput",
   component: TextInput,
   argTypes: {
-    isLoading: { control: "boolean" },
-    error: { control: "boolean" },
-    disabled: { control: "boolean" },
-    errorIcon: { control: "boolean" },
-    required: { control: "boolean" },
-    caption: { control: "text" },
-    placeholder: { control: "text" },
-    label: { control: "text" },
-    type: { control: { type: "select" } },
-    size: { control: { type: "select" } },
-    appearance: { control: { type: "select" } },
-    labelStyle: { control: { type: "select" } },
-    leadingElement: { control: "object" },
-    trailingElement: { control: "object" },
+    isLoading: { control: "boolean", description: "Whether the text input is loading." },
+    error: { control: "boolean", description: "Whether the text input has error." },
+    disabled: { control: "boolean", description: "Whether the text input is disabled." },
+    errorIcon: { control: "boolean", description: "Whether to show the error icon when error is set to true." },
+    required: { control: "boolean", description: "Whether the text input is required." },
+    caption: {
+      control: "text",
+      description: "Determines the caption text of the text input. Shown red if error is set to true",
+    },
+    placeholder: { control: "text", description: "Determines the placeholder of the text input." },
+    label: { control: "text", description: "Determines the label of the text input." },
+    type: { control: { type: "select" }, description: "Determines the type of the text input." },
+    size: { control: { type: "select" }, description: "Determines the size of the text input." },
+    appearance: { control: { type: "select" }, description: "Determines the appearance style of the text input." },
+    labelStyle: { control: { type: "select" }, description: "Determines the label style of the text input." },
+    leadingElement: { control: "object", description: "Sets an element/s on the left side of the text input." },
+    trailingElement: { control: "object", description: "Sets an element/s on the right side of the text input." },
   },
 } as Meta;
 
-const Template: StoryFn = (args) => (
-  <TextInput {...args} style={{ width: "32rem" }} />
-);
+const Template: StoryFn = (args) => <TextInput {...args} style={{ width: "32rem" }} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -59,20 +56,6 @@ Error.args = {
   caption: "This is a error/caption message",
   errorIcon: true,
 };
-Error.parameters = {
-  docs: {
-    description: {
-      story:
-        "Caption shown red only if error is set to **true**, errorIcon shown only if errorIcon is set to **true** - on default it's off",
-    },
-  },
-};
-
-export const DisabledState = Template.bind({});
-DisabledState.args = {
-  ...Default.args,
-  disabled: true,
-};
 
 export const WithCaption = Template.bind({});
 WithCaption.args = {
@@ -88,24 +71,10 @@ WithPlaceholder.args = {
 
 export const LabelAppearence = () => {
   return (
-    <VerticalLayout style={{ gap: 12, width: "32rem" }}>
-      <Text bold>Default</Text>
-      <TextInput {...Default.args} label="This is a label"></TextInput>
-      <Text bold>(in) Border</Text>
-      <TextInput
-        {...Default.args}
-        labelStyle="border"
-        label="This is a label"
-      ></TextInput>
-      <Text bold>Default with required</Text>
-      <TextInput {...Default.args} required label="This is a label"></TextInput>
-      <Text bold>(in) Border with required</Text>
-      <TextInput
-        {...Default.args}
-        labelStyle="border"
-        required
-        label="This is a label"
-      ></TextInput>
+    <VerticalLayout style={{ gap: 16, width: "32rem" }}>
+      <TextInput {...Default.args} label="This is a label" defaultValue="Some text"></TextInput>
+      <TextInput {...Default.args} labelStyle="border" label="This is a label" defaultValue="Some text"></TextInput>
+      <TextInput {...Default.args} required label="This is a label" defaultValue="Some text"></TextInput>
     </VerticalLayout>
   );
 };
@@ -113,12 +82,9 @@ export const LabelAppearence = () => {
 export const Appearences = () => {
   return (
     <VerticalLayout style={{ gap: 12, width: "32rem" }}>
-      <Text bold>Default</Text>
-      <TextInput {...Default.args}></TextInput>
-      <Text bold>Underline</Text>
-      <TextInput {...Default.args} appearance="underline"></TextInput>
-      <Text bold>Filled</Text>
-      <TextInput {...Default.args} appearance="filled"></TextInput>
+      <TextInput {...Default.args} defaultValue="Some text"></TextInput>
+      <TextInput {...Default.args} appearance="underline" defaultValue="Some text"></TextInput>
+      <TextInput {...Default.args} appearance="filled" defaultValue="Some text"></TextInput>
     </VerticalLayout>
   );
 };
@@ -132,7 +98,7 @@ export const Sizes = () => {
   return (
     <VerticalLayout style={{ gap: 10, width: "32rem" }}>
       {variants.map((variant) => (
-        <TextInput key={variant.id} size={variant.size}></TextInput>
+        <TextInput key={variant.id} size={variant.size} defaultValue="Some text"></TextInput>
       ))}
     </VerticalLayout>
   );
@@ -141,10 +107,14 @@ export const Sizes = () => {
 export const Types = () => {
   return (
     <VerticalLayout style={{ gap: 12, width: "32rem" }}>
-      <Text bold>Text</Text>
-      <TextInput {...Default.args}></TextInput>
-      <Text bold>Password</Text>
-      <TextInput {...Default.args} type="password"></TextInput>
+      <TextInput {...Default.args} placeholder="Text"></TextInput>
+      <TextInput {...Default.args} type="password" placeholder="Password"></TextInput>
     </VerticalLayout>
   );
+};
+
+export const DisabledState = Template.bind({});
+DisabledState.args = {
+  ...Default.args,
+  disabled: true,
 };

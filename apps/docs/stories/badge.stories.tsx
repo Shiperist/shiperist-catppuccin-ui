@@ -1,16 +1,16 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Badge, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
+import { Badge, BadgeProps, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Components/Badge",
   component: Badge,
   argTypes: {
-    variant: { control: { type: "select" } },
-    appearance: { control: { type: "select" } },
-    leadingElement: { control: "object" },
-    trailingElement: { control: "object" },
-    children: { control: "text" },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the badge." },
+    appearance: { control: { type: "select" }, description: "Determines the appearance style of the badge." },
+    leadingElement: { control: "object", description: "Sets an element/s on the left side of the badge." },
+    trailingElement: { control: "object", description: "Sets an element/s on the right side of the badge." },
+    children: { control: "text", description: "Determines the children of the badge. In this scenario it's the text." },
   },
 } as Meta;
 
@@ -69,12 +69,7 @@ export const Appearances = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {appearances.map((appearance) => (
-        <Badge
-          {...Default.args}
-          key={appearance.id}
-          leadingElement={icon}
-          appearance={appearance.appearance}
-        >
+        <Badge {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.appearance}>
           Badge
         </Badge>
       ))}

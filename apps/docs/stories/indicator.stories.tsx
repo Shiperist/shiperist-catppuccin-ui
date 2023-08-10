@@ -1,22 +1,20 @@
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  Avatar,
-  Indicator,
-  HorizontalLayout,
-  Card,
-  IndicatorLabel,
-} from "@shiperist-catppuccin-ui/react";
+import { Avatar, Indicator, HorizontalLayout, Card, IndicatorLabel } from "@shiperist-catppuccin-ui/react";
 import avatar from "../assets/avatar.png";
 
 export default {
   title: "Components/Indicator",
   component: Indicator,
   argTypes: {
-    isLegend: { control: "boolean" },
-    position: { control: "object" },
-    size: { control: { type: "select" } },
-    status: { control: { type: "select" } },
-    positionPreset: { control: { type: "select" } },
+    isLegend: { control: "boolean", description: "Whether the indicator shows as legend (can be used in charts)." },
+    position: { control: "object", description: "Determines the custom position of the indicator." },
+    size: { control: { type: "select" }, description: "Determines the size of the indicator." },
+    status: { control: { type: "select" }, description: "Determines the status color of the indicator." },
+    positionPreset: { control: { type: "select" }, description: "Determines the position preset of the indicator." },
+    children: {
+      control: "text",
+      description: "Determines the children of the indicator, IndicatorLabel component can be used directly.",
+    },
   },
 } as Meta;
 
@@ -31,11 +29,9 @@ const Template: StoryFn = (args) => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {people.map((person) => (
-        <Avatar avatar={avatar} radius="large" size="large" key={person.id}>
+        <Avatar image={avatar} shape="rounded" size="large" key={person.id}>
           <Indicator {...args} status={person.status}>
-            {person.pings !== "" && (
-              <IndicatorLabel>{person.pings}</IndicatorLabel>
-            )}
+            {person.pings !== "" && <IndicatorLabel>{person.pings}</IndicatorLabel>}
           </Indicator>
         </Avatar>
       ))}
@@ -64,12 +60,7 @@ export const AsLegend = () => {
   return (
     <HorizontalLayout className="" style={{ gap: 16 }}>
       {legends.map((legend) => (
-        <Indicator
-          key={legend.id}
-          size="medium"
-          status={legend.status}
-          isLegend={true}
-        >
+        <Indicator key={legend.id} size="medium" status={legend.status} isLegend={true}>
           <IndicatorLabel>{legend.text}</IndicatorLabel>
         </Indicator>
       ))}
@@ -90,18 +81,9 @@ export const PositionPresets = () => {
     { id: 9, name: "Bottom right", preset: "bottom-right" },
   ];
   return (
-    <Card
-      appearance="filled"
-      className="relative mx-auto inline-flex"
-      style={{ width: "16rem", height: "16rem" }}
-    >
+    <Card appearance="filled" className="relative mx-auto inline-flex" style={{ width: "16rem", height: "16rem" }}>
       {positions.map((position) => (
-        <Indicator
-          key={position.id}
-          status="info"
-          size="small"
-          positionPreset={position.preset}
-        >
+        <Indicator key={position.id} status="info" size="small" positionPreset={position.preset}>
           <IndicatorLabel>{position.name}</IndicatorLabel>
         </Indicator>
       ))}

@@ -6,19 +6,13 @@ export default {
   title: "Components/Icon",
   component: Icon,
   argTypes: {
-    size: { control: { type: "select" } },
-    icon: { control: { type: "object" } },
-    color: { control: { type: "select" } },
+    size: { control: { type: "select" }, description: "Determines the size of the icon." },
+    icon: { control: { type: "object" }, description: "Determines the icon of the icon component." },
+    color: { control: { type: "select" }, description: "Determines the color of the icon." },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => {
-  const icons: any[] = [
-    { id: "1", size: "small" },
-    { id: "2", size: "medium" },
-    { id: "3", size: "large" },
-    { id: "4", size: "xlarge" },
-  ];
   return <Icon {...args} icon={<HeartIcon />} size="medium"></Icon>;
 };
 
@@ -39,12 +33,7 @@ export const Sizes = () => {
   return (
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
-        <Icon
-          icon={<HeartIcon />}
-          key={variant.id}
-          color="overlay2"
-          size={variant.size}
-        ></Icon>
+        <Icon icon={<HeartIcon />} key={variant.id} color="overlay2" size={variant.size}></Icon>
       ))}
     </HorizontalLayout>
   );

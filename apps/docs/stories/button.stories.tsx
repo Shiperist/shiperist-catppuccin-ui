@@ -1,33 +1,34 @@
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  Button,
-  HorizontalLayout,
-  Icon,
-  VerticalLayout,
-} from "@shiperist-catppuccin-ui/react";
+import { Button, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    isLoading: { control: "boolean" },
-    disabled: { control: "boolean" },
-    tooltip: { control: "text" },
-    variant: { control: { type: "select" } },
-    appearance: { control: { type: "select" } },
-    size: { control: { type: "select" } },
-    leadingElement: { control: "object" },
-    trailingElement: { control: "object" },
-    children: { control: "text" },
+    isLoading: { control: "boolean", description: "Whether the button is loading." },
+    disabled: { control: "boolean", description: "Whether the button is disabled." },
+    tooltip: {
+      control: "text",
+      description: "Sets the tooltip of the button that will be shown when button is hovered.",
+    },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the button." },
+    shape: { control: { type: "select" }, description: "Determines the shape of the button." },
+    appearance: { control: { type: "select" }, description: "Determines the appearance style of the button." },
+    size: { control: { type: "select" }, description: "Determines the size of the button." },
+    leadingElement: { control: "object", description: "Sets an element/s on the left side of the button." },
+    trailingElement: { control: "object", description: "Sets an element/s on the right side of the button." },
+    children: {
+      control: "text",
+      description: "Determines the children of the button. In this scenario it's the text.",
+    },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => (
-  <Button
-    leadingElement={<Icon icon={<HeartIcon />} size={args.size} />}
-    {...args}
-  />
+  <Button leadingElement={<Icon icon={<HeartIcon />} size={args.size} />} {...args}>
+    Click me
+  </Button>
 );
 
 export const Default = Template.bind({});
@@ -37,8 +38,9 @@ Default.args = {
   variant: "base",
   size: "medium",
   disabled: false,
-  children: "Click Me",
+  children: "",
   appearance: "outline",
+  shape: "rounded",
 };
 
 const icon = <Icon icon={<HeartIcon />} size={Default.args.size} />;
@@ -54,6 +56,7 @@ export const WithIcons = () => {
       <Button {...Default.args} leadingElement={icon} trailingElement={icon}>
         Click me
       </Button>
+      <Button {...Default.args} leadingElement={icon}></Button>
     </HorizontalLayout>
   );
 };
@@ -78,7 +81,7 @@ export const Variants = () => {
 
 export const Appearances = () => {
   const appearances: any[] = [
-    { id: 1, name: "filled" },
+    /* { id: 1, name: "filled" }, */
     { id: 2, name: "ghost" },
     { id: 3, name: "tint" },
     { id: 4, name: "outline" },
@@ -88,12 +91,7 @@ export const Appearances = () => {
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {appearances.map((appearance) => (
-        <Button
-          {...Default.args}
-          key={appearance.id}
-          leadingElement={icon}
-          appearance={appearance.name}
-        >
+        <Button {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.name}>
           Click me
         </Button>
       ))}
@@ -111,13 +109,24 @@ export const Sizes = () => {
   return (
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
-        <Button
-          key={variant.id}
-          appearance="outline"
-          variant="base"
-          size={variant.size}
-          style={{ gap: 16 }}
-        >
+        <Button key={variant.id} appearance="outline" variant="base" size={variant.size}>
+          Click me
+        </Button>
+      ))}
+    </HorizontalLayout>
+  );
+};
+
+export const Shapes = () => {
+  const variants: any[] = [
+    { id: 1, shape: "square" },
+    { id: 2, shape: "rounded" },
+    { id: 3, shape: "circular" },
+  ];
+  return (
+    <HorizontalLayout style={{ gap: 10 }}>
+      {variants.map((variant) => (
+        <Button key={variant.id} appearance="outline" variant="base" shape={variant.shape}>
           Click me
         </Button>
       ))}

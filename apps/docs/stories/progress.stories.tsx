@@ -5,15 +5,23 @@ export default {
   title: "Components/Progress",
   component: Progress,
   argTypes: {
-    size: { control: { type: "select" } },
-    radius: { control: { type: "select" } },
-    percentPosition: { control: { type: "select" } },
-    percentPositionOutside: { control: { type: "select" } },
-    percentPositionInside: { control: { type: "select" } },
+    thickness: { control: { type: "select" }, description: "Determines the size of the progress bar." },
+    shape: { control: { type: "select" }, description: "Determines the shape of the progress bar." },
+    percentBoundary: {
+      control: { type: "select" },
+      description: "Determines whether to display the percentage outside or inside the progress bar.",
+    },
+    percentPosition: {
+      control: { type: "select" },
+      description: "Outside boundary allows only left/right, inside boundary allows all positions listed.",
+    },
     /*     appearance: {control: {type: "select",},}, */
-    variant: { control: { type: "select" } },
-    showPercent: { control: "boolean" },
-    progress: { control: { type: "range", min: 0, max: 100, step: 0.01 } },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the progress bar." },
+    showPercent: { control: "boolean", description: "Whether to show the percentage." },
+    progress: {
+      control: { type: "range", min: 0, max: 100, step: 0.01 },
+      description: "Determines the progress of progress bar.",
+    },
   },
 } as Meta;
 
@@ -27,12 +35,12 @@ export const Default = Template.bind({});
 
 Default.args = {
   progress: 25,
-  size: "medium",
-  radius: "full",
+  thickness: "medium",
+  shape: "circular",
   showPercent: false,
-  percentPosition: "outside",
-  percentPositionOutside: "left",
-  percentPositionInside: "center",
+  variant: "success",
+  percentBoundary: "outside",
+  percentPosition: "left",
   /* appearance: "linear", */
 };
 
@@ -47,13 +55,7 @@ export const Variants = () => {
   return (
     <VerticalLayout style={{ gap: 10, width: "32rem" }}>
       {variants.map((variant) => (
-        <Progress
-          key={variant.id}
-          progress={25}
-          radius="full"
-          variant={variant.variant}
-          size="medium"
-        >
+        <Progress key={variant.id} progress={25} shape="circular" variant={variant.variant} thickness="medium">
           Click me
         </Progress>
       ))}
@@ -71,13 +73,7 @@ export const Sizes = () => {
   return (
     <VerticalLayout style={{ gap: 10, width: "32rem" }}>
       {variants.map((variant) => (
-        <Progress
-          key={variant.id}
-          progress={25}
-          radius="full"
-          variant="success"
-          size={variant.size}
-        >
+        <Progress key={variant.id} progress={25} shape="circular" variant="success" thickness={variant.size}>
           Click me
         </Progress>
       ))}
@@ -85,21 +81,15 @@ export const Sizes = () => {
   );
 };
 
-export const Radius = () => {
+export const Shapes = () => {
   const variants: any[] = [
-    { id: 1, size: "none" },
-    { id: 2, size: "full" },
+    { id: 1, shape: "square" },
+    { id: 2, shape: "circular" },
   ];
   return (
     <VerticalLayout style={{ gap: 10, width: "32rem" }}>
       {variants.map((variant) => (
-        <Progress
-          key={variant.id}
-          progress={25}
-          radius={variant.size}
-          variant="success"
-          size="medium"
-        >
+        <Progress key={variant.id} progress={25} shape={variant.shape} variant="success" thickness="medium">
           Click me
         </Progress>
       ))}
@@ -125,12 +115,11 @@ export const WithPercentage = () => {
             key={key.id}
             showPercent
             progress={25}
-            percentPosition="outside"
-            percentPositionOutside={key.pos}
-            radius="full"
+            percentBoundary="outside"
+            percentPosition={key.pos}
+            shape="circular"
             variant="success"
-            size="large"
-          >
+            thickness="large">
             Click me
           </Progress>
         ))}
@@ -142,12 +131,11 @@ export const WithPercentage = () => {
             showPercent
             className="text-base"
             progress={25}
-            percentPosition="inside"
-            percentPositionInside={key.pos}
-            radius="full"
+            percentBoundary="inside"
+            percentPosition={key.pos}
+            shape="circular"
             variant="success"
-            size="xlarge"
-          >
+            thickness="xlarge">
             Click me
           </Progress>
         ))}
