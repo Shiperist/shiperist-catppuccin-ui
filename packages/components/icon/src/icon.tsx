@@ -1,33 +1,16 @@
-import React, { ReactNode } from "react";
-import { cn, ColorSet, Size } from "@shiperist-catppuccin-ui/utilities";
+import React from "react";
+import { cn } from "@shiperist-catppuccin-ui/utilities";
+import { IconProps, iconSizeClass } from ".";
 
-export interface IconProps extends React.HTMLAttributes<HTMLDivElement> {
-  size?: Size;
-  color?: ColorSet;
-  icon?: ReactNode;
-}
-
-const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
-  const { size, icon, color, className, children, ...other } = props;
-  const sizeClass =
-    {
-      small: "w-4 h-4",
-      medium: "w-5 h-5",
-      large: "w-6 h-6",
-      xlarge: "h-7 w-7",
-    }[size] || "w-5 h-5";
+export const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
+  const { size = "medium", icon, color, className = "", ...other } = props;
+  const containerClass = cn(iconSizeClass[size] || iconSizeClass.medium, className, { [`stroke-${color}`]: color });
 
   return (
-    <div
-      className={cn(sizeClass, className, { [`stroke-${color}`]: color })}
-      ref={ref}
-      {...other}
-    >
+    <div className={containerClass} ref={ref} {...other}>
       {icon}
     </div>
   );
 });
 
 Icon.displayName = "Icon";
-
-export default Icon;

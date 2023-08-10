@@ -1,27 +1,15 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  CSSProperties,
-  LegacyRef,
-  useMemo,
-} from "react";
+import React, { useState, useRef, useEffect, LegacyRef, useMemo } from "react";
 import { ChevronDownIcon, cn } from "@shiperist-catppuccin-ui/utilities";
-import SelectItem from "./select-item";
+import {
+  SelectProps,
+  SelectItem,
+  selectInputStyles,
+  selectButtonContainerClass,
+  selectInputContainerClass,
+  selectResultClass,
+} from ".";
 
-export interface SelectProps {
-  disabled?: boolean;
-  placeholder?: string;
-  defaultValue?: string;
-  variant?: "button" | "input";
-  value?: string;
-  onChange?: (value: string) => void;
-  className?: string;
-  style?: CSSProperties;
-  children: React.ReactElement[] | React.ReactElement;
-}
-
-const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
+export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const {
     disabled,
     defaultValue,
@@ -43,9 +31,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   );
 
   useEffect(() => {
-    setSelectedValue(
-      controlledValue !== undefined ? controlledValue : defaultValue
-    );
+    setSelectedValue(controlledValue !== undefined ? controlledValue : defaultValue);
   }, [controlledValue, defaultValue]);
 
   const handleSelectOpen = () => {
@@ -115,22 +101,16 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     );
   }
 
+  const inputContainerStyles = cn(selectInputContainerClass(disabled, showRingEffect), className);
+  const buttonContainerStyles = cn(selectButtonContainerClass(disabled, showRingEffect), className);
+  const resultStyles = selectResultClass(
+    filteredChildren.filter((child) => React.isValidElement(child)) as React.ReactElement[]
+  );
+
   return (
     <div className={cn("relative")} ref={selectRef}>
       {Element === "input" ? (
-        <div
-          className={cn(
-            "border-overlay0 flex h-12 w-full flex-row items-center rounded-xl border px-4 py-2 transition duration-150 ease-in-out",
-            {
-              "cursor-not-allowed opacity-50": disabled,
-              "hover:border-overlay2": !disabled,
-              "ring-overlay2 ring": showRingEffect,
-            },
-            className
-          )}
-          {...other}
-          style={{ ...other.style }}
-        >
+        <div className={inputContainerStyles} {...other} style={{ ...other.style }}>
           <Element
             ref={ref as LegacyRef<HTMLInputElement>}
             type="text"
@@ -138,33 +118,17 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             onClick={!disabled ? handleSelectOpen : undefined}
             onChange={handleInputText}
             placeholder={placeholder}
-            value={
-              controlledValue !== undefined
-                ? controlledValue
-                : selectedValue || ""
-            }
-            className={cn("w-full flex-grow bg-transparent outline-none")}
-          ></Element>
-          {trailingElement && (
-            <div className={cn("stroke-overlay2")}>{trailingElement}</div>
-          )}
+            value={controlledValue !== undefined ? controlledValue : selectedValue || ""}
+            className={selectInputStyles}></Element>
+          {trailingElement && <div className={cn("stroke-overlay2")}>{trailingElement}</div>}
         </div>
       ) : (
         <Element
           ref={buttonRef}
           disabled={disabled}
           onClick={!disabled ? handleSelectOpen : undefined}
-          className={cn(
-            "border-overlay0 flex h-12 w-full flex-row items-center rounded-xl border px-4 py-2 transition duration-150 ease-in-out",
-            {
-              "cursor-not-allowed opacity-50": disabled,
-              "hover:border-overlay2": !disabled,
-              "ring-overlay2 ring": showRingEffect,
-            },
-            className
-          )}
-          {...other}
-        >
+          className={buttonContainerStyles}
+          {...other}>
           <div className="flex-grow text-left">
             {placeholder && !selectedValue && !defaultValue ? (
               <p className="text-overlay2">{placeholder}</p>
@@ -172,30 +136,17 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
               <p>{selectedValue || defaultValue}</p>
             )}
           </div>
-          {trailingElement && (
-            <div className={cn("stroke-overlay2 py-1")}>{trailingElement}</div>
-          )}
+          {trailingElement && <div className={cn("stroke-overlay2 py-1")}>{trailingElement}</div>}
         </Element>
       )}
       {isOpen && (
-        <div
-          className={cn(
-            "absolute z-50 mt-2 flex max-h-[250px] w-full flex-col overflow-y-auto rounded-xl",
-            {
-              "border-overlay0 border": filteredChildren.length > 0,
-              "border-none border-transparent": filteredChildren.length === 0,
-            }
-          )}
-        >
+        <div className={resultStyles}>
           {filteredChildren.map((child: React.ReactElement, index: number) => {
             const isLastItem = index === filteredChildren.length - 1;
             const itemStyle = isLastItem ? { borderBottom: 0 } : {};
 
             return React.cloneElement(child, {
-              onClick: () =>
-                !child.props.disabled
-                  ? handleSelectItemClick(String(child.props.children))
-                  : undefined,
+              onClick: () => (!child.props.disabled ? handleSelectItemClick(String(child.props.children)) : undefined),
               style: itemStyle,
             });
           })}
@@ -206,5 +157,3 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 });
 
 Select.displayName = "Select";
-
-export default Select;

@@ -1,2 +1,3 @@
-export { default as Checkbox } from "./checkbox";
-export type { CheckboxProps } from "./checkbox";
+export * from "./checkbox";
+export * from "./checkbox-props";
+export * from "./checkbox-styles";

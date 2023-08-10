@@ -1,24 +1,11 @@
 import React from "react";
-import {
-  cn,
-  ColorVariants,
-  Orientation,
-  colors,
-} from "@shiperist-catppuccin-ui/utilities";
-import { orientations } from "@shiperist-catppuccin-ui/utilities";
+import { cn } from "@shiperist-catppuccin-ui/utilities";
+import { CardProps, cardBaseClass } from ".";
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  appearance?: "filled" | "shadow" | "outline" | "embed";
-  orientation?: Orientation;
-  variant?: ColorVariants;
-  gap?: string | number;
-  disabled?: boolean;
-}
-
-const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
+export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
-    appearance,
-    orientation,
+    appearance = "outline",
+    orientation = "vertical",
     disabled,
     gap,
     variant,
@@ -26,44 +13,19 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     children,
     ...other
   } = props;
-  const colorClass = colors[variant] || colors.base;
-  const orientationClass = orientations[orientation] || orientations.vertical;
-  const appearanceClass =
-    {
-      filled: `bg-mantle border border-transparent`,
-      outline: `border border-overlay0 border-2`,
-      shadow: "bg-mantle shadow-lg border border-transparent",
-      embed: `border-${colorClass} bg-mantle border-l-4`,
-    }[appearance] || "border border-overlay0";
 
-  const convertedGap =
-    typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
-
+  const cardContainerStyles = cn(cardBaseClass(disabled, variant, appearance, orientation), className);
+  const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
   const cardStyles = {
     gap: convertedGap ? convertedGap : undefined,
     ...other.style,
   };
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "flex rounded-xl p-8",
-        appearanceClass,
-        orientationClass,
-        className,
-        {
-          "cursor-not-allowed opacity-50": disabled,
-        }
-      )}
-      style={cardStyles}
-      {...other}
-    >
+    <div ref={ref} className={cardContainerStyles} style={cardStyles} {...other}>
       {children}
     </div>
   );
 });
-
-export default Card;
 
 Card.displayName = "Card";

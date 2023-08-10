@@ -1,4 +1,4 @@
-export { default as Select } from "./select";
-export { default as SelectItem } from "./select-item";
-export type { SelectProps } from "./select";
-export type { SelectItemProps } from "./select-item";
+export * from "./select";
+export * from "./select-item";
+export * from "./select-props";
+export * from "./select-styles";

@@ -1,67 +1,36 @@
-import React, { ReactNode } from "react";
-import {
-  cn,
-  getRGBAFromHex,
-  ColorVariants,
-  colors,
-} from "@shiperist-catppuccin-ui/utilities";
+import React from "react";
+import { cn, colorClass } from "@shiperist-catppuccin-ui/utilities";
+import { BadgeProps, badgeBackgroundColor, badgeBaseClass, badgeIconColor } from ".";
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  leadingElement?: ReactNode;
-  trailingElement?: ReactNode;
-  variant?: ColorVariants;
-  appearance?: "filled" | "ghost" | "tint" | "outline";
-}
-
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
+export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   const {
     leadingElement,
     trailingElement,
-    variant,
-    appearance,
+    variant = "base",
+    appearance = "filled",
     className = "",
     children,
     ...other
   } = props;
-  const colorClass = colors[variant] || colors.base;
 
-  const appearanceClass =
-    {
-      filled: `bg-${colorClass} text-mantle border border-transparent`,
-      outline: `border border-${colorClass} text-${colorClass}`,
-      ghost: `text-${colorClass} border border-transparent`,
-      tint: `text-${colorClass} border border-transparent`,
-    }[appearance] || `bg-${colorClass} text-mantle border border-transparent`;
-
-  const backgroundColor =
-    appearance === "tint" ? getRGBAFromHex(colorClass) : undefined;
-  const iconColor =
-    appearance === "filled" ? "stroke-base" : `stroke-${colorClass}`;
+  const backgroundColor = badgeBackgroundColor(appearance, colorClass(variant));
+  const iconColor = badgeIconColor(appearance, colorClass(variant));
+  const containerStyles = cn(badgeBaseClass(appearance, colorClass(variant)), className);
 
   return (
     <div
       ref={ref}
-      className={cn(
-        `flex items-center rounded-full text-sm`,
-        colorClass ? `${appearanceClass}` : "",
-        className
-      )}
+      className={containerStyles}
       {...other}
       style={{
-        padding: "1px 4px",
-        backgroundColor,
         ...other.style,
-      }}
-    >
+        backgroundColor: backgroundColor,
+      }}>
       {leadingElement && <div className={cn(iconColor)}>{leadingElement}</div>}
       {children && <span className="mx-1">{children}</span>}
-      {trailingElement && (
-        <div className={cn(iconColor)}>{trailingElement}</div>
-      )}
+      {trailingElement && <div className={cn(iconColor)}>{trailingElement}</div>}
     </div>
   );
 });
-
-export default Badge;
 
 Badge.displayName = "Badge";
