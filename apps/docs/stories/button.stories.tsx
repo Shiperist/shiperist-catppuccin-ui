@@ -8,10 +8,6 @@ export default {
   argTypes: {
     isLoading: { control: "boolean", description: "Whether the button is loading." },
     disabled: { control: "boolean", description: "Whether the button is disabled." },
-    tooltip: {
-      control: "text",
-      description: "Sets the tooltip of the button that will be shown when button is hovered.",
-    },
     variant: { control: { type: "select" }, description: "Determines the color variant of the button." },
     shape: { control: { type: "select" }, description: "Determines the shape of the button." },
     appearance: { control: { type: "select" }, description: "Determines the appearance style of the button." },
@@ -34,7 +30,6 @@ const Template: StoryFn = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   isLoading: false,
-  tooltip: "",
   variant: "base",
   size: "medium",
   disabled: false,

@@ -8,7 +8,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
     trailingElement,
     isLoading,
     disabled,
-    tooltip,
     appearance = "outline",
     shape = "rounded",
     variant = "base",
@@ -18,7 +17,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
     ...other
   } = props;
 
-  const [showTooltip, setShowTooltip] = useState(false);
   let leadingElement: React.ReactNode = originalLeadingElement;
 
   const isOnlyIcon = (leadingElement || trailingElement) && !children; //Check if button has only leading or trailing element to render differently
@@ -32,8 +30,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
     <button
       ref={ref}
       className={containerStyles}
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
       disabled={disabled}
       {...other}
       style={{
