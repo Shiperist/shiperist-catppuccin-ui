@@ -1,5 +1,12 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Tooltip, HorizontalLayout, Card, IndicatorLabel, Button } from "@shiperist-catppuccin-ui/react";
+import {
+  Tooltip,
+  HorizontalLayout,
+  Card,
+  IndicatorLabel,
+  Button,
+  VerticalLayout,
+} from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Components/Tooltip",
@@ -35,9 +42,13 @@ export default {
 
 const Template: StoryFn = (args) => {
   return (
-    <Tooltip text={args.text} {...args}>
-      <Button>Hover me</Button>
-    </Tooltip>
+    <div className="flex h-16 items-center justify-center" style={{ width: "32rem" }}>
+      <div style={{ position: "relative" }}>
+        <Tooltip text={args.text} {...args}>
+          <Button>Hover me</Button>
+        </Tooltip>
+      </div>
+    </div>
   );
 };
 
@@ -49,4 +60,40 @@ Default.args = {
   text: "Tooltip text",
   showDelay: 250,
   hideDelay: 250,
+};
+
+export const Positions = () => {
+  const positions: any[] = [
+    { id: 1, position: "Left" },
+    { id: 2, position: "Top" },
+    { id: 3, position: "Bottom" },
+    { id: 4, position: "Right" },
+  ];
+
+  const chunkedPositions = [];
+  for (let i = 0; i < positions.length; i += 2) {
+    chunkedPositions.push(positions.slice(i, i + 2));
+  }
+
+  return (
+    <div className="flex h-96 items-center justify-center" style={{ width: "32rem" }}>
+      <VerticalLayout style={{ gap: 8 }}>
+        {chunkedPositions.map((row, rowIndex) => (
+          <div className="flex" key={rowIndex}>
+            {row.map((item) => (
+              <div
+                key={item.id}
+                style={{
+                  position: "relative",
+                }}>
+                <Tooltip text={item.position.toLowerCase()} position={item.position.toLowerCase()} visible>
+                  <Button className="w-32">{item.position}</Button>
+                </Tooltip>
+              </div>
+            ))}
+          </div>
+        ))}
+      </VerticalLayout>
+    </div>
+  );
 };

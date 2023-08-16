@@ -13,7 +13,7 @@ export const cardAppearanceClass = (colorClass: string, appearance: string) => {
 
 export const cardBaseClass = (disabled: boolean, variant: string, appearance: string, orientation: string) =>
   cn(
-    "flex w-full rounded-xl p-8",
+    "flex w-full rounded-xl p-4",
     cardAppearanceClass(colorClass(variant), appearance),
     orientations[orientation] || orientations.vertical,
     {

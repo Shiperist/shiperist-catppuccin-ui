@@ -119,7 +119,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
             onClick={!disabled ? handleSelectOpen : undefined}
             onChange={handleInputText}
             placeholder={placeholder}
-            value={controlledValue !== undefined ? controlledValue : selectedValue || ""}
+            defaultValue={controlledValue !== undefined ? controlledValue : selectedValue || defaultValue || ""}
             className={selectInputStyles}></Element>
           {trailingElement && <div className={cn("stroke-overlay2")}>{trailingElement}</div>}
         </div>
@@ -147,7 +147,10 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
             const itemStyle = isLastItem ? { borderBottom: 0 } : {};
 
             return React.cloneElement(child, {
-              onClick: () => (!child.props.disabled ? handleSelectItemClick(String(child.props.children)) : undefined),
+              onClick: () =>
+                !child.props.disabled && !child.props.isTitle
+                  ? handleSelectItemClick(String(child.props.children))
+                  : undefined,
               style: itemStyle,
               size: size,
             });

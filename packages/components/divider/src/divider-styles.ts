@@ -17,7 +17,7 @@ export const dividerExtraLabelStyle = {
 };
 
 export const dividerContainerClass = (orientation: string, thickness: string) =>
-  cn("bg-overlay2 relative", {
+  cn("bg-overlay2 relative my-1", {
     [dividerHorizontalThicknessClass[thickness] || dividerHorizontalThicknessClass.tiny + "w-full my-1"]:
       orientation === "horizontal",
     [dividerVerticalThicknessClass[thickness] || dividerVerticalThicknessClass.tiny + " mx-1"]:

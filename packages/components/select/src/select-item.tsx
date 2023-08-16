@@ -1,11 +1,11 @@
 import React from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
-import { SelectItemProps, selectItemClass, selectSizeClass } from ".";
+import { SelectItemProps, selectItemClass } from ".";
 
 export const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>((props, ref) => {
-  const { leadingElement, trailingElement, size, disabled, className = "", value, children, ...other } = props;
+  const { leadingElement, trailingElement, isTitle, size, disabled, className = "", value, children, ...other } = props;
 
-  const selectItemStyles = cn(selectItemClass(disabled, size), className);
+  const selectItemStyles = cn(selectItemClass(disabled, size, isTitle), className);
 
   return (
     <button ref={ref} className={selectItemStyles} {...other}>

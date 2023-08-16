@@ -31,20 +31,20 @@ export const Tooltip = (props: TooltipProps) => {
 
     switch (position) {
       case "top":
-        newPositionStyle.bottom = `${targetRect.height + 16}px`;
-        newPositionStyle.left = `${(targetRect.width - tooltipRect.width) / 10}px`;
+        newPositionStyle.bottom = `${targetRect.height + 8}px`;
+        newPositionStyle.left = `calc(50% - ${tooltipRect.width / 2}px)`;
         break;
       case "bottom":
-        newPositionStyle.top = `${targetRect.height + 16}px`;
-        newPositionStyle.left = `${(targetRect.width - tooltipRect.width) / 10}px`;
+        newPositionStyle.top = `${targetRect.height + 8}px`;
+        newPositionStyle.left = `calc(50% - ${tooltipRect.width / 2}px)`;
         break;
       case "left":
-        newPositionStyle.right = `${targetRect.width + 16}px`;
-        newPositionStyle.top = `${targetRect.height - tooltipRect.height}px`;
+        newPositionStyle.right = `${targetRect.width + 8}px`;
+        newPositionStyle.top = `calc(50% - ${tooltipRect.height / 2}px)`;
         break;
       case "right":
-        newPositionStyle.left = `${targetRect.width + 16}px`;
-        newPositionStyle.top = `${targetRect.height - tooltipRect.height}px`;
+        newPositionStyle.left = `${targetRect.width + 8}px`;
+        newPositionStyle.top = `calc(50% - ${tooltipRect.height / 2}px)`;
         break;
       default:
         break;
@@ -82,10 +82,7 @@ export const Tooltip = (props: TooltipProps) => {
   const tooltipContainerStyles = cn(tooltipClass, className);
 
   return (
-    <div className="">
-      <div ref={targetRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        {children}
-      </div>
+    <div ref={targetRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {isShown && (
         <div
           ref={tooltipRef}
@@ -96,6 +93,7 @@ export const Tooltip = (props: TooltipProps) => {
           {text}
         </div>
       )}
+      {children}
     </div>
   );
 };

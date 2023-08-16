@@ -1,9 +1,9 @@
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export const selectSizeClass = {
-  small: "h-7",
-  medium: "h-8",
-  large: "h-9",
+  small: "text-sm h-7",
+  medium: "text-md h-8",
+  large: "text-lg h-9",
 };
 
 export const selectInputContainerClass = (disabled: boolean, showRingEffect: boolean, size: string) =>
@@ -33,12 +33,13 @@ export const selectResultClass = (filteredChildren: React.ReactElement[]) =>
     "border-none border-transparent": filteredChildren.length === 0,
   });
 
-export const selectItemClass = (disabled: boolean, size: string) =>
+export const selectItemClass = (disabled: boolean, size: string, isTitle: boolean) =>
   cn(
     "bg-base text-text flex w-full max-w-full items-center px-4 text-left transition duration-150 ease-in-out",
     {
       "cursor-not-allowed opacity-50": disabled,
-      "hover:bg-surface1": !disabled,
+      "hover:bg-surface1": !disabled && !isTitle,
+      "cursor-default font-bold": isTitle,
     },
     selectSizeClass[size] || selectSizeClass.medium
   );

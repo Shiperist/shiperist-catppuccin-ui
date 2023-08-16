@@ -90,6 +90,12 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
   value?: string;
 
   /**
+   * Specifies whether the option is shown as title. When set to true, the option becomes non-interactive
+   * and its functionality is not available to users.
+   */
+  isTitle?: boolean;
+
+  /**
    * Sets the size of the select.
    * Possible values:
    * - "small": A small-sized select.
