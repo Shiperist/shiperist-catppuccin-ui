@@ -14,6 +14,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
     disabled,
     defaultValue,
     variant = "button",
+    size,
     placeholder,
     value: controlledValue,
     onChange,
@@ -95,14 +96,14 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
 
   if (variant === "input" && filteredChildren.length === 0) {
     filteredChildren.push(
-      <SelectItem key="nothing-found" disabled>
+      <SelectItem key="nothing-found" size={size} disabled>
         Nothing found.
       </SelectItem>
     );
   }
 
-  const inputContainerStyles = cn(selectInputContainerClass(disabled, showRingEffect), className);
-  const buttonContainerStyles = cn(selectButtonContainerClass(disabled, showRingEffect), className);
+  const inputContainerStyles = cn(selectInputContainerClass(disabled, showRingEffect, size), className);
+  const buttonContainerStyles = cn(selectButtonContainerClass(disabled, showRingEffect, size), className);
   const resultStyles = selectResultClass(
     filteredChildren.filter((child) => React.isValidElement(child)) as React.ReactElement[]
   );
@@ -148,6 +149,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
             return React.cloneElement(child, {
               onClick: () => (!child.props.disabled ? handleSelectItemClick(String(child.props.children)) : undefined),
               style: itemStyle,
+              size: size,
             });
           })}
         </div>

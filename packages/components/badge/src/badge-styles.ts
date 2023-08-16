@@ -5,7 +5,7 @@ export const badgeAppearanceClass = (appearance: string, colorClass: string) => 
       filled: `bg-${colorClass} text-mantle border border-transparent`,
       outline: `border border-${colorClass} text-${colorClass}`,
       ghost: `text-${colorClass} border border-transparent`,
-      tint: `text-${colorClass} border border-transparent`,
+      /* tint: `text-${colorClass} border border-transparent`, */
     }[appearance] || `bg-${colorClass} text-mantle border border-transparent`
   );
 };

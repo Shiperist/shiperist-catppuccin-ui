@@ -15,7 +15,7 @@ export const buttonSizeClass = (size: string, isOnlyIcon: boolean) => {
       medium: `text-md ${isOnlyIcon ? "p-2.5" : "px-3 py-2"}`,
       large: `text-lg ${isOnlyIcon ? "p-3.5" : "px-4 py-3"}`,
       xlarge: `text-xl ${isOnlyIcon ? "p-4.5" : "px-5 py-4"}`,
-    }[size] || `${isOnlyIcon ? "p-2.5" : "px-3 py-2"}`
+    }[size] || `${isOnlyIcon ? "p-2.5" : "px-3 py-2 text-md"}`
   );
 };
 export const buttonAppearanceClass = (colorClass: string, appearance: string) => {
@@ -24,7 +24,7 @@ export const buttonAppearanceClass = (colorClass: string, appearance: string) =>
       /* filled: `bg-${colorClass} text-mantle hover:opacity-80 border border-transparent`, */
       outline: `border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`,
       ghost: `text-${colorClass} hover:bg-surface1 hover:text-${colorClass} border border-transparent`,
-      tint: `text-${colorClass} hover:opacity-80 border border-transparent`,
+      /*  tint: `text-${colorClass} hover:opacity-80 border border-transparent`, */
       shadow: `text-${colorClass} bg-mantle shadow-lg hover:bg-crust border border-transparent`,
     }[appearance] || `border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`
   );
@@ -34,7 +34,7 @@ export const buttonIconColor = (colorClass: string, appearance: string) => {
     /* filled: `group-hover:stroke-base stroke-base`, */
     outline: `group-hover:stroke-base stroke-${colorClass}`,
     ghost: `group-hover:stroke-${colorClass} stroke-${colorClass}`,
-    tint: ` stroke-${colorClass}`,
+    /* tint: ` stroke-${colorClass}`, */
     shadow: `group-hover:stroke-${colorClass} stroke-${colorClass}`,
   }[appearance];
 };

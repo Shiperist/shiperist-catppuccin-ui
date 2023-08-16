@@ -78,7 +78,7 @@ export const Appearances = () => {
   const appearances: any[] = [
     /* { id: 1, name: "filled" }, */
     { id: 2, name: "ghost" },
-    { id: 3, name: "tint" },
+    /* { id: 3, name: "tint" }, */
     { id: 4, name: "outline" },
     { id: 5, name: "shadow" },
   ];

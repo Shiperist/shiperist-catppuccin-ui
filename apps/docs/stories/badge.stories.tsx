@@ -64,7 +64,7 @@ export const Appearances = () => {
     { id: 1, appearance: "filled" },
     { id: 2, appearance: "outline" },
     { id: 3, appearance: "ghost" },
-    { id: 4, appearance: "tint" },
+    /* { id: 4, appearance: "tint" }, */
   ];
   return (
     <HorizontalLayout style={{ gap: 8 }}>

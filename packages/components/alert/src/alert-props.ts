@@ -35,5 +35,5 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
    * - "filled": An alert component with a solid background color and styled text.
    * - "tint": An alert component with a colored background and styled text.
    */
-  appearance?: "outline" | "filled" | "tint";
+  appearance?: "outline" | "filled" /* | "tint"; */;
 }

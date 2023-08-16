@@ -13,6 +13,7 @@ export default {
     value: { control: "text", description: "Determines the value of the select." },
     onChange: { control: "function", description: "Callback function triggered when the value of the select changes." },
     variant: { control: { type: "select" }, description: "Determines the color variant of the select." },
+    size: { control: { type: "select" }, description: "Determines the size of the select." },
   },
 } as Meta;
 
@@ -31,13 +32,14 @@ const Template: StoryFn = (args) => {
   );
 };
 
-export const UncontrolledSelection = Template.bind({});
-UncontrolledSelection.args = {
+export const Default = Template.bind({});
+Default.args = {
   disabled: false,
   placeholder: "Select items...",
   defaultValue: "",
   value: "",
   variant: "button",
+  size: "medium",
 };
 
 export const ControlledSelection = () => {
@@ -78,6 +80,30 @@ export const Placeholder = Template.bind({});
 Placeholder.args = {
   placeholder: "Select items...",
   variant: "button",
+};
+
+export const Sizes = () => {
+  const sizes: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+  ];
+
+  return (
+    <VerticalLayout style={{ gap: 16 }}>
+      {sizes.map((key) => (
+        <Select key={key.id} size={key.size} placeholder="Select items..." variant="button" style={{ width: "32rem" }}>
+          <SelectItem leadingElement={icon} id="item1">
+            Select one
+          </SelectItem>
+          <SelectItem id="item2">Select two</SelectItem>
+          <SelectItem leadingElement={icon} id="item3">
+            Select three
+          </SelectItem>
+        </Select>
+      ))}
+    </VerticalLayout>
+  );
 };
 
 export const Types = () => {

@@ -36,7 +36,7 @@ export default {
 const Template: StoryFn = (args) => {
   return (
     <Tooltip text={args.text} {...args}>
-      <Button>Click me</Button>
+      <Button>Hover me</Button>
     </Tooltip>
   );
 };

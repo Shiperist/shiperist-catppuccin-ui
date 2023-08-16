@@ -68,7 +68,7 @@ export const Appearances = () => {
   const variants: any[] = [
     { id: 1, appearance: "filled" },
     { id: 2, appearance: "outline" },
-    { id: 3, appearance: "tint" },
+    /* { id: 3, appearance: "tint" }, */
   ];
   return (
     <VerticalLayout style={{ gap: 10 }}>

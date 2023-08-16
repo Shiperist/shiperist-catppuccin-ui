@@ -54,6 +54,15 @@ export interface SelectProps {
    * These child elements should be of type React.ReactElement.
    */
   children: React.ReactElement[] | React.ReactElement;
+
+  /**
+   * Sets the size of the select.
+   * Possible values:
+   * - "small": A small-sized select.
+   * - "medium": A medium-sized select (default size).
+   * - "large": A large-sized select.
+   */
+  size?: "small" | "medium" | "large";
 }
 
 export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -62,6 +71,12 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
    * This element will be positioned before the option's content.
    */
   leadingElement?: ReactNode;
+
+  /**
+   * Sets a trailing element in the option. Can be any valid React node.
+   * This element will be positioned after the option's content.
+   */
+  trailingElement?: ReactNode;
 
   /**
    * Specifies whether the option is disabled. When set to true, the option becomes non-interactive
@@ -73,4 +88,13 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
    * Sets the value of the option. This value represents the option's value when selected.
    */
   value?: string;
+
+  /**
+   * Sets the size of the select.
+   * Possible values:
+   * - "small": A small-sized select.
+   * - "medium": A medium-sized select (default size).
+   * - "large": A large-sized select.
+   */
+  size?: "small" | "medium" | "large";
 }

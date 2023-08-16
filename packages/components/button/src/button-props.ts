@@ -40,7 +40,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * - "outline": A button with a colored outline and transparent background.
    * - "shadow": A button with a shadow effect.
    */
-  appearance?: /* "filled" | */ "ghost" | "tint" | "outline" | "shadow";
+  appearance?: /* "filled" | */ "ghost" | /* "tint" | */ "outline" | "shadow";
 
   /**
    * Sets the color variant of the button.

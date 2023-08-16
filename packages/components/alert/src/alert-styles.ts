@@ -10,7 +10,7 @@ export const alertAppearanceClass = (appearance: string, colorClass: string) => 
     {
       outline: `text-${colorClass} border border-${colorClass}`,
       filled: `text-surface0 border border-transparent bg-${colorClass}`,
-      tint: `text-${colorClass} border border-transparent`,
+      /* tint: `text-${colorClass} border border-transparent`, */
     }[appearance] || `text-${colorClass} border border-${colorClass}`
   );
 };

@@ -27,5 +27,5 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
    * - "tint": A badge with a colored background and styled text.
    * - "outline": A badge with a colored outline and transparent background.
    */
-  appearance?: "filled" | "ghost" | "tint" | "outline";
+  appearance?: "filled" | "ghost" | /* "tint" | */ "outline";
 }
