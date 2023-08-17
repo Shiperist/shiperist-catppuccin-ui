@@ -147,7 +147,6 @@ export const UserCircleIcon = ({ className = "", ...props }) => (
   <svg
     className={cn(className, "fill-transparent")}
     viewBox="0 0 24 24"
-    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -155,5 +154,18 @@ export const UserCircleIcon = ({ className = "", ...props }) => (
     <path d="M18 20a6 6 0 0 0-12 0" />
     <circle cx="12" cy="10" r="4" />
     <circle cx="12" cy="12" r="10" />
+  </svg>
+);
+export const TrashIcon = ({ className = "", ...props }) => (
+  <svg
+    className={cn(className, "fill-transparent")}
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}>
+    <path d="M3 6h18" />
+    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
   </svg>
 );

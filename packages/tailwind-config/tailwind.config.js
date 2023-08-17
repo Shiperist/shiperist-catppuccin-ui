@@ -44,7 +44,7 @@ module.exports = {
     },
     // Width/height classes
     {
-      pattern: /^(w|h|min-w|min-h)-(full|screen|[0-9]+)$/,
+      pattern: /^(w|h|min-w|min-h|max-w|max-h)-(full|screen|[0-9]+)$/,
       variants: variants,
     },
     // Duration/delay/z classes

@@ -38,7 +38,6 @@ Default.args = {
 export const Orientations = () => {
   return (
     <VerticalLayout style={{ gap: 16, width: "32rem" }}>
-      <Text bold>Vertical divider with text</Text>
       <Card orientation="horizontal" className="items-center" gap={32}>
         <Card appearance="filled" className="items-center justify-center">
           <Text>content</Text>
@@ -50,7 +49,6 @@ export const Orientations = () => {
           <Text>content</Text>
         </Card>
       </Card>
-      <Text bold>Horizontal divider with text</Text>
       <Card gap={16}>
         <Card appearance="filled" className="items-center justify-center">
           <Text>content</Text>

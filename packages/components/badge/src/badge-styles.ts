@@ -16,6 +16,6 @@ export const badgeIconColor = (appearance: string, colorClass: string) =>
   appearance === "filled" ? "stroke-base" : `stroke-${colorClass}`;
 export const badgeBaseClass = (appearance: string, colorClass: string) =>
   cn(
-    `flex items-center rounded-full text-sm py-px px-1`,
+    `flex items-center rounded-full text-sm py-px px-1 text-xs`,
     colorClass ? `${badgeAppearanceClass(appearance, colorClass)}` : ""
   );

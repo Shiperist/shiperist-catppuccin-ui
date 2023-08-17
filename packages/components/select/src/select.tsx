@@ -4,9 +4,9 @@ import {
   SelectProps,
   SelectItem,
   selectInputStyles,
-  selectButtonContainerClass,
-  selectInputContainerClass,
   selectResultClass,
+  SelectItemHeader,
+  selectContainerClass,
 } from ".";
 
 export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
@@ -102,8 +102,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
     );
   }
 
-  const inputContainerStyles = cn(selectInputContainerClass(disabled, showRingEffect, size), className);
-  const buttonContainerStyles = cn(selectButtonContainerClass(disabled, showRingEffect, size), className);
+  const containerStyles = cn(selectContainerClass(disabled, showRingEffect, size, isOpen), className);
   const resultStyles = selectResultClass(
     filteredChildren.filter((child) => React.isValidElement(child)) as React.ReactElement[]
   );
@@ -111,7 +110,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
   return (
     <div className={cn("relative")} ref={selectRef}>
       {Element === "input" ? (
-        <div className={inputContainerStyles} {...other} style={{ ...other.style }}>
+        <div className={containerStyles} {...other} style={{ ...other.style }}>
           <Element
             ref={ref as LegacyRef<HTMLInputElement>}
             type="text"
@@ -128,7 +127,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
           ref={buttonRef}
           disabled={disabled}
           onClick={!disabled ? handleSelectOpen : undefined}
-          className={buttonContainerStyles}
+          className={containerStyles}
           {...other}>
           <div className="flex-grow text-left">
             {placeholder && !selectedValue && !defaultValue ? (
@@ -148,7 +147,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
 
             return React.cloneElement(child, {
               onClick: () =>
-                !child.props.disabled && !child.props.isTitle
+                !child.props.disabled && !(child.type === SelectItemHeader)
                   ? handleSelectItemClick(String(child.props.children))
                   : undefined,
               style: itemStyle,

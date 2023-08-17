@@ -3,7 +3,7 @@ import { cn } from "@shiperist-catppuccin-ui/utilities";
 import { IconProps, iconSizeClass } from ".";
 
 export const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
-  const { size = "medium", icon, color = "overlay2", className = "", ...other } = props;
+  const { size = "medium", icon, color, className = "", ...other } = props;
   const containerClass = cn(iconSizeClass[size] || iconSizeClass.medium, className, { [`stroke-${color}`]: color });
 
   return (

@@ -1,14 +1,14 @@
 import React from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
-import { SelectItemProps, selectItemClass } from ".";
+import { MenuItemProps, menuItemClass } from ".";
 
-export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>((props, ref) => {
+export const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
   const { leadingElement, trailingElement, size, disabled, className = "", value, children, ...other } = props;
 
-  const selectItemStyles = cn(selectItemClass(disabled, size), className);
+  const menuItemStyles = cn(menuItemClass(disabled, size), className);
 
   return (
-    <div ref={ref} className={selectItemStyles} {...other}>
+    <div ref={ref} className={menuItemStyles} {...other}>
       {leadingElement && <div className={cn("stroke-overlay1 pr-2")}>{leadingElement}</div>}
       <div className="flex-grow" style={{ marginLeft: leadingElement ? "0.2rem" : 0 }}>
         {children}
@@ -18,4 +18,4 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>((pro
   );
 });
 
-SelectItem.displayName = "SelectItem";
+MenuItem.displayName = "MenuItem";

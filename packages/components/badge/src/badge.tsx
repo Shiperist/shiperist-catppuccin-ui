@@ -7,7 +7,7 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) =
     leadingElement,
     trailingElement,
     variant = "base",
-    appearance = "filled",
+    appearance = "outline",
     className = "",
     children,
     ...other

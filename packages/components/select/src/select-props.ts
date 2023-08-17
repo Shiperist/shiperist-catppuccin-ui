@@ -68,7 +68,7 @@ export interface SelectProps {
   size?: "small" | "medium" | "large";
 }
 
-export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface SelectItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Sets a leading element in the option. Can be any valid React node.
    * This element will be positioned before the option's content.
@@ -94,13 +94,6 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
   value?: string;
 
   /**
-   * Specifies whether the option is shown as title. When set to true, the option becomes non-interactive
-   * and its functionality is not available to users.
-   * @default false
-   */
-  isTitle?: boolean;
-
-  /**
    * Sets the size of the select.
    * Possible values:
    * - "small": A small-sized select.
@@ -108,5 +101,12 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
    * - "large": A large-sized select.
    * @default medium
    */
+  size?: "small" | "medium" | "large";
+}
+
+export interface SelectItemHeaderProps extends React.HTMLAttributes<HTMLSpanElement> {}
+export interface SelectItemGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  onSelectItemClick?: (itemValue: string) => void;
+  value?: string;
   size?: "small" | "medium" | "large";
 }

@@ -1,7 +1,17 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
-import { Select, SelectItem, VerticalLayout, Text, Icon, Divider } from "@shiperist-catppuccin-ui/react";
-import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
+import {
+  Select,
+  SelectItem,
+  SelectItemHeader,
+  VerticalLayout,
+  Text,
+  Icon,
+  Divider,
+  Badge,
+  Button,
+} from "@shiperist-catppuccin-ui/react";
+import { HeartIcon, TrashIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Forms/Select",
@@ -12,12 +22,19 @@ export default {
     defaultValue: { control: "text", description: "Determines the default value of the select." },
     value: { control: "text", description: "Determines the value of the select." },
     onChange: { control: "function", description: "Callback function triggered when the value of the select changes." },
-    variant: { control: { type: "select" }, description: "Determines the color variant of the select." },
+    variant: { control: { type: "select" }, description: "Determines the type of the select." },
     size: { control: { type: "select" }, description: "Determines the size of the select." },
   },
 } as Meta;
 
 const icon = <Icon icon={<HeartIcon />} size="small" />;
+const trashIcon = (
+  <Button
+    size="small"
+    appearance="ghost"
+    className="z-20"
+    leadingElement={<Icon icon={<TrashIcon />} size="small" />}></Button>
+);
 const Template: StoryFn = (args) => {
   return (
     <div className="flex h-96 items-center justify-center">
@@ -81,15 +98,19 @@ Placeholder.args = {
 
 export const WithTitledSelectItem = () => {
   return (
-    <div className="flex h-96 items-center justify-center">
+    <div className="mt-8 flex h-96 justify-center">
       <Select placeholder="Select items..." style={{ width: "32rem" }}>
-        <SelectItem id="item1" isTitle>
-          Items // divider is optional
+        <SelectItemHeader>Items</SelectItemHeader>
+        <SelectItem id="item1">Select one</SelectItem>
+        <SelectItem id="item2">Select two</SelectItem>
+        <SelectItem id="item3">Select three</SelectItem>
+        <Divider className="mb-3" />
+        <SelectItemHeader>Cars</SelectItemHeader>
+        <SelectItem id="item4" trailingElement={<Badge variant="success">New</Badge>}>
+          Audi
         </SelectItem>
-        <Divider />
-        <SelectItem id="item2">Select one</SelectItem>
-        <SelectItem id="item3">Select two</SelectItem>
-        <SelectItem id="item4">Select three</SelectItem>
+        <SelectItem id="item5">Mercedes-Benz</SelectItem>
+        <SelectItem id="item6">BMW</SelectItem>
       </Select>
     </div>
   );
@@ -102,10 +123,10 @@ export const WithIconsInSelectItem = () => {
         <SelectItem leadingElement={icon} id="item2">
           Select one
         </SelectItem>
-        <SelectItem trailingElement={icon} id="item3">
+        <SelectItem trailingElement={trashIcon} id="item3">
           Select two
         </SelectItem>
-        <SelectItem leadingElement={icon} trailingElement={icon} id="item4">
+        <SelectItem leadingElement={icon} trailingElement={trashIcon} id="item4">
           Select three
         </SelectItem>
       </Select>
@@ -122,7 +143,7 @@ export const Sizes = () => {
 
   return (
     <div className="flex h-96 items-center justify-center">
-      <VerticalLayout style={{ gap: 16 }}>
+      <VerticalLayout style={{ gap: 8 }}>
         {sizes.map((key) => (
           <Select
             key={key.id}

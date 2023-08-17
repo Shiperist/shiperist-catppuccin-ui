@@ -69,10 +69,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
   return (
     <div
       className={containerClass}
-      style={label && label.length > 0 ? { ...other.style, gap: 8 } : undefined}
+      style={label && label.length > 0 ? { ...other.style, gap: 2 } : undefined}
       {...other}>
       <label htmlFor={other.id} className={label && labelStyle === "border" ? borderedAppearanceStyle : "cursor-text"}>
-        {label} {label && required && <span className="text-red">*</span>}
+        <span className={labelStyle === "border" ? "text-xs" : "text-sm"}>{label}</span>{" "}
+        {label && required && <span className="text-red">*</span>}
       </label>
       <div className={overlayClass}>
         {leadingElement && <div className={cn("stroke-overlay1")}>{leadingElement}</div>}

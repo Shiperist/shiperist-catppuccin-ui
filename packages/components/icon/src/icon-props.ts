@@ -10,7 +10,6 @@ export interface IconProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /**
    * Sets the color of the icon.
-   * @default overlay2
    */
   color?: ColorSet;
 

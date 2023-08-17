@@ -6,9 +6,9 @@ export const textInputAppearance = {
   filled: "ring-0 border-b rounded-xl bg-surface0",
 };
 export const textInputSizeClass = {
-  small: "text-sm py-4 h-8",
-  medium: "text-md py-6 h-12",
-  large: "text-lg py-8 h-14",
+  small: "text-xs h-7",
+  medium: "text-sm h-8",
+  large: "text-md h-9",
 };
 export const textInputIconSizeClass = {
   small: "w-4 h-4",
