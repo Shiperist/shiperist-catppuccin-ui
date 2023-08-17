@@ -7,17 +7,20 @@ export interface RadioProps<T extends string | number = string>
   /**
    * Specifies whether the radio button is disabled. When set to true, the radio button becomes non-interactive
    * and its functionality is not available to users.
+   * @default false
    */
   disabled?: boolean;
 
   /**
    * Sets the color variant of the radio button.
+   * @default base
    */
   variant?: ColorVariants;
 
   /**
    * Specifies whether the radio button is required for form submission.
    * When set to true, the form containing the radio button group cannot be submitted unless a radio button is selected.
+   * @default base
    */
   required?: boolean;
 
@@ -39,6 +42,7 @@ export interface RadioProps<T extends string | number = string>
    * - "small": A small-sized radio button.
    * - "medium": A medium-sized radio button (default size).
    * - "large": A large-sized radio button.
+   * @default medium
    */
   size?: "small" | "medium" | "large";
 
@@ -53,6 +57,7 @@ export interface RadioProps<T extends string | number = string>
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Sets the orientation of the radio button group. This can control how the radio buttons are laid out.
+   * @default vertical
    */
   orientation?: Orientation;
 
@@ -65,6 +70,7 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specifies whether the radio button group is disabled. When set to true, the radio buttons become non-interactive
    * and their functionality is not available to users.
+   * @default false
    */
   disabled?: boolean;
 }

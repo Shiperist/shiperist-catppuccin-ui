@@ -10,7 +10,16 @@ import {
 } from ".";
 
 export const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>((props, ref) => {
-  const { position, status, isLegend, positionPreset, size, className = "", children = "", ...other } = props;
+  const {
+    position,
+    status = "active",
+    isLegend,
+    positionPreset = "top-right",
+    size = "small",
+    className = "",
+    children = "",
+    ...other
+  } = props;
 
   const labelInsideStyles = indicatorLabelInsideClass(children, isLegend, size, status);
   const positionStyleFromPreset = getIndicatorPositionStyleFromPreset(positionPreset);

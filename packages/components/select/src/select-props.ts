@@ -4,6 +4,7 @@ export interface SelectProps {
   /**
    * Specifies whether the select component is disabled.
    * When set to true, the select component becomes non-interactive and its functionality is not available to users.
+   * @default false
    */
   disabled?: boolean;
 
@@ -24,6 +25,7 @@ export interface SelectProps {
    * Possible values:
    * - "button": A select component with a button-like appearance.
    * - "input": A select component with an input-like appearance (default variant).
+   * @default button
    */
   variant?: "button" | "input";
 
@@ -61,6 +63,7 @@ export interface SelectProps {
    * - "small": A small-sized select.
    * - "medium": A medium-sized select (default size).
    * - "large": A large-sized select.
+   * @default medium
    */
   size?: "small" | "medium" | "large";
 }
@@ -81,6 +84,7 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
   /**
    * Specifies whether the option is disabled. When set to true, the option becomes non-interactive
    * and its functionality is not available to users.
+   * @default false
    */
   disabled?: boolean;
 
@@ -92,6 +96,7 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
   /**
    * Specifies whether the option is shown as title. When set to true, the option becomes non-interactive
    * and its functionality is not available to users.
+   * @default false
    */
   isTitle?: boolean;
 
@@ -101,6 +106,7 @@ export interface SelectItemProps extends React.HTMLAttributes<HTMLButtonElement>
    * - "small": A small-sized select.
    * - "medium": A medium-sized select (default size).
    * - "large": A large-sized select.
+   * @default medium
    */
   size?: "small" | "medium" | "large";
 }

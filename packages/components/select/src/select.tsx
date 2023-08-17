@@ -14,7 +14,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>((props, ref)
     disabled,
     defaultValue,
     variant = "button",
-    size,
+    size = "medium",
     placeholder,
     value: controlledValue,
     onChange,

@@ -13,7 +13,7 @@ export const Text: FC<TypographyProps> = ({
 }) => {
   return (
     <Element
-      className={cn([formatClass(bold, italic, underline), error ? "text-red" : "text-text", className])}
+      className={cn([formatClass(bold, italic, underline), error ? "text-red" : "text-text", className], className)}
       {...props}></Element>
   );
 };

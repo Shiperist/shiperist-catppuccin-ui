@@ -5,10 +5,10 @@ import { RadioProps, radioClass, radioContainerClass } from ".";
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   const {
     disabled,
-    variant,
+    variant = "base",
     required,
     name,
-    size,
+    size = "medium",
     checked,
     value,
     onChange,

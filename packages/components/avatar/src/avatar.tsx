@@ -18,7 +18,7 @@ export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>((props, re
     icon,
     defaultImage,
     isLoading,
-    backgroundColor,
+    backgroundColor = "surface1",
     size = "medium",
     alt,
     className = "",

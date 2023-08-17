@@ -8,7 +8,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => 
     orientation = "vertical",
     disabled,
     gap,
-    variant,
+    variant = "base",
     className = "",
     children,
     ...other

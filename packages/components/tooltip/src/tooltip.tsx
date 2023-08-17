@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { TooltipProps } from "."; // Import your TooltipProps type
+import { TooltipProps, tooltipClass, calculatePosition } from ".";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
-import { tooltipClass } from "./tooltip-styles";
 
 export const Tooltip = (props: TooltipProps) => {
   const {
@@ -21,41 +20,9 @@ export const Tooltip = (props: TooltipProps) => {
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const targetRef = useRef<HTMLDivElement | null>(null);
 
-  const calculatePosition = () => {
-    if (!tooltipRef.current || !targetRef.current) return;
-
-    const tooltipRect = tooltipRef.current.getBoundingClientRect();
-    const targetRect = targetRef.current.getBoundingClientRect();
-
-    const newPositionStyle: React.CSSProperties = {};
-
-    switch (position) {
-      case "top":
-        newPositionStyle.bottom = `${targetRect.height + 8}px`;
-        newPositionStyle.left = `calc(50% - ${tooltipRect.width / 2}px)`;
-        break;
-      case "bottom":
-        newPositionStyle.top = `${targetRect.height + 8}px`;
-        newPositionStyle.left = `calc(50% - ${tooltipRect.width / 2}px)`;
-        break;
-      case "left":
-        newPositionStyle.right = `${targetRect.width + 8}px`;
-        newPositionStyle.top = `calc(50% - ${tooltipRect.height / 2}px)`;
-        break;
-      case "right":
-        newPositionStyle.left = `${targetRect.width + 8}px`;
-        newPositionStyle.top = `calc(50% - ${tooltipRect.height / 2}px)`;
-        break;
-      default:
-        break;
-    }
-
-    return newPositionStyle;
-  };
-
   useEffect(() => {
     if (isShown && tooltipRef.current && targetRef.current) {
-      const newPositionStyle = calculatePosition();
+      const newPositionStyle = calculatePosition(tooltipRef, targetRef, position);
       Object.assign(tooltipRef.current.style, newPositionStyle);
     }
   }, [isShown, position]);

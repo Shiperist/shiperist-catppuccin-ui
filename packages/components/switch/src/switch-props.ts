@@ -5,6 +5,7 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   /**
    * Specifies whether the switch is disabled. When set to true, the switch becomes non-interactive
    * and its functionality is not available to users.
+   * @default false
    */
   disabled?: boolean;
 
@@ -13,6 +14,7 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
    * Possible values:
    * - "filled": A switch with a solid fill color representing the "on" state.
    * - "alternative": A switch with an alternative fill color for the "on" state.
+   * @default alternative
    */
   appearance?: "filled" | "alternative";
 
@@ -22,17 +24,20 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
    * - "small": A small-sized switch.
    * - "medium": A medium-sized switch (default size).
    * - "large": A large-sized switch.
+   * @default medium
    */
   size?: "small" | "medium" | "large";
 
   /**
    * Specifies whether the switch is in the "on" state (checked).
    * When set to true, the switch will be visually represented as "on".
+   * @default false
    */
   checked?: boolean;
 
   /**
    * Sets the color variant of the switch.
+   * @default base
    */
   variant?: ColorVariants;
 

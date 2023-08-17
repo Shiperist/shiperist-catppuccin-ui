@@ -5,12 +5,14 @@ export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLTextAreaEle
    * - "small": A small-sized textarea.
    * - "medium": A medium-sized textarea (default size).
    * - "large": A large-sized textarea.
+   * @default medium
    */
   size?: "small" | "medium" | "large";
 
   /**
    * Specifies whether the textarea is disabled. When set to true, the textarea becomes non-interactive
    * and its functionality is not available to users.
+   * @default false
    */
   disabled?: boolean;
 
@@ -37,6 +39,7 @@ export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLTextAreaEle
    * - "vertical": The textarea can be resized vertically.
    * - "horizontal": The textarea can be resized horizontally.
    * - "both": The textarea can be resized both vertically and horizontally.
+   * @default none
    */
   resize?: "none" | "vertical" | "horizontal" | "both";
 

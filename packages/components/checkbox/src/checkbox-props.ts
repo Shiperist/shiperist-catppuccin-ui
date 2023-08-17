@@ -5,17 +5,20 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   /**
    * Specifies whether the checkbox is disabled. When set to true, the checkbox becomes non-interactive
    * and its functionality is not available to users.
+   * @default false
    */
   disabled?: boolean;
 
   /**
    * Sets the color variant of the checkbox.
+   * @default base
    */
   variant?: ColorVariants;
 
   /**
    * Specifies whether the checkbox is required for form submission.
    * When set to true, the form containing the checkbox cannot be submitted unless it is checked.
+   * @default false
    */
   required?: boolean;
 
@@ -27,6 +30,7 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
 
   /**
    * Specifies whether the checkbox is checked. When set to true, the checkbox will be in the checked state.
+   * @default false
    */
   checked?: boolean;
 
@@ -36,6 +40,7 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
    * - "small": A small-sized checkbox.
    * - "medium": A medium-sized checkbox (default size).
    * - "large": A large-sized checkbox.
+   * @default medium
    */
   size?: "small" | "medium" | "large";
 

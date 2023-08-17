@@ -3,16 +3,19 @@ import { Size, ColorVariants, Positions, Boundary } from "@shiperist-catppuccin-
 export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Sets the thickness of the progress component.
+   * @default medium
    */
   thickness?: Size;
 
   /**
    * Sets the progress value as a percentage (0 to 100).
+   * @default 0
    */
   progress?: number;
 
   /**
    * Sets the color variant of the progress component.
+   * @default base
    */
   variant?: ColorVariants;
 
@@ -21,17 +24,20 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
    * Possible values:
    * - "circular": A circular-shaped progress component.
    * - "square": A square-shaped progress component (default shape).
+   * @default circular
    */
   shape?: "circular" | "square";
 
   /**
    * Specifies whether to show the percentage progress.
    * When set to true, the progress component will display the percentage of completion.
+   * @default false
    */
   showPercent?: boolean;
 
   /**
    * Sets the position of the percentage display in relation to the progress bar.
+   * @default left
    */
   percentPosition?: Positions;
 
@@ -40,6 +46,7 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
    * Possible values:
    * - "inside": The percentage is displayed inside the progress bar (default position).
    * - "outside": The percentage is displayed outside the progress bar.
+   * @default outside
    */
   percentBoundary?: Boundary;
 

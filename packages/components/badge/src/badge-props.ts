@@ -16,6 +16,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /**
    * Sets the color variant of the badge.
+   * @default base
    */
   variant?: ColorVariants;
 
@@ -26,6 +27,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
    * - "ghost": A badge with a transparent background and styled text.
    * - "tint": A badge with a colored background and styled text.
    * - "outline": A badge with a colored outline and transparent background.
+   * @default outline
    */
   appearance?: "filled" | "ghost" | /* "tint" | */ "outline";
 }

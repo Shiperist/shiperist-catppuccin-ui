@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
   /**
    * Sets the size of the avatar.
+   * @default medium
    */
   size?: Size;
 
@@ -23,6 +24,7 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
    * - "square": A square-shaped avatar.
    * - "rounded": A rounded-corner avatar.
    * - "circular": A circular-shaped avatar.
+   * @default rounded
    */
   shape?: "square" | "rounded" | "circular";
 
@@ -33,11 +35,13 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLImageElement> {
 
   /**
    * Sets the background color of the avatar.
+   * @default surface1
    */
   backgroundColor?: ColorSet;
 
   /**
    * Sets the loading state of the avatar. If set to true, the avatar may display a loading indicator.
+   * @default false
    */
   isLoading?: boolean;
 

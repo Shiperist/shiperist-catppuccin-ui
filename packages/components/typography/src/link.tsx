@@ -8,7 +8,10 @@ export const Link = React.forwardRef<HTMLParagraphElement, TypographyProps>((pro
   return (
     <p
       ref={ref}
-      className={cn([formatClass(bold, italic, underline), `text-text cursor-pointer text-base hover:underline`])}
+      className={cn(
+        [formatClass(bold, italic, underline), `text-text cursor-pointer text-sm hover:underline`],
+        className
+      )}
       {...other}></p>
   );
 });

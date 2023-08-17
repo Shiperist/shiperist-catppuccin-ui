@@ -4,11 +4,13 @@ import { ReactNode } from "react";
 export interface IconProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Sets the size of the icon.
+   * @default medium
    */
   size?: Size;
 
   /**
    * Sets the color of the icon.
+   * @default overlay2
    */
   color?: ColorSet;
 

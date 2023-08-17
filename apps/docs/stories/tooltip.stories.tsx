@@ -1,12 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  Tooltip,
-  HorizontalLayout,
-  Card,
-  IndicatorLabel,
-  Button,
-  VerticalLayout,
-} from "@shiperist-catppuccin-ui/react";
+import { Tooltip, Text, Button, VerticalLayout, Link } from "@shiperist-catppuccin-ui/react";
 
 export default {
   title: "Components/Tooltip",
@@ -70,7 +63,7 @@ export const Positions = () => {
     { id: 4, position: "Right" },
   ];
 
-  const chunkedPositions = [];
+  const chunkedPositions: any[] = [];
   for (let i = 0; i < positions.length; i += 2) {
     chunkedPositions.push(positions.slice(i, i + 2));
   }
@@ -79,7 +72,7 @@ export const Positions = () => {
     <div className="flex h-96 items-center justify-center" style={{ width: "32rem" }}>
       <VerticalLayout style={{ gap: 8 }}>
         {chunkedPositions.map((row, rowIndex) => (
-          <div className="flex" key={rowIndex}>
+          <div className="flex" key={rowIndex} style={{ gap: 8 }}>
             {row.map((item) => (
               <div
                 key={item.id}
@@ -94,6 +87,27 @@ export const Positions = () => {
           </div>
         ))}
       </VerticalLayout>
+    </div>
+  );
+};
+
+export const AdvancedTooltip = () => {
+  return (
+    <div className="flex h-96 items-center justify-center" style={{ width: "32rem" }}>
+      <div
+        style={{
+          position: "relative",
+        }}>
+        <Tooltip
+          text={
+            <Text>
+              This tooltip contains a hyperlink. Visit <Link className="text-blue">google.com</Link>
+            </Text>
+          }
+          visible>
+          <Button className="w-32">Hover me</Button>
+        </Tooltip>
+      </div>
     </div>
   );
 };

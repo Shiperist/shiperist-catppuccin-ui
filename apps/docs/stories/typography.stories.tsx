@@ -5,7 +5,10 @@ export default {
   title: "Typography/Typography",
   component: Text,
   argTypes: {
-    as: { control: { type: "select" }, description: "Determines the as prop of the text." },
+    as: {
+      control: { type: "select" },
+      description: "Determines the as prop of the text. Applies only to Text component",
+    },
     error: {
       control: "boolean",
       description: "Whether the text is error. Can be used only in caption, caption2 and text element presets.",
