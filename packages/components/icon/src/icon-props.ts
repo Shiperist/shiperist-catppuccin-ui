@@ -6,7 +6,7 @@ export interface IconProps extends React.HTMLAttributes<HTMLDivElement> {
    * Sets the size of the icon.
    * @default medium
    */
-  size?: Size;
+  size?: "tiny" | Size;
 
   /**
    * Sets the color of the icon.

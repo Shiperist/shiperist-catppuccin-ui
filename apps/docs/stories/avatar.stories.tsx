@@ -71,7 +71,11 @@ Default.args = {
 export const WithIcon = () => {
   return (
     <Card orientation="horizontal" appearance="outline" className="p-4" gap="1rem">
-      <Avatar icon={<UserCircleIcon className="h-9 w-9" />} backgroundColor="surface0" alt="Pretty avatar" size="large">
+      <Avatar
+        icon={<UserCircleIcon className="h-9 w-9 stroke-overlay2" />}
+        backgroundColor="surface0"
+        alt="Pretty avatar"
+        size="large">
         <AvatarLabel name="Joseph Deor"></AvatarLabel>
       </Avatar>
       <VerticalLayout>

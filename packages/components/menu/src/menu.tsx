@@ -3,7 +3,17 @@ import { MenuProps, menuContainerClass, menuResultClass, menuStyles } from ".";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
 
 export const Menu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
-  const { className = "", children, disabled, text, onHover, size = "medium", ...other } = props;
+  const {
+    className = "",
+    children,
+    disabled,
+    text,
+    leadingElement,
+    trailingElement,
+    onHover,
+    size = "medium",
+    ...other
+  } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectOpen = () => {
@@ -25,7 +35,13 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => 
         {...other}
         style={{ ...other.style }}>
         <div ref={ref} className={menuStyles}>
-          {text}
+          {leadingElement && <div className={cn("stroke-overlay1 pr-2")}>{leadingElement}</div>}
+          <div
+            className="flex w-full items-center justify-center"
+            style={{ marginLeft: leadingElement ? "0.2rem" : 0 }}>
+            {text}
+          </div>
+          {trailingElement && <div className={cn("stroke-overlay1 pr-2")}>{trailingElement}</div>}
         </div>
       </div>
       {isOpen && (

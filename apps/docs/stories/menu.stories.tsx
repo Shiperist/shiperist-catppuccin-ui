@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { Menu, MenuItem, MenuItemHeader, VerticalLayout, Icon, Divider, Badge } from "@shiperist-catppuccin-ui/react";
-import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
+import { ChevronDownIcon, HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Components/Menu",
@@ -14,6 +14,7 @@ export default {
 } as Meta;
 
 const icon = <Icon icon={<HeartIcon />} size="small" />;
+const chvrn = <Icon icon={<ChevronDownIcon />} size="small" />;
 const Template: StoryFn = (args) => {
   return (
     <div className="flex h-96 items-center justify-center">
@@ -51,7 +52,9 @@ export const WithTitledMenuItem = () => {
       <Menu text="Toggle menu" style={{ width: "10rem" }}>
         <MenuItemHeader>Items</MenuItemHeader>
         <MenuItem id="item1">Menu one</MenuItem>
-        <MenuItem id="item2">Menu two</MenuItem>
+        <MenuItem id="item2" disabled>
+          Menu two
+        </MenuItem>
         <MenuItem id="item3">Menu three</MenuItem>
         <Divider className="mb-3" />
         <MenuItemHeader>Cars</MenuItemHeader>
@@ -65,10 +68,10 @@ export const WithTitledMenuItem = () => {
   );
 };
 
-export const WithIconsInMenuItem = () => {
+export const WithIcons = () => {
   return (
     <div className="flex h-96 items-center justify-center">
-      <Menu text="Toggle menu" style={{ width: "10rem" }}>
+      <Menu text="Toggle menu" style={{ width: "10rem" }} trailingElement={chvrn}>
         <MenuItem leadingElement={icon} id="item2">
           Menu one
         </MenuItem>

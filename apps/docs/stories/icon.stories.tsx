@@ -25,10 +25,11 @@ Default.args = {
 
 export const Sizes = () => {
   const variants: any[] = [
-    { id: 1, size: "small" },
-    { id: 2, size: "medium" },
-    { id: 3, size: "large" },
-    { id: 4, size: "xlarge" },
+    { id: 1, size: "tiny" },
+    { id: 2, size: "small" },
+    { id: 3, size: "medium" },
+    { id: 4, size: "large" },
+    { id: 5, size: "xlarge" },
   ];
   return (
     <HorizontalLayout style={{ gap: 10 }}>

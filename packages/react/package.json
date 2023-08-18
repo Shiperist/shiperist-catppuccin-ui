@@ -34,7 +34,8 @@
     "@shiperist-catppuccin-ui/typography": "*",
     "@shiperist-catppuccin-ui/textarea": "*",
     "@shiperist-catppuccin-ui/tooltip": "*",
-    "@shiperist-catppuccin-ui/menu": "*"
+    "@shiperist-catppuccin-ui/menu": "*",
+    "@shiperist-catppuccin-ui/kbd": "*"
   },
   "devDependencies": {
     "@types/react": "^18.2.18",

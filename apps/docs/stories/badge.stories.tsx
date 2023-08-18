@@ -14,7 +14,7 @@ export default {
   },
 } as Meta;
 
-const icon = <Icon icon={<HeartIcon />} size="small" />;
+const icon = <Icon icon={<HeartIcon />} size="tiny" />;
 const Template: StoryFn = (args) => <Badge leadingElement={icon} {...args} />;
 
 export const Default = Template.bind({});

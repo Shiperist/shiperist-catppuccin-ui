@@ -27,7 +27,7 @@ export const selectResultClass = (filteredChildren: React.ReactElement[]) =>
 
 export const selectItemClass = (disabled: boolean, size: string) =>
   cn(
-    "bg-base text-text flex w-full cursor-pointer max-w-full items-center px-4 text-left transition duration-150 ease-in-out",
+    "bg-base text-text flex w-full cursor-pointer max-w-full items-center pl-4 pr-2 text-left transition duration-150 ease-in-out",
     selectSizeClass[size] || selectSizeClass.medium,
     {
       "cursor-not-allowed opacity-50": disabled,

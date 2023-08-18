@@ -2,6 +2,17 @@ import { ReactNode } from "react";
 
 export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * Sets a leading element in the option. Can be any valid React node.
+   * This element will be positioned before the option's content.
+   */
+  leadingElement?: ReactNode;
+
+  /**
+   * Sets a trailing element in the option. Can be any valid React node.
+   * This element will be positioned after the option's content.
+   */
+  trailingElement?: ReactNode;
+  /**
    * Specifies whether the select component is disabled.
    * When set to true, the select component becomes non-interactive and its functionality is not available to users.
    * @default false

@@ -35,7 +35,7 @@ export const menuResultClass = (filteredChildren: React.ReactElement[], size: st
 export const menuStyles = cn("w-full flex-grow bg-transparent outline-none flex justify-center items-center");
 export const menuItemClass = (disabled: boolean, size: string) =>
   cn(
-    "bg-base text-text flex w-full cursor-pointer max-w-full items-center px-4 text-left transition duration-150 ease-in-out",
+    "bg-base text-text flex w-full cursor-pointer max-w-full items-center pl-4 pr-2 text-left transition duration-150 ease-in-out",
     menuSizeClass[size] || menuSizeClass.medium,
     {
       "cursor-not-allowed opacity-50": disabled,
