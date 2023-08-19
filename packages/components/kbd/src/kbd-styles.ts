@@ -7,13 +7,14 @@ export const kbdSizeClass = {
 };
 
 export const kbdAppearanceClass = {
-  filled: "bg-mantle border border-surface1 text-text border-b-2",
-  ghost: "bg-transparent text-text",
+  filled: "bg-mantle border-surface1 border-b-2",
+  ghost: "bg-transparent",
+  outline: "border-surface1 border-b-2",
 };
 
 export const kbdContainerClass = (size: string, appearance: string) =>
   cn(
-    "rounded-xl w-fit h-fit flex items-center justify-center mx-1.5",
+    "rounded-xl border text-text border-transparent w-fit h-fit flex items-center justify-center mx-1.5",
     kbdSizeClass[size] || kbdSizeClass.medium,
     kbdAppearanceClass[appearance] || kbdAppearanceClass.filled
   );

@@ -11,5 +11,5 @@ export interface KbdProps extends HTMLAttributes<HTMLDivElement> {
    * Determines the appearance style of the Kbd component.
    * @default filled
    */
-  appearance?: "filled" | "ghost";
+  appearance?: "filled" | "ghost" | "outline";
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { cn, LoadingIcon, colors, colorClass } from "@shiperist-catppuccin-ui/utilities";
-import { ButtonProps, buttonBackgroundColor, buttonBaseClass, buttonIconColor, buttonIconSizeClass } from ".";
+import { ButtonProps, buttonBaseClass, buttonIconColor, buttonIconSizeClass } from ".";
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
@@ -20,7 +20,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
   let leadingElement: React.ReactNode = originalLeadingElement;
 
   const isOnlyIcon = (leadingElement || trailingElement) && !children; //Check if button has only leading or trailing element to render differently
-  const backgroundColor = buttonBackgroundColor(colorClass(variant), appearance);
   const iconSizeClass = buttonIconSizeClass[size] || buttonIconSizeClass.medium;
   const iconColor = buttonIconColor(colorClass(variant), appearance);
   const containerStyles = cn(buttonBaseClass(disabled, appearance, variant, shape, size, isOnlyIcon), className);
@@ -34,7 +33,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
       {...other}
       style={{
         ...other.style,
-        backgroundColor: backgroundColor,
       }}>
       {leadingElement && (
         <div className={cn({ [iconColor]: !disabled, "stroke-surface2": disabled })}>{leadingElement}</div>

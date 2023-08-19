@@ -22,9 +22,19 @@ Default.args = {
 export const Sizes = () => {
   return (
     <HorizontalLayout>
-      <Kbd size="small">Ctrl</Kbd>
-      <Kbd size="medium">Ctrl</Kbd>
-      <Kbd size="large">Ctrl</Kbd>
+      <Kbd size="small">Shift</Kbd>
+      <Kbd size="medium">Shift</Kbd>
+      <Kbd size="large">Shift</Kbd>
+    </HorizontalLayout>
+  );
+};
+
+export const Appearances = () => {
+  return (
+    <HorizontalLayout>
+      <Kbd appearance="filled">Shift</Kbd>
+      <Kbd appearance="ghost">Shift</Kbd>
+      <Kbd appearance="outline">Shift</Kbd>
     </HorizontalLayout>
   );
 };

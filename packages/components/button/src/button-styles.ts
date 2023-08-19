@@ -1,7 +1,7 @@
 import { cn, colorClass, getRGBAFromHex } from "@shiperist-catppuccin-ui/utilities";
 
-export const buttonBackgroundColor = (colorClass: string, appearance: string) =>
-  appearance === "tint" ? getRGBAFromHex(colorClass) : undefined;
+/* export const buttonBackgroundColor = (colorClass: string, appearance: string) =>
+  appearance === "tint" ? getRGBAFromHex(colorClass) : undefined; */
 export const buttonIconSizeClass = {
   small: "w-4 h-4",
   medium: "w-5 h-5",
@@ -22,11 +22,11 @@ export const buttonAppearanceClass = (colorClass: string, appearance: string) =>
   return (
     {
       /* filled: `bg-${colorClass} text-mantle hover:opacity-80 border border-transparent`, */
-      outline: `border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`,
-      ghost: `text-${colorClass} hover:bg-surface1 hover:text-${colorClass} border border-transparent`,
+      outline: `border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`,
+      ghost: `text-${colorClass} hover:bg-surface1 hover:text-${colorClass}`,
       /*  tint: `text-${colorClass} hover:opacity-80 border border-transparent`, */
-      shadow: `text-${colorClass} bg-mantle shadow-lg hover:bg-crust border border-transparent`,
-    }[appearance] || `border border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`
+      shadow: `text-${colorClass} bg-mantle shadow-lg hover:bg-crust`,
+    }[appearance] || `border-${colorClass} text-${colorClass} hover:text-mantle hover:bg-${colorClass}`
   );
 };
 export const buttonIconColor = (colorClass: string, appearance: string) => {
@@ -52,14 +52,13 @@ export const buttonBaseClass = (
   isOnlyIcon: boolean
 ) =>
   cn(
-    "text-text group flex h-fit w-fit items-center justify-center transition-all",
+    "text-text group flex h-fit w-fit border border-transparent items-center justify-center transition-all",
     buttonShapeClass[shape] || buttonShapeClass.rounded,
     buttonSizeClass(size, isOnlyIcon),
     {
       ["cursor-not-allowed opacity-50"]: disabled,
       ["bg-surface0"]: disabled && appearance === "shadow",
-      ["border-surface2 border"]: disabled && appearance === "outline",
-      ["border border-transparent"]: disabled && appearance !== "outline",
+      ["border-surface2"]: disabled && appearance === "outline",
       [`${buttonAppearanceClass(colorClass(variant), appearance)} active:translate-y-0.5`]: !disabled,
     }
   );

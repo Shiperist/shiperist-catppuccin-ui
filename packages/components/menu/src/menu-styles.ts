@@ -18,7 +18,7 @@ export const menuContainerClass = (disabled: boolean, size: string, isOpen: bool
     menuSizeClass[size] || menuSizeClass.medium,
     {
       "cursor-not-allowed opacity-50": disabled,
-      "hover:border-overlay2": !disabled,
+      "hover:bg-surface0 hover:border-overlay2": !disabled,
       "outline-none border-l border-r border-t rounded-tr-xl rounded-tl-xl": isOpen,
       "border rounded-xl border-b": !isOpen,
     }

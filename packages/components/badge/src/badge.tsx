@@ -1,6 +1,6 @@
 import React from "react";
 import { cn, colorClass } from "@shiperist-catppuccin-ui/utilities";
-import { BadgeProps, badgeBackgroundColor, badgeBaseClass, badgeIconColor } from ".";
+import { BadgeProps, badgeBaseClass, badgeIconColor } from ".";
 
 export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   const {
@@ -13,7 +13,6 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) =
     ...other
   } = props;
 
-  const backgroundColor = badgeBackgroundColor(appearance, colorClass(variant));
   const iconColor = badgeIconColor(appearance, colorClass(variant));
   const containerStyles = cn(badgeBaseClass(appearance, colorClass(variant)), className);
 
@@ -24,7 +23,6 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) =
       {...other}
       style={{
         ...other.style,
-        backgroundColor: backgroundColor,
       }}>
       {leadingElement && <div className={cn(iconColor)}>{leadingElement}</div>}
       {children && <span className="mx-1">{children}</span>}

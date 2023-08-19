@@ -1,6 +1,6 @@
 import React from "react";
 import { cn, colorClass } from "@shiperist-catppuccin-ui/utilities";
-import { AlertProps, alertBackgroundColor, alertBaseClass, alertIconColor } from ".";
+import { AlertProps, alertBaseClass, alertIconColor } from ".";
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
@@ -16,7 +16,6 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
   } = props;
 
   const iconColor = alertIconColor(appearance, colorClass(variant));
-  const backgroundColor = alertBackgroundColor(appearance, colorClass(variant));
   const containerStyles = cn(alertBaseClass(size, appearance, variant), className);
 
   return (
@@ -25,7 +24,6 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
       className={containerStyles}
       style={{
         ...style,
-        backgroundColor: backgroundColor,
       }}
       {...other}>
       {leadingElement && <div className={cn(iconColor)}>{leadingElement}</div>}
