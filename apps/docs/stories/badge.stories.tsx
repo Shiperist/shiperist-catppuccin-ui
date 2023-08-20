@@ -15,13 +15,17 @@ export default {
 } as Meta;
 
 const icon = <Icon icon={<HeartIcon />} size="tiny" />;
-const Template: StoryFn = (args) => <Badge leadingElement={icon} {...args} />;
+const Template: StoryFn = (args) => (
+  <Badge leadingElement={icon} {...args}>
+    Badge
+  </Badge>
+);
 
 export const Default = Template.bind({});
 Default.args = {
   variant: "base",
   appearance: "filled",
-  children: "Badge",
+  children: "",
 };
 
 export const WithIcons = () => {
@@ -36,6 +40,7 @@ export const WithIcons = () => {
       <Badge {...Default.args} leadingElement={icon} trailingElement={icon}>
         Badge
       </Badge>
+      <Badge {...Default.args} leadingElement={icon}></Badge>
     </HorizontalLayout>
   );
 };

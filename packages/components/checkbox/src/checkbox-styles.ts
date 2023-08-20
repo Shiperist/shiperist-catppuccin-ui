@@ -16,7 +16,7 @@ export const checkboxBaseStyle = (colorClass: string, disabled: boolean, size: s
     `peer-checked:bg-${colorClass} peer-checked:border-${colorClass}`,
     checkboxSizeClass[size] || checkboxSizeClass.medium,
     {
-      "group-hover:border-overlay2": !disabled,
+      "group-hover:border-overlay2 active:translate-y-0.5": !disabled,
       "peer-checked:bg-surface2 peer-checked:border-surface2": disabled,
     }
   );
