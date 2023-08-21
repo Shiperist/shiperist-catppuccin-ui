@@ -21,3 +21,4 @@ export * from "@shiperist-catppuccin-ui/textarea";
 export * from "@shiperist-catppuccin-ui/tooltip";
 export * from "@shiperist-catppuccin-ui/menu";
 export * from "@shiperist-catppuccin-ui/kbd";
+export * from "@shiperist-catppuccin-ui/tabs";
