@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, HorizontalLayout, Kbd } from "@shiperist-catppuccin-ui/react";
+import { Button, HorizontalLayout, Icon, Kbd } from "@shiperist-catppuccin-ui/react";
+import { CommandIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Components/Kbd",
@@ -50,6 +51,14 @@ export const InText = () => {
   return (
     <HorizontalLayout>
       Press <Kbd size="small">M</Kbd>to open a map
+    </HorizontalLayout>
+  );
+};
+
+export const WithIcon = () => {
+  return (
+    <HorizontalLayout>
+      <Kbd size="small" icon={<Icon icon={<CommandIcon></CommandIcon>}></Icon>}></Kbd>
     </HorizontalLayout>
   );
 };

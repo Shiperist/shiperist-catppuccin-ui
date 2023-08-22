@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 export interface KbdProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -12,4 +12,9 @@ export interface KbdProps extends HTMLAttributes<HTMLDivElement> {
    * @default filled
    */
   appearance?: "filled" | "ghost" | "outline";
+
+  /**
+   * An optional icon element to be displayed alongside the content.
+   */
+  icon?: ReactNode;
 }

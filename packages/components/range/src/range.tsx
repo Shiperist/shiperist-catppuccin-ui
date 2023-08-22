@@ -95,7 +95,6 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>((props, ref)
     setShowTooltip(false);
   };
 
-  const containerStyles = rangeContainerClass;
   const mainContainerStyles = rangeMainContainerClass(disabled);
   const rangeStyles = rangeClass(disabled, size);
   const thumbStyles = rangeThumbClass(disabled, appearance, variant, size);
@@ -103,18 +102,21 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>((props, ref)
   const tooltipStyles = rangeTooltipClass(showTooltip, size);
 
   const markSymbols = [];
-  for (let i = min; i <= max; i += step) {
-    const markColor = i <= value ? `bg-white` : `bg-${colorClass(variant)}`;
-    const isFirstMark = i === min;
-    const isLastMark = i === max;
-    const rangeMarkStyles = rangeMarkClass(isFirstMark, isLastMark, size, markColor);
+  const totalSteps = Math.ceil((max - min) / step);
 
-    if (markSymbols.length <= 30) {
+  for (let i = min; i <= max; i += step) {
+    if (markSymbols.length < 30) {
+      const markColor = i <= value ? `bg-white` : `bg-${colorClass(variant)}`;
+      const isFirstMark = i === min;
+      const isLastMark = i === max;
+      const rangeMarkStyles = rangeMarkClass(isFirstMark, isLastMark, size, markColor);
+
       markSymbols.push(
         <div
           key={i}
           className={rangeMarkStyles}
           style={{
+            display: markSymbols.length && totalSteps > 30 ? "none" : "block",
             left: `${((i - min) / (max - min)) * 100}%`,
             top: rangeSizePosition[size] || rangeSizePosition.medium,
             transform: "translate(-50%, -50%)",
@@ -125,7 +127,7 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>((props, ref)
   }
 
   return (
-    <div className={containerStyles}>
+    <div className={rangeContainerClass}>
       <div className={mainContainerStyles} ref={sliderRef}>
         <input
           ref={ref}

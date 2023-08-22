@@ -169,3 +169,15 @@ export const TrashIcon = ({ className = "", ...props }) => (
     <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
   </svg>
 );
+
+export const CommandIcon = ({ className = "", ...props }) => (
+  <svg
+    className={cn(className, "fill-transparent")}
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}>
+    <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+  </svg>
+);
