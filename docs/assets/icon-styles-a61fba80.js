@@ -1,0 +1,2 @@
+import{j as t}from"./jsx-runtime-86dfebf6.js";import{R as l}from"./index-1b03fe98.js";import{c as d}from"./utils-111ae462.js";const h=l.forwardRef((a,e)=>{const{size:r="medium",icon:c,color:o,className:m="",...i}=a,n=d(s[r]||s.medium,m,{[`stroke-${o}`]:o});return t("div",{className:n,ref:e,...i,children:c})});h.displayName="Icon";const s={tiny:"w-3 h-3",small:"w-4 h-4",medium:"w-5 h-5",large:"w-6 h-6",xlarge:"h-7 w-7"};export{h as I};
+//# sourceMappingURL=icon-styles-a61fba80.js.map
