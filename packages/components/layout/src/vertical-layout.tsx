@@ -1,21 +1,14 @@
-import React, { FC } from "react";
+import React from "react";
 import { cn } from "@shiperist-catppuccin-ui/utilities";
+import { VerticalLayoutProps } from ".";
 
-export interface VerticalLayoutProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
-
-const VerticalLayout: FC<VerticalLayoutProps> = ({
-  className = "",
-  children,
-  ...props
-}) => {
+export const VerticalLayout = React.forwardRef<HTMLDivElement, VerticalLayoutProps>((props, ref) => {
+  const { className = "", children, ...other } = props;
   return (
-    <div className={cn("flex flex-col", className)} {...props}>
+    <div ref={ref} className={cn("flex flex-col", className)} {...other}>
       {children}
     </div>
   );
-};
-
-export default VerticalLayout;
+});
 
 VerticalLayout.displayName = "VerticalLayout";

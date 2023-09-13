@@ -1,27 +1,31 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Badge, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
+import { Badge, BadgeProps, HorizontalLayout, Icon } from "@shiperist-catppuccin-ui/react";
 import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Components/Badge",
   component: Badge,
   argTypes: {
-    variant: { control: { type: "select" } },
-    appearance: { control: { type: "select" } },
-    leadingElement: { control: "object" },
-    trailingElement: { control: "object" },
-    children: { control: "text" },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the badge." },
+    appearance: { control: { type: "select" }, description: "Determines the appearance style of the badge." },
+    leadingElement: { control: "object", description: "Sets an element/s on the left side of the badge." },
+    trailingElement: { control: "object", description: "Sets an element/s on the right side of the badge." },
+    children: { control: "text", description: "Determines the children of the badge. In this scenario it's the text." },
   },
 } as Meta;
 
-const icon = <Icon icon={<HeartIcon />} size="small" />;
-const Template: StoryFn = (args) => <Badge leadingElement={icon} {...args} />;
+const icon = <Icon icon={<HeartIcon />} size="tiny" />;
+const Template: StoryFn = (args) => (
+  <Badge leadingElement={icon} {...args}>
+    Badge
+  </Badge>
+);
 
 export const Default = Template.bind({});
 Default.args = {
   variant: "base",
   appearance: "filled",
-  children: "Badge",
+  children: "",
 };
 
 export const WithIcons = () => {
@@ -36,6 +40,7 @@ export const WithIcons = () => {
       <Badge {...Default.args} leadingElement={icon} trailingElement={icon}>
         Badge
       </Badge>
+      <Badge {...Default.args} leadingElement={icon}></Badge>
     </HorizontalLayout>
   );
 };
@@ -64,17 +69,12 @@ export const Appearances = () => {
     { id: 1, appearance: "filled" },
     { id: 2, appearance: "outline" },
     { id: 3, appearance: "ghost" },
-    { id: 4, appearance: "tint" },
+    /* { id: 4, appearance: "tint" }, */
   ];
   return (
     <HorizontalLayout style={{ gap: 8 }}>
       {appearances.map((appearance) => (
-        <Badge
-          {...Default.args}
-          key={appearance.id}
-          leadingElement={icon}
-          appearance={appearance.appearance}
-        >
+        <Badge {...Default.args} key={appearance.id} leadingElement={icon} appearance={appearance.appearance}>
           Badge
         </Badge>
       ))}

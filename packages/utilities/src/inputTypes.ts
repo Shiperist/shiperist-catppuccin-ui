@@ -4,8 +4,7 @@ export type Orientation = "horizontal" | "vertical";
 export type PositionVertical = "top" | "bottom";
 export type PositionHorizontal = "left" | "right";
 export type Positions = "left" | "right" | "center";
-export type Radius = "full" | "large" | "medium" | "small" | "none";
-export type Status = "invisible" | "active" | "idle" | "dnd" | "info";
+export type Boundary = "inside" | "outside";
 export type PositionPresets =
   | "top-left"
   | "top-right"
@@ -16,17 +15,7 @@ export type PositionPresets =
   | "middle-left"
   | "middle-right"
   | "middle-center";
-export type TextProp =
-  | "p"
-  | "a"
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "span"
-  | "pre";
+export type TextProp = "p" | "a" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "pre";
 export type ColorSet =
   | "rosewater"
   | "flamingo"

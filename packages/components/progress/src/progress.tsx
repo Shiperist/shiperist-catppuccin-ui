@@ -1,133 +1,62 @@
-import { ColorVariants, Size, cn } from "@shiperist-catppuccin-ui/utilities";
-import React, { HTMLAttributes } from "react";
+import React from "react";
+import { cn, colorClass } from "@shiperist-catppuccin-ui/utilities";
 import {
-  PositionHorizontal,
-  Positions,
-  colors,
-} from "@shiperist-catppuccin-ui/utilities";
+  ProgressProps,
+  progressClass,
+  progressContainerClass,
+  progressLabelStyles,
+  progressMainBarClass,
+  progressTextSizeClass,
+} from ".";
 
-// Todo radial progress
+// Todo radial progresss
 
-export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
-  size?: Size;
-  progress?: number;
-  variant?: ColorVariants;
-  radius?: "full" | "none";
-  showPercent?: boolean;
-  percentPosition?: "inside" | "outside";
-  percentPositionOutside?: PositionHorizontal;
-  percentPositionInside?: Positions;
-  /* appearance?: "linear" | "radial"; */
-}
+export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
+  const {
+    thickness = "medium",
+    variant = "success",
+    showPercent,
+    percentPosition = "left",
+    percentBoundary = "outside",
+    /* appearance = "", */
+    className = "",
+    shape = "circular",
+    progress = 0,
+    ...other
+  } = props;
 
-const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
-  (props, ref) => {
-    const {
-      size,
-      variant,
-      showPercent,
-      percentPosition,
-      percentPositionInside,
-      percentPositionOutside,
-      /* appearance = "", */
-      className = "",
-      radius,
-      progress = 0,
-      ...other
-    } = props;
+  const clampedProgress = Math.min(100, Math.max(0, progress)).toFixed(2);
+  const containerStyles = progressContainerClass(thickness);
+  const mainOverlayStyles = cn(progressMainBarClass(shape, thickness), className);
+  const progressLine = progressClass(colorClass(variant), shape);
+  const labelStyles = progressLabelStyles(percentBoundary, percentPosition);
 
-    const clampedProgress = Math.min(100, Math.max(0, progress)).toFixed(2);
-    const colorClass = colors[variant] || colors.success;
-    const radiusClass = `rounded-${radius}`;
-    const textSizeClass =
-      {
-        small: "text-xs",
-        medium: "text-sm",
-        large: "text-sm",
-        xlarge: "text-md",
-      }[size] || "";
+  const progressStyles = {
+    width: `${clampedProgress}%`,
+    ...other.style,
+  };
 
-    const heightClass =
-      {
-        small: "h-1.5",
-        medium: "h-2.5",
-        large: "h-3.5",
-        xlarge: "h-4",
-      }[size] || "h-2.5";
+  const percentText = (
+    <div>
+      <span className={cn(progressTextSizeClass[thickness] || progressTextSizeClass.medium)}>{clampedProgress}%</span>
+    </div>
+  );
 
-    const progressStyles = {
-      width: `${clampedProgress}%`,
-      ...other.style,
-    };
-
-    const labelStyles =
-      percentPosition === "inside"
-        ? {
-            justifyContent: percentPositionInside,
-            alignItems: percentPositionInside,
-            display: "flex",
-          }
-        : { alignItems: "center", display: "flex" };
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "flex w-full flex-row items-center transition-all duration-150",
-          heightClass
-        )}
-        style={{ gap: showPercent ? 8 : undefined }}
-        {...other}
-      >
-        {showPercent &&
-          percentPosition === "outside" &&
-          percentPositionOutside === "left" && (
-            <div>
-              <span className={cn(textSizeClass)}>{clampedProgress}%</span>
+  return (
+    <div ref={ref} className={containerStyles} style={{ gap: showPercent ? 8 : undefined }} {...other}>
+      {showPercent && percentBoundary === "outside" && percentPosition === "left" && percentText}
+      <div className={mainOverlayStyles}>
+        <div className={progressLine} style={{ ...progressStyles }}>
+          {showPercent && thickness === "xlarge" && percentBoundary === "inside" && (
+            <div className={cn("px-2")} style={labelStyles}>
+              <span className={cn("text-mantle text-xs", `text-${percentPosition}`)}>{clampedProgress}%</span>
             </div>
           )}
-        <div
-          className={cn(
-            "bg-overlay0 w-full items-center transition-all duration-150",
-            className,
-            radiusClass,
-            heightClass
-          )}
-        >
-          <div
-            className={cn(
-              `h-full transition-all duration-150 bg-${colorClass}`,
-              radiusClass
-            )}
-            style={{ ...progressStyles }}
-          >
-            {showPercent &&
-              size === "xlarge" &&
-              percentPosition === "inside" && (
-                <div className="px-2" style={labelStyles}>
-                  <span
-                    className={cn(
-                      "text-mantle text-xs",
-                      `text-${percentPositionInside}`
-                    )}
-                  >
-                    {clampedProgress}%
-                  </span>
-                </div>
-              )}
-          </div>
         </div>
-        {showPercent &&
-          percentPosition === "outside" &&
-          percentPositionOutside === "right" && (
-            <div>
-              <span className={cn(textSizeClass)}>{clampedProgress}%</span>
-            </div>
-          )}
       </div>
-    );
-  }
-);
+      {showPercent && percentBoundary === "outside" && percentPosition === "right" && percentText}
+    </div>
+  );
+});
 
 Progress.displayName = "Progress";
-
-export default Progress;

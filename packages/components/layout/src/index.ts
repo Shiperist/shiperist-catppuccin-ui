@@ -1,2 +1,3 @@
-export { default as HorizontalLayout } from "./horizontal-layout";
-export { default as VerticalLayout } from "./vertical-layout";
+export * from "./horizontal-layout";
+export * from "./vertical-layout";
+export * from "./layout-props";

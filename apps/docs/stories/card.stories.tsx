@@ -15,33 +15,31 @@ export default {
   title: "Components/Card",
   component: Card,
   argTypes: {
-    appearance: { control: { type: "select" } },
-    orientation: { control: { type: "select" } },
-    variant: { control: { type: "select" } },
-    gap: { control: "text" },
-    disabled: { control: "boolean" },
+    appearance: { control: { type: "select" }, description: "Determines the appearance style of the card." },
+    orientation: { control: { type: "select" }, description: "Determines the orientation of the card." },
+    variant: {
+      control: { type: "select" },
+      description: "Determines the color variant of the card. Works only for embed option",
+    },
+    gap: { control: "text", description: "Determines the gap between elements in the card." },
+    disabled: { control: "boolean", description: "Whether the card is disabled." },
   },
 } as Meta;
 
 const Template: StoryFn = (args) => (
   <Card {...args} gap={16}>
-    <CardHeader className="flex flex-col">
+    <CardHeader>
       <Subtitle bold>Your plan</Subtitle>
       <Caption>This plan is for those who have a team...</Caption>
     </CardHeader>
-    <CardContent className="flex flex-col">
+    <CardContent>
       <Text>- File sharing</Text>
       <Text>- 50 GB storage</Text>
       <Text>- 16 GB of RAM</Text>
       <Text>- ...</Text>
     </CardContent>
     <CardFooter>
-      <Button
-        size="large"
-        appearance="filled"
-        variant="success"
-        className="w-full"
-      >
+      <Button size="large" variant="success" disabled={args.disabled} className="w-full">
         Choose plan
       </Button>
     </CardFooter>
@@ -75,7 +73,7 @@ export const Appearances = () => {
   );
 };
 export const Orientations = () => {
-  const orientations: any = [
+  const orientations: any[] = [
     { id: 1, orientation: "vertical" },
     { id: 2, orientation: "horizontal" },
   ];
@@ -83,15 +81,10 @@ export const Orientations = () => {
     <VerticalLayout style={{ gap: 8, width: "32rem" }}>
       {orientations.map((key) => (
         <Card {...Default.args} key={key.id} orientation={key.orientation}>
-          <Card
-            appearance="filled"
-            orientation={key.orientation}
-            className="w-full"
-            gap={8}
-          >
+          <Card appearance="filled" orientation={key.orientation} gap={8}>
             <Text>content</Text>
           </Card>
-          <Card appearance="filled" className="w-full" gap={8}>
+          <Card appearance="filled" gap={8}>
             <Text>content</Text>
           </Card>
         </Card>

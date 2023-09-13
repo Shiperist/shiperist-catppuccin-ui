@@ -1,21 +1,18 @@
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  Caption2,
-  HorizontalLayout,
-  Switch,
-  Text,
-  VerticalLayout,
-} from "@shiperist-catppuccin-ui/react";
+import { Caption, Caption2, HorizontalLayout, Switch, VerticalLayout } from "@shiperist-catppuccin-ui/react";
 import { useRef, useState } from "react";
 
 export default {
   title: "Forms/Switch",
   component: Switch,
   argTypes: {
-    disabled: { control: "boolean" },
-    variant: { control: { type: "select" } },
-    appearance: { control: { type: "select" } },
-    size: { control: { type: "select" } },
+    disabled: { control: "boolean", description: "Whether the switch is disabled." },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the switch." },
+    appearance: { control: { type: "select" }, description: "Determines the appearance style of the switch." },
+    size: { control: { type: "select" }, description: "Determines the size of the switch." },
+    checked: { control: "boolean", description: "Whether is the switch checked or not." },
+    value: { control: "text", description: "Determines the value of the switch." },
+    onChange: { control: "object", description: "Callback function triggered when the value of the switch changes." },
   },
 } as Meta;
 
@@ -30,9 +27,8 @@ const Template: StoryFn = (args) => {
         {...args}
         onClick={() => {
           switchRef.current && setIsChecked(switchRef.current.checked);
-        }}
-      >
-        <Text className="ml-2">Switch</Text>
+        }}>
+        <Caption className="ml-2">Switch</Caption>
       </Switch>
       <Caption2>Switch is: {isChecked.toString()}</Caption2>
     </VerticalLayout>
@@ -57,7 +53,7 @@ export const Appearances = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Switch key={variant.id} appearance={variant.appearance} size="medium">
-          <Text className="ml-2 text-sm">Switch</Text>
+          <Caption className="ml-2">Switch</Caption>
         </Switch>
       ))}
     </HorizontalLayout>
@@ -74,7 +70,7 @@ export const Sizes = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Switch key={variant.id} size={variant.size}>
-          <Text className="ml-2 text-sm">Switch</Text>
+          <Caption className="ml-2">Switch</Caption>
         </Switch>
       ))}
     </HorizontalLayout>
@@ -84,7 +80,7 @@ export const Sizes = () => {
 export const DisabledState = () => {
   return (
     <Switch disabled>
-      <Text className="ml-2 text-sm">Switch</Text>
+      <Caption className="ml-2">Switch</Caption>
     </Switch>
   );
 };

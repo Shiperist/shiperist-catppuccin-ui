@@ -1,34 +1,22 @@
 import React from "react";
-import { cn } from "@shiperist-catppuccin-ui/utilities";
+import { cn, orientations } from "@shiperist-catppuccin-ui/utilities";
+import { CardExtraProps } from ".";
 
-export interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  gap?: string | number;
-}
+export const CardContent = React.forwardRef<HTMLDivElement, CardExtraProps>((props, ref) => {
+  const { gap, orientation, className = "", children, ...other } = props;
+  const convertedGap = typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
+  const orientationClass = orientations[orientation] || orientations.vertical;
 
-const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
-  (props, ref) => {
-    const { gap, className = "", children, ...other } = props;
-    const convertedGap =
-      typeof gap === "string" && gap.match(/[a-zA-Z]/) ? gap : `${gap}px`;
+  const cardHeaderStyles = {
+    gap: convertedGap ? convertedGap : undefined,
+    ...other.style,
+  };
 
-    const cardHeaderStyles = {
-      gap: convertedGap ? convertedGap : undefined,
-      ...other.style,
-    };
-
-    return (
-      <div
-        ref={ref}
-        className={cn(className)}
-        style={cardHeaderStyles}
-        {...other}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+  return (
+    <div ref={ref} className={cn(className, orientationClass)} style={cardHeaderStyles} {...other}>
+      {children}
+    </div>
+  );
+});
 
 CardContent.displayName = "CardContent";
-
-export default CardContent;

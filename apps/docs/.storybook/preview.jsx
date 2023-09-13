@@ -16,11 +16,8 @@ export const globalTypes = {
     defaultValue: "Macchiato",
     toolbar: {
       icon: "paintbrush",
-      // Array of plain string values or MenuItem shape (see below)
       items: Object.keys(palettes),
-      // Property that specifies if the name of the item will be displayed
       showName: true,
-      // Change title based on selected value
       dynamicTitle: true,
     },
   },
@@ -38,9 +35,8 @@ const withThemeProvider = (Story, context) => {
     Object.values(palettes).forEach((theme) => {
       document.body.classList.remove(theme);
     });
-
     // Sets current theme
-    document.body.classList.add(getTheme(theme.theme));
+    document.body.classList.add(getTheme(theme));
   }, [theme]);
 
   return <Story {...context} />;

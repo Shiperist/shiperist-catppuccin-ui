@@ -1,22 +1,18 @@
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  Caption2,
-  Card,
-  Checkbox,
-  Divider,
-  HorizontalLayout,
-  Text,
-} from "@shiperist-catppuccin-ui/react";
+import { Caption, Caption2, Card, Checkbox, Divider, HorizontalLayout, Text } from "@shiperist-catppuccin-ui/react";
 import { useState } from "react";
 
 export default {
   title: "Forms/Checkbox",
   component: Checkbox,
   argTypes: {
-    disabled: { control: "boolean" },
-    required: { control: "boolean" },
-    variant: { control: { type: "select" } },
-    size: { control: { type: "select" } },
+    disabled: { control: "boolean", description: "Whether the checkbox is disabled." },
+    required: { control: "boolean", description: "Whether the checkbox is required." },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the checkbox." },
+    size: { control: { type: "select" }, description: "Determines the size of the checkbox." },
+    value: { control: "number", description: "Determines the value of the checkbox." },
+    checked: { control: "boolean", description: "Determines if the checkbox is checked or not." },
+    onChange: { control: "object", description: "Callback function triggered when the value of the checkbox changes." },
   },
 } as Meta;
 
@@ -28,21 +24,17 @@ const Template: StoryFn = (args) => {
       <Text>Uncontrolled checkboxes:</Text>
       <HorizontalLayout style={{ gap: 16 }}>
         <Checkbox {...args}>
-          <Text className="ml-2 text-sm">Checkbox</Text>
+          <Caption className="ml-2">Checkbox</Caption>
         </Checkbox>
         <Checkbox {...args} checked>
-          <Text className="ml-2 text-sm">Checkbox</Text>
+          <Caption className="ml-2">Checkbox</Caption>
         </Checkbox>
       </HorizontalLayout>
       <Divider>OR</Divider>
       <Text>Controlled checkbox:</Text>
       <HorizontalLayout style={{ gap: 16 }}>
-        <Checkbox
-          {...args}
-          checked={isChecked}
-          onChange={() => setIsChecked(!isChecked)}
-        >
-          <Text className="ml-2 text-sm">Checkbox</Text>
+        <Checkbox {...args} checked={isChecked} onChange={() => setIsChecked(!isChecked)}>
+          <Caption className="ml-2">Checkbox</Caption>
         </Checkbox>
       </HorizontalLayout>
       <Caption2>Checkbox is: {isChecked.toString()}</Caption2>
@@ -72,7 +64,7 @@ export const Variants = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Checkbox key={variant.id} variant={variant.variant} checked>
-          <Text className="ml-2 text-sm">Checkbox</Text>
+          <Caption className="ml-2">Checkbox</Caption>
         </Checkbox>
       ))}
     </HorizontalLayout>
@@ -89,17 +81,17 @@ export const Sizes = () => {
     <HorizontalLayout style={{ gap: 10 }}>
       {variants.map((variant) => (
         <Checkbox key={variant.id} size={variant.size} checked>
-          <Text className="ml-2 text-sm">Checkbox</Text>
+          <Caption className="ml-2">Checkbox</Caption>
         </Checkbox>
       ))}
     </HorizontalLayout>
   );
 };
 
-export const Disabled = () => {
+export const DisabledState = () => {
   return (
     <Checkbox disabled>
-      <Text className="ml-2 text-sm">Checkbox</Text>
+      <Caption className="ml-2">Checkbox</Caption>
     </Checkbox>
   );
 };

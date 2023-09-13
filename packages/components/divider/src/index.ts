@@ -1,2 +1,3 @@
-export { default as Divider } from "./divider";
-export type { DividerProps } from "./divider";
+export * from "./divider";
+export * from "./divider-props";
+export * from "./divider-styles";

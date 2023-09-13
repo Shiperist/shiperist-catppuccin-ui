@@ -1,2 +1,3 @@
-export { default as Range } from "./range";
-export type { RangeProps } from "./range";
+export * from "./range";
+export * from "./range-props";
+export * from "./range-styles";

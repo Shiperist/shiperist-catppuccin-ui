@@ -3,47 +3,58 @@ import { useState } from "react";
 import {
   Select,
   SelectItem,
+  SelectItemHeader,
   VerticalLayout,
   Text,
   Icon,
+  Divider,
+  Badge,
+  Button,
 } from "@shiperist-catppuccin-ui/react";
-import { HeartIcon } from "@shiperist-catppuccin-ui/utilities";
+import { HeartIcon, TrashIcon } from "@shiperist-catppuccin-ui/utilities";
 
 export default {
   title: "Forms/Select",
   component: Select,
   argTypes: {
-    disabled: { control: "boolean" },
-    placeholder: { control: "text" },
-    defaultValue: { control: "text" },
-    value: { control: "text" },
-    onChange: { control: "function" },
-    variant: { control: { type: "select" } },
+    disabled: { control: "boolean", description: "Whether the select is disabled." },
+    placeholder: { control: "text", description: "Determines the placeholder of the select." },
+    defaultValue: { control: "text", description: "Determines the default value of the select." },
+    value: { control: "text", description: "Determines the value of the select." },
+    onChange: { control: "function", description: "Callback function triggered when the value of the select changes." },
+    variant: { control: { type: "select" }, description: "Determines the type of the select." },
+    size: { control: { type: "select" }, description: "Determines the size of the select." },
   },
 } as Meta;
 
 const icon = <Icon icon={<HeartIcon />} size="small" />;
+const trashIcon = (
+  <Button
+    size="small"
+    appearance="ghost"
+    className="z-20"
+    leadingElement={<Icon icon={<TrashIcon />} size="small" />}></Button>
+);
 const Template: StoryFn = (args) => {
   return (
-    <Select {...args} style={{ width: "32rem" }}>
-      <SelectItem leadingElement={icon} id="item1">
-        Select one
-      </SelectItem>
-      <SelectItem id="item2">Select two</SelectItem>
-      <SelectItem leadingElement={icon} id="item3">
-        Select three
-      </SelectItem>
-    </Select>
+    <div className="flex h-96 items-center justify-center">
+      <Select {...args} style={{ width: "32rem" }}>
+        <SelectItem id="item1">Select one</SelectItem>
+        <SelectItem id="item2">Select two</SelectItem>
+        <SelectItem id="item3">Select three</SelectItem>
+      </Select>
+    </div>
   );
 };
 
-export const UncontrolledSelection = Template.bind({});
-UncontrolledSelection.args = {
+export const Default = Template.bind({});
+Default.args = {
   disabled: false,
   placeholder: "Select items...",
   defaultValue: "",
   value: "",
   variant: "button",
+  size: "medium",
 };
 
 export const ControlledSelection = () => {
@@ -52,25 +63,19 @@ export const ControlledSelection = () => {
     { id: 2, name: "Kenton Towne", disabled: false },
     { id: 3, name: "Therese Wunsch", disabled: false },
     { id: 4, name: "Benedict Kessler", disabled: true },
-    { id: 5, name: "Katelyn Rohan", disabled: false },
   ];
   const [selectedPerson, setSelectedPerson] = useState(people[0].name);
 
   return (
-    <div>
+    <div className="flex h-96 items-center justify-center">
       <Select
         placeholder="Select items..."
         variant="button"
         defaultValue={selectedPerson}
         onChange={setSelectedPerson}
-        style={{ width: "32rem" }}
-      >
+        style={{ width: "32rem" }}>
         {people.map((person) => (
-          <SelectItem
-            key={person.id}
-            value={person.name}
-            disabled={person.disabled}
-          >
+          <SelectItem key={person.id} value={person.name} disabled={person.disabled}>
             {person.name}
           </SelectItem>
         ))}
@@ -91,29 +96,88 @@ Placeholder.args = {
   variant: "button",
 };
 
+export const WithTitledSelectItem = () => {
+  return (
+    <div className="mt-8 flex h-96 justify-center">
+      <Select placeholder="Select items..." style={{ width: "32rem" }}>
+        <SelectItemHeader>Items</SelectItemHeader>
+        <SelectItem id="item1">Select one</SelectItem>
+        <SelectItem id="item2">Select two</SelectItem>
+        <SelectItem id="item3">Select three</SelectItem>
+        <Divider className="mb-3" />
+        <SelectItemHeader>Cars</SelectItemHeader>
+        <SelectItem id="item4" trailingElement={<Badge variant="success">New</Badge>}>
+          Audi
+        </SelectItem>
+        <SelectItem id="item5">Mercedes-Benz</SelectItem>
+        <SelectItem id="item6">BMW</SelectItem>
+      </Select>
+    </div>
+  );
+};
+
+export const WithIconsInSelectItem = () => {
+  return (
+    <div className="flex h-96 items-center justify-center">
+      <Select placeholder="Select items..." style={{ width: "32rem" }}>
+        <SelectItem leadingElement={icon} id="item2">
+          Select one
+        </SelectItem>
+        <SelectItem trailingElement={trashIcon} id="item3">
+          Select two
+        </SelectItem>
+        <SelectItem leadingElement={icon} trailingElement={trashIcon} id="item4">
+          Select three
+        </SelectItem>
+      </Select>
+    </div>
+  );
+};
+
+export const Sizes = () => {
+  const sizes: any[] = [
+    { id: 1, size: "small" },
+    { id: 2, size: "medium" },
+    { id: 3, size: "large" },
+  ];
+
+  return (
+    <div className="flex h-96 items-center justify-center">
+      <VerticalLayout style={{ gap: 8 }}>
+        {sizes.map((key) => (
+          <Select
+            key={key.id}
+            size={key.size}
+            placeholder="Select items..."
+            variant="button"
+            style={{ width: "32rem" }}>
+            <SelectItem id="item1">Select one</SelectItem>
+            <SelectItem id="item2">Select two</SelectItem>
+            <SelectItem id="item3">Select three</SelectItem>
+          </Select>
+        ))}
+      </VerticalLayout>
+    </div>
+  );
+};
+
 export const Types = () => {
   return (
-    <VerticalLayout style={{ gap: 16, width: "32rem" }}>
-      <Text bold>Button</Text>
-      <Select variant="button" placeholder="Select items...">
-        <SelectItem leadingElement={icon} id="item1">
-          Select one
-        </SelectItem>
-        <SelectItem id="item2">Select two</SelectItem>
-        <SelectItem leadingElement={icon} id="item3">
-          Select three
-        </SelectItem>
-      </Select>
-      <Text bold>Input</Text>
-      <Select variant="input" placeholder="Select/search items...">
-        <SelectItem leadingElement={icon} id="item1">
-          Select one
-        </SelectItem>
-        <SelectItem id="item2">Select two</SelectItem>
-        <SelectItem leadingElement={icon} id="item3">
-          Select three
-        </SelectItem>
-      </Select>
-    </VerticalLayout>
+    <div className="flex h-96 items-center justify-center">
+      <VerticalLayout style={{ gap: 4, width: "32rem" }}>
+        <Text bold>Button</Text>
+        <Select variant="button" placeholder="Select items...">
+          <SelectItem id="item1">Select one</SelectItem>
+          <SelectItem id="item2">Select two</SelectItem>
+          <SelectItem id="item3">Select three</SelectItem>
+        </Select>
+        <Text bold>Input</Text>
+        <Select variant="input" placeholder="Select/search items...">
+          <SelectItem id="item1">Select one</SelectItem>
+          <SelectItem id="item2">Select two</SelectItem>
+          <SelectItem id="item3">Select three</SelectItem>
+        </Select>
+      </VerticalLayout>
+    </div>
   );
 };

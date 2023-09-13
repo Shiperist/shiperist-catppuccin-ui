@@ -5,23 +5,21 @@ export default {
   title: "Forms/Range",
   component: Range,
   argTypes: {
-    disabled: { control: "boolean" },
-    track: { control: "boolean" },
-    tooltip: { control: "boolean" },
-    marks: { control: "boolean" },
-    appearance: { control: { type: "select" } },
-    variant: { control: { type: "select" } },
-    size: { control: { type: "select" } },
-    min: { control: "number" },
-    max: { control: "number" },
-    step: { control: "number" },
-    defaultValue: { control: "number" },
+    disabled: { control: "boolean", description: "Whether the range slider is disabled." },
+    track: { control: "boolean", description: "Whether to show the track." },
+    tooltip: { control: "boolean", description: "Whether to show the tooltip with the current value." },
+    marks: { control: "boolean", description: "Whether to show marks on the track. Works only upto 30 marks." },
+    appearance: { control: { type: "select" }, description: "Determines the appearance style of the range slider." },
+    variant: { control: { type: "select" }, description: "Determines the color variant of the range slider." },
+    size: { control: { type: "select" }, description: "Determines the size of the range slider." },
+    min: { control: "number", description: "The minimum value of the range slider." },
+    max: { control: "number", description: "The maximum value of the range slider." },
+    step: { control: "number", description: "The step value of the range slider." },
+    defaultValue: { control: "number", description: "Determines the default value of the range slider." },
   },
 } as Meta;
 
-const Template: StoryFn = (args) => (
-  <Range {...args} style={{ gap: 12, width: "32rem" }}></Range>
-);
+const Template: StoryFn = (args) => <Range {...args} style={{ gap: 12, width: "32rem" }}></Range>;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -49,12 +47,7 @@ export const Variants = () => {
   return (
     <VerticalLayout style={{ gap: 8, width: "32rem" }}>
       {variants.map((key) => (
-        <Range
-          key={key.id}
-          variant={key.variant}
-          size="medium"
-          defaultValue={25}
-        ></Range>
+        <Range key={key.id} variant={key.variant} size="medium" defaultValue={25}></Range>
       ))}
     </VerticalLayout>
   );
@@ -68,12 +61,7 @@ export const Appearances = () => {
   return (
     <VerticalLayout style={{ gap: 8, width: "32rem" }}>
       {appearances.map((key) => (
-        <Range
-          key={key.id}
-          appearance={key.name}
-          size="medium"
-          defaultValue={25}
-        ></Range>
+        <Range key={key.id} appearance={key.name} size="medium" defaultValue={25}></Range>
       ))}
     </VerticalLayout>
   );
@@ -109,13 +97,6 @@ export const WithMarks = () => {
     </VerticalLayout>
   );
 };
-WithMarks.parameters = {
-  docs: {
-    description: {
-      story: "Works only up to 30 marks",
-    },
-  },
-};
 
 export const WithTooltip = () => {
   return (
@@ -134,8 +115,8 @@ export const TrackOnOrOff = () => {
   );
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
+export const DisabledState = Template.bind({});
+DisabledState.args = {
   disabled: true,
   defaultValue: 25,
 };

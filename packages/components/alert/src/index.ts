@@ -1,2 +1,3 @@
-export { default as Alert } from "./alert";
-export type { AlertProps } from "./alert";
+export * from "./alert";
+export * from "./alert-props";
+export * from "./alert-styles";
