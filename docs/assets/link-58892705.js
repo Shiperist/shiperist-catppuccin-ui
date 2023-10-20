@@ -1,0 +1,2 @@
+import{j as m}from"./jsx-runtime-86dfebf6.js";import{R as n}from"./index-1b03fe98.js";import{c,f as l}from"./utils-3450518e.js";const f=n.forwardRef((r,e)=>{const{bold:t,italic:o,error:p,underline:s,className:a="",...i}=r;return m("p",{ref:e,className:c([l(t,o,s),"text-text cursor-pointer text-sm hover:underline"],a),...i})});f.displayName="Link";export{f as L};
+//# sourceMappingURL=link-58892705.js.map
